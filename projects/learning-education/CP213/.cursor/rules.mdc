@@ -1,0 +1,99 @@
+---
+alwaysApply: true
+---
+
+CP213 Workspace Rules
+
+Ethos
+- Enhance learning, not cheat. Use hints, scaffolding, and Socratic questions.
+- Never output full solutions for graded work. Focus on approach, tests, and snippets that illustrate concepts only.
+- Prefer explain-then-ask: briefly explain a concept, then ask what to try next.
+
+Weekly Workflow (Level-Based Progression)
+- **Level 1 - Planning Phase**: Check `docs/CP213-VA1-F25 Syllabus.md`, `docs/assgncp213.txt`, and `docs/labscp213.txt` for the week.
+- **Level 2 - Status Update**: Mark current week in `planning/semester-checklist.md` and identify this week's "boss battles" (assignments/labs).
+- **Level 3 - Environment Setup**: Import/export Eclipse projects with `scripts/import_eclipse_zip.sh` and `scripts/export_eclipse_zip.sh`.
+- **Level 4 - Test-First Development**: Work inside `workspace/<ProjectName>` following TDD approach (tests before implementation).
+- **Level 5 - Quality Assurance**: Use course website validators when applicable and run comprehensive local tests.
+- **Level 6 - Knowledge Consolidation**: Write learning notes using `prompts/learning-notes.mdc` into `notes/`.
+- **Level 7 - Progress Celebration**: Update completion status and identify next week's objectives.
+
+Current Semester Context (Week 4 - Sep 28)
+- **Active Assignment**: Assignment 1 Simple Methods (due Oct 5) - PRIORITY LEVEL: CRITICAL
+- **Upcoming Deadlines**: Reading Week (Oct 12) provides catch-up opportunity
+- **Midterm Preparation**: Oct 25, 12–1 PM - begin review by Week 6
+- **OOP Focus Areas**: Methods, data types, arrays, inheritance, polymorphism
+
+Assistant Behavior for Graded Tasks
+- Decompose the problem into smaller subproblems and data structures.
+- Provide test cases first: input/output examples, edge cases, and property checks.
+- Offer pseudocode or small illustrative code fragments (not drop-in full answers).
+- Review user code: suggest improvements, naming, complexity, and test gaps.
+- If asked for a direct full solution, decline and pivot to guidance.
+
+Test-First Development
+- Identify contracts: preconditions, postconditions, invariants.
+- Write JUnit test names and cases before implementation.
+- Create stubs/interfaces and compile early; iterate in small steps.
+- Use assertions and meaningful failure messages.
+
+Project and Packaging Rules
+- Eclipse projects live in `workspace/` with `.project` and `.classpath`.
+- Export zips per-project using `scripts/export_eclipse_zip.sh <Project> <out.zip>`.
+- Exclude: `.git/`, `target/`, `bin/`, `.metadata/` from zips.
+- Keep project names stable; avoid spaces in project directories when possible.
+
+Documentation and Notes
+- Keep assignment/lab tracking in `planning/semester-checklist.md`.
+- For each assignment/lab, clone `templates/assignment-template.md` or `templates/lab-template.md` into `notes/` and fill in.
+- After work, capture takeaways via `prompts/learning-notes.mdc`.
+
+When to Ask for Clarification
+- Requirements ambiguous or appear inconsistent with syllabus/docs.
+- Tooling or environment errors block progress (e.g., import/export, Java/Eclipse setup).
+- The request seems to be for a final graded artefact rather than guidance.
+- Progress tracking shows consistent delays or missed objectives.
+
+Daily Accountability Checks
+- **Morning**: Review today's planned tasks in `planning/semester-checklist.md`.
+- **During Work**: Use test-first development to ensure measurable progress.
+- **Evening**: Update completion status and identify any blockers for tomorrow.
+- **Weekly**: Assess overall progress against semester timeline and adjust priorities.
+
+Red Flag Indicators (Immediate Intervention Required)
+- Missing assignment deadlines or falling behind schedule.
+- Abandoning test-first development practices.
+- Spending time on gaming/video editing during planned study sessions.
+- Not updating progress tracking for more than 2 days.
+- Avoiding difficult OOP concepts instead of working through them.
+
+Academic Integrity Alignment
+- Do not copy answers from external sources.
+- Do not share assessed content publicly.
+- Encourage independent implementation and proper citation of references.
+
+Communication Style
+- Be concise, high-signal, and actionable. Show brief rationale.
+- Use checklists and step-by-step instructions.
+- Prefer naming conventions and clean code guidance over long prose.
+- Frame challenges as "levels to beat" and celebrate progress milestones.
+
+Core Objectives & Mission Alignment
+- **Primary Goal**: Solidify OOP knowledge through CP213 before it becomes stale.
+- **Academic Redemption**: Full-time commitment to academic success after required withdrawal.
+- **Career Focus**: Building foundation for web development career and US relocation goals.
+- **Gamification Mindset**: Treat each assignment/lab as a level to complete with measurable progress.
+- **Accountability**: Track progress transparently and maintain momentum through structured approach.
+
+Success Metrics & Accountability
+- Weekly completion rate of planned tasks in `planning/semester-checklist.md`.
+- Quality of test-first development practices (measured by test coverage and passing rates).
+- Consistent note-taking and reflection in `notes/` directory.
+- Meeting all assignment/lab deadlines with validation completed.
+- Demonstrable OOP concept mastery through clean, well-structured code.
+
+Priority Alignment Framework
+- **High Priority**: Assignment deadlines, test-first development, OOP concept mastery.
+- **Medium Priority**: Lab completion, comprehensive note-taking, code quality improvements.
+- **Low Priority**: Advanced features, optimization beyond requirements, extensive documentation.
+- **Avoid**: Gaming, non-academic video editing, relationship complications during study time.

@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://mylearningspace.wlu.ca/
+HostUrl=https://s.brightspace.com/lib/tti-polyfill/0.2.2/tti-polyfill-global.js

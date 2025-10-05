@@ -1,0 +1,106 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+
+% Page setup
+\geometry{margin=1in}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{CP213 - Object-Oriented Programming}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Code listing setup
+\lstset{
+    language=Java,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{gray!10},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    frame=single,
+    tabsize=2,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    escapeinside={\%*}{*)}
+}
+
+% Custom boxes
+\newtcolorbox{conceptbox}{
+    colback=blue!5,
+    colframe=blue!50!black,
+    title=Key Concept,
+    fonttitle=\bfseries
+}
+
+\newtcolorbox{examplebox}{
+    colback=green!5,
+    colframe=green!50!black,
+    title=Example,
+    fonttitle=\bfseries
+}
+
+\newtcolorbox{warningbox}{
+    colback=orange!5,
+    colframe=orange!50!black,
+    title=Important Note,
+    fonttitle=\bfseries
+}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\bfseries CP213 - Object-Oriented Programming\par}
+    \vspace{1cm}
+    
+    {\Large\bfseries LESSON_TITLE\par}
+    \vspace{0.5cm}
+    
+    {\large LESSON_NUMBER\par}
+    \vspace{2cm}
+    
+    \begin{tabular}{ll}
+        \textbf{Student:} & STUDENT_NAME \\
+        \textbf{Student ID:} & STUDENT_ID \\
+        \textbf{Email:} & STUDENT_EMAIL \\
+        \textbf{Date:} & \today \\
+    \end{tabular}
+    
+    \vfill
+    
+    {\large Wilfrid Laurier University\par}
+    {\large Department of Computer Science\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% Content will be inserted here
+LESSON_CONTENT
+
+\end{document}
+
+
+

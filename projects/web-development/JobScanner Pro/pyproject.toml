@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jobscanner"
+version = "0.1.0"
+description = "JobScanner Pro - Creative Job & Gig Finder (Canada Edition)"
+authors = [
+    {name = "Solomon Olufelo", email = "solomonolufelo@outlook.com"}
+]
+requires-python = ">=3.8"
+dependencies = [
+    "requests",
+    "beautifulsoup4",
+    "pandas",
+    "pyyaml",
+    "rich"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = [
+    "jobscanner",
+    "jobscanner.core",
+    "jobscanner.gui",
+    "jobscanner.scrapers",
+    "jobscanner.utils",
+    "jobscanner.auto"
+]
+
+[project.scripts]
+jobscanner = "jobscanner.main:main"
+jobscanner-gui = "jobscanner.gui.app_tkinter:main" 

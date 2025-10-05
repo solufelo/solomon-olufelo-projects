@@ -1,0 +1,55 @@
+---
+alwaysApply: true
+---
+# Problem-Solving Framework
+
+When encountering complex development challenges, use this systematic approach to evaluate and implement solutions.
+
+## Solution Evaluation Process
+
+### 1. Problem Analysis
+- **Define the Problem**: Clearly articulate what needs to be solved
+- **Identify Constraints**: Technical, time, and resource limitations
+- **Determine Success Criteria**: How will you know the problem is solved?
+
+### 2. Generate Multiple Solutions
+Think about 3-5 possible approaches to solve the problem:
+- **Quick Fix**: Minimal change, addresses symptoms
+- **Comprehensive Solution**: Addresses root cause, may require more work
+- **Hybrid Approach**: Balances quick wins with long-term stability
+- **Alternative Technologies**: Different tools or frameworks
+- **Refactoring Approach**: Restructure existing code
+
+### 3. Solution Evaluation Criteria
+For each solution, consider:
+- **Implementation Complexity**: How difficult to implement?
+- **Maintenance Burden**: Long-term maintenance requirements
+- **Performance Impact**: Effect on application performance
+- **Scalability**: Will it work as the application grows?
+- **Team Familiarity**: Does the team have required expertise?
+- **Risk Level**: What could go wrong?
+- **Time to Implement**: How long will it take?
+
+### 4. Decision Framework
+Present the recommended solution with clear rationale:
+- **Chosen Solution**: Which approach do you recommend?
+- **Key Benefits**: Why is this the best option?
+- **Trade-offs**: What are you sacrificing?
+- **Risk Mitigation**: How will you handle potential issues?
+- **Implementation Plan**: High-level steps to implement
+
+## Example Application
+
+**Problem**: User authentication is slow and causing timeouts
+
+**Solutions Considered**:
+1. **Increase timeout values** - Quick fix, doesn't address root cause
+2. **Optimize database queries** - Medium complexity, improves performance
+3. **Implement caching layer** - Higher complexity, significant performance gains
+4. **Switch to JWT tokens** - High complexity, architectural change
+
+**Recommended Solution**: Optimize database queries + basic caching
+- **Rationale**: Balances immediate improvement with manageable complexity
+- **Benefits**: 70% performance improvement, maintainable code
+- **Trade-offs**: Doesn't provide maximum possible performance gains
+- **Risk Mitigation**: Implement monitoring to track performance metrics

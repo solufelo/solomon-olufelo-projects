@@ -1,0 +1,688 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+
+% Page setup
+\geometry{margin=1in}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{CP213 - Object-Oriented Programming}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Code listing setup
+\lstset{
+    language=Java,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{gray!10},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    frame=single,
+    tabsize=2,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    escapeinside={\%*}{*)}
+}
+
+% Custom boxes
+\newtcolorbox{conceptbox}{
+    colback=blue!5,
+    colframe=blue!50!black,
+    title=Key Concept,
+    fonttitle=\bfseries
+}
+
+\newtcolorbox{examplebox}{
+    colback=green!5,
+    colframe=green!50!black,
+    title=Example,
+    fonttitle=\bfseries
+}
+
+\newtcolorbox{warningbox}{
+    colback=orange!5,
+    colframe=orange!50!black,
+    title=Important Note,
+    fonttitle=\bfseries
+}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\bfseries CP213 - Object-Oriented Programming\par}
+    \vspace{1cm}
+    
+    {\Large\bfseries Output, Input, and Formatting\par}
+    \vspace{0.5cm}
+    
+    {\large Lesson 02\par}
+    \vspace{2cm}
+    
+    \begin{tabular}{ll}
+        \textbf{Student:} & Solomon Olufelo \\
+        \textbf{Student ID:} & 210729170 \\
+        \textbf{Email:} & oluf9170@mylaurier.ca \\
+        \textbf{Date:} & \today \\
+    \end{tabular}
+    
+    \vfill
+    
+    {\large Wilfrid Laurier University\par}
+    {\large Department of Computer Science\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% Content will be inserted here
+\section{Lesson 02: Output, Input, and Formatting}
+
+\subsection{\textbf{System.out.print and System.out.println}}
+
+\begin{itemize}
+\item Used for output to the console.
+\item \texttt{print} displays text without a new line.
+\item \texttt{println} displays text and moves the cursor to the next line.
+\end{itemize}
+
+\textbf{System.out.println("The year is " + 2020);}
+
+\subsection{\textbf{printf Method}}
+
+Printf allows us to have much more control over our output code. The println, print, and printf methods are all from the PrintStream class.
+
+The java method printf does not advance to the next line after outputting.
+
+The printf method can have any number of arguments. The first argument is always a string that contains format specifiers for the remaining arguments. All arguments except the first one are values for output to the screen.
+
+\subsubsection{\textbf{1.1.5 Formatting Money Amounts with printf}}
+
+When displaying monetary values stored as double types, \textbf{%.2f} is an ideal format specifier. This format displays exactly two decimal places and uses only the minimum width needed to show the value:
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+public static void MoneyFormat() {
+    double salePrice = 1199.99;
+    String name = "Android phone";
+    System.out.printf("$%.2f for each %s", salePrice, name);
+    System.out.println();
+    System.out.println("is an expensive price");
+}
+\end{lstlisting}
+
+The output will be:
+
+\begin{lstlisting}[language=text, caption=Text Code]
+$1199.99 for each Android phone.
+is an expensive price
+\end{lstlisting}
+
+\subsection{\textbf{1.2 Common printf Format Specifiers}}
+
+\textbf{printf} supports various format specifiers. Here are the most commonly used ones:
+
+\begin{itemize}
+\item \textbf{%c} character
+\item \textbf{%d} decimal (integer) number (base 10)
+\item \textbf{%e} exponential floating-point number
+\item \textbf{%f} floating-point number
+\item \textbf{%i} integer (base 10)
+\item \textbf{%o} octal number (base 8)
+\item \textbf{%s} String
+\item \textbf{%u} unsigned decimal (integer) number
+\item \textbf{%x} number in hexadecimal (base 16)
+\item \textbf{%t} formats date/time
+\item \textbf{%%} print a percent sign
+\item \textbf{\%} print a percent sign
+\end{itemize}
+
+\subsection{\textbf{2 Java NumberFormat class}}
+
+\subsubsection{\textbf{2.1 Specifying Locale}}
+
+You can explicitly specify the currency symbol for your output. To do so, you need to provide a location from the \textbf{Locale} class as an argument to the \textbf{getCurrencyInstance()} method. You also need to import the Locale class to your code, \textbf{import java.util.Locale;}
+
+In the example below, we use the print method for formatting money in three different ways, default (which is American), English, and Germany formatting.The output format is changed based on the Locale value passed to the \textbf{\textit{getCurrencyInstance}() method.}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+package lesson02;
+
+import java.text.NumberFormat;
+import java.util.Locale;
+
+public class MoneyFormat {
+    public static NumberFormat moneyFormatter;
+
+    public static void print() {
+
+        System.out.println(moneyFormatter.format(39.8));
+        System.out.println(moneyFormatter.format(39.81111));
+        System.out.println(moneyFormatter.format(39.89999));
+        System.out.println(moneyFormatter.format(39));
+        System.out.println(moneyFormatter.format(39.33333));
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Default location:");
+        moneyFormatter = NumberFormat.getCurrencyInstance();
+        print();
+        System.out.println("English location:");
+        moneyFormatter = NumberFormat.getCurrencyInstance(Locale.ENGLISH);
+        print();
+        System.out.println("Germany location:");
+        moneyFormatter = NumberFormat.getCurrencyInstance(Locale.GERMANY);
+        print();
+    }
+}
+\end{lstlisting}
+
+The default location output:
+
+\begin{lstlisting}[language=text, caption=Text Code]
+$39.80
+$39.81
+$39.90
+$39.00
+$39.33
+\end{lstlisting}
+
+The English location output:
+
+\begin{lstlisting}[language=text, caption=Text Code]
+¤39.80
+¤39.81
+¤39.90
+¤39.00
+¤39.33
+\end{lstlisting}
+
+The Germany location output:
+
+\begin{lstlisting}[language=text, caption=Text Code]
+39,80 €
+39,81 €
+39,90 €
+39,00 €
+39,33 €
+\end{lstlisting}
+
+The \textbf{NumberFormat} class has other uses such as formatting the output as a percentage, setting the minimum and the maximum number of digits to your output, rounding the output and parse numbers, etc. These uses are described in the Oracle documentation that you can refer to when needed.
+
+\subsection{\textbf{🌍 Java Locale & Currency Formatting (NumberFormat)}}
+
+\begin{itemize}
+\item \textbf{\texttt{NumberFormat.getCurrencyInstance()}} → Formats numbers as money based on locale.
+\item \textbf{Default locale} = your system's region (often \texttt{Locale.US} → \texttt{$}).
+\item \textbf{Language-only locales} (e.g., \texttt{Locale.ENGLISH}) → show \textbf{generic currency sign ¤}, because no country is specified.
+\item \textbf{Country-specific locales} → show correct currency & formatting rules.
+\end{itemize}
+
+\subsubsection{\textbf{🔑 Examples}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+NumberFormat.getCurrencyInstance();        // Default (US) → $39.80
+NumberFormat.getCurrencyInstance(Locale.ENGLISH); // Generic → ¤39.80
+NumberFormat.getCurrencyInstance(Locale.GERMANY); // Euro → 39,80 €
+\end{lstlisting}
+
+\subsubsection{\textbf{🌐 Common Locales}}
+
+\begin{itemize}
+\item \texttt{Locale.US} → \texttt{$}
+\item \texttt{Locale.CANADA} → \texttt{$}
+\item \texttt{Locale.UK} → \texttt{£}
+\item \texttt{Locale.JAPAN} → \texttt{￥}
+\item \texttt{Locale.GERMANY} → \texttt{€}
+\end{itemize}
+
+👉 Use \textbf{language + country locale} (e.g., \texttt{Locale.US}) instead of just \texttt{Locale.ENGLISH} to get real currency symbols.
+
+\subsection{\textbf{📦 Lesson 02 – Importing Packages & Classes}}
+
+\subsubsection{\textbf{🔹 What is a Package?}}
+
+\begin{itemize}
+\item A \textbf{package} = collection of related classes & interfaces.
+\item Stored in \textbf{JAR files} (Java Archive).
+\item Helps organize source code like folders (e.g., keep HTML, images, scripts, Java classes separate).
+\item Example: \texttt{java.lang}, \texttt{java.util}, \texttt{java.text}.
+\end{itemize}
+
+\subsubsection{\textbf{🔹 Why Use Packages?}}
+
+\begin{itemize}
+\item Keeps code \textbf{organized}.
+\item Groups related classes together.
+\item Makes large projects \textbf{manageable}.
+\item Allows code to be \textbf{reused & shared}.
+\end{itemize}
+
+\subsubsection{\textbf{🔹 Importing Packages}}
+
+\begin{itemize}
+\item Some packages are imported \textbf{automatically} (e.g., \texttt{java.lang} → \texttt{Math}, \texttt{String}, wrapper classes).
+\item To use others, you need the \textbf{import statement}:
+\end{itemize}
+    
+    \begin{lstlisting}[language=Java, caption=Java Code]
+    import java.text.NumberFormat;   // import one class
+    import java.text.*;              // import entire package
+    \begin{lstlisting}[language=text, caption=Text Code]
+    
+\begin{itemize}
+\item Import statements must be at the \textbf{top of the file}, after \texttt{package} (if any) and before your class.
+\end{itemize}
+
+\subsubsection{\textbf{🔹 Creating Your Own Package}}
+
+1. Group related classes into a \textbf{folder}.
+2. Add a \texttt{package} statement at the \textbf{top of each file}:
+    
+    ``\texttt{java
+    package mypackage;
+    }`\texttt{
+    
+3. Folder structure must match the package name.
+
+\subsubsection{\textbf{🔹 Example}}
+
+\end{lstlisting}java
+package wlu.cp213.lesson02;
+
+import java.util.Scanner;
+
+public class FormatedOutput { … }
+\end{lstlisting}
+
+\subsubsection{\textbf{🔹 Key Classes Used So Far}}
+
+\begin{itemize}
+\item }NumberFormat\texttt{ → from }java.text\texttt{ (for money formatting).
+\item }Locale\texttt{ → from }java.util\texttt{ (for regional settings).
+\end{itemize}
+
+\subsection{\textbf{🔢 Lesson 02 – Java DecimalFormat Class}}
+
+\subsubsection{\textbf{🔹 What it Does}}
+
+\begin{itemize}
+\item }DecimalFormat\texttt{ = class for \textbf{custom number formatting}.
+\item Can format numbers as \textbf{percentages, fixed decimals, or scientific (E) notation}.
+\item Requires }import java.text.DecimalFormat;\texttt{.
+\end{itemize}
+
+\subsubsection{\textbf{🔹 Example Code}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+import java.text.DecimalFormat;
+
+public class UsingDecimalFormat {
+    public static void main(String[] args) {
+        // Percentage format
+        DecimalFormat percent = new DecimalFormat("0.00%");
+        System.out.println(percent.format(0.308)); // 30.80%
+
+        // Scientific notation
+        DecimalFormat eNotation1 = new DecimalFormat("#0.###E0");
+        DecimalFormat eNotation2 = new DecimalFormat("00.###E0");
+
+        System.out.println(eNotation1.format(123.456));   // 1.2346E2
+        System.out.println(eNotation2.format(123.456));   // 12.346E1
+
+        double smallNumber = 0.0000123456;
+        System.out.println(eNotation1.format(smallNumber)); // 1.235E-5
+        System.out.println(eNotation2.format(smallNumber)); // 12.346E-6
+    }
+}
+\end{lstlisting}
+
+\subsubsection{\textbf{🔹 Output}}
+
+\begin{lstlisting}[language=text, caption=Text Code]
+30.80%
+1.2346E2
+12.346E1
+1.235E-5
+12.346E-6
+\end{lstlisting}
+
+\subsubsection{\textbf{🔹 Key Notes}}
+
+\begin{itemize}
+\item }"0.00%"\texttt{ → formats as \textbf{percentage}.
+\item }"#0.###E0"\texttt{ → \textbf{scientific notation}, 1+ digit before decimal (flexible).
+\item }"00.###E0"\texttt{ → \textbf{scientific notation}, \textbf{forces 2 digits} before decimal.
+\item Great for \textbf{percentages, small numbers, large numbers}.
+\end{itemize}
+
+\subsection{\textbf{⌨️ Lesson 02 – Scanner Class (User Input)}}
+
+\subsubsection{\textbf{🔹 Overview}}
+
+\begin{itemize}
+\item }Scanner\texttt{ (since Java 5.0) = simple way to read user input.
+\item Part of }java.util\texttt{ package → must }import java.util.Scanner;\texttt{.
+\item Works as a \textbf{wrapper} for }System.in\texttt{ (keyboard input).
+\item Similar to:
+\end{itemize}
+    - }input()\texttt{ in Python
+    - }cin >>\texttt{ in C++
+
+\subsubsection{\textbf{🔹 Creating a Scanner Object}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+Scanner keyboard = new Scanner(System.in);
+Scanner input = new Scanner(System.in); // can use any variable name
+\end{lstlisting}
+
+\subsubsection{\textbf{🔹 Common Methods}}
+
+\begin{itemize}
+\item }nextInt()\texttt{ → reads an }int\texttt{
+\item }nextDouble()\texttt{ → reads a }double\texttt{
+\item }next()\texttt{ → reads a \textbf{single word} (stops at whitespace)
+\end{itemize}
+
+⚡ Multiple inputs → separated by whitespace, read with multiple method calls.
+
+\subsubsection{\textbf{🔹 Example}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+import java.util.Scanner;
+
+public class ReadUserInput {
+    public static void main(String args[]) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter two words separated by space:");
+
+        String string1 = input.next();
+        String string2 = input.next();
+
+        System.out.println("string1 is " + string1 +
+                           " and string2 is " + string2);
+    }
+}
+\end{lstlisting}
+
+\textbf{Input}
+
+\begin{lstlisting}[language=text, caption=Text Code]
+Hello Class
+\end{lstlisting}
+
+\textbf{Output}
+
+\begin{lstlisting}[language=text, caption=Text Code]
+string1 is Hello and string2 is Class
+\end{lstlisting}
+
+👉 The }Scanner\texttt{ class makes input handling easier than using }System.in\texttt{ directly.
+
+\subsection{\textbf{⌨️ Lesson 02 – Scanner Class (Extended Notes)}}
+
+\subsubsection{\textbf{🔹 5.2 nextLine() Method}}
+
+\begin{itemize}
+\item Reads an \textbf{entire line} (until }\n\texttt{ – Enter key).
+\item The returned string \textbf{does not include} the }\n\texttt{.
+\end{itemize}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+String inputLine = keyboard.nextLine();
+\end{lstlisting}
+
+\subsubsection{\textbf{🔹 5.3 Example: Mixed Input Types}}
+
+Reads }int\texttt{, }double\texttt{, }String\texttt{, and a full line:
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+Scanner keyboard = new Scanner(System.in);
+
+int n1 = keyboard.nextInt();
+int n2 = keyboard.nextInt();
+
+double d1 = keyboard.nextDouble();
+double d2 = keyboard.nextDouble();
+
+String word1 = keyboard.next();
+String word2 = keyboard.next();
+
+keyboard.nextLine(); // clears leftover newline
+String line = keyboard.nextLine();
+\end{lstlisting}
+
+👉 Works for other types too (}boolean\texttt{, }byte\texttt{, }short\texttt{, etc.).
+
+\subsubsection{\textbf{🔹 5.4 End-of-Line Issues}}
+
+⚠️ Mixing }nextInt()\texttt{ / }next()\texttt{ with }nextLine()\texttt{ causes problems because }nextInt()\texttt{ leaves the }\n\texttt{ in the buffer.
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+int n = keyboard.nextInt();
+String line1 = keyboard.nextLine(); // reads leftover "\n"
+String line2 = keyboard.nextLine();
+\end{lstlisting}
+
+Results:
+
+\begin{itemize}
+\item }n = 2\texttt{
+\item }line1 = ""\texttt{
+\item }line2 = "Heads are better than"\texttt{
+\end{itemize}
+
+✅ Fix: add an \textbf{extra }nextLine()\texttt{} to clear the buffer.
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+int n = keyboard.nextInt();
+keyboard.nextLine(); // clears "\n"
+String line1 = keyboard.nextLine();
+String line2 = keyboard.nextLine();
+\end{lstlisting}
+
+\subsubsection{\textbf{🔹 5.5 Empty String}}
+
+\begin{itemize}
+\item If user presses Enter \textbf{without typing}, }nextLine()\texttt{ returns }""\texttt{ (empty string).
+\end{itemize}
+
+\subsubsection{\textbf{🔹 5.6 Custom Delimiters}}
+
+Default = whitespace. Can be changed with }useDelimiter()\texttt{.
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+Scanner input = new Scanner(System.in);
+input.useDelimiter("end"); // now "end" is the delimiter
+\end{lstlisting}
+
+👉 \textbf{Key Takeaway:}
+
+Use }nextLine()\texttt{ carefully with other input methods. Clear the buffer if needed.
+
+\subsection{\textbf{📘 Lesson 02 – Wrapper Classes in Java}}
+
+\subsubsection{\textbf{🔹 What are Wrapper Classes?}}
+
+\begin{itemize}
+\item Java is \textbf{object-oriented} → many APIs (Collections, Serialization, Synchronization) work only with \textbf{objects}.
+\item Wrapper classes convert \textbf{primitive types ↔ objects}.
+\item Since Java 5.0:
+\end{itemize}
+    - \textbf{Autoboxing} → primitive → object (automatic)
+    - \textbf{Unboxing} → object → primitive (automatic)
+
+\subsubsection{\textbf{🔹 Examples of Autoboxing & Unboxing}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+// Autoboxing
+Integer value = 22;       // int → Integer
+Character ch = 'a';       // char → Character
+
+// In collections
+ArrayList<Integer> list = new ArrayList<>();
+for (int i = 1; i < 10; i++) {
+    list.add(i);  // int → Integer automatically
+}
+
+// Unboxing
+for (Integer i : list) {
+    if (i % 2 == 0) sum += i; // Integer → int automatically
+}
+\end{lstlisting}
+
+\subsubsection{\textbf{🔹 Useful Constants}}
+
+\begin{itemize}
+\item }Integer.MAX\textit{VALUE\texttt{, }Integer.MIN}VALUE\texttt{
+\item }Double.MAX\textit{VALUE\texttt{, }Double.MIN}VALUE\texttt{
+\item }Boolean.TRUE\texttt{, }Boolean.FALSE\texttt{
+\end{itemize}
+
+\subsubsection{\textbf{🔹 Useful Static Methods}}
+
+\begin{itemize}
+\item \textbf{Convert String → Number:}
+\end{itemize}
+    - }Integer.parseInt("123") → 123\texttt{
+    - }Double.parseDouble("3.14") → 3.14\texttt{
+\begin{itemize}
+\item \textbf{Convert Number → String:}
+\end{itemize}
+    - }Double.toString(123.99) → "123.99"\texttt{
+
+\subsubsection{\textbf{🔹 Example: String to Double Conversion}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+Scanner keyboard = new Scanner(System.in);
+System.out.println("Enter two numbers separated by a comma:");
+String input = keyboard.nextLine();
+
+StringTokenizer tokens = new StringTokenizer(input, ",");
+String s1 = tokens.nextToken();
+String s2 = tokens.nextToken();
+
+double n1 = Double.parseDouble(s1);
+double n2 = Double.parseDouble(s2);
+
+System.out.println("Converted: " + n1 + " and " + n2);
+\end{lstlisting}
+
+\textbf{Output:}
+
+\begin{lstlisting}[language=text, caption=Text Code]
+Enter two numbers separated by a comma:
+3.5, 44.5
+Converted: 3.5 and 44.5
+\end{lstlisting}
+
+✅ \textbf{Key Takeaway:} Wrapper classes bridge \textbf{primitives ↔ objects}, making them essential for Java collections, parsing, and data conversion.
+
+\subsection{\textbf{📝 Java Wrapper Class Cheatsheet}}
+
+\subsubsection{\textbf{🔹 Wrapper Classes}}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+Primitive & Wrapper Class \\
+\hline
+boolean \\
+\hline
+\end{tabular}
+\caption{Table}
+\end{table}
+ Boolean       \begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+char & Character & byte & Byte & short & Short & int & Integer & long & Long & float & Float & double & Double & \subsubsection{\textbf{🔹 Common Constants}} & Wrapper & Max Value & Min Value \\
+\hline
+Integer \\
+\hline
+\end{tabular}
+\caption{Table}
+\end{table}
+ }Integer.MAX\textit{VALUE\texttt{ \begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+}Integer.MIN}VALUE\texttt{ & Double & }Double.MAX\textit{VALUE\texttt{ & }Double.MIN}VALUE\texttt{ & Long & }Long.MAX\textit{VALUE\texttt{ & }Long.MIN}VALUE\texttt{ & Float & }Float.MAX\textit{VALUE\texttt{ & }Float.MIN}VALUE\texttt{ & Boolean & }Boolean.TRUE\texttt{, }Boolean.FALSE\texttt{ & – & \subsubsection{\textbf{🔹 Conversion Methods}} & Purpose & Method Example & Result \\
+\hline
+String → int \\
+\hline
+\end{tabular}
+\caption{Table}
+\end{table}
+ }Integer.parseInt("123")\texttt{ \begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+}123\texttt{ (int) & String → double & }Double.parseDouble("3.14")\texttt{ & }3.14\texttt{ (double) & String → long & }Long.parseLong("99999")\texttt{ & }99999\texttt{ (long) & String → boolean & }Boolean.parseBoolean("true")\texttt{ & }true\texttt{ (bool) & String → wrapper object & }Integer.valueOf("123")\texttt{ & }Integer(123)\texttt{ & Wrapper → String & }Double.toString(12.34)\texttt{ & }"12.34"\texttt{ & Primitive → String & }String.valueOf(10)\texttt{ & }"10"\texttt{ & Wrapper → primitive & }int x = myInteger.intValue();\texttt{ & }123\texttt{ (int) & \subsubsection{\textbf{🔹 Autoboxing & Unboxing}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+// Autoboxing
+Integer a = 10;     // int → Integer
+Double d = 3.14;    // double → Double
+
+// Unboxing
+int x = a;          // Integer → int
+double y = d;       // Double → double
+\end{lstlisting}
+
+✅ \textbf{Quick Rule of Thumb:}
+
+\begin{itemize}
+\item }parseXxx()\texttt{ → returns \textbf{primitive}
+\item }valueOf()\texttt{ → returns \textbf{wrapper object}
+\item }toString()\texttt{ / }String.valueOf()\texttt{ → returns \textbf{String}
+\end{itemize}
+
+\subsection{\textbf{Key Terms Glossary}} & Keyword & Description & Notes \\
+\hline
+\textbf{Autoboxing} \\
+\hline
+\end{tabular}
+\caption{Table}
+\end{table}
+ Automatically converts primitive types (like }int\texttt{, }double\texttt{) into their wrapper class objects (}Integer\texttt{, }Double\texttt{) for use in contexts that require objects. |
+| \textbf{DecimalFormat class} | Formats numbers into readable strings according to patterns, such as percentages, scientific notation, or fixed decimal places. |
+| \textbf{format()} | Method used in classes like }PrintStream\texttt{ or }DecimalFormat\texttt{ to create formatted output for numbers, text, or dates. |
+| \textbf{format specifier} | Placeholder in }printf()\texttt{ or }format()\texttt{ methods that defines how a value should be displayed (e.g., }%d\texttt{ for integers, }%f\texttt{ for floats). |
+| \textbf{getCurrencyInstance()} | Method from }NumberFormat\texttt{ that returns a currency formatter for a locale, automatically applying the correct currency symbol. |
+| \textbf{Locale} | Represents a specific geographic, political, or cultural region, used for formatting numbers, currencies, and dates. |
+| \textbf{nextInt(), nextDouble(), etc.} | }Scanner\texttt{ methods that read input as specific primitive types, such as integers or doubles, from keyboard or files. |
+| \textbf{nextLine() and hasNextLine()} | }nextLine()\texttt{ reads an entire line of input; }hasNextLine()\texttt{ checks if another line of input exists. |
+| \textbf{NumberFormat class} | Formats numbers according to locale, including currencies and percentages, for readable or region-appropriate output. |
+| \textbf{print, println, printf} | Methods of }PrintStream\texttt{ for output; }print()\texttt{ writes without newline, }println()\texttt{ adds a newline, }printf()\texttt{ allows formatted output. |
+| \textbf{PrintStream} | Class providing methods like }print()\texttt{, }println()\texttt{, and }printf()\texttt{ to write formatted data to console or other streams. |
+| \textbf{Scanner class} | Reads input from keyboard, files, or strings, supporting multiple data types and custom delimiters. |
+| \textbf{Unboxing} | Automatically converts wrapper class objects back into their corresponding primitive types. |
+| \textbf{valueOf} | Static method in wrapper classes converting a primitive type or string into its corresponding object (e.g., }Integer.valueOf(5)`). |
+| \textbf{Wrapping} | Converting a primitive type into its corresponding wrapper class object to allow usage in object-required contexts. |
+
+
+\end{document}

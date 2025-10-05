@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<!-- saved from url=(0104)https://mylearningspace.wlu.ca/content/enforced/600931-3438.202509/L06_09.html?ou=600931&d2l_body_type=3 -->
+<html lang="en" webcrx=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<!-- Document title -->	
+	<title>8 Enumerated Types</title>
+
+    <!-- CSS source -->
+	<link href="./style.css" type="text/css" rel="stylesheet">
+	<link href="./prism.css" type="text/css" rel="stylesheet">
+
+	<!-- jquery source -->
+	<script type="text/javascript" src="./jquery-1.8.3.js.download"></script>
+	<script type="text/javascript" src="./prism.js.download"></script>
+<script>window.addEventListener('message', function(event) { 
+					if( !event.data ) {
+						return;
+					}
+
+					let params;
+					try {
+						params = JSON.parse( event.data );
+					}
+					catch {
+						return;
+					}
+					if( !params.subject || params.subject !== 'lti.frameResize' ) {
+						return;
+					}
+
+					const MAX_FRAME_HEIGHT = 10000;
+					if( !params.height || params.height < 1 || params.height > MAX_FRAME_HEIGHT ) {
+						console.warn( 'Invalid height value received, aborting' );
+						return;
+					}
+					const el = document.getElementsByTagName( 'iframe' );
+					for ( let i=0; i < el.length; i++ ) {
+						if( el[i].contentWindow === event.source ) {
+							el[i].style.height = params.height + 'px';
+
+							console.info( 'Setting iFrame height to ' + params.height );
+
+							if( el[i].getAttribute('lockwidth') !== 'true'){
+								el[i].style.width = '100%';
+								console.info( 'Setting iFrame width to 100%' );
+							}
+						}
+					}
+				});</script><script src="./embeds.js.download" type="module"></script><script>document.addEventListener('DOMContentLoaded', function() {
+					window.D2L.EmbedRenderer.renderEmbeds(document.body);
+				});</script><script src="./mathjax.js.download" type="module"></script><script>document.addEventListener('DOMContentLoaded', function() {
+						if (document.querySelector('math, .d2l-element, .d2l-cplus-layout') || /\$\$|\\\(|\\\[|\\begin{|\\ref{|\\eqref{/.test(document.body.innerHTML)) {
+							document.querySelectorAll('mspace[linebreak="newline"]').forEach(elm => {
+								elm.setAttribute('style', 'display: block; height: 0.5rem;');
+							});
+
+							document.querySelectorAll('math mmultiscripts > none').forEach(elm => {
+								const mrow = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'mrow');
+								elm.replaceWith(mrow);
+							});
+
+							window.D2L.MathJax.loadMathJax({
+								outputScale: 1.5,
+								renderLatex: false,
+								enableMML3Support: false
+							});
+						}
+					});</script><script src="./prism(1).js.download" type="module"></script><script>document.addEventListener('DOMContentLoaded', function() {
+					document.querySelectorAll('.d2l-code').forEach(code => {
+						window.D2L.Prism.formatCodeElement(code);
+					});
+				});</script><script src="./creator.js.download" type="module"></script><script>document.addEventListener('DOMContentLoaded', async () => {
+					const activities = [];
+					const practices = [];
+					const allPractices = document.querySelectorAll('.d2l-practice');
+					const elements = document.querySelectorAll('.d2l-element');
+					let layouts = [...document.querySelectorAll('.d2l-cplus-layout')];
+					const tables = document.querySelectorAll('table');
+					const contentStylerStyleLinks = document.querySelectorAll('head > link[href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"]');
+					const contentStylerOverides = document.querySelectorAll('head > link[href^="/d2l/le/contentstyler/"][data-override="override"]');
+
+					layouts = layouts.filter((layout) => layout.closest('.d2l-element.mceNonEditable') === null);
+
+					for (const practice of allPractices) {
+						const activityContainer = practice.hasAttribute('data-d2l-activity-href');
+						if (activityContainer) {
+							activities.push(practice);
+						}
+						else {
+							practices.push(practice);
+						}
+					}
+
+					if (layouts.length > 0) {
+						window.D2L.Creator.convertLayouts(layouts);
+					}
+					if (elements.length > 0) {
+						window.D2L.Creator.convertElements(elements, 600931, '/content/enforced/600931-3438.202509/');
+					}
+					if (activities.length > 0) {
+						window.D2L.Creator.convertPracticeActivities(activities, 600931, '/content/enforced/600931-3438.202509/');
+					}
+					if (practices.length > 0) {
+						window.D2L.Creator.convertPractices(practices, 600931, '/content/enforced/600931-3438.202509/');
+					}
+					if (contentStylerStyleLinks.length > 0 && contentStylerOverides.length > 0 && tables.length > 0) {
+						window.D2L.Creator.wrapTables(tables);
+					}
+				});</script><script>function lti_launch( vars, target ) {
+						var query = '';
+						var new_tab = false;
+
+						for(var key in vars) {
+							if(query.length == 0) {
+								query += '?' + key + '=' + encodeURIComponent(vars[key]);
+							}
+							else {
+								query += '&' + key + '=' + encodeURIComponent(vars[key]);
+							}
+						}
+
+						var url = '/d2l/customization/pearsonlti/600931/Launch' + query;(target == '_blank') ? window.open( url, '_blank' ) : location.replace( url );}</script><style id="d2l-colors">
+		html {
+			/* basic grays (lightest to darkest) */
+			--d2l-color-regolith: #f9fbff;
+			--d2l-color-sylvite: #f1f5fb;
+			--d2l-color-gypsum: #e3e9f1;
+			--d2l-color-mica: #cdd5dc;
+			--d2l-color-corundum: #b1b9be;
+			--d2l-color-chromite: #90989d;
+			--d2l-color-galena: #6e7477;
+			--d2l-color-tungsten: #494c4e;
+			--d2l-color-ferrite: #202122;
+
+			/* zircon */
+			--d2l-color-zircon-plus-2: #e0feff;
+			--d2l-color-zircon-plus-1: #00d2ed;
+			--d2l-color-zircon: #008eab;
+			--d2l-color-zircon-minus-1: #035670;
+
+			/* celestine */
+			--d2l-color-celestine-plus-2: #e8f8ff;
+			--d2l-color-celestine-plus-1: #29a6ff;
+			--d2l-color-celestine: #006fbf;
+			--d2l-color-celestine-minus-1: #004489;
+
+			/* amethyst */
+			--d2l-color-amethyst-plus-2: #f2f0ff;
+			--d2l-color-amethyst-plus-1: #8982ff;
+			--d2l-color-amethyst: #6038ff;
+			--d2l-color-amethyst-minus-1: #4500db;
+
+			/* fluorite */
+			--d2l-color-fluorite-plus-2: #f9ebff;
+			--d2l-color-fluorite-plus-1: #ce68fa;
+			--d2l-color-fluorite: #9d1fd4;
+			--d2l-color-fluorite-minus-1: #6900a0;
+
+			/* tourmaline */
+			--d2l-color-tourmaline-plus-2: #ffebf6;
+			--d2l-color-tourmaline-plus-1: #fd4e9d;
+			--d2l-color-tourmaline: #d40067;
+			--d2l-color-tourmaline-minus-1: #990056;
+
+			/* cinnabar */
+			--d2l-color-cinnabar-plus-2: #ffede8;
+			--d2l-color-cinnabar-plus-1: #ff575a;
+			--d2l-color-cinnabar: #cd2026;
+			--d2l-color-cinnabar-minus-1: #990006;
+
+			/* carnelian */
+			--d2l-color-carnelian-plus-1: #fff3e0;
+			--d2l-color-carnelian: #e87511;
+			--d2l-color-carnelian-minus-1: #ba4700;
+			--d2l-color-carnelian-minus-2: #7d2600;
+
+			/* citrine */
+			--d2l-color-citrine-plus-1: #fff9d6;
+			--d2l-color-citrine: #ffba59;
+			--d2l-color-citrine-minus-1: #c47400;
+			--d2l-color-citrine-minus-2: #7a4300;
+
+			/* peridot */
+			--d2l-color-peridot-plus-1: #efffd9;
+			--d2l-color-peridot: #8ad934;
+			--d2l-color-peridot-minus-1: #4a8f00;
+			--d2l-color-peridot-minus-2: #2f5e00;
+
+			/* olivine */
+			--d2l-color-olivine-plus-1: #e7ffe3;
+			--d2l-color-olivine: #46a661;
+			--d2l-color-olivine-minus-1: #027a21;
+			--d2l-color-olivine-minus-2: #005614;
+
+			/* malachite */
+			--d2l-color-malachite-plus-1: #e3fff5;
+			--d2l-color-malachite: #2de2c0;
+			--d2l-color-malachite-minus-1: #00a490;
+			--d2l-color-malachite-minus-2: #00635e;
+
+			/* primary accent */
+			--d2l-color-primary-accent-action: var(--d2l-color-celestine);
+			--d2l-color-primary-accent-indicator: var(--d2l-color-carnelian);
+
+			/* feedback */
+			--d2l-color-feedback-error: var(--d2l-color-cinnabar);
+			--d2l-color-feedback-warning: var(--d2l-color-carnelian);
+			--d2l-color-feedback-success: var(--d2l-color-olivine);
+			--d2l-color-feedback-action: var(--d2l-color-celestine);
+		}
+	</style><style id="d2l-typography-font-face">
+		
+	@font-face {
+	font-family: 'Lato';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/Lato-400.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/Lato-400.woff) format('woff');
+}
+@font-face {
+	font-family: 'Lato';
+	font-style: normal;
+	font-weight: 700;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/Lato-700.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/Lato-700.woff) format('woff');
+}
+@font-face {
+	font-family: 'Noto Sans Thai';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/NotoSansThai-Regular.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/NotoSansThai-Regular.woff) format('woff');
+}
+@font-face {
+	font-family: 'Noto Sans Thai';
+	font-style: normal;
+	font-weight: 700;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/NotoSansThai-Bold.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/NotoSansThai-Bold.woff) format('woff');
+}
+@font-face {
+	font-family: 'BC Sans';
+	font-style: normal;
+	font-weight: 300;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-Light.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-Light.woff) format('woff');
+}
+@font-face {
+	font-family: 'BC Sans';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-Regular.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-Regular.woff) format('woff');
+}
+@font-face {
+	font-family: 'BC Sans';
+	font-style: normal;
+	font-weight: 700;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-Bold.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-Bold.woff) format('woff');
+}
+@font-face {
+	font-family: 'BC Sans';
+	font-style: italic;
+	font-weight: 300;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-LightItalic.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-LightItalic.woff) format('woff');
+}
+@font-face {
+	font-family: 'BC Sans';
+	font-style: italic;
+	font-weight: 400;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-Italic.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-Italic.woff) format('woff');
+}
+@font-face {
+	font-family: 'BC Sans';
+	font-style: italic;
+	font-weight: 700;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-BoldItalic.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-BoldItalic.woff) format('woff');
+}
+	html {
+		--d2l-cursor-resize-inline-end: e-resize;
+		--d2l-cursor-resize-inline-start: w-resize;
+		--d2l-document-direction: ltr;
+		--d2l-inline-end: right;
+		--d2l-inline-start: left;
+		--d2l-length-factor: 1;
+		--d2l-mirror-transform: none;
+	}
+	html[dir="rtl"] {
+		--d2l-cursor-resize-inline-end: w-resize;
+		--d2l-cursor-resize-inline-start: e-resize;
+		--d2l-document-direction: rtl;
+		--d2l-inline-end: left;
+		--d2l-inline-start: right;
+		--d2l-length-factor: -1;
+		--d2l-mirror-transform: scale(-1, 1);
+	}
+
+	.d2l-typography {
+		color: var(--d2l-color-ferrite);
+		display: block;
+		font-family: "Lato", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+		letter-spacing: 0.01rem;
+	}
+	
+		.d2l-typography {
+			font-size: 0.95rem;
+			font-weight: 400;
+			line-height: 1.4rem;
+		}
+		@media (max-width: 615px) {
+			.d2l-typography {
+				font-size: 0.8rem;
+				line-height: 1.2rem;
+			}
+		}
+	
+	.d2l-typography p {
+		margin: 1rem 0;
+	}
+
+	.d2l-typography:lang(ar), .d2l-typography :lang(ar) {
+		font-family: "Segoe UI", "Geeza Pro", sans-serif;
+	}
+	.d2l-typography:lang(ja), .d2l-typography :lang(ja) {
+		font-family: "Hiragino Kaku Gothic Pro", "Meiyro", sans-serif;
+	}
+	.d2l-typography:lang(ko), .d2l-typography :lang(ko) {
+		font-family: "Apple SD Gothic Neo", Dotum, sans-serif;
+	}
+	.d2l-typography:lang(th), .d2l-typography :lang(th), .d2l-typography:lang(tha), .d2l-typography :lang(tha) {
+		font-family: "Noto Sans Thai", system-ui, Tahoma;
+	}
+	.d2l-typography:lang(zh), .d2l-typography :lang(zh) {
+		font-family: "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+	}
+
+		
+		.d2l-typography .d2l-body-standard {
+			font-size: 0.95rem;
+			font-weight: 400;
+			line-height: 1.4rem;
+		}
+		@media (max-width: 615px) {
+			.d2l-typography .d2l-body-standard {
+				font-size: 0.8rem;
+				line-height: 1.2rem;
+			}
+		}
+	
+		
+		.d2l-typography .d2l-body-compact {
+			font-size: 0.8rem;
+			font-weight: 400;
+			line-height: 1.2rem;
+		}
+		
+	
+		
+		.d2l-typography .d2l-body-small {
+			color: var(--d2l-color-tungsten);
+			font-size: 0.7rem;
+			font-weight: 400;
+			line-height: 0.9rem;
+			margin: auto;
+		}
+		
+	
+		
+		.d2l-typography .d2l-label-text {
+			font-size: 0.7rem;
+			font-weight: 700;
+			letter-spacing: 0.2px;
+			line-height: 0.9rem;
+		}
+		
+	
+		
+		.d2l-typography .d2l-heading-1 {
+			font-size: 2rem;
+			font-weight: 400;
+			line-height: 2.4rem;
+			margin: 1.5rem 0 1.5rem 0;
+		}
+		@media (max-width: 615px) {
+			.d2l-typography .d2l-heading-1 {
+				font-size: 1.5rem;
+				line-height: 1.8rem;
+			}
+			
+		}
+	
+		
+		.d2l-typography .d2l-heading-2 {
+			font-size: 1.5rem;
+			font-weight: 400;
+			line-height: 1.8rem;
+			margin: 1.5rem 0 1.5rem 0;
+		}
+		@media (max-width: 615px) {
+			.d2l-typography .d2l-heading-2 {
+				font-size: 1rem;
+				font-weight: 700;
+				line-height: 1.5rem;
+			}
+			
+		}
+	
+		
+		.d2l-typography .d2l-heading-3 {
+			font-size: 1rem;
+			font-weight: 700;
+			line-height: 1.5rem;
+			margin: 1.5rem 0 1.5rem 0;
+		}
+		@media (max-width: 615px) {
+			.d2l-typography .d2l-heading-3 {
+				font-size: 0.8rem;
+				line-height: 1.2rem;
+			}
+			
+		}
+	
+		
+		.d2l-typography .d2l-heading-4 {
+			font-size: 0.8rem;
+			font-weight: 700;
+			line-height: 1.2rem;
+			margin: 1.5rem 0 1.5rem 0;
+		}
+	
+		
+		.d2l-typography .d2l-blockquote {
+			font-size: 0.8rem;
+			font-weight: 400;
+			line-height: 1.4rem;
+			margin-block: 0;
+			margin-inline: 0 1.2rem;
+			padding-block: 0.5rem 0;
+			padding-inline: 1.2rem 0;
+			position: relative;
+		}
+		.d2l-typography .d2l-blockquote::before {
+			content: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEiIGhlaWdodD0iMTEiIHZpZXdCb3g9IjAgMCAyMiAyMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+Cgk8ZGVmcz4KCQk8cGF0aCBpZD0iYSIgZD0iTTAgMGgyNHYyNEgweiIvPgoJPC9kZWZzPgoJPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEgLTEpIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgoJCTxtYXNrIGlkPSJiIiBmaWxsPSIjZmZmIj48dXNlIHhsaW5rOmhyZWY9IiNhIi8+PC9tYXNrPgoJCTxwYXRoIGQ9Ik02IDIyLjY2N0E0LjY2NyA0LjY2NyAwIDAgMCAxMC42NjcgMThjMC0xLjIyNy0uNTU5LTIuNS0xLjMzNC0zLjMzM0M4LjQ4MSAxMy43NSA3LjM1IDEzLjMzMyA2IDEzLjMzM2MtLjQxMSAwIDEuMzMzLTYuNjY2IDMtOSAxLjY2Ny0yLjMzMyAxLjMzMy0zIC4zMzMtM0M4IDEuMzMzIDUuMjUzIDQuNTg2IDQgNy4yNTUgMS43NzMgMTIgMS4zMzMgMTUuMzkyIDEuMzMzIDE4QTQuNjY3IDQuNjY3IDAgMCAwIDYgMjIuNjY3em0xMiAwQTQuNjY3IDQuNjY3IDAgMCAwIDIyLjY2NyAxOGMwLTEuMjI3LS41NTktMi41LTEuMzM0LTMuMzMzLS44NTItLjkxNy0xLjk4My0xLjMzNC0zLjMzMy0xLjMzNC0uNDExIDAgMS4zMzMtNi42NjYgMy05IDEuNjY3LTIuMzMzIDEuMzMzLTMgLjMzMy0zLTEuMzMzIDAtNC4wOCAzLjI1My01LjMzMyA1LjkyMkMxMy43NzMgMTIgMTMuMzMzIDE1LjM5MiAxMy4zMzMgMThBNC42NjcgNC42NjcgMCAwIDAgMTggMjIuNjY3eiIgZmlsbD0iI0QzRDlFMyIgbWFzaz0idXJsKCNiKSIvPgoJPC9nPgo8L3N2Zz4=");
+			inset-block-start: 0;
+			inset-inline-start: 0;
+			position: absolute;
+			transform: var(--d2l-mirror-transform, none); /* stylelint-disable-line @stylistic/string-quotes, @stylistic/function-whitespace-after */
+		}
+		@media (max-width: 615px) {
+			.d2l-typography .d2l-blockquote {
+				line-height: 1.2rem;
+			}
+		}
+	
+	</style></head>
+	
+<body style="overflow-y: hidden;">
+<main>	
+	
+    <header>
+      <h1><span>Lesson 06</span></h1>
+		  <h1>8 Enumerated Types</h1>
+    </header>
+	
+		
+	<section class="noTitle">
+		<article>
+			<p>Starting with version 5.0, Java permits enumerated  types. An enumerated type is a type in which  all the values are (typically) given in a shortlist. The definition of an enumerated type is normally placed outside of all the  methods in the same place that named constants are defined:</p>
+<pre class=" language-none"><code class="language- language-none">
+	enum TypeName {VALUE_1, VALUE_2, …, VALUE_N};
+</code>
+</pre>
+<div class="highlight">
+<p><strong>Note:</strong> a value of an enumerated type is like a named constant and so, by  convention, is spelled with all uppercase letters. </p>
+</div>
+
+            <p>As  with any other type, variables can be declared of an enumerated type. </p>
+          <h2>8.1 Enumerated Types Example</h2>
+          <p>Given the following definition of an enumerated type:</p>
+<pre class=" language-java"><code class=" language-java">
+	<span class="token keyword">enum</span> <span class="token class-name">WorkDay</span> <span class="token punctuation">{</span>MONDAY<span class="token punctuation">,</span> TUESDAY<span class="token punctuation">,</span> WEDNESDAY<span class="token punctuation">,</span> THURSDAY<span class="token punctuation">,</span> FRIDAY<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code>
+</pre>
+
+          <p>a variable of this type can be declared as follows:</p>
+<pre class=" language-java"><code class=" language-java">
+	<span class="token class-name">WorkDay</span> meetingDay<span class="token punctuation">,</span> availableDay<span class="token punctuation">;</span>
+</code>
+</pre>
+     
+          <p>The value of a variable of this type can be set to one  of the values listed in the definition of the type, or else to the special  value null:</p>
+<pre class=" language-java"><code class=" language-java">
+	meetingDay <span class="token operator">=</span> <span class="token class-name">WorkDay</span><span class="token punctuation">.</span>THURSDAY<span class="token punctuation">;</span>
+	availableDay <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>	
+</code>
+</pre>
+          <h2>8.2 Enumerated Types Usage</h2>
+            <p>Just like other types, a variable of an enumerated &nbsp;type can be declared and initialized at the  same time:</p>
+<pre class=" language-java"><code class=" language-java">
+	<span class="token class-name">WorkDay</span> meetingDay <span class="token operator">=</span> <span class="token class-name">WorkDay</span><span class="token punctuation">.</span>THURSDAY<span class="token punctuation">;</span>
+</code>
+</pre>
+<div class="highlight">
+<p><strong>Note:</strong> the value of an enumerated type must be prefaced with the name of  the type. The value of a variable or  constant of an enumerated type can be output using the println method. </p>
+</div>
+          <p>The  code:</p>
+          <p><code class=" code-inline language-java"><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>meetingDay<span class="token punctuation">)</span><span class="token punctuation">;</span></code>&nbsp;and&nbsp;<code class=" code-inline language-java"><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">WorkDay</span><span class="token punctuation">.</span>THURSDAY<span class="token punctuation">)</span><span class="token punctuation">;</span></code></p>
+          <p>will  produce the output:&nbsp; <strong>THURSDAY. &nbsp;</strong>Note, the type name <strong>WorkDay</strong> is not  outputted.</p>
+          <p>Although the values may look like String values,  values of an enumerated type are not String values. However, they can be used  for tasks that could be done by String values and, in some cases, <strong>work  better.</strong></p>
+          <p>Using  a String variable allows the possibility of setting the variable to a nonsense  value. Using an enumerated type variable constrains the possible values for  that variable. An error message will result if an attempt is made to give an  enumerated type variable a value that is not defined for its type.</p>
+          <p>Two variables or constants of an enumerated type can  be compared using the <strong>equals</strong> method or the == operator. However, the ==  operator has a nicer syntax.</p>
+<pre class=" language-java"><code class=" language-java">
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>meetingDay <span class="token operator">==</span> availableDay<span class="token punctuation">)</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Meeting will be on schedule."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>meetingDay <span class="token operator">==</span> <span class="token class-name">WorkDay</span><span class="token punctuation">.</span>THURSDAY<span class="token punctuation">)</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Long weekend!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code>
+</pre>
+<div class="activity">
+<h2>8.3 Non-Graded Activity</h2>
+<p>A  Java program for using EnumeratedType is listed below. </p>
+<p>Compile  and run the program below and observe the results. </p>
+<p>Make  changes to the program and re-run it as many times as you want to practice using  the enumerated type in Java. </p>
+<pre class=" language-java"><code class=" language-java">
+<span class="token keyword">package</span> <span class="token namespace">lesson06</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EnumeratedType</span> <span class="token punctuation">{</span>
+	<span class="token keyword">enum</span> <span class="token class-name">WorkDay</span> <span class="token punctuation">{</span>
+		MONDAY<span class="token punctuation">,</span> TUESDAY<span class="token punctuation">,</span> WEDNESDAY<span class="token punctuation">,</span> THURSDAY<span class="token punctuation">,</span> FRIDAY
+	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token class-name">WorkDay</span> startDay <span class="token operator">=</span> <span class="token class-name">WorkDay</span><span class="token punctuation">.</span>MONDAY<span class="token punctuation">;</span>
+		<span class="token class-name">WorkDay</span> endDay <span class="token operator">=</span> <span class="token class-name">WorkDay</span><span class="token punctuation">.</span>FRIDAY<span class="token punctuation">;</span>
+		<span class="token class-name">WorkDay</span> meetingDay <span class="token operator">=</span> <span class="token class-name">WorkDay</span><span class="token punctuation">.</span>THURSDAY<span class="token punctuation">;</span>
+
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Work starts on "</span> <span class="token operator">+</span> startDay<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Work ends on "</span> <span class="token operator">+</span> endDay<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>meetingDay<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">WorkDay</span><span class="token punctuation">.</span>THURSDAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code>
+</pre>
+</div>
+          <h2>8.4 The values Method</h2>
+          <p>To get the full  potential from an enumerated type, it is often necessary to cycle through all  the values of the type. Every enumerated type is automatically provided with  the <strong>static</strong> method <strong>values()</strong> which provide this ability. It returns an array whose elements are the values  of the enumerated type given in the order in which the elements are listed in  the definition of the enumerated type. The base type of the array that is  returned is the enumerated type.</p>
+
+<div class="activity">
+<h2>8.5 Non-Graded Activity</h2>
+<p>A  Java program for using the <strong>values</strong> method is listed below. </p>
+<p>Compile  and run the program below and observe the results.</p>
+<p>Make  changes to the program and re-run it as many times as you want to practice using  the values method. </p>
+<pre class=" language-java"><code class=" language-java">
+<span class="token keyword">package</span> <span class="token namespace">lesson06</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Scanner</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EnumValuesMethod</span> <span class="token punctuation">{</span>
+
+	<span class="token keyword">enum</span> <span class="token class-name">WorkDay</span> <span class="token punctuation">{</span>
+		MONDAY<span class="token punctuation">,</span> TUESDAY<span class="token punctuation">,</span> WEDNESDAY<span class="token punctuation">,</span> THURSDAY<span class="token punctuation">,</span> FRIDAY
+	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token class-name">WorkDay</span><span class="token punctuation">[</span><span class="token punctuation">]</span> day <span class="token operator">=</span> <span class="token class-name">WorkDay</span><span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		<span class="token class-name">Scanner</span> keyboard <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span>in<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">double</span> hours <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+		<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> day<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Enter hours worked for "</span> <span class="token operator">+</span>
+                                                  day<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			hours <span class="token operator">=</span> keyboard<span class="token punctuation">.</span><span class="token function">nextDouble</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			sum <span class="token operator">=</span> sum <span class="token operator">+</span> hours<span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Total hours work = "</span> <span class="token operator">+</span> sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code>
+</pre>
+</div>
+		<h2>8.6 Enumerated Types in switch Statements</h2>
+        <p>Enumerated types can be used to control a switch  statement. The switch <strong>control expression</strong> uses a variable of an enumerated type. <strong>Case labels</strong> are the unqualified  values of the same enumerated type.</p>
+        <p>The enumerated type control variable is set by using  the static method <strong>valueOf</strong> to <strong>convert</strong> an input string to a value  of the enumerated type. The input string must contain all upper case  letters, or be converted to all upper case letters using the toUpperCase method.  See the example below:
+        </p>
+<pre class=" language-java"><code class=" language-java">
+<span class="token keyword">package</span> <span class="token namespace">lesson06</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Scanner</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EnumWithSwitch</span> <span class="token punctuation">{</span>
+
+	<span class="token keyword">enum</span> <span class="token class-name">Flavor</span> <span class="token punctuation">{</span>
+		VANILLA<span class="token punctuation">,</span> CHOCOLATE<span class="token punctuation">,</span> STRAWBERRY
+	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token class-name">Flavor</span> favorite <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+		<span class="token class-name">Scanner</span> keyboard <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span>in<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"What is your favorite flavor?"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">String</span> answer <span class="token operator">=</span> keyboard<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		answer <span class="token operator">=</span> answer<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// input string converted to an enumerated value</span>
+favorite <span class="token operator">=</span> <span class="token class-name">Flavor</span><span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>answer<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+		<span class="token keyword">switch</span> <span class="token punctuation">(</span>favorite<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">case</span> VANILLA<span class="token operator">:</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Classic"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword">break</span><span class="token punctuation">;</span>
+		<span class="token keyword">case</span> CHOCOLATE<span class="token operator">:</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Rich"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword">break</span><span class="token punctuation">;</span>
+		<span class="token keyword">default</span><span class="token operator">:</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"I bet you said STRAWBERRY."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword">break</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code>
+</pre>
+
+		</article>
+	</section>
+		
+</main>	
+	
+    <footer>
+      <p>CP213</p>
+    </footer>
+	
+
+
+</body></html>

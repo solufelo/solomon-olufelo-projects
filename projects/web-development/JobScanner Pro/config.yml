@@ -1,0 +1,32 @@
+# === User Information ===
+name: Solomon Olufelo
+email: solomon@email.com
+phone: "+1-289-233-8317"              # Optional
+location: "Brampton, Ontario, Canada"
+
+# === Resume & Portfolio ===
+resume_path: "./assets/resume.pdf"     # Path to your resume
+portfolio_url: "https://yourportfolio.com"  # Link to personal site or demo reel
+
+# === Default Application Message ===
+default_subject: "Application for {{role}} Opportunity"
+default_intro: |
+  Hi there,
+
+  I'm a passionate and experienced {{role}} based in Brampton, Ontario.
+  I specialize in creating compelling photo/video content for brands, events, and creative projects.
+
+  I came across your listing and would love to learn more. Please find my resume and portfolio below.
+
+  Looking forward to connecting!
+
+  Best,
+  {{name}}
+
+# === SMTP Settings (for email-based applications) ===
+smtp:
+  server: "smtp.gmail.com"
+  port: 587
+  use_tls: true
+  username: "your-email@gmail.com"
+  password: "your-app-password"        # Use app-specific password, not real Gmail pass

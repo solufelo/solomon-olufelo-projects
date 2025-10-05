@@ -1,0 +1,8 @@
+name: Learning Notes
+args:
+  topic: ""
+  what_i_tried: ""
+  what_confused_me: ""
+  next_actions: ""
+---
+Write brief notes about {{topic}}. Reflect on what you tried: {{what_i_tried}}. Clarify confusions: {{what_confused_me}}. List next actions: {{next_actions}}.

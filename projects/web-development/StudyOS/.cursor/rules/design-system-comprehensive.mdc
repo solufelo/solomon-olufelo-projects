@@ -1,0 +1,699 @@
+---
+description: Comprehensive design system documentation for StudyOS including design tokens, component specifications, and usage guidelines
+alwaysApply: false
+---
+
+# StudyOS Design System
+
+## Design Philosophy
+
+### Vision Statement
+StudyOS embodies the principle of "Intelligent Simplicity" - making complex learning processes feel intuitive and engaging while maintaining scientific rigor and effectiveness.
+
+### Core Principles
+
+#### 1. **Clarity Over Cleverness**
+- Information hierarchy is always clear
+- Actions have obvious outcomes
+- Complex features are progressively disclosed
+- Visual design supports, never distracts from, learning goals
+
+#### 2. **Consistency Builds Trust**
+- Predictable interaction patterns across all touchpoints
+- Consistent visual language reinforces brand identity
+- Reliable performance creates user confidence
+- Uniform spacing and typography establish rhythm
+
+#### 3. **Accessibility Is Universal**
+- Design for all users, regardless of ability
+- Support multiple interaction modalities
+- Ensure content is perceivable, operable, and understandable
+- Test with real users across diverse needs
+
+#### 4. **Data-Informed Beauty**
+- Aesthetic decisions backed by usability research
+- Visual design enhances cognitive processing
+- Color and typography support learning retention
+- Interface beauty motivates consistent usage
+
+## Design Tokens
+
+### Color System
+
+#### Brand Identity Colors
+```css
+/* Primary Brand Palette */
+--color-brand-50: #f0f9ff;   /* Lightest background tints */
+--color-brand-100: #e0f2fe;  /* Light backgrounds */
+--color-brand-200: #bae6fd;  /* Subtle accents */
+--color-brand-300: #7dd3fc;  /* Secondary elements */
+--color-brand-400: #38bdf8;  /* Interactive elements */
+--color-brand-500: #0ea5e9;  /* Primary brand color */
+--color-brand-600: #0284c7;  /* Hover states */
+--color-brand-700: #0369a1;  /* Active states */
+--color-brand-800: #075985;  /* High contrast text */
+--color-brand-900: #0c4a6e;  /* Darkest elements */
+--color-brand-950: #082f49;  /* Maximum contrast */
+```
+
+#### Semantic Color Palette
+```css
+/* Success States */
+--color-success-50: #ecfdf5;
+--color-success-500: #10b981;  /* Primary success */
+--color-success-600: #059669;  /* Success hover */
+--color-success-700: #047857;  /* Success active */
+
+/* Warning States */
+--color-warning-50: #fffbeb;
+--color-warning-500: #f59e0b;  /* Primary warning */
+--color-warning-600: #d97706;  /* Warning hover */
+--color-warning-700: #b45309;  /* Warning active */
+
+/* Error States */
+--color-danger-50: #fef2f2;
+--color-danger-500: #ef4444;   /* Primary error */
+--color-danger-600: #dc2626;   /* Error hover */
+--color-danger-700: #b91c1c;   /* Error active */
+
+/* Neutral Palette */
+--color-neutral-50: #fafafa;   /* Lightest backgrounds */
+--color-neutral-100: #f5f5f5;  /* Card backgrounds */
+--color-neutral-200: #e5e5e5;  /* Borders, dividers */
+--color-neutral-300: #d4d4d4;  /* Disabled elements */
+--color-neutral-400: #a3a3a3;  /* Placeholder text */
+--color-neutral-500: #737373;  /* Secondary text */
+--color-neutral-600: #525252;  /* Primary text (light bg) */
+--color-neutral-700: #404040;  /* High contrast text */
+--color-neutral-800: #262626;  /* Headers, emphasis */
+--color-neutral-900: #171717;  /* Maximum contrast */
+```
+
+#### Color Usage Guidelines
+
+**Brand Colors**: Use for primary actions, links, and brand elements
+- Primary buttons, active navigation, progress indicators
+- Links and interactive elements
+- Brand logo and key visual elements
+
+**Success Colors**: Use for positive feedback and successful states
+- Form validation success
+- Completed tasks and achievements
+- Positive progress indicators
+
+**Warning Colors**: Use for cautionary information and attention
+- Form validation warnings
+- Important notifications
+- Pending or attention-required states
+
+**Error Colors**: Use for errors and destructive actions
+- Form validation errors
+- Delete buttons and destructive actions
+- Error messages and failed states
+
+**Neutral Colors**: Use for text, backgrounds, and structural elements
+- Body text and headings
+- Card backgrounds and containers
+- Borders and dividers
+
+### Typography System
+
+#### Font Stack
+```css
+/* Display Font - For headings and emphasis */
+--font-display: 'Lexend', 'Inter', system-ui, -apple-system, sans-serif;
+
+/* Body Font - For readable text */
+--font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+/* Monospace Font - For code and data */
+--font-mono: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
+```
+
+#### Type Scale
+```css
+/* Heading Sizes */
+--text-6xl: 3.75rem;  /* 60px - Hero headings */
+--text-5xl: 3rem;     /* 48px - Page titles */
+--text-4xl: 2.25rem;  /* 36px - Section headings */
+--text-3xl: 1.875rem; /* 30px - Card headings */
+--text-2xl: 1.5rem;   /* 24px - Subsection headings */
+--text-xl: 1.25rem;   /* 20px - Large body text */
+
+/* Body Sizes */
+--text-lg: 1.125rem;  /* 18px - Large body text */
+--text-base: 1rem;    /* 16px - Default body text */
+--text-sm: 0.875rem;  /* 14px - Small text */
+--text-xs: 0.75rem;   /* 12px - Caption text */
+
+/* Line Heights */
+--leading-tight: 1.25;    /* Headings */
+--leading-normal: 1.5;    /* Body text */
+--leading-relaxed: 1.625; /* Long-form content */
+```
+
+#### Typography Usage
+- **Display Font**: Use for all headings, brand elements, and emphasis
+- **Sans Font**: Use for body text, UI labels, and interface elements
+- **Monospace Font**: Use for code snippets, data tables, and technical content
+
+### Spacing System
+
+#### Spacing Scale
+```css
+/* Base unit: 4px */
+--space-1: 0.25rem;   /* 4px */
+--space-2: 0.5rem;    /* 8px */
+--space-3: 0.75rem;   /* 12px */
+--space-4: 1rem;      /* 16px */
+--space-5: 1.25rem;   /* 20px */
+--space-6: 1.5rem;    /* 24px */
+--space-8: 2rem;      /* 32px */
+--space-10: 2.5rem;   /* 40px */
+--space-12: 3rem;     /* 48px */
+--space-16: 4rem;     /* 64px */
+--space-20: 5rem;     /* 80px */
+--space-24: 6rem;     /* 96px */
+```
+
+#### Container Sizes
+```css
+--container-sm: 640px;   /* Small screens */
+--container-md: 768px;   /* Medium screens */
+--container-lg: 1024px;  /* Large screens (default) */
+--container-xl: 1280px;  /* Extra large screens */
+--container-2xl: 1536px; /* Maximum width */
+```
+
+### Elevation System
+
+#### Shadow Tokens
+```css
+/* Elevation Shadows */
+--shadow-soft: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 
+               0 10px 20px -2px rgba(0, 0, 0, 0.04);
+--shadow-medium: 0 4px 25px -5px rgba(0, 0, 0, 0.1), 
+                 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+--shadow-strong: 0 10px 40px -10px rgba(0, 0, 0, 0.15), 
+                 0 20px 50px -10px rgba(0, 0, 0, 0.1);
+
+/* Brand Glows */
+--shadow-glow: 0 0 20px rgba(14, 165, 233, 0.15);
+--shadow-glow-strong: 0 0 30px rgba(14, 165, 233, 0.3);
+```
+
+#### Elevation Usage
+- **Level 0**: Base content, no shadow
+- **Level 1**: Cards, buttons (soft shadow)
+- **Level 2**: Elevated cards, dropdowns (medium shadow)
+- **Level 3**: Modals, tooltips (strong shadow)
+- **Brand Glow**: Special emphasis, hero elements
+
+### Border Radius System
+
+```css
+--radius-sm: 0.375rem;  /* 6px - Small elements */
+--radius-md: 0.5rem;    /* 8px - Default radius */
+--radius-lg: 0.75rem;   /* 12px - Cards */
+--radius-xl: 1rem;      /* 16px - Large cards */
+--radius-2xl: 1.5rem;   /* 24px - Hero elements */
+--radius-3xl: 2rem;     /* 32px - Special elements */
+--radius-full: 9999px;  /* Full rounded */
+```
+
+## Component Specifications
+
+### Button Component
+
+#### Variants
+```css
+/* Primary Button */
+.button-primary {
+  background-color: var(--color-brand-500);
+  color: white;
+  border: none;
+  box-shadow: var(--shadow-soft);
+}
+
+.button-primary:hover {
+  background-color: var(--color-brand-600);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-medium);
+}
+
+/* Secondary Button */
+.button-secondary {
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-900);
+  border: 1px solid var(--color-neutral-200);
+}
+
+/* Outline Button */
+.button-outline {
+  background-color: transparent;
+  color: var(--color-brand-600);
+  border: 2px solid var(--color-brand-500);
+}
+```
+
+#### Sizes
+```css
+/* Small Button */
+.button-sm {
+  padding: 0.375rem 0.75rem;
+  font-size: var(--text-sm);
+  border-radius: var(--radius-md);
+}
+
+/* Medium Button (Default) */
+.button-md {
+  padding: 0.5rem 1rem;
+  font-size: var(--text-sm);
+  border-radius: var(--radius-lg);
+}
+
+/* Large Button */
+.button-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: var(--text-base);
+  border-radius: var(--radius-xl);
+}
+```
+
+#### Accessibility Requirements
+- Minimum 44px touch target size
+- Focus indicators with 2px outline
+- ARIA labels for icon-only buttons
+- Loading states with aria-busy
+- Disabled states with aria-disabled
+
+### Card Component
+
+#### Variants
+```css
+/* Default Card */
+.card-default {
+  background-color: white;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+  padding: var(--space-6);
+}
+
+/* Elevated Card */
+.card-elevated {
+  background-color: white;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-medium);
+  padding: var(--space-6);
+}
+
+/* Glass Card */
+.card-glass {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+  padding: var(--space-6);
+}
+```
+
+#### Interactive States
+```css
+/* Hover Effect */
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-strong);
+  transition: all 0.2s ease;
+}
+
+/* Focus State */
+.card-interactive:focus {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+}
+```
+
+### Form Components
+
+#### Input Field
+```css
+.input-field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-base);
+  background-color: white;
+  transition: border-color 0.2s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--color-brand-500);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+}
+
+.input-field:invalid {
+  border-color: var(--color-danger-500);
+}
+
+.input-field:disabled {
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-400);
+  cursor: not-allowed;
+}
+```
+
+#### Form Labels
+```css
+.form-label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-neutral-700);
+  margin-bottom: var(--space-2);
+}
+
+.form-label-required::after {
+  content: " *";
+  color: var(--color-danger-500);
+}
+```
+
+## Layout System
+
+### Grid System
+```css
+/* 12-column grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-6);
+}
+
+/* Responsive columns */
+.col-span-1 { grid-column: span 1; }
+.col-span-2 { grid-column: span 2; }
+.col-span-3 { grid-column: span 3; }
+.col-span-4 { grid-column: span 4; }
+.col-span-6 { grid-column: span 6; }
+.col-span-8 { grid-column: span 8; }
+.col-span-12 { grid-column: span 12; }
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  .md\:col-span-6 { grid-column: span 6; }
+  .md\:col-span-12 { grid-column: span 12; }
+}
+```
+
+### Container System
+```css
+.container {
+  width: 100%;
+  max-width: var(--container-lg);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .container { padding: 0 var(--space-6); }
+}
+
+@media (min-width: 1024px) {
+  .container { padding: 0 var(--space-8); }
+}
+```
+
+## Animation System
+
+### Transition Tokens
+```css
+/* Duration */
+--duration-fast: 150ms;
+--duration-normal: 250ms;
+--duration-slow: 350ms;
+
+/* Easing */
+--ease-in: cubic-bezier(0.4, 0, 1, 1);
+--ease-out: cubic-bezier(0, 0, 0.2, 1);
+--ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+--ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+```
+
+### Common Animations
+```css
+/* Fade In */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Fade In Up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scale In */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Float */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+```
+
+### Animation Usage Guidelines
+- Use animations to provide feedback and guide attention
+- Keep animations subtle and purposeful
+- Respect user preferences for reduced motion
+- Animations should feel fast and responsive
+
+## PatternCraft Integration
+
+### Background Pattern Tokens
+```css
+/* Aurora Patterns */
+--pattern-aurora-waves: radial-gradient(ellipse 80% 80% at 50% -20%, 
+  rgba(120, 119, 198, 0.3), transparent),
+  radial-gradient(ellipse 80% 80% at 80% 50%, 
+  rgba(255, 119, 198, 0.15), transparent);
+
+--pattern-cosmic-aurora: radial-gradient(ellipse at center, 
+  rgba(139, 92, 246, 0.15), transparent 70%),
+  radial-gradient(ellipse at top left, 
+  rgba(59, 130, 246, 0.1), transparent 70%);
+
+/* Grid Patterns */
+--pattern-grid-subtle: linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+
+/* Texture Patterns */
+--pattern-paper-texture: repeating-linear-gradient(45deg, 
+  transparent, transparent 2px, 
+  rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px);
+```
+
+### Pattern Usage Guidelines
+- Use aurora patterns for hero sections and landing pages
+- Use grid patterns for dashboard backgrounds
+- Use texture patterns for content areas
+- Combine patterns with solid colors for depth
+- Ensure patterns don't interfere with text readability
+
+## Iconography
+
+### Icon System
+- Use consistent stroke width (1.5px for 24px icons)
+- Maintain optical balance across icon set
+- Provide multiple sizes: 16px, 20px, 24px, 32px
+- Use semantic naming convention
+- Ensure icons work at small sizes
+
+### Icon Usage Guidelines
+```css
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon-sm { width: 1rem; height: 1rem; }
+.icon-lg { width: 2rem; height: 2rem; }
+.icon-xl { width: 2.5rem; height: 2.5rem; }
+```
+
+## Responsive Design
+
+### Breakpoint System
+```css
+/* Mobile First Breakpoints */
+@media (min-width: 640px) { /* sm */ }
+@media (min-width: 768px) { /* md */ }
+@media (min-width: 1024px) { /* lg */ }
+@media (min-width: 1280px) { /* xl */ }
+@media (min-width: 1536px) { /* 2xl */ }
+```
+
+### Responsive Typography
+```css
+/* Fluid Typography */
+.text-responsive-xl {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  line-height: 1.2;
+}
+
+.text-responsive-lg {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  line-height: 1.3;
+}
+```
+
+### Mobile Considerations
+- Minimum 44px touch targets
+- Thumb-friendly navigation zones
+- Swipe gestures for card interactions
+- Optimized keyboard layouts
+- Reduced motion options
+
+## Accessibility Standards
+
+### WCAG 2.1 AA Compliance
+
+#### Color Contrast
+- Normal text: 4.5:1 minimum contrast ratio
+- Large text: 3:1 minimum contrast ratio
+- UI components: 3:1 minimum contrast ratio
+- Focus indicators: 3:1 minimum contrast ratio
+
+#### Keyboard Navigation
+- All interactive elements accessible via keyboard
+- Logical tab order throughout interface
+- Visible focus indicators on all focusable elements
+- Skip links for main content areas
+
+#### Screen Reader Support
+- Semantic HTML structure
+- ARIA labels for complex interactions
+- Alt text for all informative images
+- Form labels properly associated
+
+#### Motor Accessibility
+- Minimum 44px touch targets
+- Generous spacing between interactive elements
+- Support for voice control
+- Timeout warnings and extensions
+
+## Performance Guidelines
+
+### Loading Performance
+- Critical CSS inlined
+- Non-critical CSS loaded asynchronously
+- Font loading optimized with font-display: swap
+- Images optimized and lazy-loaded
+
+### Runtime Performance
+- Animations use transform and opacity
+- Avoid layout thrashing
+- Debounce expensive operations
+- Use CSS containment where appropriate
+
+### Bundle Size
+- Tree-shake unused CSS
+- Compress and minify assets
+- Use modern image formats (WebP, AVIF)
+- Implement code splitting for JavaScript
+
+## Implementation Guidelines
+
+### CSS Architecture
+```css
+/* Use CSS custom properties for theming */
+:root {
+  --color-primary: var(--color-brand-500);
+  --color-background: var(--color-neutral-50);
+  --font-primary: var(--font-sans);
+}
+
+/* Component-scoped styles */
+.component {
+  /* Layout properties first */
+  display: flex;
+  flex-direction: column;
+  
+  /* Box model properties */
+  padding: var(--space-4);
+  margin: var(--space-2);
+  
+  /* Visual properties */
+  background-color: var(--color-background);
+  border-radius: var(--radius-lg);
+  
+  /* Typography properties */
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+}
+```
+
+### Component Development
+1. Start with semantic HTML structure
+2. Apply design tokens consistently
+3. Implement responsive behavior
+4. Add accessibility features
+5. Test across devices and browsers
+6. Document usage and examples
+
+### Quality Assurance
+- Visual regression testing
+- Cross-browser compatibility testing
+- Accessibility auditing
+- Performance monitoring
+- User testing validation
+
+## Design System Governance
+
+### Contribution Process
+1. Propose changes through design review
+2. Document rationale and use cases
+3. Create implementation guidelines
+4. Update design tokens and documentation
+5. Communicate changes to development team
+
+### Version Control
+- Semantic versioning for design system releases
+- Changelog documenting all changes
+- Migration guides for breaking changes
+- Deprecation warnings for outdated patterns
+
+### Maintenance
+- Regular accessibility audits
+- Performance monitoring
+- User feedback integration
+- Competitive analysis updates
+- Technology stack evolution
+
+This design system serves as the foundation for creating consistent, accessible, and beautiful user experiences across all StudyOS touchpoints. It balances flexibility with consistency, ensuring that the interface supports effective learning while maintaining visual coherence and usability standards.

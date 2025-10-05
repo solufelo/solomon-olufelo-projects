@@ -1,0 +1,18 @@
+
+
+
+#reveal_01, #reveal_02, #reveal_03, #reveal_04, #reveal_05, #reveal_06 {
+	display:none;
+}
+
+#show_01, #show_02, #show_03, #show_04, #show_05, #show_06 {
+	display:none;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+.show-color {
+	background-color: #ECF8F9;
+	border: solid 2px transparent;
+	padding: 20px;
+}

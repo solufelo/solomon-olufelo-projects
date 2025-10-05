@@ -1,0 +1,177 @@
+---
+alwaysApply: true
+---
+
+# AI Flashcard Generation Rules for StudyOS
+
+This file contains the configuration and rules for AI-powered flashcard generation in StudyOS.
+
+## Version
+version: 1.0
+
+## Purpose
+purpose: "AI flashcard generation rules for StudyOS vertical slice"
+
+## Generation Settings
+generation:
+  model: "gpt-4o-mini"
+  temperature: 0.0
+  max_cards_per_chunk: 12
+  prefer_cloze_ratio: 0.33
+  answer_length_max_sentences: 3
+
+## Output Format
+output_format:
+  type: "json_array"
+  schema:
+    - question: string
+    - answer: string
+    - type: enum[basic, cloze]
+    - tags: array<string>
+    - confidence: float
+
+## Quality Checks
+quality_checks:
+  no_trivial_questions: true
+  duplicate_detection: true
+  min_content_overlap_with_source: 0.2
+  max_question_length: 200
+  max_answer_length: 300
+  require_citations: false
+
+## Human Review
+human_review:
+  require_user_approval: true
+  editable_after_creation: true
+  show_confidence_score: true
+
+## Content Guidelines
+content_guidelines:
+  academic_level: "university"
+  question_style: "clear_and_concise"
+  answer_style: "comprehensive_but_concise"
+  avoid_ambiguity: true
+  prefer_concrete_examples: true
+
+## Subject-Specific Rules
+subjects:
+  programming:
+    focus_on_concepts: true
+    include_code_examples: true
+    prefer_practical_applications: true
+  mathematics:
+    include_step_by_step_solutions: true
+    use_formulas_when_appropriate: true
+    explain_intuition: true
+  sciences:
+    include_key_definitions: true
+    explain_cause_and_effect: true
+    use_real_world_examples: true
+  languages:
+    include_pronunciation_guides: false
+    focus_on_grammar_rules: true
+    include_cultural_context: false
+
+## Error Handling
+error_handling:
+  fallback_to_basic_qa: true
+  max_retries: 3
+  log_generation_attempts: true
+
+## Rate Limiting
+rate_limiting:
+  requests_per_minute: 10
+  requests_per_hour: 100
+  daily_limit: 1000
+
+## Privacy and Ethics
+privacy:
+  no_personal_data_extraction: true
+  no_external_api_calls: true
+  content_filtering: true# AI Flashcard Generation Rules for StudyOS
+
+This file contains the configuration and rules for AI-powered flashcard generation in StudyOS.
+
+## Version
+version: 1.0
+
+## Purpose
+purpose: "AI flashcard generation rules for StudyOS vertical slice"
+
+## Generation Settings
+generation:
+  model: "gpt-4o-mini"
+  temperature: 0.0
+  max_cards_per_chunk: 12
+  prefer_cloze_ratio: 0.33
+  answer_length_max_sentences: 3
+
+## Output Format
+output_format:
+  type: "json_array"
+  schema:
+    - question: string
+    - answer: string
+    - type: enum[basic, cloze]
+    - tags: array<string>
+    - confidence: float
+
+## Quality Checks
+quality_checks:
+  no_trivial_questions: true
+  duplicate_detection: true
+  min_content_overlap_with_source: 0.2
+  max_question_length: 200
+  max_answer_length: 300
+  require_citations: false
+
+## Human Review
+human_review:
+  require_user_approval: true
+  editable_after_creation: true
+  show_confidence_score: true
+
+## Content Guidelines
+content_guidelines:
+  academic_level: "university"
+  question_style: "clear_and_concise"
+  answer_style: "comprehensive_but_concise"
+  avoid_ambiguity: true
+  prefer_concrete_examples: true
+
+## Subject-Specific Rules
+subjects:
+  programming:
+    focus_on_concepts: true
+    include_code_examples: true
+    prefer_practical_applications: true
+  mathematics:
+    include_step_by_step_solutions: true
+    use_formulas_when_appropriate: true
+    explain_intuition: true
+  sciences:
+    include_key_definitions: true
+    explain_cause_and_effect: true
+    use_real_world_examples: true
+  languages:
+    include_pronunciation_guides: false
+    focus_on_grammar_rules: true
+    include_cultural_context: false
+
+## Error Handling
+error_handling:
+  fallback_to_basic_qa: true
+  max_retries: 3
+  log_generation_attempts: true
+
+## Rate Limiting
+rate_limiting:
+  requests_per_minute: 10
+  requests_per_hour: 100
+  daily_limit: 1000
+
+## Privacy and Ethics
+privacy:
+  no_personal_data_extraction: true
+  no_external_api_calls: true
+  content_filtering: true

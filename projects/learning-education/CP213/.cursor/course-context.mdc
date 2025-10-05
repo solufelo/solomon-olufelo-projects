@@ -1,0 +1,19 @@
+# Course Context: CP213
+
+Key Paths
+- Workspace (Eclipse projects): `workspace/`
+- Docs: `docs/`
+  - Assignments: `docs/assgncp213.txt`
+  - Labs: `docs/labscp213.txt`
+  - Syllabus: `docs/CP213-VA1-F25 Syllabus.md`
+- Scripts: `scripts/`
+  - Export zip: `scripts/export_eclipse_zip.sh`
+  - Import zip: `scripts/import_eclipse_zip.sh`
+- Planning: `planning/semester-checklist.md`
+- Templates: `templates/assignment-template.md`, `templates/lab-template.md`
+- Notes: `notes/`
+
+Usage
+- Use Eclipse-compatible project zips for import/export.
+- Develop in `workspace/<ProjectName>` and track progress in planning.
+- Capture reflections with `.mdc` prompts in `prompts/` stored into `notes/`.

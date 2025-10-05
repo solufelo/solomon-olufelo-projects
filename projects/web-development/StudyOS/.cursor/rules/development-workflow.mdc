@@ -1,0 +1,264 @@
+---
+description: Development workflow, best practices, and common patterns for StudyOS development
+alwaysApply: true
+---
+
+# StudyOS Development Workflow
+
+This document outlines the development workflow, coding standards, and best practices for the StudyOS project.
+
+## Development Environment Setup
+
+### Prerequisites
+- Node.js (v18+ recommended)
+- Wasp CLI (latest version)
+- VSCode with recommended extensions:
+  - Wasp extension
+  - Tailwind CSS IntelliSense
+  - TypeScript Hero
+  - Prisma extension
+
+### Initial Setup
+```bash
+# Clone and setup
+cd StudyOS
+wasp start                    # First time setup
+wasp db migrate-dev          # Apply database migrations
+```
+
+## Coding Standards
+
+### TypeScript Guidelines
+- **Strict Mode**: All TypeScript files use strict mode
+- **Interface Definitions**: Define interfaces for all data structures
+- **Type Imports**: Use `import type` for type-only imports
+- **Error Handling**: Always handle async operation errors
+
+```typescript
+// Good: Proper interface definition
+interface Card {
+  id: number;
+  question: string;
+  answer: string;
+  deckId: number;
+}
+
+// Good: Proper error handling
+try {
+  const result = await createDeck({ name: deckName });
+  setDecks(prev => [...prev, result]);
+} catch (error) {
+  console.error('Error creating deck:', error);
+  showErrorToast('Failed to create deck');
+}
+```
+
+### React Component Patterns
+- **Functional Components**: Use function components with hooks
+- **TypeScript Props**: Define prop interfaces
+- **Loading States**: Always handle loading and error states
+- **Accessibility**: Include proper ARIA labels and semantic HTML
+
+```typescript
+// Component template
+interface ComponentProps {
+  data: SomeData;
+  onAction: (id: number) => void;
+}
+
+const Component: React.FC<ComponentProps> = ({ data, onAction }) => {
+  const [loading, setLoading] = useState(false);
+  
+  // Component logic here
+  
+  return (
+    <div className="component-container">
+      {/* Component JSX */}
+    </div>
+  );
+};
+
+export default Component;
+```
+
+### Styling Guidelines
+- **Tailwind CSS**: Use utility classes for styling
+- **Responsive Design**: Mobile-first approach
+- **Consistent Spacing**: Use Tailwind's spacing scale
+- **Color Scheme**: Stick to defined color palette
+
+```jsx
+// Good: Responsive, accessible design
+<button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+  Create Deck
+</button>
+```
+
+## Feature Development Workflow
+
+### 1. Planning Phase
+- Define user stories and acceptance criteria
+- Design database schema changes if needed
+- Plan API endpoints (queries/actions)
+- Create UI mockups or wireframes
+
+### 2. Backend Development
+- Update Prisma models in generated schema (via Wasp)
+- Create/update Wasp operations in `main.wasp`
+- Implement server functions in `src/server/`
+- Run database migrations
+
+### 3. Frontend Development
+- Create/update page components
+- Implement UI components
+- Add proper error handling and loading states
+- Test responsive design
+
+### 4. Integration Testing
+- Test full user workflows
+- Verify error handling
+- Check responsive design
+- Validate accessibility
+
+## Common Development Patterns
+
+### Data Fetching Pattern
+```typescript
+const [data, setData] = useState<DataType[]>([]);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState<string | null>(null);
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const result = await queryOperation();
+      setData(result);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchData();
+}, []);
+```
+
+### Form Handling Pattern
+```typescript
+const [formData, setFormData] = useState({ name: '', description: '' });
+const [submitting, setSubmitting] = useState(false);
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (submitting) return;
+
+  try {
+    setSubmitting(true);
+    await actionOperation(formData);
+    setFormData({ name: '', description: '' }); // Reset form
+    onSuccess?.();
+  } catch (error) {
+    console.error('Form submission error:', error);
+    showErrorToast('Failed to submit form');
+  } finally {
+    setSubmitting(false);
+  }
+};
+```
+
+### Error Boundary Pattern
+```typescript
+// Use in components that might fail
+if (loading) {
+  return <LoadingSpinner />;
+}
+
+if (error) {
+  return (
+    <div className="text-center py-12">
+      <div className="text-red-500 text-xl mb-4">⚠️</div>
+      <h3 className="text-lg font-medium text-gray-900 mb-2">Something went wrong</h3>
+      <p className="text-gray-500 mb-4">{error}</p>
+      <button 
+        onClick={() => window.location.reload()}
+        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
+      >
+        Retry
+      </button>
+    </div>
+  );
+}
+```
+
+## Testing Strategy
+
+### Unit Testing
+- Test individual components in isolation
+- Mock external dependencies
+- Test edge cases and error conditions
+
+### Integration Testing
+- Test complete user workflows
+- Test API operations with real database
+- Verify authentication flows
+
+### Manual Testing Checklist
+- [ ] All forms validate input correctly
+- [ ] Loading states display appropriately
+- [ ] Error messages are user-friendly
+- [ ] Mobile responsiveness works
+- [ ] Authentication redirects properly
+- [ ] Data persists correctly
+
+## Performance Guidelines
+
+### Frontend Optimization
+- **Lazy Loading**: Use React.lazy for route-based code splitting
+- **Memoization**: Use React.memo for expensive components
+- **Debouncing**: Debounce search inputs and API calls
+- **Image Optimization**: Optimize images and use appropriate formats
+
+### Backend Optimization
+- **Database Queries**: Use efficient Prisma queries
+- **Pagination**: Implement pagination for large datasets
+- **Caching**: Cache frequently accessed data
+- **Error Handling**: Proper error responses with appropriate HTTP codes
+
+## Deployment Checklist
+
+### Pre-deployment
+- [ ] All tests pass
+- [ ] Database migrations are ready
+- [ ] Environment variables are configured
+- [ ] Build process completes successfully
+- [ ] Performance testing completed
+
+### Post-deployment
+- [ ] Health checks pass
+- [ ] Database migrations applied
+- [ ] User authentication works
+- [ ] Core features functional
+- [ ] Monitor error rates
+
+## Troubleshooting Common Issues
+
+### Wasp Compilation Errors
+1. Check import paths in `main.wasp`
+2. Verify entity declarations match operations
+3. Run `wasp clean` to clear cache
+4. Restart Wasp dev server
+
+### Database Issues
+1. Check migration status: `wasp db migrate-dev`
+2. Verify schema consistency
+3. Check database connection
+4. Review Prisma query syntax
+
+### Frontend Issues
+1. Check browser console for JavaScript errors
+2. Verify API endpoints are accessible
+3. Check authentication state
+4. Review responsive design on different screen sizes

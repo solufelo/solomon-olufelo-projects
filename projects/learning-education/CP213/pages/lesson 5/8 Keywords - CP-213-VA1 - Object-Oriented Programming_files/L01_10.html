@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<!-- saved from url=(0104)https://mylearningspace.wlu.ca/content/enforced/600931-3438.202509/L01_10.html?ou=600931&d2l_body_type=3 -->
+<html lang="en" webcrx=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<!-- Document title -->	
+	<title>8 Keywords</title>
+
+    <!-- CSS source -->
+	<link href="./style.css" type="text/css" rel="stylesheet">
+	<link href="./show-hide.css" type="text/css" rel="stylesheet">
+
+	<!-- jquery source -->
+	<script type="text/javascript" src="./jquery-1.8.3.js.download"></script>
+	
+	<!-- js source -->
+	<script type="text/javascript" src="./showHide.js.download"></script>
+<script>window.addEventListener('message', function(event) { 
+					if( !event.data ) {
+						return;
+					}
+
+					let params;
+					try {
+						params = JSON.parse( event.data );
+					}
+					catch {
+						return;
+					}
+					if( !params.subject || params.subject !== 'lti.frameResize' ) {
+						return;
+					}
+
+					const MAX_FRAME_HEIGHT = 10000;
+					if( !params.height || params.height < 1 || params.height > MAX_FRAME_HEIGHT ) {
+						console.warn( 'Invalid height value received, aborting' );
+						return;
+					}
+					const el = document.getElementsByTagName( 'iframe' );
+					for ( let i=0; i < el.length; i++ ) {
+						if( el[i].contentWindow === event.source ) {
+							el[i].style.height = params.height + 'px';
+
+							console.info( 'Setting iFrame height to ' + params.height );
+
+							if( el[i].getAttribute('lockwidth') !== 'true'){
+								el[i].style.width = '100%';
+								console.info( 'Setting iFrame width to 100%' );
+							}
+						}
+					}
+				});</script><script src="./embeds.js.download" type="module"></script><script>document.addEventListener('DOMContentLoaded', function() {
+					window.D2L.EmbedRenderer.renderEmbeds(document.body);
+				});</script><script src="./mathjax.js.download" type="module"></script><script>document.addEventListener('DOMContentLoaded', function() {
+						if (document.querySelector('math, .d2l-element, .d2l-cplus-layout') || /\$\$|\\\(|\\\[|\\begin{|\\ref{|\\eqref{/.test(document.body.innerHTML)) {
+							document.querySelectorAll('mspace[linebreak="newline"]').forEach(elm => {
+								elm.setAttribute('style', 'display: block; height: 0.5rem;');
+							});
+
+							document.querySelectorAll('math mmultiscripts > none').forEach(elm => {
+								const mrow = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'mrow');
+								elm.replaceWith(mrow);
+							});
+
+							window.D2L.MathJax.loadMathJax({
+								outputScale: 1.5,
+								renderLatex: false,
+								enableMML3Support: false
+							});
+						}
+					});</script><script src="./prism.js.download" type="module"></script><script>document.addEventListener('DOMContentLoaded', function() {
+					document.querySelectorAll('.d2l-code').forEach(code => {
+						window.D2L.Prism.formatCodeElement(code);
+					});
+				});</script><script src="./creator.js.download" type="module"></script><script>document.addEventListener('DOMContentLoaded', async () => {
+					const activities = [];
+					const practices = [];
+					const allPractices = document.querySelectorAll('.d2l-practice');
+					const elements = document.querySelectorAll('.d2l-element');
+					let layouts = [...document.querySelectorAll('.d2l-cplus-layout')];
+					const tables = document.querySelectorAll('table');
+					const contentStylerStyleLinks = document.querySelectorAll('head > link[href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"]');
+					const contentStylerOverides = document.querySelectorAll('head > link[href^="/d2l/le/contentstyler/"][data-override="override"]');
+
+					layouts = layouts.filter((layout) => layout.closest('.d2l-element.mceNonEditable') === null);
+
+					for (const practice of allPractices) {
+						const activityContainer = practice.hasAttribute('data-d2l-activity-href');
+						if (activityContainer) {
+							activities.push(practice);
+						}
+						else {
+							practices.push(practice);
+						}
+					}
+
+					if (layouts.length > 0) {
+						window.D2L.Creator.convertLayouts(layouts);
+					}
+					if (elements.length > 0) {
+						window.D2L.Creator.convertElements(elements, 600931, '/content/enforced/600931-3438.202509/');
+					}
+					if (activities.length > 0) {
+						window.D2L.Creator.convertPracticeActivities(activities, 600931, '/content/enforced/600931-3438.202509/');
+					}
+					if (practices.length > 0) {
+						window.D2L.Creator.convertPractices(practices, 600931, '/content/enforced/600931-3438.202509/');
+					}
+					if (contentStylerStyleLinks.length > 0 && contentStylerOverides.length > 0 && tables.length > 0) {
+						window.D2L.Creator.wrapTables(tables);
+					}
+				});</script><script>function lti_launch( vars, target ) {
+						var query = '';
+						var new_tab = false;
+
+						for(var key in vars) {
+							if(query.length == 0) {
+								query += '?' + key + '=' + encodeURIComponent(vars[key]);
+							}
+							else {
+								query += '&' + key + '=' + encodeURIComponent(vars[key]);
+							}
+						}
+
+						var url = '/d2l/customization/pearsonlti/600931/Launch' + query;(target == '_blank') ? window.open( url, '_blank' ) : location.replace( url );}</script><style id="d2l-colors">
+		html {
+			/* basic grays (lightest to darkest) */
+			--d2l-color-regolith: #f9fbff;
+			--d2l-color-sylvite: #f1f5fb;
+			--d2l-color-gypsum: #e3e9f1;
+			--d2l-color-mica: #cdd5dc;
+			--d2l-color-corundum: #b1b9be;
+			--d2l-color-chromite: #90989d;
+			--d2l-color-galena: #6e7477;
+			--d2l-color-tungsten: #494c4e;
+			--d2l-color-ferrite: #202122;
+
+			/* zircon */
+			--d2l-color-zircon-plus-2: #e0feff;
+			--d2l-color-zircon-plus-1: #00d2ed;
+			--d2l-color-zircon: #008eab;
+			--d2l-color-zircon-minus-1: #035670;
+
+			/* celestine */
+			--d2l-color-celestine-plus-2: #e8f8ff;
+			--d2l-color-celestine-plus-1: #29a6ff;
+			--d2l-color-celestine: #006fbf;
+			--d2l-color-celestine-minus-1: #004489;
+
+			/* amethyst */
+			--d2l-color-amethyst-plus-2: #f2f0ff;
+			--d2l-color-amethyst-plus-1: #8982ff;
+			--d2l-color-amethyst: #6038ff;
+			--d2l-color-amethyst-minus-1: #4500db;
+
+			/* fluorite */
+			--d2l-color-fluorite-plus-2: #f9ebff;
+			--d2l-color-fluorite-plus-1: #ce68fa;
+			--d2l-color-fluorite: #9d1fd4;
+			--d2l-color-fluorite-minus-1: #6900a0;
+
+			/* tourmaline */
+			--d2l-color-tourmaline-plus-2: #ffebf6;
+			--d2l-color-tourmaline-plus-1: #fd4e9d;
+			--d2l-color-tourmaline: #d40067;
+			--d2l-color-tourmaline-minus-1: #990056;
+
+			/* cinnabar */
+			--d2l-color-cinnabar-plus-2: #ffede8;
+			--d2l-color-cinnabar-plus-1: #ff575a;
+			--d2l-color-cinnabar: #cd2026;
+			--d2l-color-cinnabar-minus-1: #990006;
+
+			/* carnelian */
+			--d2l-color-carnelian-plus-1: #fff3e0;
+			--d2l-color-carnelian: #e87511;
+			--d2l-color-carnelian-minus-1: #ba4700;
+			--d2l-color-carnelian-minus-2: #7d2600;
+
+			/* citrine */
+			--d2l-color-citrine-plus-1: #fff9d6;
+			--d2l-color-citrine: #ffba59;
+			--d2l-color-citrine-minus-1: #c47400;
+			--d2l-color-citrine-minus-2: #7a4300;
+
+			/* peridot */
+			--d2l-color-peridot-plus-1: #efffd9;
+			--d2l-color-peridot: #8ad934;
+			--d2l-color-peridot-minus-1: #4a8f00;
+			--d2l-color-peridot-minus-2: #2f5e00;
+
+			/* olivine */
+			--d2l-color-olivine-plus-1: #e7ffe3;
+			--d2l-color-olivine: #46a661;
+			--d2l-color-olivine-minus-1: #027a21;
+			--d2l-color-olivine-minus-2: #005614;
+
+			/* malachite */
+			--d2l-color-malachite-plus-1: #e3fff5;
+			--d2l-color-malachite: #2de2c0;
+			--d2l-color-malachite-minus-1: #00a490;
+			--d2l-color-malachite-minus-2: #00635e;
+
+			/* primary accent */
+			--d2l-color-primary-accent-action: var(--d2l-color-celestine);
+			--d2l-color-primary-accent-indicator: var(--d2l-color-carnelian);
+
+			/* feedback */
+			--d2l-color-feedback-error: var(--d2l-color-cinnabar);
+			--d2l-color-feedback-warning: var(--d2l-color-carnelian);
+			--d2l-color-feedback-success: var(--d2l-color-olivine);
+			--d2l-color-feedback-action: var(--d2l-color-celestine);
+		}
+	</style><style id="d2l-typography-font-face">
+		
+	@font-face {
+	font-family: 'Lato';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/Lato-400.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/Lato-400.woff) format('woff');
+}
+@font-face {
+	font-family: 'Lato';
+	font-style: normal;
+	font-weight: 700;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/Lato-700.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/Lato-700.woff) format('woff');
+}
+@font-face {
+	font-family: 'Noto Sans Thai';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/NotoSansThai-Regular.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/NotoSansThai-Regular.woff) format('woff');
+}
+@font-face {
+	font-family: 'Noto Sans Thai';
+	font-style: normal;
+	font-weight: 700;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/NotoSansThai-Bold.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/NotoSansThai-Bold.woff) format('woff');
+}
+@font-face {
+	font-family: 'BC Sans';
+	font-style: normal;
+	font-weight: 300;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-Light.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-Light.woff) format('woff');
+}
+@font-face {
+	font-family: 'BC Sans';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-Regular.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-Regular.woff) format('woff');
+}
+@font-face {
+	font-family: 'BC Sans';
+	font-style: normal;
+	font-weight: 700;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-Bold.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-Bold.woff) format('woff');
+}
+@font-face {
+	font-family: 'BC Sans';
+	font-style: italic;
+	font-weight: 300;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-LightItalic.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-LightItalic.woff) format('woff');
+}
+@font-face {
+	font-family: 'BC Sans';
+	font-style: italic;
+	font-weight: 400;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-Italic.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-Italic.woff) format('woff');
+}
+@font-face {
+	font-family: 'BC Sans';
+	font-style: italic;
+	font-weight: 700;
+	src:
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-BoldItalic.woff2) format('woff2'),
+		url(https://s.brightspace.com/lib/fonts/0.6.4/assets/BCSans-BoldItalic.woff) format('woff');
+}
+	html {
+		--d2l-cursor-resize-inline-end: e-resize;
+		--d2l-cursor-resize-inline-start: w-resize;
+		--d2l-document-direction: ltr;
+		--d2l-inline-end: right;
+		--d2l-inline-start: left;
+		--d2l-length-factor: 1;
+		--d2l-mirror-transform: none;
+	}
+	html[dir="rtl"] {
+		--d2l-cursor-resize-inline-end: w-resize;
+		--d2l-cursor-resize-inline-start: e-resize;
+		--d2l-document-direction: rtl;
+		--d2l-inline-end: left;
+		--d2l-inline-start: right;
+		--d2l-length-factor: -1;
+		--d2l-mirror-transform: scale(-1, 1);
+	}
+
+	.d2l-typography {
+		color: var(--d2l-color-ferrite);
+		display: block;
+		font-family: "Lato", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+		letter-spacing: 0.01rem;
+	}
+	
+		.d2l-typography {
+			font-size: 0.95rem;
+			font-weight: 400;
+			line-height: 1.4rem;
+		}
+		@media (max-width: 615px) {
+			.d2l-typography {
+				font-size: 0.8rem;
+				line-height: 1.2rem;
+			}
+		}
+	
+	.d2l-typography p {
+		margin: 1rem 0;
+	}
+
+	.d2l-typography:lang(ar), .d2l-typography :lang(ar) {
+		font-family: "Segoe UI", "Geeza Pro", sans-serif;
+	}
+	.d2l-typography:lang(ja), .d2l-typography :lang(ja) {
+		font-family: "Hiragino Kaku Gothic Pro", "Meiyro", sans-serif;
+	}
+	.d2l-typography:lang(ko), .d2l-typography :lang(ko) {
+		font-family: "Apple SD Gothic Neo", Dotum, sans-serif;
+	}
+	.d2l-typography:lang(th), .d2l-typography :lang(th), .d2l-typography:lang(tha), .d2l-typography :lang(tha) {
+		font-family: "Noto Sans Thai", system-ui, Tahoma;
+	}
+	.d2l-typography:lang(zh), .d2l-typography :lang(zh) {
+		font-family: "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+	}
+
+		
+		.d2l-typography .d2l-body-standard {
+			font-size: 0.95rem;
+			font-weight: 400;
+			line-height: 1.4rem;
+		}
+		@media (max-width: 615px) {
+			.d2l-typography .d2l-body-standard {
+				font-size: 0.8rem;
+				line-height: 1.2rem;
+			}
+		}
+	
+		
+		.d2l-typography .d2l-body-compact {
+			font-size: 0.8rem;
+			font-weight: 400;
+			line-height: 1.2rem;
+		}
+		
+	
+		
+		.d2l-typography .d2l-body-small {
+			color: var(--d2l-color-tungsten);
+			font-size: 0.7rem;
+			font-weight: 400;
+			line-height: 0.9rem;
+			margin: auto;
+		}
+		
+	
+		
+		.d2l-typography .d2l-label-text {
+			font-size: 0.7rem;
+			font-weight: 700;
+			letter-spacing: 0.2px;
+			line-height: 0.9rem;
+		}
+		
+	
+		
+		.d2l-typography .d2l-heading-1 {
+			font-size: 2rem;
+			font-weight: 400;
+			line-height: 2.4rem;
+			margin: 1.5rem 0 1.5rem 0;
+		}
+		@media (max-width: 615px) {
+			.d2l-typography .d2l-heading-1 {
+				font-size: 1.5rem;
+				line-height: 1.8rem;
+			}
+			
+		}
+	
+		
+		.d2l-typography .d2l-heading-2 {
+			font-size: 1.5rem;
+			font-weight: 400;
+			line-height: 1.8rem;
+			margin: 1.5rem 0 1.5rem 0;
+		}
+		@media (max-width: 615px) {
+			.d2l-typography .d2l-heading-2 {
+				font-size: 1rem;
+				font-weight: 700;
+				line-height: 1.5rem;
+			}
+			
+		}
+	
+		
+		.d2l-typography .d2l-heading-3 {
+			font-size: 1rem;
+			font-weight: 700;
+			line-height: 1.5rem;
+			margin: 1.5rem 0 1.5rem 0;
+		}
+		@media (max-width: 615px) {
+			.d2l-typography .d2l-heading-3 {
+				font-size: 0.8rem;
+				line-height: 1.2rem;
+			}
+			
+		}
+	
+		
+		.d2l-typography .d2l-heading-4 {
+			font-size: 0.8rem;
+			font-weight: 700;
+			line-height: 1.2rem;
+			margin: 1.5rem 0 1.5rem 0;
+		}
+	
+		
+		.d2l-typography .d2l-blockquote {
+			font-size: 0.8rem;
+			font-weight: 400;
+			line-height: 1.4rem;
+			margin-block: 0;
+			margin-inline: 0 1.2rem;
+			padding-block: 0.5rem 0;
+			padding-inline: 1.2rem 0;
+			position: relative;
+		}
+		.d2l-typography .d2l-blockquote::before {
+			content: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEiIGhlaWdodD0iMTEiIHZpZXdCb3g9IjAgMCAyMiAyMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+Cgk8ZGVmcz4KCQk8cGF0aCBpZD0iYSIgZD0iTTAgMGgyNHYyNEgweiIvPgoJPC9kZWZzPgoJPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEgLTEpIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgoJCTxtYXNrIGlkPSJiIiBmaWxsPSIjZmZmIj48dXNlIHhsaW5rOmhyZWY9IiNhIi8+PC9tYXNrPgoJCTxwYXRoIGQ9Ik02IDIyLjY2N0E0LjY2NyA0LjY2NyAwIDAgMCAxMC42NjcgMThjMC0xLjIyNy0uNTU5LTIuNS0xLjMzNC0zLjMzM0M4LjQ4MSAxMy43NSA3LjM1IDEzLjMzMyA2IDEzLjMzM2MtLjQxMSAwIDEuMzMzLTYuNjY2IDMtOSAxLjY2Ny0yLjMzMyAxLjMzMy0zIC4zMzMtM0M4IDEuMzMzIDUuMjUzIDQuNTg2IDQgNy4yNTUgMS43NzMgMTIgMS4zMzMgMTUuMzkyIDEuMzMzIDE4QTQuNjY3IDQuNjY3IDAgMCAwIDYgMjIuNjY3em0xMiAwQTQuNjY3IDQuNjY3IDAgMCAwIDIyLjY2NyAxOGMwLTEuMjI3LS41NTktMi41LTEuMzM0LTMuMzMzLS44NTItLjkxNy0xLjk4My0xLjMzNC0zLjMzMy0xLjMzNC0uNDExIDAgMS4zMzMtNi42NjYgMy05IDEuNjY3LTIuMzMzIDEuMzMzLTMgLjMzMy0zLTEuMzMzIDAtNC4wOCAzLjI1My01LjMzMyA1LjkyMkMxMy43NzMgMTIgMTMuMzMzIDE1LjM5MiAxMy4zMzMgMThBNC42NjcgNC42NjcgMCAwIDAgMTggMjIuNjY3eiIgZmlsbD0iI0QzRDlFMyIgbWFzaz0idXJsKCNiKSIvPgoJPC9nPgo8L3N2Zz4=");
+			inset-block-start: 0;
+			inset-inline-start: 0;
+			position: absolute;
+			transform: var(--d2l-mirror-transform, none); /* stylelint-disable-line @stylistic/string-quotes, @stylistic/function-whitespace-after */
+		}
+		@media (max-width: 615px) {
+			.d2l-typography .d2l-blockquote {
+				line-height: 1.2rem;
+			}
+		}
+	
+	</style></head>
+	
+<body style="overflow-y: hidden;">
+<main><header>
+<h1><span>Lesson 01</span></h1>
+<h1>8 Keywords</h1>
+</header>
+<section class="noTitle">
+<article>
+<p>Below are some of the main concepts and vocabulary that have been covered in this lesson. To test your knowledge and your understanding of this lesson, you should be able to describe each of the concepts below in one or two sentences.&nbsp;</p>
+<p>Choose five keywords from the list below. Describe each keyword in two to five lines and upload your answer to MyLearningSpace.</p>
+<ul>
+<li>Bytecode</li>
+<li>Class</li>
+<li>Instance variable</li>
+<li>Java, javac and Javadoc</li>
+<li>Java Virtual machine</li>
+<li>Method</li>
+<li>Object</li>
+<li>Private</li>
+<li>Public</li>
+<li>Shorthand operator</li>
+<li>System.out.print and System.out.println</li>
+<li>Variable casting</li>
+</ul>
+</article>
+</section>
+</main><footer>
+<p>CP213</p>
+</footer>
+</body></html>

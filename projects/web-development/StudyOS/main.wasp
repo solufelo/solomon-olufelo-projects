@@ -1,0 +1,182 @@
+app StudyOS {
+  wasp: {
+    version: "^0.16.0"
+  },
+
+  title: "StudyOS - Multipurpose Study App",
+
+  client: {
+    rootComponent: import { App } from "@src/client/App"
+  },
+
+  auth: {
+    userEntity: User,
+    methods: {
+      usernameAndPassword: {}
+    },
+    onAuthFailedRedirectTo: "/"
+  }
+}
+
+
+route RootRoute { path: "/", to: MainPage }
+page MainPage {
+  component: import { MainPage } from "@src/client/pages/MainPage"
+}
+
+route EnhancedDashboardRoute { path: "/dashboard", to: EnhancedDashboardPage }
+page EnhancedDashboardPage {
+  component: import { EnhancedDashboardNew } from "@src/client/pages/EnhancedDashboardNew"
+}
+
+route LoginRoute { path: "/login", to: LoginPage }
+page LoginPage {
+  component: import { LoginPage } from "@src/client/pages/LoginPage"
+}
+
+route SignupRoute { path: "/signup", to: SignupPage }
+page SignupPage {
+  component: import { SignupPage } from "@src/client/pages/SignupPage"
+}
+
+route DecksRoute { path: "/decks", to: DecksPage }
+page DecksPage {
+  component: import { DecksPage } from "@src/client/pages/DecksPage"
+}
+
+route DeckCardsRoute { path: "/decks/:deckId/cards", to: DeckCardsPage }
+page DeckCardsPage {
+  component: import { DeckCardsPage } from "@src/client/pages/DeckCardsPage"
+}
+
+route TasksRoute { path: "/tasks", to: TasksPage }
+page TasksPage {
+  component: import { Tasks } from "@src/client/pages/Tasks"
+}
+
+route PomodoroRoute { path: "/pomodoro", to: PomodoroPage }
+page PomodoroPage {
+  component: import { Pomodoro } from "@src/client/pages/Pomodoro"
+}
+
+route GameRoute { path: "/game", to: GamePage }
+page GamePage {
+  component: import { Game } from "@src/client/pages/Game"
+}
+
+// Demo Routes - Temporarily disabled due to custom component dependencies
+// route DemoQuizletRoute { path: "/demo/quizlet", to: DemoQuizletPage }
+// page DemoQuizletPage {
+//   component: import { DemoQuizlet } from "@src/pages/demo/DemoQuizlet"
+// }
+
+// route DemoAnkiRoute { path: "/demo/anki", to: DemoAnkiPage }
+// page DemoAnkiPage {
+//   component: import { DemoAnki } from "@src/pages/demo/DemoAnki"
+// }
+
+// route DemoHybridRoute { path: "/demo/hybrid", to: DemoHybridPage }
+// page DemoHybridPage {
+//   component: import { DemoHybrid } from "@src/pages/demo/DemoHybrid"
+// }
+
+
+// #region Flashcards
+// Queries (read operations)
+query getDecks {
+  fn: import { getDecks } from "@src/server/actions.js",
+  entities: [Deck, Card]
+}
+
+query getDueCards {
+  fn: import { getDueCards } from "@src/server/actions.js",
+  entities: [Card, ReviewLog]
+}
+
+// Actions (write operations)
+action uploadPdfAndGenerateCards {
+  fn: import { uploadPdfAndGenerateCards } from "@src/server/actions.js",
+  entities: [Deck, Card]
+}
+
+action reviewCard {
+  fn: import { reviewCard } from "@src/server/actions.js",
+  entities: [Card, ReviewLog]
+}
+
+action createDeck {
+  fn: import { createDeck } from "@src/server/actions.js",
+  entities: [Deck]
+}
+
+action createCard {
+  fn: import { createCard } from "@src/server/actions.js",
+  entities: [Card, Deck]
+}
+
+action editCard {
+  fn: import { editCard } from "@src/server/actions.js",
+  entities: [Card]
+}
+
+action deleteCard {
+  fn: import { deleteCard } from "@src/server/actions.js",
+  entities: [Card]
+}
+// #endregion
+
+// #region Pomodoro
+query getPomodoroStats {
+  fn: import { getPomodoroStats } from "@src/server/actions.js",
+  entities: [PomodoroSession]
+}
+
+action startPomodoro {
+  fn: import { startPomodoro } from "@src/server/actions.js",
+  entities: [PomodoroSession]
+}
+
+action endPomodoro {
+  fn: import { endPomodoro } from "@src/server/actions.js",
+  entities: [PomodoroSession]
+}
+// #endregion
+
+// #region Tasks
+query getTasks {
+  fn: import { getTasks } from "@src/server/actions.js",
+  entities: [Task]
+}
+
+query getTasksDueToday {
+  fn: import { getTasksDueToday } from "@src/server/actions.js",
+  entities: [Task]
+}
+
+action createTask {
+  fn: import { createTask } from "@src/server/actions.js",
+  entities: [Task]
+}
+
+action editTask {
+  fn: import { editTask } from "@src/server/actions.js",
+  entities: [Task]
+}
+
+action deleteTask {
+  fn: import { deleteTask } from "@src/server/actions.js",
+  entities: [Task]
+}
+// #endregion
+
+// #region Games
+query getGameScores {
+  fn: import { getGameScores } from "@src/server/actions.js",
+  entities: [GameScore]
+}
+
+action recordGameScore {
+  fn: import { recordGameScore } from "@src/server/actions.js",
+  entities: [GameScore]
+}
+// #endregion

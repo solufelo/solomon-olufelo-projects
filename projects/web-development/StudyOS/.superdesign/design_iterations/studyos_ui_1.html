@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyOS Interface</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="studyos_theme_1.css">
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.0.0/dist/flowbite.min.js"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.0/dist/framer-motion.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/DrawSVGPlugin.min.js"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        .focus-blur {
+            transition: filter 300ms ease-out;
+        }
+        .active-mode .focus-blur:not(.active-pane) {
+            filter: blur(3px);
+            opacity: 0.8;
+        }
+
+        /* Animation Keyframes */
+        @keyframes pomodoro-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+        @keyframes card-rise {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes progress-fill {
+            from { stroke-dashoffset: 100; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Animation Classes */
+        .animate-pomodoro {
+            animation: pomodoro-pulse 500ms ease-in-out;
+        }
+        .animate-card-rise {
+            animation: card-rise 400ms ease-out;
+        }
+        .animate-progress {
+            animation: progress-fill 300ms ease-out;
+        }
+        .hover-scale {
+            transition: transform 200ms ease-out;
+        }
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="bg-background font-sans">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 border-r border-border bg-card">
+            <div class="p-4">
+                <h2 class="text-lg font-semibold text-foreground mb-4">Study Modules</h2>
+                <nav class="space-y-2">
+                    <a href="#" class="flex items-center gap-2 p-2 text-foreground hover:bg-muted rounded">
+                        <i data-lucide="book-open"></i>
+                        Flashcards
+                    </a>
+                    <a href="#" class="flex items-center gap-2 p-2 text-foreground hover:bg-muted rounded">
+                        <i data-lucide="check-square"></i>
+                        Tasks
+                    </a>
+                    <a href="#" class="flex items-center gap-2 p-2 text-foreground hover:bg-muted rounded">
+                        <i data-lucide="clock"></i>
+                        Pomodoro
+                    </a>
+                    <a href="#" class="flex items-center gap-2 p-2 text-foreground hover:bg-muted rounded">
+                        <i data-lucide="gamepad-2"></i>
+                        Reaction Game
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Header -->
+            <header class="border-b border-border p-4 flex items-center justify-between bg-card">
+                <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Search..." class="sd-input-search">
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="p-2 hover:bg-muted rounded">
+                        <i data-lucide="bell"></i>
+                    </button>
+                    <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground">
+                        JD
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard -->
+            <main class="flex-1 p-6 grid grid-cols-2 gap-6 focus-blur">
+                <!-- Pomodoro Timer -->
+                <div class="bg-card p-6 rounded-xl border border-border">
+                    <h3 class="text-lg font-semibold mb-4">Focus Session</h3>
+                    <motion.div 
+  class="text-4xl font-mono text-center mb-4 text-primary"
+  animate={{ scale: [1, 1.02, 1] }}
+  transition={{ duration: 2, repeat: Infinity }}
+>
+  25:00
+</motion.div>
+                    <div class="flex justify-center gap-4">
+                        <motion.button 
+  class="sd-button sd-button-primary"
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  transition={{ type: "spring", stiffness: 300 }}
+>
+                            Start
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Progress Widget -->
+                <div class="bg-card p-6 rounded-xl border border-border">
+                    <h3 class="text-lg font-semibold mb-4">Today's Progress</h3>
+                    <div class="w-full h-32 bg-muted rounded-lg hover-scale" style="stroke-dasharray: 100; stroke-dashoffset: 100;">
+                        <!-- Chart placeholder -->
+                    </div>
+                </div>
+
+                <!-- Quick Access -->
+                <div class="col-span-2 grid grid-cols-3 gap-4 animate-card-rise">
+                    <div class="bg-card p-4 rounded-lg border border-border flex items-center gap-3 hover:bg-muted">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <i data-lucide="inbox"></i>
+                        </div>
+                        <div>
+                            <div class="font-medium">Pending Tasks</div>
+                            <div class="text-muted-foreground">5 items</div>
+                        </div>
+                    </div>
+                    <div class="bg-card p-4 rounded-lg border border-border flex items-center gap-3 hover:bg-muted">
+                        <div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
+                            <i data-lucide="calendar"></i>
+                        </div>
+                        <div>
+                            <div class="font-medium">Upcoming</div>
+                            <div class="text-muted-foreground">2 deadlines</div>
+                        </div>
+                    </div>
+                    <div class="bg-card p-4 rounded-lg border border-border flex items-center gap-3 hover:bg-muted">
+                        <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                            <i data-lucide="trophy"></i>
+                        </div>
+                        <div>
+                            <div class="font-medium">Achievements</div>
+                            <div class="text-muted-foreground">3 unlocked</div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        Lucide.createIcons();
+    </script>
+</body>
+</html>

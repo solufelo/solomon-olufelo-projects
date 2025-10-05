@@ -1,0 +1,228 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                        String          @id @default(uuid())
+  createdAt                 DateTime        @default(now())
+
+  email                     String?         @unique
+  username                  String?         @unique
+  isAdmin                   Boolean         @default(false)
+
+  paymentProcessorUserId    String?         @unique
+  lemonSqueezyCustomerPortalUrl String?     // You can delete this if you're not using Lemon Squeezy as your payments processor.
+  subscriptionStatus        String?         // 'active', 'cancel_at_period_end', 'past_due', 'deleted'
+  subscriptionPlan          String?         // 'hobby', 'pro'
+  datePaid                  DateTime?
+  credits                   Int             @default(3)
+
+  contactFormMessages       ContactFormMessage[]
+  files                     File[]
+  watchItems                WatchItem[]     // CinemaVerse: User's watchlist items
+  discussions               Discussion[]    // CinemaVerse: User's forum discussions
+  comments                  Comment[]       // CinemaVerse: User's forum comments
+  onboarding                UserOnboarding? // CinemaVerse: User's onboarding progress
+  achievements              UserAchievement[] // CinemaVerse: User's achievements
+  engagements               UserEngagement[] // CinemaVerse: User's engagement tracking
+}
+
+// CinemaVerse: User onboarding and engagement tracking
+model UserOnboarding {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  step        String   // Current onboarding step
+  completed   Boolean  @default(false)
+  preferences Json?    // User preferences collected during onboarding
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model UserAchievement {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type        String   // Achievement type
+  title       String   // Achievement title
+  description String   // Achievement description
+  earnedAt    DateTime @default(now())
+  
+  @@unique([userId, type])
+}
+
+model UserEngagement {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  action      String   // User action (search, add, rate, etc.)
+  metadata    Json?    // Additional action metadata
+  createdAt   DateTime @default(now())
+}
+
+
+model File {
+  id                        String          @id @default(uuid())
+  createdAt                 DateTime        @default(now())
+
+  user                      User            @relation(fields: [userId], references: [id])
+  userId                    String
+
+  name                      String
+  type                      String
+  key                       String
+  uploadUrl                 String
+}
+
+model DailyStats {
+  id                               Int             @id @default(autoincrement())
+  date                             DateTime        @default(now()) @unique
+
+  totalViews                       Int             @default(0)
+  prevDayViewsChangePercent        String          @default("0")
+  userCount                        Int             @default(0)
+  paidUserCount                    Int             @default(0)
+  userDelta                        Int             @default(0)
+  paidUserDelta                    Int             @default(0)
+  totalRevenue                     Float           @default(0)
+  totalProfit                      Float           @default(0)
+
+  sources                          PageViewSource[]
+}
+
+model PageViewSource {
+  @@id([date, name])
+  name                     String
+  date                     DateTime        @default(now())
+
+  dailyStats               DailyStats?     @relation(fields: [dailyStatsId], references: [id])
+  dailyStatsId             Int?
+
+  visitors                 Int
+}
+
+model Logs {
+  id                       Int             @id @default(autoincrement())
+  createdAt                DateTime        @default(now())
+
+  message                  String
+  level                    String
+}
+
+model ContactFormMessage {
+  id                        String          @id @default(uuid())
+  createdAt                 DateTime        @default(now())
+
+  user                      User            @relation(fields: [userId], references: [id])
+  userId                    String
+
+  content                   String
+  isRead                    Boolean         @default(false)
+  repliedAt                 DateTime?
+}
+
+// CinemaVerse: Movie and TV Show tracking models
+enum MediaType {
+  MOVIE
+  TV_SHOW
+}
+
+enum WatchStatus {
+  WATCHING
+  COMPLETED
+  DROPPED
+  PLANNED
+}
+
+model WatchItem {
+  id          String      @id @default(uuid())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  tmdbId      Int         // TMDB API ID
+  mediaType   MediaType
+  title       String
+  posterPath  String?     // TMDB poster path
+  overview    String?
+  genres      String[]    // Array of genre names
+  releaseDate DateTime?
+  status      WatchStatus @default(PLANNED)
+  rating      Int?        // 1-10 rating
+
+  userId      String
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  episodes    Episode[]   // For TV shows
+
+  @@unique([tmdbId, userId]) // Prevent duplicate entries per user
+}
+
+model Episode {
+  id            String     @id @default(uuid())
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  tmdbId        Int        // TMDB episode ID
+  seasonNumber  Int
+  episodeNumber Int
+  title         String
+  airDate       DateTime?
+  isWatched     Boolean    @default(false)
+
+  watchItemId   String
+  watchItem     WatchItem  @relation(fields: [watchItemId], references: [id], onDelete: Cascade)
+
+  @@unique([tmdbId, watchItemId]) // Prevent duplicate episodes per watch item
+}
+
+// CinemaVerse: Forum models for movie/TV show discussions
+model Discussion {
+  id          String    @id @default(uuid())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  tmdbId      Int       // TMDB movie/TV show ID
+  mediaType   MediaType
+  title       String    // Movie/TV show title
+  posterPath  String?   // TMDB poster path
+
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  comments    Comment[]
+  likes       Int       @default(0)
+  dislikes    Int       @default(0)
+
+  @@unique([tmdbId, mediaType]) // One discussion per movie/TV show
+}
+
+model Comment {
+  id            String    @id @default(uuid())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  content       String
+  rating        Int?      // 1-10 rating for the movie/TV show/episode
+  episodeNumber Int?      // For TV show episode ratings
+  seasonNumber  Int?      // For TV show episode ratings
+
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  discussionId  String
+  discussion    Discussion @relation(fields: [discussionId], references: [id], onDelete: Cascade)
+
+  parentId      String?   // For nested comments
+  parent        Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies       Comment[] @relation("CommentReplies")
+
+  likes         Int       @default(0)
+  dislikes      Int       @default(0)
+  isEdited      Boolean   @default(false)
+  isDeleted     Boolean   @default(false)
+}

@@ -1,0 +1,52 @@
+
+CP213: Assignments - Fall 2025
+The Assignments
+Assignments are due 11:59 pm Sunday.
+Week Starting
+Assignment
+Due
+Posted
+1
+September 7, 2025
+No Assignment
+2
+September 14, 2025
+No Assignment
+3
+September 21, 2025
+No Assignment
+4
+September 28, 2025 1: Simple Methods /
+October 5, 2025
+2025-08-18 05:08
+Recorded Introduction
+No Assignment
+5
+October 5, 2025
+6
+October 12, 2025
+Reading Week
+7
+October 19, 2025
+2: Data Types /
+October 26, 2025
+2025-08-19 09:08
+Recorded Introduction
+8
+October 26, 2025
+No Assignment
+9
+November 2, 2025
+3: Linear Linked Structures November 9, 2025
+2025-08-19 05:08
+10
+November 9, 2025
+No Assignment
+11
+November 16, 2025
+4: Tree Structures
+12
+November 23, 2025
+5: GUI
+November 23, 2025
+November 30, 2025

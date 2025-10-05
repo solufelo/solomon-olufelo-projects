@@ -1,0 +1,65 @@
+
+---
+description: 
+globs: 
+alwaysApply: true
+---
+entryPoints:
+  - main.py
+  - gui/app_tkinter.py
+  - apply.py
+
+description: |
+  JobScanner Pro is a Python application that scrapes creative jobs and freelance gigs in Brampton, Ontario and nearby areas. 
+  It targets platforms like Indeed.ca, Canada Job Bank, Craigslist Toronto, and Kijiji, and supports both command-line and GUI interfaces. 
+  It can optionally automate job applications via email or web forms.
+
+rules:
+  - name: Scraper Modules
+    appliesTo: scrapers/*.py
+    description: |
+      Each file in `scrapers/` implements a `scrape(role: str, location: str) -> list[dict]` function. 
+      Each returned item must be a dictionary with the following keys:
+        - title
+        - company
+        - location
+        - date_posted
+        - description
+        - url
+        - source
+        - type ("job" or "gig")
+
+  - name: Core Aggregation Logic
+    appliesTo: core/search.py
+    description: |
+      This module defines `search_jobs(role: str, location: str) -> list[dict]` which calls all scraper modules, deduplicates results, and returns them in a consistent format.
+
+  - name: CLI Behavior
+    appliesTo: main.py
+    description: |
+      `main.py` serves as the CLI entry point. It uses `argparse` to accept role and location arguments, invokes `search_jobs`, and writes results to both `outputs/jobs.csv` and `outputs/jobs.json`.
+
+  - name: GUI Interface
+    appliesTo: gui/app_tkinter.py
+    description: |
+      This file provides a simple Tkinter GUI for searching jobs. It uses the same `search_jobs` function from `core/search.py`, and displays results in a scrollable table with buttons for exporting and opening job links.
+
+  - name: Auto-Apply Module
+    appliesTo: apply.py
+    description: |
+      `apply.py` adds optional automation for applying to scraped jobs. It detects whether a job is email-based or form-based and uses either `auto/email_sender.py` or `auto/playwright_apply.py`. Applied jobs are logged in `applied_jobs.db`.
+
+  - name: Email Template
+    appliesTo: templates/email_template.txt
+    description: |
+      This file is used as a template to build custom email applications. Placeholders like {{name}}, {{role}}, and {{portfolio}} should be filled using the user's config from `config.yml`.
+
+  - name: Configuration
+    appliesTo: config.yml
+    description: |
+      Stores the user’s name, email, resume path, portfolio link, and default message. This config is used in the auto-apply phase for email and form applications.
+
+  - name: Output Files
+    appliesTo: outputs/*
+    description: |
+      All scraped results are saved to `jobs.csv` and `jobs.json`. `applied_jobs.db` is a local SQLite database used to track which jobs have already been applied to.

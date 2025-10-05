@@ -1,0 +1,53 @@
+{
+  "name": "studyos",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "wasp build",
+    "db:migrate": "wasp db migrate-dev",
+    "db:seed": "wasp db seed",
+    "db:studio": "wasp db studio",
+    "start": "wasp start",
+    "start:db": "wasp start db",
+    "test": "wasp test",
+    "changelog:help": "node scripts/update-changelog.js help",
+    "changelog:add-issue": "node scripts/update-changelog.js add-issue",
+    "changelog:new-session": "node scripts/update-changelog.js new-session",
+    "changelog:summary": "node scripts/update-changelog.js generate-summary"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-progress": "^1.1.7",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tooltip": "^1.2.8",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.16",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.23.22",
+    "lucide-react": "^0.294.0",
+    "openai": "^4.20.1",
+    "pdf-parse": "^1.1.1",
+    "postcss": "^8.4.32",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^6.26.2",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^3.3.6",
+    "wasp": "file:.wasp/out/sdk/wasp"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.37",
+    "@types/react-dom": "^18.0.11",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "prisma": "5.19.1",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.1.0",
+    "vite": "^4.3.9"
+  }
+}

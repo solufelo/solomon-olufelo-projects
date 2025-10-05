@@ -1,0 +1,129 @@
+---
+description: StudyOS specific features, architecture, and development guidelines for the multi-purpose study application
+alwaysApply: true
+---
+
+# StudyOS - Multi-Purpose Study Application
+
+StudyOS is a comprehensive study platform built with Wasp that combines multiple learning methodologies and productivity tools.
+
+## Core Features
+
+### 1. Flashcard System (Spaced Repetition)
+- **Deck Management**: Create, organize, and manage flashcard decks
+- **Smart Review Algorithm**: Implements spaced repetition using the Leitner system
+- **PDF to Cards**: AI-powered conversion of PDF documents to flashcards using OpenAI
+- **Review Statistics**: Track learning progress and retention rates
+
+**Key Components:**
+- `DecksPage.tsx` - Deck management interface
+- `DeckCardsPage.tsx` - Card study and review interface
+- Models: `Deck`, `Card`, `ReviewLog`
+
+### 2. Task Management System
+- **Due Date Tracking**: Tasks with deadlines and completion status
+- **Deck Integration**: Link tasks to specific flashcard decks
+- **Today's Tasks**: Quick view of tasks due today
+- **Progress Tracking**: Visual progress indicators
+
+**Key Components:**
+- Models: `Task` (linked to `User` and optionally `Deck`)
+
+### 3. Pomodoro Timer
+- **Study Sessions**: Timed study periods with break intervals
+- **Cycle Tracking**: Monitor completed pomodoro cycles
+- **Statistics**: Track total study time and productivity metrics
+- **Integration**: Connect pomodoro sessions with specific study materials
+
+**Key Components:**
+- Models: `PomodoroSession`
+
+### 4. Gamification System
+- **Reaction Time Games**: Quick cognitive exercises
+- **Score Tracking**: Personal best scores and improvement over time
+- **Study Motivation**: Game elements to encourage consistent studying
+
+**Key Components:**
+- Models: `GameScore`
+
+## Technical Architecture
+
+### Authentication
+- Username/password authentication via Wasp's built-in auth
+- User-scoped data (all entities belong to authenticated users)
+- Protected routes requiring authentication
+
+### Database Schema
+```prisma
+User (id, email, password, name, createdAt)
+├── Deck (id, name, userId, createdAt)
+│   └── Card (id, question, answer, deckId, box, intervalDays, nextDue)
+├── Task (id, title, description, dueDate, completed, userId, deckId?)
+├── PomodoroSession (id, userId, startTime, endTime, cyclesCompleted)
+├── ReviewLog (id, cardId, userId, status, reviewedAt, note?)
+└── GameScore (id, userId, score, reactionTime, playedAt)
+```
+
+### Spaced Repetition Algorithm
+- **Box System**: Cards progress through 5 boxes based on recall difficulty
+- **Interval Calculation**: Increasing intervals (1, 3, 7, 14, 30 days)
+- **Review Responses**: "Again", "Hard", "Good", "Easy" determine next interval
+- **Due Date Management**: Cards become due based on calculated intervals
+
+## Development Guidelines
+
+### Component Structure
+- **Feature-based organization**: Group related components in feature directories
+- **Shared components**: Common UI elements in `/src/client/components/`
+- **Page components**: Main route components in `/src/client/pages/`
+
+### State Management
+- **Wasp Operations**: Use queries for data fetching, actions for mutations
+- **Local State**: React hooks for component-specific state
+- **Error Handling**: Consistent error boundaries and user feedback
+
+### Styling
+- **Tailwind CSS**: Utility-first CSS framework
+- **Responsive Design**: Mobile-first approach with responsive breakpoints
+- **Consistent UI**: Shared color scheme and component patterns
+
+### API Design
+- **RESTful Operations**: Clear separation between queries and actions
+- **Entity Access**: Proper entity declarations in Wasp operations
+- **Authentication**: All operations check for authenticated user context
+- **Error Handling**: Structured error responses with appropriate HTTP codes
+
+## Future Enhancements
+
+### Planned Features
+1. **Advanced Analytics**: Detailed study metrics and insights
+2. **Social Features**: Study groups and shared decks
+3. **Mobile App**: React Native companion app
+4. **AI Tutor**: Personalized study recommendations
+5. **Export/Import**: Anki-compatible deck exchange
+6. **Calendar Integration**: Study schedule planning
+7. **Collaborative Study**: Real-time study sessions
+
+### Technical Debt
+1. **Server Operations**: Replace mock implementations with real database operations
+2. **File Upload**: Implement PDF processing pipeline
+3. **Real-time Features**: WebSocket integration for live features
+4. **Performance**: Optimize queries and implement caching
+5. **Testing**: Comprehensive test suite for all features
+
+## Development Commands
+
+```bash
+# Development
+wasp start                    # Start dev server
+wasp db migrate-dev          # Apply database changes
+wasp db studio              # Open database admin UI
+
+# Production
+wasp build                  # Build for production
+wasp deploy                # Deploy to production
+
+# Maintenance
+wasp clean                 # Clean build cache
+wasp db seed              # Seed database with test data
+```

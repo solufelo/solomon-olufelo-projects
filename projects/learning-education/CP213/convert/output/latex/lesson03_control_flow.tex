@@ -1,0 +1,1029 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+
+% Page setup
+\geometry{margin=1in}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{CP213 - Object-Oriented Programming}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Code listing setup
+\lstset{
+    language=Java,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{gray!10},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    frame=single,
+    tabsize=2,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    escapeinside={\%*}{*)}
+}
+
+% Custom boxes
+\newtcolorbox{conceptbox}{
+    colback=blue!5,
+    colframe=blue!50!black,
+    title=Key Concept,
+    fonttitle=\bfseries
+}
+
+\newtcolorbox{examplebox}{
+    colback=green!5,
+    colframe=green!50!black,
+    title=Example,
+    fonttitle=\bfseries
+}
+
+\newtcolorbox{warningbox}{
+    colback=orange!5,
+    colframe=orange!50!black,
+    title=Important Note,
+    fonttitle=\bfseries
+}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\bfseries CP213 - Object-Oriented Programming\par}
+    \vspace{1cm}
+    
+    {\Large\bfseries Control Flow in Java\par}
+    \vspace{0.5cm}
+    
+    {\large Lesson 03\par}
+    \vspace{2cm}
+    
+    \begin{tabular}{ll}
+        \textbf{Student:} & Solomon Olufelo \\
+        \textbf{Student ID:} & 210729170 \\
+        \textbf{Email:} & oluf9170@mylaurier.ca \\
+        \textbf{Date:} & \today \\
+    \end{tabular}
+    
+    \vfill
+    
+    {\large Wilfrid Laurier University\par}
+    {\large Department of Computer Science\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% Content will be inserted here
+\section{Lesson 03: Control Flow in Java}
+
+\subsection{\textbf{1. Introduction}}
+
+\begin{itemize}
+\item Code executes \textbf{top to bottom}, unless modified by \textbf{control flow statements}.
+\item Control flow allows \textbf{branching} (decisions) and \textbf{looping} (repetition).
+\end{itemize}
+
+\subsubsection{\textbf{🔹 Types of Control Flow in Java}}
+
+\begin{itemize}
+\item \textbf{Decision-making:} \texttt{if-then}, \texttt{if-then-else}, \texttt{switch}
+\item \textbf{Looping:} \texttt{for}, \texttt{while}, \texttt{do-while}
+\item \textbf{Branching:} \texttt{break}, \texttt{continue}, \texttt{return}
+\end{itemize}
+
+\subsection{\textbf{2. Boolean Expressions & Operators}}
+
+\subsubsection{\textbf{🔹 Comparison Operators}}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+Operator & Meaning \\
+\hline
+\texttt{==} \\
+\hline
+\end{tabular}
+\caption{Table}
+\end{table}
+ equal to \begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\texttt{!=} & not equal to & \texttt{>} & greater than & \texttt{>=} & greater than or equal to & \texttt{<} & less than & \texttt{<=} & less than or equal to & ➡️ Remember: \textbf{\texttt{==} for equality}, \textbf{\texttt{=} for assignment}
+
+\textbf{Example:}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+int x = 5, y = 8;
+boolean z = x < y;
+System.out.println(x < y); // true
+\end{lstlisting}
+
+\subsubsection{\textbf{2.2 Comparing Strings}}
+
+\begin{itemize}
+\item \texttt{==} → compares memory addresses (not values).
+\item Use methods:
+\end{itemize}
+    - \texttt{str1.equals(str2)}
+    - \texttt{str1.equalsIgnoreCase(str2)}
+
+\subsubsection{\textbf{2.3 Lexicographic Ordering}}
+
+\begin{itemize}
+\item Based on \textbf{ASCII} values:
+\end{itemize}
+    - Uppercase letters come before lowercase.
+\begin{itemize}
+\item Use \texttt{compareTo} methods:
+\end{itemize}
+    - \texttt{s1.compareTo(s2)} → \texttt{<0}, \texttt{=0}, or \texttt{>0}
+    - \texttt{s1.compareToIgnoreCase(s2)} → ignores case differences.
+
+\subsubsection{\textbf{2.4 Building Boolean Expressions}}
+
+\begin{itemize}
+\item \textbf{AND (\texttt{&&})} → true only if both are true.
+\item \textbf{OR (\texttt{ & })} → true if at least one is true.
+\item \textbf{NOT (\texttt{!})} → negates a condition.
+\end{itemize}
+
+❌ Invalid:
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+min < result < max
+\end{lstlisting}
+
+✅ Correct:
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+(min < result) && (result < max)
+\end{lstlisting}
+
+\subsubsection{\textbf{2.5 Evaluating Boolean Expressions}}
+
+\begin{itemize}
+\item Produce \texttt{true} or \texttt{false}.
+\item Can assign to variables:
+\end{itemize}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+int x = 3, y = 5;
+boolean z = x > y; // false
+\end{lstlisting}
+
+⚠️ \textbf{Common mistake:}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+boolean b = false;
+if (b = true) {   // assignment, not comparison
+    System.out.println("Hello"); // executes
+}
+\end{lstlisting}
+
+\subsubsection{\textbf{2.6 Short-Circuit vs Complete Evaluation}}
+
+\begin{itemize}
+\item \textbf{Short-circuit (lazy):}
+\end{itemize}
+    - \texttt{&&}: stops if first is \texttt{false}.
+    - \texttt{ & }: stops if first is \texttt{true}.
+
+✅ Prevents runtime errors:
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+int kids = 0, toys = 3;
+if ((toys / 3) >= 2 && (toys / kids) >= 2) {
+    // safe: second part never runs
+}
+\end{lstlisting}
+
+\begin{itemize}
+\item \textbf{Complete evaluation:}
+\end{itemize}
+    - Use \texttt{&} and \texttt{ & } instead of \texttt{&&} and \texttt{ & }.
+    - Forces evaluation of both sides.
+
+\subsection{\textbf{3. Branching with If-Else Statements}}
+
+\subsubsection{\textbf{3.0 If-Else Basics}}
+
+\begin{itemize}
+\item \textbf{Definition}: Lets a program choose between two paths depending on a Boolean condition.
+\item \textbf{Syntax}:
+\end{itemize}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+if (Boolean_Expression)
+    Yes_Statement;
+else
+    No_Statement;
+\end{lstlisting}
+
+\begin{itemize}
+\item \textbf{Example}:
+\end{itemize}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+int mark = 0;
+if (mark > 85)
+    System.out.println("Your grade is A");
+else
+    System.out.println("Your grade is not A");
+\end{lstlisting}
+
+👉 \textbf{Java vs Python}:
+
+\begin{itemize}
+\item Java requires \textbf{parentheses} around conditions and \textbf{braces \texttt{{ }}} for multiple statements.
+\item Python uses \texttt{:} with indentation (\texttt{if ...:}, \texttt{elif ...:}, \texttt{else:}).
+\end{itemize}
+
+\subsubsection{\textbf{3.1 Compound Statements}}
+
+\begin{itemize}
+\item If a branch has \textbf{multiple statements}, group them in \texttt{{ }}.
+\end{itemize}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+if (myScore > yourScore) {
+    System.out.println("I win!");
+    wager += 100;
+} else {
+    System.out.println("I wish these were golf scores.");
+    wager = 0;
+}
+\end{lstlisting}
+
+\subsubsection{\textbf{3.2 Omitting Else}}
+
+\begin{itemize}
+\item \texttt{else} is optional → creates a simple \texttt{if} statement.
+\end{itemize}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+if (weight > ideal)
+    calorieIntake -= 500;
+\end{lstlisting}
+
+\begin{itemize}
+\item With multiple actions, braces are required:
+\end{itemize}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+if (weight > ideal) {
+    calorieIntake -= 500;
+    System.out.println("Increase exercise rate!");
+    exerciseRate *= 1.3;
+}
+\end{lstlisting}
+
+\subsubsection{\textbf{3.3 Nested If-Else}}
+
+\begin{itemize}
+\item If statements can be placed \textbf{inside each other}.
+\end{itemize}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+if (a > b) {
+    if (c > d) {
+        if (g < h) {
+            // code
+        }
+    }
+} else if (m == n) {
+    if (z > y) {
+        // code
+    }
+}
+\end{lstlisting}
+
+👉 Use indentation for clarity.
+
+\subsubsection{\textbf{3.4 Multiway If-Else}}
+
+\begin{itemize}
+\item Chains multiple conditions.
+\end{itemize}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+if (number < 100 && number >= 1) {
+    System.out.println("Two-digit number");
+} else if (number < 1000 && number >= 100) {
+    System.out.println("Three-digit number");
+} else if (number < 10000 && number >= 1000) {
+    System.out.println("Four-digit number");
+} else {
+    System.out.println("Number not in range 1–99999");
+}
+\end{lstlisting}
+
+\subsubsection{\textbf{3.5 Ternary Operator (\texttt{?:})}}
+
+\begin{itemize}
+\item Shorthand for simple if-else assignments.
+\end{itemize}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+int max = (n1 > n2) ? n1 : n2;
+\end{lstlisting}
+
+\begin{itemize}
+\item Reads as:
+\end{itemize}
+    - If condition is \textbf{true}, take first value.
+    - If \textbf{false}, take second value.
+
+✅ Summary:
+
+\begin{itemize}
+\item \textbf{if-else} controls branching.
+\item \textbf{Compound} → multiple statements in \texttt{{ }}.
+\item \textbf{Omitting else} → runs only when condition is true.
+\item \textbf{Nested if} → allows deeper decisions.
+\item \textbf{Multiway if-else} → handles multiple conditions.
+\item \textbf{Ternary operator} → compact shorthand.
+\end{itemize}
+
+\subsection{\textbf{4. The Switch Statement}}
+
+\subsubsection{\textbf{📌 Purpose}}
+
+\begin{itemize}
+\item Implements \textbf{multiway branching} in Java.
+\end{itemize}
+
+\subsubsection{\textbf{📝 Syntax}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+switch (Controlling_Expression) {
+    case Case\textit{Label}1:
+        // code
+        break;
+    case Case\textit{Label}2:
+        // code
+        break;
+    default:
+        // code if no case matches
+        break;
+}
+\end{lstlisting}
+
+\subsubsection{\textbf{⚖️ Key Rules}}
+
+\begin{itemize}
+\item Controlling expression must be: \texttt{char}, \texttt{int}, \texttt{short}, \texttt{byte}, or (Java 7+) \texttt{String}.
+\item Each \textbf{case label} must be the same type as the controlling expression.
+\item Labels can be in any order but must be \textbf{unique}.
+\item \texttt{break;} ends execution of a case.
+\item If \texttt{break} is omitted → execution \textbf{falls through} to the next case.
+\end{itemize}
+
+\subsubsection{\textbf{4.1 Default Section}}
+
+\begin{itemize}
+\item Handles all values \textbf{not explicitly matched} by any case.
+\item \textbf{Optional}, but good practice to include.
+\item Usually placed \textbf{last}.
+\end{itemize}
+
+\subsubsection{\textbf{✅ Example}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+int numberOfIceCreamFlavors = 15;
+
+switch (numberOfIceCreamFlavors) {
+    case 15:
+        System.out.println("Nice selection.");
+        break;
+    case 1:
+        System.out.println("I bet it's vanilla.");
+        break;
+    default:
+        System.out.println("Unknown number of flavors.");
+        break;
+}
+\end{lstlisting}
+
+\subsubsection{\textbf{4.1.1 Non-Graded Activity}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+import java.util.Scanner;
+
+public class SwitchClass {
+    public static void main(String[] args) {
+        Scanner keyboard = new Scanner(System.in);
+
+        System.out.println("Type a number that represents your lucky day");
+        int luckyDay = keyboard.nextInt();
+
+        switch (luckyDay) {
+            case 1:
+                System.out.println("Your lucky day is Monday");
+                break;
+            case 2:
+                System.out.println("Your lucky day is Tuesday");
+                break;
+            case 3:
+            case 4:
+            case 5:
+                System.out.println("Your lucky day is Wednesday, Thursday or Friday");
+                System.out.println("is acceptable.");
+                break;
+            default:
+                System.out.println("Your lucky day is either Saturday or Sunday");
+                break;
+        }
+    }
+}
+\end{lstlisting}
+
+\subsection{\textbf{5. Loops in Java}}
+
+Loops allow you to \textbf{repeat a block of code} multiple times. Each repetition is called an \textbf{iteration}, and the code inside the loop is called the \textbf{loop body}.
+
+Java has \textbf{three types of loops}:
+
+1. \texttt{while} loop
+2. \texttt{do-while} loop
+3. \texttt{for} loop
+
+\subsubsection{\textbf{5.1 while Statement}}
+
+\begin{itemize}
+\item Executes the loop \textbf{only if} the Boolean expression is true.
+\item \textbf{Condition is checked before} each iteration.
+\item Loop body can be \textbf{a single statement} or \textbf{multiple statements enclosed in braces \texttt{{}}}.
+\end{itemize}
+
+\textbf{Syntax:}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+while (Boolean_Expression)
+    Statement;
+\end{lstlisting}
+
+Or with a compound body:
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+while (Boolean_Expression) {
+    Statement_1;
+    Statement_2;
+    ...
+    Statement_Last;
+}
+\end{lstlisting}
+
+\subsubsection{\textbf{5.2 do-while Statement}}
+
+\begin{itemize}
+\item Executes the loop body \textbf{at least once}.
+\item Boolean expression is \textbf{checked after} the loop body executes.
+\item Acts like a \texttt{while} loop after the first iteration.
+\item Loop body can also be \textbf{single or compound statements}.
+\item \textbf{Important:} there is a \textbf{semicolon after the Boolean expression}.
+\end{itemize}
+
+\textbf{Syntax:}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+do
+    Statement;
+while (Boolean_Expression);
+\end{lstlisting}
+
+Or with a compound body:
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+do {
+    Statement_1;
+    Statement_2;
+    ...
+    Statement_Last;
+} while (Boolean_Expression);
+\end{lstlisting}
+
+\subsubsection{\textbf{5.3 Example: while vs do-while}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+package lesson03;
+
+public class WhileExample {
+
+    public static void main(String[] args) {
+        int countDown;
+
+        System.out.println("First while loop:");
+        countDown = 5;
+        while (countDown > 0) {
+            System.out.println("Hello");
+            countDown -= 1;
+        }
+
+        System.out.println("Second while loop:");
+        countDown = 0;
+        while (countDown > 0) { // Won't run
+            System.out.println("Hello");
+            countDown -= 1;
+        }
+
+        System.out.println("First do-while loop:");
+        countDown = 5;
+        do {
+            System.out.println("Hello");
+            countDown -= 1;
+        } while (countDown > 0);
+
+        System.out.println("Second do-while loop:");
+        countDown = 0;
+        do { // Executes at least once
+            System.out.println("Hello");
+            countDown -= 1;
+        } while (countDown > 0);
+    }
+}
+\end{lstlisting}
+
+\textbf{Key takeaway:}
+
+\begin{itemize}
+\item \texttt{while} may not execute if the condition is false at the start.
+\item \texttt{do-while} \textbf{always executes at least once}.
+\end{itemize}
+
+\subsection{\textbf{5.4 The \texttt{for} Statement}}
+
+The \texttt{for} loop is commonly used to iterate over a range of values with a control variable.
+
+\textbf{Syntax:}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+for (Initializing; Boolean_Expression; Update) {
+    Statement_1;
+    Statement_2;
+    ...
+    Statement_Last;
+}
+\end{lstlisting}
+
+\begin{itemize}
+\item \textbf{Initializing:} Set up control variable(s). Can declare multiple variables separated by commas.
+\item \textbf{Boolean_Expression:} Condition checked before each iteration.
+\item \textbf{Update:} Changes control variable(s) after each iteration. Can contain multiple updates separated by commas.
+\item \textbf{Body:} Single or compound statements.
+\end{itemize}
+
+\textbf{Examples:}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+// Single statement
+for (int i = 0; i < 3; i++)
+    System.out.println("i is " + i);
+
+// Multiple statements
+int j = 0;
+for (int i = 0; i < 3; i++) {
+    j += 1;
+    System.out.println("hello " + j);
+    System.out.println("j is " + j);
+}
+\end{lstlisting}
+
+\textbf{Multiple Initialization Example:}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+int j = 0;
+for (int i = 0; (i + j) < 6; i++) {
+    j++;
+    System.out.println("i and j: " + i + " " + j);
+}
+\end{lstlisting}
+
+\textbf{Multiple Updates Example:}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+for (int i = 0, j = 0; (i + j) < 6; i++, j++, System.out.println("i and j: " + i + " " + j));
+\end{lstlisting}
+
+\subsubsection{\textbf{5.4.1 Infinite Loops}}
+
+\begin{itemize}
+\item Loops must modify the condition to eventually terminate.
+\item Equality (\texttt{==}) and inequality (\texttt{!=}) checks with \texttt{double} or \texttt{float} may cause \textbf{infinite loops} due to precision errors.
+\item Example of risky loop:
+\end{itemize}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+double x = 1.0 / 3;
+for (int i = 0, j = 0; x != 0.33333; i++) {
+    j++;
+    System.out.println("i and j: " + i + " " + j);
+}
+\end{lstlisting}
+
+\begin{itemize}
+\item A \texttt{for(;;)} statement is a valid infinite loop.
+\end{itemize}
+
+\subsubsection{\textbf{5.4.2 Nested Loops}}
+
+\begin{itemize}
+\item Loops can be \textbf{nested} like other control structures.
+\item Inner loop executes \textbf{completely} for every iteration of the outer loop.
+\end{itemize}
+
+\textbf{Example:}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+for (int rowNum = 1; rowNum <= 3; rowNum++) {
+    for (int columnNum = 1; columnNum <= 2; columnNum++) {
+        System.out.print("row " + rowNum + " column " + columnNum + " ");
+    }
+    System.out.println();
+}
+\end{lstlisting}
+
+\subsection{\textbf{5.5 For-each Loop (Enhanced for loop)}}
+
+\begin{itemize}
+\item Introduced in \textbf{Java 5} for \textbf{arrays} and \textbf{collections}.
+\item Iterates through elements \textbf{without using indices}.
+\end{itemize}
+
+\textbf{Syntax:}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+for (type var : arrayOrCollection) {
+    body-of-loop;
+}
+\end{lstlisting}
+
+\textbf{Array Example:}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+double sum = 0;
+double[] price = {1.5, 2.5, 3.5, 4, 0.5};
+
+// Basic for loop
+for (int i = 0; i < price.length; i++)
+    sum += price[i];
+System.out.println(sum);
+
+// For-each loop
+sum = 0;
+for (double p : price)
+    sum += p;
+System.out.println(sum);
+\end{lstlisting}
+
+\textbf{Collection Example:}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+Collection<String> myCollectionItem = new ArrayList<>();
+myCollectionItem.add("1 - H - Hydrogen");
+myCollectionItem.add("2 - He - Helium");
+myCollectionItem.add("3 - Li - Lithium");
+
+System.out.println("Using iterator:");
+Iterator<String> iter = myCollectionItem.iterator();
+while (iter.hasNext()) {
+    System.out.println(iter.next());
+}
+
+System.out.println("Using for-each:");
+for (String item : myCollectionItem)
+    System.out.println(item);
+\end{lstlisting}
+
+\textbf{Rules for For-each Loop:}
+
+\begin{itemize}
+\item Loop variable \textbf{cannot be assigned} inside the loop.
+\item Can \textbf{only iterate one collection} at a time.
+\item Iterates \textbf{forward by single steps}.
+\end{itemize}
+
+\subsection{\textbf{5.6 The \texttt{break} and \texttt{continue} Statements}}
+
+\subsubsection{\textbf{\texttt{break}}}
+
+\begin{itemize}
+\item Syntax: \texttt{break;}
+\item Immediately \textbf{terminates the nearest enclosing loop or switch statement}.
+\item Control moves to the statement immediately after the loop or switch.
+\item Does \textbf{not} terminate the program.
+\end{itemize}
+
+\textbf{Example – break in inner loop:}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+        System.out.println(i + " , " + j);
+        break;  // exits inner loop only
+    }
+}
+\end{lstlisting}
+
+\textbf{Output:}
+
+\begin{lstlisting}[language=text, caption=Text Code]
+0 , 0
+1 , 0
+2 , 0
+\end{lstlisting}
+
+\subsubsection{\textbf{\texttt{continue}}}
+
+\begin{itemize}
+\item Syntax: \texttt{continue;}
+\item Ends the \textbf{current iteration} of the nearest enclosing loop.
+\item Control moves to the \textbf{next iteration} of the loop.
+\item In a \texttt{for} loop, it transfers control to the \textbf{update expression}.
+\end{itemize}
+
+\textbf{Example – continue in nested loop:}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+        if (i >= 1)
+            continue;
+        System.out.println(i + " , " + j);
+    }
+}
+\end{lstlisting}
+
+\textbf{Output:}
+
+\begin{lstlisting}[language=text, caption=Text Code]
+0 , 0
+0 , 1
+0 , 2
+\end{lstlisting}
+
+\subsection{\textbf{5.7 Labeled Break Statement}}
+
+\begin{itemize}
+\item Used to \textbf{break out of an outer loop} from an inner loop.
+\item Syntax:
+\end{itemize}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+labelName: for(...) {
+    for(...) {
+        break labelName;  // exits the labeled loop
+    }
+}
+\end{lstlisting}
+
+\textbf{Example:}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+endBothLoops:
+for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+        System.out.println(i + " , " + j);
+        break endBothLoops;
+    }
+}
+\end{lstlisting}
+
+\textbf{Output:}
+
+\begin{lstlisting}[language=text, caption=Text Code]
+0 , 0
+\end{lstlisting}
+
+\begin{itemize}
+\item Similarly, \texttt{continue} can be used with labels in Java 8+.
+\end{itemize}
+
+\subsubsection{\textbf{5.7.1 Program Termination}}
+
+\begin{itemize}
+\item \texttt{System.exit(0);} immediately terminates the \textbf{entire program}.
+\item The argument \texttt{0} indicates a normal termination.
+\end{itemize}
+
+\subsection{\textbf{5.8 Common Loop Errors}}
+
+1. \textbf{Infinite loops:} Condition never becomes false.
+2. \textbf{Off-by-one errors:} Loop executes \textbf{one extra or one fewer iteration} than intended.
+3. \textbf{Floating-point comparisons:} Avoid \texttt{==} or \texttt{!=} in Boolean expressions for \texttt{float}/\texttt{double}.
+
+\subsection{\textbf{5.9 Java Iterator Interface}}
+
+The \textbf{Iterator} interface in Java provides a standard way to traverse elements in any collection (like \texttt{ArrayList}, \texttt{HashSet}, etc.).
+
+\subsubsection{\textbf{Using a \texttt{for} loop with ArrayList:}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+ArrayList<String> list = new ArrayList<>();
+list.add("Apple");
+list.add("Banana");
+list.add("Cherry");
+
+for (int i = 0; i < list.size(); i++) {
+    String s = list.get(i);
+    System.out.println(s);
+}
+\end{lstlisting}
+
+\subsubsection{\textbf{Using an \texttt{Iterator}:}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+Iterator<String> itr = list.iterator();
+while (itr.hasNext()) {
+    String s = itr.next();
+    System.out.println(s);
+}
+\end{lstlisting}
+
+\textbf{Key Points:}
+
+\begin{itemize}
+\item \texttt{iterator()} returns an \texttt{Iterator} object for the collection.
+\item \texttt{hasNext()} checks if there are more elements to traverse.
+\item \texttt{next()} returns the next element in the collection.
+\item Using \texttt{Iterator} is preferred when you want to remove elements safely during iteration.
+\end{itemize}
+
+\subsection{\textbf{5.10 Assertion Checks}}
+
+An \textbf{assertion} is a statement that tests a condition which should always be true if the program is running correctly.
+
+\subsubsection{\textbf{Syntax:}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+assert Boolean\textit{Expression;   // Example: assert database}version == 1.2;
+\end{lstlisting}
+
+\begin{itemize}
+\item If the expression evaluates to \textbf{true}, the program continues normally.
+\item If \textbf{false}, the program throws an \texttt{AssertionError} and stops execution.
+\item Assertions are mainly used for \textbf{debugging and testing}, not for production logic.
+\end{itemize}
+
+\subsubsection{\textbf{Enabling Assertions}}
+
+By default, assertions are \textbf{disabled}. To enable them:
+
+\textbf{Command line:}
+
+\begin{lstlisting}[language=bash, caption=Bash Code]
+java -enableassertions ProgramName
+\end{lstlisting}
+
+Or using \textbf{Eclipse configuration}, enable assertions in the runtime settings.
+
+\subsubsection{\textbf{Example Use Case:}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+double database_version = 1.0;
+assert database_version == 1.2;  // Throws AssertionError if false
+\end{lstlisting}
+
+\begin{itemize}
+\item Helps ensure assumptions in your code are valid.
+\item Useful in team environments to catch version mismatches or logic errors early.
+\end{itemize}
+
+\textbf{Summary Table} & Feature & Description & Example \\
+\hline
+Iterator \\
+\hline
+\end{tabular}
+\caption{Table}
+\end{table}
+ Traverses elements in collections \begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\texttt{itr.next()} & hasNext() & Checks if more elements exist & \texttt{itr.hasNext()} & Assertions & Verifies conditions during runtime & \texttt{assert x > 0;} & Enabling assertions & Must be enabled explicitly & \texttt{java -enableassertions ProgramName} & \subsection{\textbf{6 Generating Random Numbers}}
+
+Java provides the \textbf{\texttt{Random}} class in the \texttt{java.util} package to generate pseudo-random numbers. These are \textbf{not truly random}, but are sufficiently unpredictable for most applications.
+
+\subsubsection{\textbf{Importing the Random Class}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+import java.util.Random;
+\end{lstlisting}
+
+\subsubsection{\textbf{Creating a Random Object}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+Random rnd = new Random();
+\end{lstlisting}
+
+\subsubsection{\textbf{Generating Random Numbers}} & Method & Description & Example \\
+\hline
+\texttt{nextInt(n)} \\
+\hline
+\end{tabular}
+\caption{Table}
+\end{table}
+ Random integer from \texttt{0} to \texttt{n-1} \begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\texttt{int i = rnd.nextInt(10); // 0-9} & \texttt{nextDouble()} & Random double between \texttt{0.0} (inclusive) and \texttt{1.0} (exclusive) & \texttt{double d = rnd.nextDouble();} & \texttt{nextBoolean()} & Random boolean value (\texttt{true} or \texttt{false}) & \texttt{boolean b = rnd.nextBoolean();} & \texttt{nextLong()} & Random long value & \texttt{long l = rnd.nextLong();} & \texttt{nextFloat()} & Random float between \texttt{0.0} and \texttt{1.0} & \texttt{float f = rnd.nextFloat();} & \subsubsection{\textbf{Example: Simulating a Coin Flip}}
+
+\begin{lstlisting}[language=Java, caption=Java Code]
+package lesson03;
+
+import java.util.Random;
+
+public class CoinFlipDemo {
+
+    public static void main(String[] args) {
+        Random randomGenerator = new Random();
+        int counter = 1;
+
+        while (counter <= 5) {
+            System.out.print("Flip number " + counter + ": ");
+            int coinFlip = randomGenerator.nextInt(2); // 0 or 1
+
+            if (coinFlip == 1)
+                System.out.println("Heads");
+            else
+                System.out.println("Tails");
+
+            counter++;
+        }
+    }
+}
+\end{lstlisting}
+
+\textbf{Explanation:}
+
+\begin{itemize}
+\item \texttt{nextInt(2)} generates either \texttt{0} or \texttt{1}.
+\item The \texttt{if} statement checks the value to print "Heads" or "Tails".
+\item The loop runs 5 times, simulating 5 coin flips.
+\end{itemize}
+
+\subsubsection{\textbf{Tips:}}
+
+\begin{itemize}
+\item You can experiment with other \texttt{Random} methods like \texttt{nextDouble()}, \texttt{nextLong()}, \texttt{nextBoolean()}, or even generate numbers in a custom range.
+\item Random numbers are \textbf{pseudo-random}, meaning if you use the same seed (optional in \texttt{new Random(seed)}), the sequence of numbers is repeatable.
+\end{itemize}
+
+\subsection{\textbf{Key Terms Glossary}} & Keyword & Description & Notes \\
+\hline
+\textbf{assert} \\
+\hline
+\end{tabular}
+\caption{Table}
+\end{table}
+ Checks a Boolean condition; throws \texttt{AssertionError} if false; mainly used for debugging. |
+| \textbf{break} | Exits the nearest enclosing loop or \texttt{switch}; can be labeled to exit outer loops in nested loops. |
+| \textbf{continue} | Skips the rest of the current loop iteration; in a \texttt{for} loop, moves to the update expression. |
+| \textbf{do-while} | Executes the loop body \textbf{at least once}, then checks the condition; ends if false. |
+| \textbf{for-each} | Enhanced loop to iterate arrays or collections; cannot modify loop variable; one element at a time. |
+| \textbf{if-else} | Executes one branch if condition is true, another if false; can be nested or multiway (\texttt{else if}). |
+| \textbf{iterator} | Interface to traverse collections; \texttt{hasNext()} checks for next element, \texttt{next()} retrieves it. |
+| \textbf{java short-circuits} | Logical operators \texttt{&&} and \texttt{\|\|} evaluate left-to-right and stop early if result is determined. |
+| \textbf{labeled break} | Break with a label to exit a specific outer loop in nested loops. |
+| \textbf{switch} | Multiway branching; executes the case that matches the controlling expression; use \texttt{break} to stop. |
+| \textbf{ternary operator} | Compact \texttt{if-else} expression: \texttt{(condition) ? valueIfTrue : valueIfFalse}. |
+| \textbf{while} | Executes the loop body \textbf{only if} the condition is true; condition checked before each iteration. |
+
+\subsubsection{\textbf{Notes & Tips:}}
+
+\begin{itemize}
+\item \textbf{Break & continue} are best used sparingly; overuse can make loops hard to read.
+\item \textbf{For-each} simplifies loops over arrays/collections, but can't modify the elements directly.
+\item \textbf{Assertions} are mostly for development/testing, not production.
+\item \textbf{Ternary operator} is ideal for short, conditional assignments.
+\item \textbf{Infinite loops} often happen with \texttt{while(true)} or incorrect Boolean conditions; watch \texttt{==} with floating-point numbers.
+\end{itemize}
+
+
+\end{document}

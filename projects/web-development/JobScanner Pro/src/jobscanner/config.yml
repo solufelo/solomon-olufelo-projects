@@ -1,0 +1,32 @@
+# User Information
+user:
+  name: "Solomon Olufelo"
+  email: "solomonolufelo@outlook.com"
+  location: "Brampton, ON"
+  resume_path: "./assets/Solomon_Resume.rtf"
+  portfolio_url: ""
+
+# Search Settings
+search:
+  default_radius: 25  # km
+  refresh_interval: 60  # minutes
+  platforms:
+    indeed: false  # Temporarily disabled due to Cloudflare protection
+    jobbank: true
+    craigslist: true
+    kijiji: true
+
+# Application Settings
+apply:
+  auto_apply: false  # Set to true to enable automatic applications
+  email_template: "templates/default_email.txt"
+  delay_between_apps: 300  # seconds
+
+# Logging
+logging:
+  level: "INFO"
+  file: "outputs/jobscanner.log"
+
+# Database
+database:
+  path: "outputs/applied_jobs.db" 

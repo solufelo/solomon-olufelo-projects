@@ -1,0 +1,774 @@
+---
+description: Comprehensive usability guidelines and best practices for StudyOS user interface design and interaction patterns
+alwaysApply: false
+---
+
+# StudyOS Usability Guidelines
+
+## Usability Principles
+
+### 1. Nielsen's 10 Usability Heuristics (Applied to StudyOS)
+
+#### Visibility of System Status
+**Principle**: Keep users informed about what's happening through appropriate feedback within reasonable time.
+
+**StudyOS Implementation**:
+- **Progress Indicators**: Show completion status for study sessions, card reviews, and long-running operations
+- **Sync Status**: Display real-time sync status across devices with clear indicators
+- **Learning Progress**: Visualize spaced repetition intervals and next review dates
+- **Loading States**: Provide skeleton screens and progress bars for data loading
+
+**Examples**:
+```jsx
+// Progress indicator for study session
+<div className="study-progress">
+  <div className="progress-bar">
+    <div 
+      className="progress-fill" 
+      style={{width: `${(currentCard / totalCards) * 100}%`}}
+    />
+  </div>
+  <span className="progress-text">
+    {currentCard} of {totalCards} cards
+  </span>
+</div>
+
+// Sync status indicator
+<div className="sync-status">
+  {syncing ? (
+    <div className="flex items-center">
+      <Spinner size="sm" />
+      <span>Syncing...</span>
+    </div>
+  ) : (
+    <div className="flex items-center text-success-600">
+      <CheckIcon />
+      <span>Up to date</span>
+    </div>
+  )}
+</div>
+```
+
+#### Match Between System and Real World
+**Principle**: Use familiar concepts, words, and conventions from the user's domain.
+
+**StudyOS Implementation**:
+- **Learning Terminology**: Use familiar educational terms (deck, flashcard, study session)
+- **Familiar Metaphors**: File folders for organization, calendars for scheduling
+- **Natural Language**: "Due for review" instead of "SRS queue"
+- **Real-World Workflows**: Mirror actual study processes and habits
+
+#### User Control and Freedom
+**Principle**: Provide users with emergency exits and undo functionality.
+
+**StudyOS Implementation**:
+- **Undo Actions**: Allow users to undo card reviews, task completions, and content changes
+- **Exit Study Sessions**: Easy exit from study sessions with progress preservation
+- **Flexible Navigation**: Multiple paths to reach the same content
+- **Customizable Interface**: Allow users to personalize their experience
+
+**Examples**:
+```jsx
+// Undo functionality for card reviews
+<div className="review-actions">
+  <Button onClick={handleUndo} variant="ghost" size="sm">
+    <UndoIcon />
+    Undo Last Review
+  </Button>
+</div>
+
+// Exit study session with confirmation
+<Modal>
+  <h3>Exit Study Session?</h3>
+  <p>Your progress will be saved automatically.</p>
+  <div className="modal-actions">
+    <Button onClick={handleExit} variant="secondary">
+      Exit Session
+    </Button>
+    <Button onClick={handleContinue} variant="primary">
+      Continue Studying
+    </Button>
+  </div>
+</Modal>
+```
+
+#### Consistency and Standards
+**Principle**: Follow platform conventions and maintain internal consistency.
+
+**StudyOS Implementation**:
+- **Consistent Navigation**: Same navigation patterns across all screens
+- **Uniform Interactions**: Consistent button behaviors and feedback
+- **Platform Standards**: Follow iOS/Android/Web conventions appropriately
+- **Design System Adherence**: Use established components and patterns
+
+#### Error Prevention
+**Principle**: Prevent problems from occurring in the first place.
+
+**StudyOS Implementation**:
+- **Form Validation**: Real-time validation with helpful error messages
+- **Confirmation Dialogs**: Confirm destructive actions before execution
+- **Auto-Save**: Prevent data loss through automatic saving
+- **Smart Defaults**: Provide sensible default values and suggestions
+
+**Examples**:
+```jsx
+// Form validation with prevention
+<Input
+  value={deckName}
+  onChange={handleChange}
+  onBlur={handleValidation}
+  error={errors.deckName}
+  helperText="Deck names must be 3-50 characters"
+  maxLength={50}
+/>
+
+// Destructive action confirmation
+<AlertDialog>
+  <AlertDialogTrigger>
+    <Button variant="danger">Delete Deck</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Delete "{deckName}"?</AlertDialogTitle>
+      <AlertDialogDescription>
+        This will permanently delete all {cardCount} cards in this deck. 
+        This action cannot be undone.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction onClick={handleDelete}>
+        Delete Deck
+      </AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
+```
+
+#### Recognition Rather Than Recall
+**Principle**: Make objects, actions, and options visible to minimize memory load.
+
+**StudyOS Implementation**:
+- **Visual Cues**: Use icons and visual indicators for different content types
+- **Recently Used**: Show recently accessed decks and study materials
+- **Context Menus**: Provide relevant actions based on current context
+- **Search Suggestions**: Offer search suggestions and auto-complete
+
+#### Flexibility and Efficiency of Use
+**Principle**: Provide accelerators for expert users while maintaining usability for novices.
+
+**StudyOS Implementation**:
+- **Keyboard Shortcuts**: Power user shortcuts for common actions
+- **Bulk Operations**: Allow batch operations for advanced users
+- **Customizable Workflows**: Let users adapt the interface to their needs
+- **Progressive Disclosure**: Show basic features first, reveal advanced options
+
+**Examples**:
+```jsx
+// Keyboard shortcuts for card review
+useKeyboard({
+  'Space': () => showAnswer(),
+  '1': () => reviewCard('again'),
+  '2': () => reviewCard('hard'),
+  '3': () => reviewCard('good'),
+  '4': () => reviewCard('easy'),
+  'Escape': () => exitSession()
+});
+
+// Bulk selection for advanced users
+<div className="bulk-actions">
+  <Checkbox 
+    checked={selectedCards.length === cards.length}
+    onChange={handleSelectAll}
+  />
+  <span>{selectedCards.length} selected</span>
+  {selectedCards.length > 0 && (
+    <div className="bulk-action-buttons">
+      <Button onClick={handleBulkDelete}>Delete Selected</Button>
+      <Button onClick={handleBulkMove}>Move to Deck</Button>
+    </div>
+  )}
+</div>
+```
+
+### 2. Cognitive Load Reduction
+
+#### Information Hierarchy
+- **Primary Information**: Most important content gets visual priority
+- **Secondary Information**: Supporting details are visually de-emphasized  
+- **Tertiary Information**: Optional information is progressively disclosed
+- **White Space**: Use generous spacing to reduce visual clutter
+
+#### Chunking Information
+```jsx
+// Good: Information grouped logically
+<StudySession>
+  <SessionHeader>
+    <ProgressIndicator />
+    <SessionTimer />
+  </SessionHeader>
+  
+  <CardContent>
+    <Question />
+    <Answer />
+  </CardContent>
+  
+  <ReviewActions>
+    <DifficultyButtons />
+    <SessionControls />
+  </ReviewActions>
+</StudySession>
+
+// Bad: All information at same level
+<StudySession>
+  <div>Progress: 5/20</div>
+  <div>Time: 15:30</div>
+  <div>Question: What is the capital of France?</div>
+  <div>Answer: Paris</div>
+  <button>Again</button>
+  <button>Hard</button>
+  <button>Good</button>
+  <button>Easy</button>
+  <button>Exit</button>
+  <button>Settings</button>
+</StudySession>
+```
+
+#### Mental Model Alignment
+- **Familiar Patterns**: Use established UI patterns users already know
+- **Logical Grouping**: Group related functions and information together
+- **Clear Labels**: Use descriptive, unambiguous labels for all elements
+- **Predictable Behavior**: Ensure similar actions produce similar results
+
+### 3. Task-Oriented Design
+
+#### Primary Task Support
+**Core Study Flow Optimization**:
+1. **Quick Entry**: Minimize steps to start studying
+2. **Distraction-Free**: Remove unnecessary elements during study sessions
+3. **Smooth Transitions**: Seamless flow between cards and sessions
+4. **Progress Preservation**: Save progress automatically and frequently
+
+```jsx
+// Optimized study session start
+<QuickStart>
+  <RecentDecks limit={3} />
+  <DueCardsIndicator />
+  <StartStudyButton 
+    onClick={() => startSession(getDueCards())}
+    disabled={!hasDueCards}
+  >
+    Start Review ({dueCardsCount} cards)
+  </StartStudyButton>
+</QuickStart>
+```
+
+#### Secondary Task Efficiency
+- **Content Creation**: Streamlined card creation and editing
+- **Organization**: Intuitive deck and tag management
+- **Progress Tracking**: Easy access to learning analytics
+- **Settings Management**: Logical grouping of preferences
+
+#### Task Completion Feedback
+```jsx
+// Study session completion
+<SessionComplete>
+  <SuccessIcon />
+  <h2>Great job!</h2>
+  <SessionStats>
+    <Stat label="Cards Reviewed" value={reviewedCount} />
+    <Stat label="Accuracy" value={`${accuracy}%`} />
+    <Stat label="Time Spent" value={formatDuration(sessionTime)} />
+  </SessionStats>
+  <NextActions>
+    <Button onClick={startNewSession}>Study More</Button>
+    <Button onClick={viewProgress} variant="secondary">
+      View Progress
+    </Button>
+  </NextActions>
+</SessionComplete>
+```
+
+## Interaction Design Patterns
+
+### 1. Navigation Patterns
+
+#### Tab Navigation
+```jsx
+// Primary navigation tabs
+<TabNavigation>
+  <Tab active={activeTab === 'dashboard'} onClick={() => setTab('dashboard')}>
+    <DashboardIcon />
+    <span>Dashboard</span>
+  </Tab>
+  <Tab active={activeTab === 'study'} onClick={() => setTab('study')}>
+    <StudyIcon />
+    <span>Study</span>
+  </Tab>
+  <Tab active={activeTab === 'progress'} onClick={() => setTab('progress')}>
+    <ProgressIcon />
+    <span>Progress</span>
+  </Tab>
+</TabNavigation>
+```
+
+#### Breadcrumb Navigation
+```jsx
+// Hierarchical navigation
+<Breadcrumbs>
+  <BreadcrumbItem href="/dashboard">Dashboard</BreadcrumbItem>
+  <BreadcrumbSeparator />
+  <BreadcrumbItem href="/decks">Decks</BreadcrumbItem>
+  <BreadcrumbSeparator />
+  <BreadcrumbItem current>Biology Deck</BreadcrumbItem>
+</Breadcrumbs>
+```
+
+### 2. Input Patterns
+
+#### Form Design
+```jsx
+// Optimized form layout
+<Form>
+  <FormGroup>
+    <Label htmlFor="deck-name" required>Deck Name</Label>
+    <Input 
+      id="deck-name"
+      value={deckName}
+      onChange={handleNameChange}
+      placeholder="e.g., Spanish Vocabulary"
+      error={errors.name}
+    />
+    <HelperText>Choose a descriptive name for your deck</HelperText>
+  </FormGroup>
+  
+  <FormGroup>
+    <Label htmlFor="deck-description">Description (Optional)</Label>
+    <Textarea 
+      id="deck-description"
+      value={description}
+      onChange={handleDescriptionChange}
+      placeholder="What will you learn with this deck?"
+      rows={3}
+    />
+  </FormGroup>
+  
+  <FormActions>
+    <Button type="submit" disabled={!isValid}>
+      Create Deck
+    </Button>
+    <Button type="button" variant="secondary" onClick={handleCancel}>
+      Cancel
+    </Button>
+  </FormActions>
+</Form>
+```
+
+#### Search and Filtering
+```jsx
+// Advanced search interface
+<SearchInterface>
+  <SearchInput
+    placeholder="Search cards, decks, or tags..."
+    value={searchQuery}
+    onChange={handleSearch}
+    debounceMs={300}
+  />
+  
+  <FilterPanel>
+    <FilterGroup label="Deck">
+      <Select options={deckOptions} value={selectedDeck} />
+    </FilterGroup>
+    <FilterGroup label="Difficulty">
+      <CheckboxGroup options={difficultyOptions} />
+    </FilterGroup>
+    <FilterGroup label="Last Reviewed">
+      <DateRangePicker />
+    </FilterGroup>
+  </FilterPanel>
+  
+  <SearchResults>
+    {results.map(result => (
+      <SearchResult key={result.id} item={result} />
+    ))}
+  </SearchResults>
+</SearchInterface>
+```
+
+### 3. Feedback Patterns
+
+#### Loading States
+```jsx
+// Skeleton loading for cards
+<CardSkeleton>
+  <div className="skeleton-header" />
+  <div className="skeleton-content">
+    <div className="skeleton-line long" />
+    <div className="skeleton-line medium" />
+    <div className="skeleton-line short" />
+  </div>
+  <div className="skeleton-actions" />
+</CardSkeleton>
+
+// Progressive loading
+<StudyDeck>
+  {isLoading ? (
+    <LoadingSpinner>
+      <p>Loading your study session...</p>
+      <ProgressBar value={loadingProgress} />
+    </LoadingSpinner>
+  ) : (
+    <StudySession cards={cards} />
+  )}
+</StudyDeck>
+```
+
+#### Success and Error States
+```jsx
+// Toast notifications
+<Toast variant="success" duration={3000}>
+  <CheckCircleIcon />
+  <div>
+    <p>Card created successfully!</p>
+    <p>Added to "Biology Deck"</p>
+  </div>
+</Toast>
+
+<Toast variant="error" duration={5000} dismissible>
+  <AlertCircleIcon />
+  <div>
+    <p>Failed to sync changes</p>
+    <p>Check your internet connection</p>
+  </div>
+  <Button size="sm" onClick={handleRetry}>
+    Retry
+  </Button>
+</Toast>
+```
+
+## Mobile-Specific Usability
+
+### 1. Touch Interface Design
+
+#### Touch Target Sizing
+```css
+/* Minimum 44px touch targets */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Generous spacing between targets */
+.touch-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+```
+
+#### Gesture Support
+```jsx
+// Swipe gestures for card review
+<SwipeableCard
+  onSwipeLeft={() => reviewCard('hard')}
+  onSwipeRight={() => reviewCard('good')}
+  onSwipeUp={() => reviewCard('easy')}
+  onSwipeDown={() => reviewCard('again')}
+>
+  <CardContent />
+  <SwipeHints>
+    <HintIndicator direction="left" action="Hard" />
+    <HintIndicator direction="right" action="Good" />
+    <HintIndicator direction="up" action="Easy" />
+    <HintIndicator direction="down" action="Again" />
+  </SwipeHints>
+</SwipeableCard>
+```
+
+### 2. Mobile Navigation
+
+#### Bottom Navigation
+```jsx
+// Mobile-optimized bottom navigation
+<BottomNavigation>
+  <NavItem active={route === 'dashboard'} href="/dashboard">
+    <HomeIcon />
+    <span>Home</span>
+  </NavItem>
+  <NavItem active={route === 'study'} href="/study">
+    <BookIcon />
+    <span>Study</span>
+    {dueCardsCount > 0 && <Badge>{dueCardsCount}</Badge>}
+  </NavItem>
+  <NavItem active={route === 'progress'} href="/progress">
+    <ChartIcon />
+    <span>Progress</span>
+  </NavItem>
+  <NavItem active={route === 'settings'} href="/settings">
+    <SettingsIcon />
+    <span>Settings</span>
+  </NavItem>
+</BottomNavigation>
+```
+
+#### Pull-to-Refresh
+```jsx
+// Pull-to-refresh implementation
+<PullToRefresh onRefresh={handleRefresh} refreshing={isRefreshing}>
+  <DeckList decks={decks} />
+</PullToRefresh>
+```
+
+### 3. Responsive Layout Patterns
+
+#### Adaptive Card Layout
+```jsx
+// Responsive card grid
+<CardGrid>
+  {cards.map(card => (
+    <Card 
+      key={card.id}
+      className={cn(
+        "card-base",
+        // Mobile: full width, tablet: 2 columns, desktop: 3 columns
+        "w-full md:w-1/2 lg:w-1/3"
+      )}
+    >
+      <CardContent card={card} />
+    </Card>
+  ))}
+</CardGrid>
+```
+
+## Performance Usability
+
+### 1. Perceived Performance
+
+#### Optimistic Updates
+```jsx
+// Optimistic UI updates
+const handleCardReview = async (cardId, difficulty) => {
+  // Update UI immediately
+  setCards(cards => 
+    cards.map(card => 
+      card.id === cardId 
+        ? { ...card, lastReviewed: new Date(), difficulty }
+        : card
+    )
+  );
+  
+  try {
+    // Send to server
+    await reviewCard(cardId, difficulty);
+  } catch (error) {
+    // Revert on error
+    setCards(originalCards);
+    showErrorToast('Failed to save review');
+  }
+};
+```
+
+#### Progressive Loading
+```jsx
+// Load critical content first
+<StudySession>
+  <Suspense fallback={<CardSkeleton />}>
+    <CurrentCard cardId={currentCardId} />
+  </Suspense>
+  
+  {/* Preload next cards in background */}
+  <Suspense fallback={null}>
+    <PreloadCards cardIds={upcomingCardIds} />
+  </Suspense>
+</StudySession>
+```
+
+### 2. Offline Usability
+
+#### Offline Indicators
+```jsx
+// Network status indicator
+<NetworkStatus>
+  {isOffline && (
+    <OfflineBanner>
+      <WifiOffIcon />
+      <span>You're offline. Changes will sync when connected.</span>
+    </OfflineBanner>
+  )}
+</NetworkStatus>
+```
+
+#### Offline-First Features
+```jsx
+// Offline study session
+<OfflineStudySession>
+  {hasOfflineCards ? (
+    <StudyCards cards={offlineCards} />
+  ) : (
+    <EmptyState>
+      <CloudOffIcon />
+      <h3>No offline content available</h3>
+      <p>Download decks for offline study</p>
+      <Button onClick={openDownloadManager}>
+        Manage Downloads
+      </Button>
+    </EmptyState>
+  )}
+</OfflineStudySession>
+```
+
+## Error Handling and Recovery
+
+### 1. Error Prevention Strategies
+
+#### Input Validation
+```jsx
+// Real-time validation with helpful messages
+<FormField>
+  <Input
+    value={cardQuestion}
+    onChange={handleQuestionChange}
+    onBlur={validateQuestion}
+    error={questionError}
+    placeholder="Enter your question..."
+  />
+  {questionError && (
+    <ErrorMessage>
+      <AlertIcon />
+      <span>{questionError}</span>
+      {questionError === 'QUESTION_TOO_SHORT' && (
+        <Button size="sm" onClick={generateSuggestion}>
+          Get suggestion
+        </Button>
+      )}
+    </ErrorMessage>
+  )}
+</FormField>
+```
+
+#### Confirmation Patterns
+```jsx
+// Multi-step confirmation for critical actions
+<DeleteConfirmation>
+  <Step1>
+    <h3>Delete "{deckName}"?</h3>
+    <p>This deck contains {cardCount} cards.</p>
+    <Button onClick={proceedToStep2} variant="danger">
+      Continue
+    </Button>
+  </Step1>
+  
+  <Step2>
+    <h3>Are you absolutely sure?</h3>
+    <p>Type the deck name to confirm deletion:</p>
+    <Input 
+      value={confirmationText}
+      onChange={setConfirmationText}
+      placeholder={deckName}
+    />
+    <Button 
+      onClick={handleDelete}
+      disabled={confirmationText !== deckName}
+      variant="danger"
+    >
+      Delete Forever
+    </Button>
+  </Step2>
+</DeleteConfirmation>
+```
+
+### 2. Error Recovery
+
+#### Graceful Degradation
+```jsx
+// Feature degradation when offline
+<StudyFeatures>
+  {isOnline ? (
+    <AICardGeneration />
+  ) : (
+    <ManualCardCreation />
+  )}
+  
+  {hasAdvancedFeatures ? (
+    <DetailedAnalytics />
+  ) : (
+    <BasicProgress />
+  )}
+</StudyFeatures>
+```
+
+#### Error Boundaries
+```jsx
+// Component error boundaries
+<ErrorBoundary
+  fallback={({ error, resetError }) => (
+    <ErrorFallback>
+      <h2>Something went wrong</h2>
+      <details>
+        <summary>Error details</summary>
+        <pre>{error.message}</pre>
+      </details>
+      <Button onClick={resetError}>
+        Try again
+      </Button>
+      <Button onClick={() => navigate('/dashboard')} variant="secondary">
+        Go to Dashboard
+      </Button>
+    </ErrorFallback>
+  )}
+>
+  <StudySession />
+</ErrorBoundary>
+```
+
+## Testing and Validation
+
+### 1. Usability Testing Protocol
+
+#### Test Scenarios
+1. **New User Onboarding**: First-time user creates account and first deck
+2. **Daily Study Routine**: Regular user reviews due cards
+3. **Content Creation**: User creates cards from PDF document
+4. **Progress Review**: User checks learning progress and analytics
+5. **Mobile Study Session**: User studies on mobile during commute
+
+#### Success Metrics
+- **Task Completion Rate**: > 95% for core tasks
+- **Time to Complete**: Within expected benchmarks
+- **Error Rate**: < 2% for primary user flows
+- **User Satisfaction**: > 4.5/5 on usability scale
+- **Learnability**: New users complete first study session in < 5 minutes
+
+### 2. Continuous Validation
+
+#### Analytics Integration
+```jsx
+// Usage tracking for optimization
+<Component>
+  <Button 
+    onClick={() => {
+      trackEvent('card_review', { difficulty: 'good' });
+      handleCardReview('good');
+    }}
+  >
+    Good
+  </Button>
+</Component>
+```
+
+#### A/B Testing Framework
+```jsx
+// Feature flag testing
+<ExperimentProvider>
+  {showNewOnboarding ? (
+    <NewUserOnboarding />
+  ) : (
+    <LegacyOnboarding />
+  )}
+</ExperimentProvider>
+```
+
+These usability guidelines ensure that StudyOS provides an intuitive, efficient, and delightful user experience across all platforms and user scenarios. Regular testing and iteration based on user feedback will help maintain and improve usability over time.

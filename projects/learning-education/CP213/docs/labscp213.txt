@@ -1,0 +1,57 @@
+
+CP213: Labs - Fall 2025
+The Labs
+Labs are due 11:59 pm Thursday.
+Week Starting
+Lab
+1
+September 7, 2025
+2
+Due
+No Lab
+Posted
+September 14, 2025 1: Console/File I/O and Java Documentation September 18, 2025 2025-08-13 05:08 Recorded Introduction
+4
+September 28, 2025
+5
+October 5, 2025
+3: Classes
+3
+September 21, 2025 2: String Handling
+September 25, 2025 2025-08-13 05:08
+Recorded Introduction
+No Lab
+October 9, 2025
+2025-08-13 05:08
+6
+October 12, 2025
+Reading Week
+7
+October 19, 2025
+4: Arrays and Collections
+October 23, 2025
+2025-08-13 05:08
+8
+October 26, 2025
+No Lab
+9
+November 2, 2025
+5: Inheritance and Polymorphism
+November 6, 2025
+2025-08-13 05:08
+10
+November 9, 2025
+6: Exception Handling
+November 13, 2025
+2025-08-13 05:08
+Recorded Introduction
+11
+November 16, 2025 7: Interfaces and Inner Classes
+November 20, 2025
+2025-08-13 05:08
+Recorded Introduction
+12
+November 23, 2025 8: GUI
+November 27, 2025
+2025-08-13 05:08
+Recorded Introduction

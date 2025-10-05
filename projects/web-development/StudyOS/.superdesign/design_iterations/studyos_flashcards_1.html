@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Previous head content -->
+    <style>
+        .flashcard-container {
+            perspective: 1000px;
+        }
+        .flashcard {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        .flashcard.is-flipped {
+            transform: rotateY(180deg);
+        }
+        .flashcard-face {
+            backface-visibility: hidden;
+        }
+        .flashcard-back {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="flashcard-container">
+        <motion.div 
+            class="flashcard"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            whileHover={{ scale: 1.02 }}
+            onClick={() => document.querySelector('.flashcard').classList.toggle('is-flipped')}
+        >
+            <div class="flashcard-face front bg-card p-6 rounded-xl">
+                <h3 class="text-xl font-semibold mb-4">What is the capital of France?</h3>
+            </div>
+            <div class="flashcard-face back bg-card p-6 rounded-xl">
+                <h3 class="text-xl font-semibold mb-4 text-primary">Paris</h3>
+            </div>
+        </motion.div>
+    </div>
+
+    <script>
+        gsap.utils.toArray('.flashcard').forEach(card => {
+            ScrollTrigger.create({
+                trigger: card,
+                start: 'top center',
+                onEnter: () => {
+                    gsap.to(card, {
+                        duration: 0.8,
+                        rotationY: 0,
+                        ease: 'power2.out'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

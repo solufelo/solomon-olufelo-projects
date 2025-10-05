@@ -1,0 +1,100 @@
+---
+alwaysApply: true
+---
+# Deployment Troubleshooting Attempts (Context Only)
+
+This document records approaches we tried that either did not work or were superseded, to avoid repeating them. Keep for context when iterating on deployment.
+
+## Context
+
+- Platform: Render (Web Service)
+- Runtime: Node.js 22.16 (Render default)
+- App stack: Wasp 0.16.0 (full‑stack), React/Vite client, Node/Express server, Prisma
+- Build artifacts expected in: `.wasp/build/`
+- Render requirement: server must bind to `0.0.0.0:${PORT}` (default `10000`)
+
+## Symptoms Observed
+
+- "wasp: not found" during build or start on Render
+- "No open ports detected" during start
+- `MODULE_NOT_FOUND` for `.wasp/build/server/server.js`
+- `ENOENT` referencing nested path `.wasp/build/.wasp/build/package.json`
+
+## Attempts That Did Not Resolve (or Were Superseded)
+
+### 1) Netlify static deployment path
+- Tried building client via `vite` and publishing `.wasp/build/web-app/dist` on Netlify.
+- Fails for Wasp full‑stack apps (requires server + DB). Netlify static hosting insufficient.
+- Action taken: Removed/disabled Netlify config to avoid confusion.
+
+### 2) Fly.io free trial expectation
+- Looked at Fly as recommended Wasp target but free trial/credits changed; not pursued further for now.
+
+### 3) Railway free tier assumption
+- Railway free tier now time/credit‑limited; not a reliable perpetual free option.
+
+### 4) Render: install Wasp and run `wasp build` in npm script
+- package.json `build` → install Wasp CLI then run `wasp build`.
+- Initial failure: PATH not persisted; `wasp` not found.
+
+### 5) Render: fix PATH inline in npm script
+- Tried `export PATH="$HOME/.wasp/bin:/opt/render/.local/bin:$PATH" && wasp build`.
+- Still saw `wasp: not found` at times depending on shell exec context.
+
+### 6) Render: robust build script to auto‑detect Wasp location
+- Added `render-build-script.sh` to locate `wasp` in: `$HOME/.wasp/bin`, `/opt/render/.local/bin`, `$HOME/.local/bin`, `/usr/local/bin`.
+- This stabilized build. Build finished successfully, but start phase still failed.
+
+### 7) Start using `wasp start` on Render
+- Render tried to run `wasp start` at runtime; PATH issues persisted.
+- Even with PATH fixes, `wasp start` is unnecessary in production since we should run the compiled server in `.wasp/build`.
+
+### 8) Start by `cd .wasp/build && npm install --production && npm run start:server`
+- Changed `start` to `cd` into `.wasp/build` and run server.
+- Render logs indicated working dir differences and occasional relative path issues.
+
+### 9) Start using npm `--prefix .wasp/build`
+- `npm --prefix .wasp/build install --production && npm --prefix .wasp/build run start:server`.
+- Hit `ENOENT` referencing `.wasp/build/.wasp/build/package.json` in some invocations, indicating nested path resolution glitches.
+
+### 10) Start via Node entrypoint `node .wasp/build/server/server.js`
+- Attempted to bypass npm scripts entirely.
+- Error: `MODULE_NOT_FOUND` for `.wasp/build/server/server.js` on Render. Indicates path differs or server is launched via a script in `.wasp/build/server/package.json` instead.
+
+### 11) Installing dependencies at `.wasp/build` vs `.wasp/build/server`
+- Installing at `.wasp/build` was insufficient for server start; server package dependencies must be installed in `.wasp/build/server`.
+- Adjusted build to `npm --prefix .wasp/build/server install --omit=dev`.
+
+### 12) Start via inner server package script
+- Updated start to: `npm --prefix .wasp/build/server run start` and set `PORT=10000` in `render.yaml`.
+- This is the current intended approach (binds to Render PORT, avoids PATH issues). If failures persist, verify actual generated start script and entrypoint in `.wasp/build/server/package.json` and that the server binds to `process.env.PORT` on `0.0.0.0`.
+
+## Cleanups (to reduce confusion)
+
+- Removed duplicate configs: `tailwind.config.js`, `postcss.config.js` (kept `.cjs` variants used by Wasp/Vite)
+- Removed obsolete `render-build.sh` (kept `render-build-script.sh`)
+- Removed Netlify config `netlify.toml`
+- Removed unused Next.js files: `next.config.mjs`, `eslint.config.mjs`
+
+## Remaining Checks (if issues continue)
+
+- After a successful `wasp build`, inspect `.wasp/build/server/package.json` to confirm the `start` script and entrypoint actually exist.
+- Ensure server code binds to `process.env.PORT` and `0.0.0.0`. If Wasp's generated server uses a different launcher, mirror its exact start command.
+- Confirm environment variables required by the app (e.g., `DATABASE_URL`, `TMDB_API_KEY`) are set in Render.
+- If Render still cannot detect the port, log out `process.env.PORT` at server start and confirm `app.listen(PORT, '0.0.0.0')`.
+
+## Key Error Snippets (for searchability)
+
+- `sh: 1: wasp: not found`
+- `No open ports detected`
+- `Error: Cannot find module '/opt/render/project/src/.wasp/build/server/server.js'`
+- `npm error enoent Could not read package.json: ... .wasp/build/.wasp/build/package.json`
+
+## Current Configuration (at time of writing)
+
+- Build: `render-build-script.sh` (installs Wasp, runs `wasp build`, installs server deps in `.wasp/build/server`)
+- Start (Render): `npm --prefix .wasp/build/server run start` with `PORT=10000` set in `render.yaml`
+- Clean config set: `tailwind.config.cjs`, `postcss.config.cjs`, `vite.config.ts`, `main.wasp`, `render.yaml`
+
+These notes are for future debugging and should not be treated as instructions to re‑apply.
+

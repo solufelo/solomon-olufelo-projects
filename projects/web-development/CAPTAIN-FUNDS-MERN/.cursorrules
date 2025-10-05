@@ -1,0 +1,108 @@
+# CAPTAIN-FUNDS AI Development Rules
+
+## 🎯 ALWAYS CHECK FIRST: Follow docs/AI-DEVELOPMENT-RULES.md
+
+Before making ANY changes:
+1. ✅ Read existing code patterns
+2. ✅ Check docs/AI-DEVELOPMENT-RULES.md for guidelines
+3. ✅ Use TODO lists for complex tasks (3+ steps)
+4. ✅ Follow established file structure
+5. ✅ Test changes after implementation
+
+## 🚨 CRITICAL RULES
+
+### DO's ✅
+- Use TypeScript with proper types
+- Follow React hooks rules (top-level only)
+- Use Ant Design components consistently
+- Implement proper error handling
+- Use Zustand store for state management
+- Add loading states for async operations
+- Use parallel tool calls when possible
+- Update TODO lists for complex tasks
+
+### DON'Ts ❌
+- Never use 'any' type in TypeScript
+- Don't call hooks conditionally
+- Never hardcode sensitive data
+- Don't create files without updating routes
+- Never skip input validation
+- Don't ignore React warnings
+- Never break existing file structure
+
+## 🔧 PATTERNS TO FOLLOW
+
+### File Structure
+```
+client/src/
+├── pages/[feature]/index.tsx
+├── layout/[component].tsx
+├── store/[feature]-store.ts
+└── interfaces/index.tsx
+```
+
+### Component Template
+```typescript
+import { Typography, Card } from 'antd'
+import { SomeIcon } from '@ant-design/icons'
+
+const { Title, Text } = Typography
+
+function ComponentName() {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <Title level={1} className="flex items-center gap-3">
+        <SomeIcon />
+        Page Title
+      </Title>
+      <Card>{/* Content */}</Card>
+    </div>
+  )
+}
+
+export default ComponentName
+```
+
+### Error Handling
+```typescript
+try {
+  setLoading(true)
+  const response = await axios.post('/api/endpoint', data)
+  message.success('Operation successful')
+} catch (error: any) {
+  message.error(error?.response?.data?.message || 'Operation failed')
+} finally {
+  setLoading(false)
+}
+```
+
+## 🎯 WORKFLOW
+
+1. **Planning**: Create TODO list for complex features
+2. **Implementation**: Follow established patterns
+3. **Testing**: Verify changes work
+4. **Completion**: Update TODO status
+
+## 📁 PROJECT CONTEXT
+
+This is a MERN stack fundraising platform with:
+- React + TypeScript frontend
+- Node.js + Express backend
+- MongoDB Atlas database
+- JWT authentication
+- Role-based access control
+- Ant Design UI components
+- Zustand state management
+
+## 🚀 DEVELOPMENT SERVERS
+- Frontend: http://localhost:5173
+- Backend: http://localhost:5000
+
+## 📚 REFERENCE DOCS
+- Main rules: docs/AI-DEVELOPMENT-RULES.md
+- Quick reference: docs/QUICK-REFERENCE.md
+- Progress tracker: docs/DEVELOPMENT-PROGRESS.md
+
+---
+
+**ALWAYS reference these rules before making changes!**

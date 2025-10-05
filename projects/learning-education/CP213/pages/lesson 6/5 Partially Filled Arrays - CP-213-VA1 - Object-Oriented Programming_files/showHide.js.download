@@ -1,0 +1,27 @@
+//<![CDATA[
+
+
+function showHide(id) {
+'use strict';
+
+// Change aria-label of button clicked
+var button = document.getElementById('button_' + id);
+button.setAttribute('aria-label', 'Navigate below to continue.');
+
+// Show new content
+var show = document.getElementById('show_'+id);
+$(show).fadeIn('slow');	
+
+// Hide old content	
+var hide = document.getElementById('hide_'+id);
+$(hide).fadeOut('slow');	
+}
+
+
+// Imput text-area function
+function showInput(id) {
+	'use strict';
+	document.getElementById('input_'+id+'a').innerHTML = document.getElementById('input_'+id+'q').value;
+}
+
+//]]> 

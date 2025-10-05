@@ -1,0 +1,17 @@
+# Web Scraping
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+playwright>=1.40.0
+
+# Data Processing
+pandas>=2.0.0
+pyyaml>=6.0.1
+
+# Testing
+pytest>=7.4.0
+pytest-playwright>=0.4.0
+
+# Utilities
+python-dotenv>=1.0.0
+tqdm>=4.66.0  # For progress bars
+colorama>=0.4.6  # For colored terminal output 

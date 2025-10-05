@@ -1,0 +1,205 @@
+Access modifier	One of three components needed to declare a class variable/field (public, private, protected)
+Field type	One of three components needed to declare a class variable/field (int, String, double, etc.)
+Field name	One of three components needed to declare a class variable/field (identifier)
+public modifier	The field is accessible from all classes
+private modifier	The field is accessible only within its own class
+protected modifier	The field is accessible within a class package (directory with related classes)
+Static field	Field declared with static modifier; exactly one copy regardless of how many times class is instantiated
+Instance variable	Variables that are unique to each instance of a class
+Local variable	Variables that hold temporary state inside a method
+Parameter variable	Variables that receive values passed into a method
+byte	1 byte (8 bits), range: -128 to 127
+short	2 bytes (16 bits), range: -32,768 to 32,767
+int	4 bytes (32 bits), range: -2³¹ to 2³¹-1
+long	8 bytes (64 bits), range: -2⁶³ to 2⁶³-1
+float	4 bytes (32 bits), range: ±3.4×10³⁸
+double	8 bytes (64 bits), range: ±1.7×10³⁰⁸
+char	2 bytes (16 bits) for Unicode characters
+boolean	1 bit, holds true or false
+Primitive types ordering	byte → short → int → long → float → double
+Implicit type casting	Automatic conversion from smaller to larger types (widening)
+Explicit type casting	Manual conversion using (type) syntax (narrowing)
+Type truncation	When casting from double to int, number is truncated not rounded: (int)2.9 = 2
+Type coercion	Automatic type cast when assigning integer to floating-point: double d = 5;
+Default initialization boolean	false
+Default initialization numbers	0
+Default initialization char	space character
+Default initialization objects	null
+Local variable initialization	NOT automatically initialized, programmer responsibility
+== operator	Equal to comparison operator
+!= operator	Not equal to comparison operator
+> operator	Greater than comparison operator
+>= operator	Greater than or equal to comparison operator
+< operator	Less than comparison operator
+<= operator	Less than or equal to comparison operator
+String comparison	Use .equals() method, not == operator
+&& operator	AND logical operator with short-circuit evaluation
+|| operator	OR logical operator with short-circuit evaluation
+! operator	NOT logical operator
+Short-circuit evaluation	&& stops if first is false, || stops if first is true
+if-else syntax	if (condition) { } else if (condition) { } else { }
+switch syntax	switch (expression) { case value: break; default: break; }
+Switch expression types	char, int, short, byte, or (Java 7+) String
+Switch fall-through	If break is omitted, execution falls through to next case
+while loop	Condition checked before each iteration
+do-while loop	Executes at least once, condition checked after
+for loop syntax	for (init; condition; update) { }
+for-each loop syntax	for (type var : collection) { }
+break statement	Exits the loop immediately
+continue statement	Skips to the next iteration
+labeled break	Break with label to exit outer loop from inner loop
+Method signature	Method name + parameter list (not return type)
+Method overloading	Same method name with different parameter lists
+Call-by-value	Method arguments are copied, not referenced
+Constructor	Special method that initializes instance variables, same name as class
+Constructor overloading	Multiple constructors with different parameter lists
+Default constructor	Provided automatically when no constructors are defined
+Scanner creation	Scanner input = new Scanner(System.in);
+nextInt()	Reads an integer from input
+nextLine()	Reads an entire line (until Enter key)
+nextInt()/nextLine() issue	nextInt() leaves newline in buffer, nextLine() reads it
+Scanner fix	Add extra nextLine() to clear the buffer
+System.out.print()	Displays text without adding a newline
+System.out.println()	Displays text and adds a newline
+System.out.printf()	Displays formatted text with format specifiers
+%d format specifier	Formats integers in base 10
+%f format specifier	Formats floating-point numbers
+%.2f format specifier	Formats floating-point numbers with 2 decimal places
+%s format specifier	Formats String values
+%c format specifier	Formats character values
+%% format specifier	Prints a percent sign
+NumberFormat.getCurrencyInstance()	Formats numbers as money based on locale
+Locale.US	Shows dollar sign ($) for currency
+Locale.ENGLISH	Shows generic currency sign (¤) because no country specified
+Locale.GERMANY	Shows Euro with German formatting: 39,80 €
+Autoboxing	Automatic conversion from primitive to wrapper object
+Unboxing	Automatic conversion from wrapper object to primitive
+Integer.parseInt()	Converts String to int primitive
+Double.parseDouble()	Converts String to double primitive
+String.valueOf()	Converts primitive to String
+JVM	Java Virtual Machine that executes bytecode
+javac	Java compiler that creates bytecode from .java files
+bytecode	Compiled Java code that runs on JVM
+Stack memory	Stores local variables and method parameters
+Heap memory	Stores objects and instance variables
+Garbage collection	Automatic cleanup of unused objects in heap memory
+String pool	Shared storage for string literals to save memory
+String immutability	Strings cannot be changed once created
+String.equals()	Compares the content of two strings
+String.compareTo()	Returns <0 if first comes before second, 0 if equal, >0 if first comes after
+Static variable	Class variable that belongs to the class itself rather than any specific instance
+Static variable access	Using the class name: ClassName.staticVariable
+Static variable initialization	When the class is first loaded into memory
+Static method	Method that belongs to the class itself and can be called without creating an instance
+Static method call	Using the class name: ClassName.staticMethod()
+Static method limitations	Cannot access instance variables directly (no 'this' reference)
+Static method access	Only static variables and other static methods
+Math class	Provides mathematical functions and constants
+Math.PI	Mathematical constant π (3.14159...)
+Math.E	Mathematical constant e (2.71828...)
+Math.sqrt()	Square root function
+Math.pow()	Power function
+Math.abs()	Absolute value function
+Math.max()	Maximum of two values
+Math.min()	Minimum of two values
+Math.random()	Random double between 0.0 (inclusive) and 1.0 (exclusive)
+Character class	Provides methods for character manipulation and testing
+Character.isLetter()	Checks if character is a letter
+Character.isDigit()	Checks if character is a digit
+Character.isUpperCase()	Checks if character is uppercase
+Character.toLowerCase()	Converts character to lowercase
+Character.toUpperCase()	Converts character to uppercase
+Reference variable	Variable that holds a memory address, not the actual object
+Reference assignment	When assigning one reference to another, both point to same object
+Multiple references	Multiple variables can reference the same object
+Garbage collection eligibility	Object becomes eligible when no references point to it
+Pass by value primitives	Copy of the value is passed
+Pass by value references	Copy of the reference is passed
+Parameter immutability	Cannot change what a parameter references inside a method
+Object modification through reference	Can modify the object that a parameter references
+Assignment with class types	Makes both variables reference the same object
+Equality with class types	Compares memory addresses, not object contents
+Object content comparison	Use the .equals() method
+null	Special value indicating no object reference
+NullPointerException	Runtime error that occurs when trying to use a null reference
+NullPointerException prevention	Always check for null before using object references
+NullPointerException causes	Uninitialized reference variables, method returns null
+Anonymous class	Class without a name that is defined and instantiated at the same time
+Anonymous class syntax	new ClassName() { /* class body */ }
+Anonymous class use cases	Event handlers, one-time implementations
+Anonymous class limitations	Cannot have constructors, limited to single use
+Lambda expression	Concise way to represent an anonymous function
+Lambda syntax	(parameters) -> expression or (parameters) -> { statements }
+Lambda use cases	Functional interfaces, collections processing
+Privacy leak	When private data becomes accessible outside the class
+Privacy leak cause	Returning references to private objects instead of copies
+Privacy leak prevention	Return copies of objects, not references
+Class invariant	Statement that is always true for every object of the class
+Class invariant purpose	Helps define a class in a consistent and organized way
+Copy constructor	Constructor that creates a new object by copying another object of the same class
+Copy constructor purpose	To create independent copies of objects
+Deep copy	Copy where all referenced objects are also copied
+Shallow copy	Copy where only the object itself is copied, but referenced objects are shared
+Defensive copying	Returning copies instead of original references to prevent privacy leaks
+Immutable objects	Objects that cannot be modified after creation
+Getter method best practice	Should return copies of mutable objects
+Array	Collection of elements of the same type with fixed size
+Array declaration	type[] arrayName; or type arrayName[];
+Array creation	arrayName = new type[size];
+Array declaration and creation	type[] arrayName = new type[size];
+Array initialization	type[] arrayName = {value1, value2, ...};
+Array access	arrayName[index]
+Array indexing	0 to (length - 1)
+Array variables	Hold references to array objects, not the actual array
+Array assignment	Both variables reference the same array
+Array length	arrayName.length
+Array bounds checking	Java checks array bounds at runtime
+ArrayIndexOutOfBoundsException	Thrown when accessing invalid array index
+Command line arguments	Arguments passed to the main method from the command line
+main method signature	public static void main(String[] args)
+First command line argument	args[0]
+Number of command line arguments	args.length
+Partially filled array	Array that is not completely filled with elements
+Partially filled array tracking	Use separate variable to track actual number of elements
+ArrayList	Dynamic array that can grow and shrink in size
+ArrayList import	import java.util.ArrayList;
+ArrayList creation	ArrayList<Type> list = new ArrayList<>();
+ArrayList add to end	list.add(element)
+ArrayList add at index	list.add(index, element)
+ArrayList get element	list.get(index)
+ArrayList set element	list.set(index, element)
+ArrayList remove element	list.remove(index)
+ArrayList size	list.size()
+ArrayList clear	list.clear()
+Variable arguments (varargs)	Method parameters that accept a variable number of arguments
+Varargs syntax	methodName(Type... parameterName)
+Varargs usage	Treated as an array inside the method
+Varargs limitations	Only one varargs parameter per method, must be last parameter
+Enumerated type (enum)	Special class representing a group of constants
+Enum syntax	enum EnumName { VALUE1, VALUE2, VALUE3 }
+Enum usage	EnumName.VALUE1
+Enum methods	values(), valueOf(), ordinal()
+Enum benefits	Type safety, prevents invalid values
+Multidimensional array	Array with more than one index
+2D array declaration	type[][] arrayName;
+2D array creation	arrayName = new type[rows][columns];
+2D array access	arrayName[row][column]
+2D array visualization	First index = row, second index = column
+2D array row length	arrayName.length
+2D array column length	arrayName[row].length
+2D array processing	Use nested for loops
+Ragged array	2D array where rows have different lengths
+Ragged array creation	Create rows separately with different sizes
+Ragged array use cases	When data naturally has varying row lengths
+2D array parameters	methodName(type[][] parameter)
+2D array return types	type[][] methodName()
+Array vs ArrayList size	Arrays have fixed size, ArrayList can grow/shrink
+Array vs ArrayList usage	Use arrays for fixed size, ArrayList for dynamic size
+Array size change	Cannot change array size after creation
+ArrayList size change	Can grow and shrink dynamically
+ArrayList capacity	Automatically increases capacity when needed
+ArrayList memory efficiency	Less efficient than arrays due to dynamic resizing overhead
+ArrayList primitive storage	Cannot store primitive types directly (use wrapper classes)
+Array primitive storage	Can store primitive types directly
+Array default values	0 for numbers, false for boolean, null for objects
+ArrayList default values	No default values, elements must be explicitly added

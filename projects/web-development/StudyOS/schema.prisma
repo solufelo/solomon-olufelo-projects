@@ -1,0 +1,86 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id               Int               @id @default(autoincrement())
+  createdAt        DateTime          @default(now())
+  decks            Deck[]
+  reviewLogs       ReviewLog[]
+  tasks            Task[]
+  pomodoroSessions PomodoroSession[]
+  gameScores       GameScore[]
+}
+
+model Deck {
+  id        Int      @id @default(autoincrement())
+  name      String
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cards     Card[]
+  tasks     Task[]
+  createdAt DateTime @default(now())
+}
+
+model Card {
+  id            Int         @id @default(autoincrement())
+  question      String
+  answer        String
+  deckId        Int
+  deck          Deck        @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  box           Int         @default(1)
+  intervalDays  Int         @default(1)
+  nextDue       DateTime    @default(now())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  reviewLogs    ReviewLog[]
+}
+
+model ReviewLog {
+  id         Int      @id @default(autoincrement())
+  cardId     Int
+  card       Card     @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status     String   // "again", "hard", "good", "easy"
+  reviewedAt DateTime @default(now())
+  note       String?
+}
+
+model Task {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?
+  dueDate     DateTime
+  completed   Boolean   @default(false)
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  deckId      Int?      // optional link to flashcard deck
+  deck        Deck?     @relation(fields: [deckId], references: [id], onDelete: SetNull)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model PomodoroSession {
+  id              Int      @id @default(autoincrement())
+  userId          Int
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  startTime       DateTime
+  endTime         DateTime?
+  cyclesCompleted Int      @default(0)
+  createdAt       DateTime @default(now())
+}
+
+model GameScore {
+  id            Int      @id @default(autoincrement())
+  userId        Int
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  score         Int
+  reactionTime  Float
+  playedAt      DateTime @default(now())
+}

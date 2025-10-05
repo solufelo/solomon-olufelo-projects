@@ -1,0 +1,38 @@
+# User Information
+user:
+  name: "Solomon Olufelo"
+  email: "solomonolufelo@outlook.com"
+  location: "Brampton, ON"
+  resume_path: "./assets/Solomon_Resume.rtf"
+  portfolio_url: ""
+
+# API Credentials
+api:
+  indeed:
+    client_id: "74dd7a56352eb0c3d0a4a0062755ad43178713a3a725821cf4f948354cdb1f63"
+    client_secret: "Am9JX1Szoji5K1vlHF5M2W4lBxau0sGHLmG6Tie0swuDBwI2M4gmwhkvuaTzAvuo"
+
+# Search Settings
+search:
+  default_radius: 25  # km
+  refresh_interval: 60  # minutes
+  platforms:
+    indeed: false  # Disabled - API now charges $3/call, no public search endpoint
+    jobbank: true
+    craigslist: true
+    kijiji: true
+
+# Application Settings
+apply:
+  auto_apply: false  # Set to true to enable automatic applications
+  email_template: "templates/default_email.txt"
+  delay_between_apps: 300  # seconds
+
+# Logging
+logging:
+  level: "INFO"
+  file: "outputs/jobscanner.log"
+
+# Database
+database:
+  path: "outputs/applied_jobs.db" 
