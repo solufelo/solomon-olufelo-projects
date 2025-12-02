@@ -9,3 +9,7 @@ Capture reflections with Learning Notes:
 
 - Open `prompts/learning-notes.mdc` and fill the fields.
 - Save as `notes/<topic>-notes.md`.
+
+## Available Notes
+
+- **`lesson09-exception-handling-notes.md`** - Comprehensive notes on exception handling from lesson09 workspace, including custom exceptions, try-catch blocks, input validation, and design patterns.

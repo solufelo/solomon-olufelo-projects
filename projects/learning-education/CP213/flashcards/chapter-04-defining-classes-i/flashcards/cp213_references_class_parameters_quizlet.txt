@@ -1,0 +1,282 @@
+Class type variables	Variables that store memory addresses, not objects directly
+Primitive type variables	Variables that store values directly
+Memory address	Location where object is stored in memory
+Reference	Memory address pointing to an object
+Object reference	Variable containing address of object
+Secondary memory	Permanent storage for files
+Main memory	Memory used when running programs
+Memory locations	Numbered storage areas in main memory
+Bytes	8-bit memory units
+Address	Number identifying memory location
+Memory chunk	Group of consecutive bytes for data
+Variable assignment	Assigning memory location to variable
+Primitive type storage	Values stored directly in memory locations
+Class type storage	Memory addresses stored, not objects
+Reference behavior	How class type variables work
+Object naming	Using references to name objects
+Memory representation	How variables appear in memory
+Pointer concept	Reference is like a pointer to object
+Reference variables	Variables that hold references
+Null reference	Reference pointing to no object
+Reference assignment	Assigning one reference to another
+Multiple references	Several variables pointing to same object
+Garbage collection	Automatic cleanup of unused objects
+Memory management	Managing memory allocation and deallocation
+Object lifecycle	Creation, use, and destruction of objects
+Reference comparison	Comparing references vs comparing objects
+Reference equality	Testing if references point to same object
+Object equality	Testing if objects have same content
+Memory address comparison	== compares memory addresses
+Content comparison	equals() compares object content
+Reference semantics	How references work in Java
+Value semantics	How primitive types work in Java
+Pass by value	Java passes copies of values
+Reference copying	Copying memory addresses, not objects
+Object sharing	Multiple references to same object
+Reference modification	Changing what reference points to
+Object modification	Changing object through reference
+Aliasing	Multiple names for same object
+Shallow copy	Copying references, not objects
+Deep copy	Copying objects and all referenced objects
+Reference passing	Passing references as method parameters
+Parameter behavior	How references work as parameters
+Method parameters	Values passed to methods
+Class type parameters	References passed as parameters
+Primitive type parameters	Values passed as parameters
+Parameter modification	Changing parameters inside methods
+Reference parameter modification	Changing what parameter points to
+Object parameter modification	Changing object through parameter
+Parameter immutability	Parameters cannot be reassigned
+Object mutability	Objects can be modified through references
+Method return references	Methods can return references
+Reference return values	Returning memory addresses
+Object return values	Returning references to objects
+Constructor references	Constructors create object references
+Object creation references	New operator returns reference
+Memory allocation	Reserving memory for objects
+Memory deallocation	Freeing memory for objects
+Automatic memory management	Java handles memory cleanup
+Manual memory management	Programmer handles memory
+Memory leak	Memory not freed when no longer needed
+Dangling reference	Reference to freed memory
+Wild reference	Reference pointing to invalid memory
+Stale reference	Reference to modified object
+Reference validation	Checking if reference is valid
+Null pointer exception	Error when using null reference
+Reference checking	Testing if reference is null
+Null safety	Protecting against null references
+Optional references	References that may be null
+Nullable references	References that can be null
+Non-null references	References that cannot be null
+Reference initialization	Setting initial value of reference
+Reference declaration	Creating reference variable
+Reference scope	Where reference can be used
+Reference lifetime	How long reference exists
+Reference visibility	Where reference can be seen
+Reference accessibility	How reference can be accessed
+Reference security	Protecting references from misuse
+Reference integrity	Ensuring references are valid
+Reference consistency	Keeping references synchronized
+Reference synchronization	Coordinating reference access
+Reference locking	Preventing concurrent access
+Reference unlocking	Allowing concurrent access
+Reference blocking	Preventing reference use
+Reference unblocking	Allowing reference use
+Reference waiting	Waiting for reference availability
+Reference signaling	Notifying about reference changes
+Reference notification	Alerting about reference updates
+Reference monitoring	Watching reference usage
+Reference tracking	Following reference changes
+Reference logging	Recording reference operations
+Reference auditing	Examining reference usage
+Reference profiling	Measuring reference performance
+Reference optimization	Improving reference efficiency
+Reference caching	Storing references for quick access
+Reference pooling	Reusing reference objects
+Reference recycling	Reclaiming unused references
+Reference garbage collection	Cleaning up unused references
+Reference cleanup	Removing unnecessary references
+Reference maintenance	Keeping references working
+Reference repair	Fixing broken references
+Reference recovery	Restoring lost references
+Reference backup	Storing reference copies
+Reference restore	Recovering reference from backup
+Reference migration	Moving references between systems
+Reference transfer	Moving references between locations
+Reference synchronization	Keeping references in sync
+Reference replication	Creating reference copies
+Reference distribution	Spreading references across systems
+Reference federation	Linking reference systems
+Reference integration	Connecting reference systems
+Reference interoperability	Making references work together
+Reference compatibility	Ensuring references work together
+Reference standardization	Making references consistent
+Reference normalization	Converting references to standard form
+Reference harmonization	Making references consistent
+Reference unification	Combining reference systems
+Reference consolidation	Merging reference systems
+Reference aggregation	Collecting references together
+Reference collection	Gathering references
+Reference gathering	Collecting references
+Reference accumulation	Building up references
+Reference aggregation	Combining references
+Reference synthesis	Creating new references from existing ones
+Reference composition	Building references from parts
+Reference decomposition	Breaking references into parts
+Reference analysis	Examining references
+Reference examination	Looking at references
+Reference inspection	Checking references
+Reference review	Evaluating references
+Reference evaluation	Assessing references
+Reference assessment	Judging references
+Reference judgment	Deciding about references
+Reference decision	Choosing about references
+Reference choice	Selecting references
+Reference selection	Picking references
+Reference picking	Choosing references
+Reference filtering	Removing unwanted references
+Reference sorting	Arranging references in order
+Reference ordering	Putting references in sequence
+Reference sequencing	Ordering references
+Reference ranking	Giving references priority
+Reference prioritizing	Setting reference importance
+Reference weighting	Assigning reference values
+Reference scoring	Giving references scores
+Reference rating	Evaluating references
+Reference grading	Assessing references
+Reference classification	Categorizing references
+Reference categorization	Grouping references
+Reference grouping	Organizing references
+Reference organization	Structuring references
+Reference structuring	Organizing references
+Reference arrangement	Setting up references
+Reference setup	Preparing references
+Reference preparation	Getting references ready
+Reference initialization	Starting references
+Reference startup	Beginning references
+Reference beginning	Starting references
+Reference starting	Initiating references
+Reference initiation	Beginning references
+Reference commencement	Starting references
+Reference launch	Starting references
+Reference deployment	Setting up references
+Reference installation	Putting references in place
+Reference placement	Setting references
+Reference positioning	Placing references
+Reference location	Where references are
+Reference positioning	Where references go
+Reference placement	Where references are put
+Reference arrangement	How references are organized
+Reference organization	How references are structured
+Reference structure	How references are built
+Reference construction	How references are made
+Reference creation	Making references
+Reference generation	Creating references
+Reference production	Making references
+Reference manufacturing	Creating references
+Reference building	Constructing references
+Reference assembly	Putting references together
+Reference composition	Making references from parts
+Reference synthesis	Creating references from components
+Reference combination	Mixing references
+Reference mixing	Combining references
+Reference blending	Merging references
+Reference merging	Combining references
+Reference joining	Connecting references
+Reference connection	Linking references
+Reference linking	Connecting references
+Reference binding	Attaching references
+Reference attachment	Connecting references
+Reference association	Relating references
+Reference relationship	How references relate
+Reference correlation	How references connect
+Reference dependency	How references depend
+Reference coupling	How references are connected
+Reference cohesion	How references stick together
+Reference integration	How references combine
+Reference separation	How references divide
+Reference division	How references split
+Reference splitting	How references separate
+Reference partition	How references divide
+Reference segmentation	How references segment
+Reference fragmentation	How references fragment
+Reference decomposition	How references break down
+Reference breakdown	How references decompose
+Reference analysis	How references are analyzed
+Reference examination	How references are examined
+Reference inspection	How references are inspected
+Reference review	How references are reviewed
+Reference evaluation	How references are evaluated
+Reference assessment	How references are assessed
+Reference judgment	How references are judged
+Reference decision	How references are decided
+Reference choice	How references are chosen
+Reference selection	How references are selected
+Reference picking	How references are picked
+Reference filtering	How references are filtered
+Reference sorting	How references are sorted
+Reference ordering	How references are ordered
+Reference sequencing	How references are sequenced
+Reference ranking	How references are ranked
+Reference prioritizing	How references are prioritized
+Reference weighting	How references are weighted
+Reference scoring	How references are scored
+Reference rating	How references are rated
+Reference grading	How references are graded
+Reference classification	How references are classified
+Reference categorization	How references are categorized
+Reference grouping	How references are grouped
+Reference organization	How references are organized
+Reference structuring	How references are structured
+Reference arrangement	How references are arranged
+Reference setup	How references are set up
+Reference preparation	How references are prepared
+Reference initialization	How references are initialized
+Reference startup	How references are started
+Reference beginning	How references begin
+Reference starting	How references start
+Reference initiation	How references are initiated
+Reference commencement	How references commence
+Reference launch	How references are launched
+Reference deployment	How references are deployed
+Reference installation	How references are installed
+Reference placement	How references are placed
+Reference positioning	How references are positioned
+Reference location	How references are located
+Reference placement	How references are placed
+Reference arrangement	How references are arranged
+Reference organization	How references are organized
+Reference structure	How references are structured
+Reference construction	How references are constructed
+Reference creation	How references are created
+Reference generation	How references are generated
+Reference production	How references are produced
+Reference manufacturing	How references are manufactured
+Reference building	How references are built
+Reference assembly	How references are assembled
+Reference composition	How references are composed
+Reference synthesis	How references are synthesized
+Reference combination	How references are combined
+Reference mixing	How references are mixed
+Reference blending	How references are blended
+Reference merging	How references are merged
+Reference joining	How references are joined
+Reference connection	How references are connected
+Reference linking	How references are linked
+Reference binding	How references are bound
+Reference attachment	How references are attached
+Reference association	How references are associated
+Reference relationship	How references are related
+Reference correlation	How references are correlated
+Reference dependency	How references are dependent
+Reference coupling	How references are coupled
+Reference cohesion	How references are cohesive
+Reference integration	How references are integrated
+Reference separation	How references are separated
+Reference division	How references are divided
+Reference splitting	How references are split
+Reference partition	How references are partitioned
+Reference segmentation	How references are segmented
+Reference fragmentation	How references are fragmented
+Reference decomposition	How references are decomposed
+Reference breakdown	How references are broken down

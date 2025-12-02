@@ -1,0 +1,164 @@
+Q: What is a multidimensional array?
+A: An array with more than one index, allowing you to store data in multiple dimensions like rows and columns.
+
+Q: What is the syntax for declaring a two-dimensional array?
+A: `Base_Type[][] Variable_Name = new Base_Type[rows][columns];`
+
+Q: How do you declare and create a 2D array of characters with 30 rows and 100 columns?
+A: `char[][] page = new char[30][100];`
+
+Q: What is the equivalent of `char[][] page = new char[30][100];` in two steps?
+A: `char[][] page;` followed by `page = new char[30][100];`
+
+Q: How many indices does each indexed variable in a multidimensional array have?
+A: Each indexed variable has as many indices as the array has dimensions.
+
+Q: What are examples of indexed variables for `char[][] page = new char[30][100];`?
+A: `page[0][0]`, `page[15][32]`, `page[29][99]`
+
+Q: How must each index be enclosed in a multidimensional array?
+A: Each index must be enclosed in its own set of square brackets.
+
+Q: What is the most common number of dimensions for arrays?
+A: Two dimensions (2D arrays) are the most common.
+
+Q: How can a two-dimensional array be visualized?
+A: As a two-dimensional display with the first index giving the row and the second index giving the column.
+
+Q: For `char[][] a = new char[5][12];`, what does the first index represent?
+A: The first index (0-4) represents the row number.
+
+Q: For `char[][] a = new char[5][12];`, what does the second index represent?
+A: The second index (0-11) represents the column number.
+
+Q: What are all the indexed variables for `char[][] a = new char[5][12];`?
+A: `a[0][0]` through `a[4][11]` - 5 rows with 12 columns each.
+
+Q: How would you use a 2D array to store text on a page?
+A: First index represents line number (0-4), second index represents character position (0-11) on each line.
+
+Q: What is the syntax for declaring a three-dimensional array?
+A: `Base_Type[][][] Variable_Name = new Base_Type[dim1][dim2][dim3];`
+
+Q: What is an example of a three-dimensional array declaration?
+A: `int[][][] figure = new int[10][20][30];`
+
+Q: Can you create arrays with more than three dimensions?
+A: Yes, Java allows arrays with any number of dimensions.
+
+Q: What is the base type of each indexed variable in a multidimensional array?
+A: The base type is the same as the declared base type of the array (e.g., `char`, `int`, `double`).
+
+Q: How do you access an element in a 2D array?
+A: Use `arrayName[rowIndex][columnIndex]` syntax.
+
+Q: What is the range of valid indices for the first dimension of `char[][] a = new char[5][12];`?
+A: 0 through 4 (5 elements).
+
+Q: What is the range of valid indices for the second dimension of `char[][] a = new char[5][12];`?
+A: 0 through 11 (12 elements).
+
+Q: What happens if you access an invalid index in a multidimensional array?
+A: You get an `ArrayIndexOutOfBoundsException`.
+
+Q: In Java, what is a two-dimensional array actually?
+A: A two-dimensional array is actually an array of arrays.
+
+Q: What does `char[][] a = new char[5][12];` actually create?
+A: A one-dimensional array of size 5, where each element is a reference to a one-dimensional array of 12 characters.
+
+Q: What is the base type of the array `a` in `char[][] a = new char[5][12];`?
+A: The base type is `char[]` (array of characters).
+
+Q: What does each element `a[0]`, `a[1]`, etc. contain in a 2D array?
+A: Each element contains a reference to a one-dimensional array.
+
+Q: How is a three-dimensional array structured?
+A: A three-dimensional array is an array of arrays of arrays.
+
+Q: What is the advantage of thinking about 2D arrays as arrays with two indices?
+A: It's simpler and easier to understand than thinking of them as arrays of arrays.
+
+Q: When might you need to understand that a 2D array is an array of arrays?
+A: When working with jagged arrays or when you need to access individual row arrays directly.
+
+Q: How do you get the length of the first dimension of a 2D array?
+A: Use `arrayName.length` to get the number of rows.
+
+Q: How do you get the length of the second dimension of a 2D array?
+A: Use `arrayName[0].length` to get the number of columns (assuming all rows have the same length).
+
+Q: What is the syntax for declaring a 2D array of doubles with 100 rows and 10 columns?
+A: `double[][] table = new double[100][10];`
+
+Q: Can you create a 2D array of objects (like Person class)?
+A: Yes, for example: `Person[][] entry = new Person[10][10];`
+
+Q: What is the difference between `int[][]` and `int[]`?
+A: `int[][]` is a 2D array (array of arrays), while `int[]` is a 1D array.
+
+Q: How do you initialize a specific element in a 2D array?
+A: Use `arrayName[row][col] = value;` syntax.
+
+Q: How do you loop through all elements in a 2D array?
+A: Use nested loops: `for (int i = 0; i < array.length; i++) for (int j = 0; j < array[i].length; j++)`
+
+Q: What is the time complexity of accessing an element in a 2D array?
+A: O(1) constant time for direct access using indices.
+
+Q: What is the space complexity of a 2D array?
+A: O(rows × columns) for the data, plus overhead for the array structure.
+
+Q: How do you copy a 2D array?
+A: Create a new array and copy each element, or use `System.arraycopy()` for each row.
+
+Q: What is a jagged array?
+A: A 2D array where each row can have a different number of columns.
+
+Q: How do you create a jagged array?
+A: First create the array of arrays, then create each row array separately with different lengths.
+
+Q: What is the advantage of understanding 2D arrays as arrays of arrays?
+A: It helps understand memory layout and allows for more flexible array structures like jagged arrays.
+
+Q: Can you have arrays with different base types in different dimensions?
+A: No, all elements must be of the same base type, but the dimensions can have different sizes.
+
+Q: How do you pass a 2D array to a method?
+A: Use the same syntax as 1D arrays: `methodName(int[][] array)` and pass the array name.
+
+Q: What happens when you pass a 2D array to a method?
+A: A reference to the array is passed, so modifications affect the original array.
+
+Q: How do you return a 2D array from a method?
+A: Use `return arrayName;` where the return type is declared as `Base_Type[][]`.
+
+Q: What is the difference between `new int[5][12]` and `new int[12][5]`?
+A: The first creates 5 rows with 12 columns each, the second creates 12 rows with 5 columns each.
+
+Q: How do you find the total number of elements in a 2D array?
+A: Multiply the number of rows by the number of columns: `array.length * array[0].length`.
+
+Q: What is a common use case for 2D arrays?
+A: Representing matrices, game boards, images (pixel data), tables, or any grid-based data.
+
+Q: How do you check if two 2D arrays are equal?
+A: Compare dimensions first, then compare each element using nested loops.
+
+Q: What is the advantage of using 2D arrays over nested 1D arrays?
+A: 2D arrays provide a more intuitive syntax and are optimized by the JVM for better performance.
+
+Q: How do you initialize a 2D array with specific values?
+A: Use array initialization syntax: `int[][] matrix = {{1,2,3}, {4,5,6}, {7,8,9}};`
+
+Q: What is the memory layout of a 2D array in Java?
+A: An array of references to row arrays, where each row array contains the actual data elements.
+
+Q: How do you traverse a 2D array row by row?
+A: Use `for (int i = 0; i < array.length; i++) for (int j = 0; j < array[i].length; j++)`
+
+Q: How do you traverse a 2D array column by column?
+A: Use `for (int j = 0; j < array[0].length; j++) for (int i = 0; i < array.length; i++)`
+
+Q: What is the relationship between array dimensions and nested loops?
+A: You need one loop for each dimension of the array to traverse all elements systematically.

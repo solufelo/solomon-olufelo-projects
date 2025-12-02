@@ -1,0 +1,188 @@
+%-------------------------
+% Fast Food / Food Service Resume in Latex
+% Author : Solomon Olufelo
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Solomon I. Olufelo} \\ \vspace{1pt}
+    \textbf{\large Food Service Team Member} \\ \vspace{2pt}
+    \small 289-233-8317 $|$ \href{mailto:solomonolufelo@outlook.com}{\underline{solomonolufelo@outlook.com}} $|$
+    \small Brampton, ON $|$ Available Immediately
+\end{center}
+
+
+%-----------PROFESSIONAL SUMMARY-----------
+\section{Professional Summary}
+\small{Energetic and reliable individual with strong work ethic and customer service mindset. Experienced in managing high-volume orders with tight deadlines through independent business operations. Quick learner who thrives in fast-paced environments. Excellent multitasker with attention to food quality and customer satisfaction. Friendly demeanor and team-oriented approach.}
+
+
+%-----------RELEVANT EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Independent Business Owner \& Service Provider}{2020 -- Present}
+      {Self-Employed via Fiverr}{Remote \& Brampton, ON}
+      \resumeItemListStart
+        \resumeItem{Managed 1,400+ orders efficiently, maintaining 99\% on-time completion rate in fast-paced environment}
+        \resumeItem{Provided friendly customer service to 700+ clients, achieving 4.8-star satisfaction rating}
+        \resumeItem{Handled customer complaints and concerns professionally, maintaining high retention rate}
+        \resumeItem{Worked independently to meet strict deadlines while maintaining quality standards}
+        \resumeItem{Managed multiple simultaneous orders during peak periods without compromising accuracy}
+        \resumeItem{Demonstrated reliability and punctuality through consistent performance over 4+ years}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Athletics \& Recreation Assistant}{Aug. 2023 -- Present}
+      {Wilfrid Laurier University}{Waterloo, ON}
+      \resumeItemListStart
+        \resumeItem{Work in fast-paced event environment requiring quick setup and efficient operations}
+        \resumeItem{Maintain cleanliness and organization of work areas to meet university standards}
+        \resumeItem{Collaborate with team members to ensure smooth event operations and positive experiences}
+        \resumeItem{Follow safety protocols and procedures to ensure proper operations}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Wilfrid Laurier University}{Waterloo, ON}
+      {Bachelor of Science in Computer Science (In Progress)}{Sep. 2021 -- 2026 (Expected)}
+      \resumeItemListStart
+        \resumeItem{Quick learner comfortable with POS systems and kitchen display technology}
+        \resumeItem{Strong time management and organizational skills}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications}
+  \resumeSubHeadingListStart
+    \resumeItem{Emergency First Aid CPR/AED Level C - Certificate \#103806646 (Valid until 01/20/2026)}
+    \resumeItem{Food Handler Certification - \emph{Can obtain immediately if required}}
+    \resumeItem{WHMIS Training - \emph{Can complete immediately upon request}}
+  \resumeSubHeadingListEnd
+
+
+%-----------SKILLS-----------
+\section{Skills \& Strengths}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Food Service}{: Fast learner, multitasking, order accuracy, quality control, food safety awareness} \\
+     \textbf{Customer Service}{: Friendly demeanor, active listening, problem-solving, maintaining positive attitude} \\
+     \textbf{Technical}{: Cash handling, POS systems, kitchen display systems, quick with technology} \\
+     \textbf{Work Ethic}{: Punctual, reliable, team player, works well under pressure, efficient} \\
+     \textbf{Physical}{: Able to stand for long periods, work in hot environments, fast-paced multitasking}
+    }}
+ \end{itemize}
+
+
+%-----------ADDITIONAL INFORMATION-----------
+\section{Additional Information}
+  \resumeSubHeadingListStart
+    \resumeItem{Flexible Availability - Open to all shifts including early mornings, nights, weekends, and holidays}
+    \resumeItem{Bilingual - Fluent in English, Basic conversational French}
+    \resumeItem{Based in Brampton - Available for GTA locations}
+    \resumeItem{Reliable Personal Vehicle - Own car for consistent attendance}
+    \resumeItem{Professional Appearance - Clean, well-groomed, and presentable}
+    \resumeItem{Clean Criminal Record - Background check available upon request}
+    \resumeItem{Strong Work Ethic - Proven through maintaining successful business while attending university}
+  \resumeSubHeadingListEnd
+
+
+%-------------------------------------------
+\end{document}
+

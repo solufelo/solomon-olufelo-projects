@@ -1,0 +1,314 @@
+System.out.println	Method to output data to display screen with newline
+System.out.print	Method to output data to display screen without newline
+System.out object	Built-in Java object for console output
+println method	Outputs data and moves to next line
+print method	Outputs data on same line
+Output argument	Data to be displayed in parentheses
+Output semicolon	Statement must end with semicolon
+String output	Text in double quotes: "Hello World"
+Variable output	Display value of variables like sentence
+Number output	Display numbers like 5 or 7.3
+Object output	Display almost any object or value
+Multiple item output	Use + operator to concatenate items
+Concatenation operator	+ operator combines strings and values
+String concatenation	Combining strings with + operator
+Automatic conversion	Numbers converted to strings for output
+No automatic spacing	Spaces must be explicitly added
+Line ending	Every println ends a line of output
+New line behavior	println starts new line after output
+Same line behavior	print adds to current line
+Output equivalence	println(x) equals print(x + "\n")
+Screen display	Output appears on console/terminal
+Console output	Text displayed in command line interface
+Terminal output	Text shown in terminal window
+Display screen	Monitor screen showing program output
+Output formatting	How data appears on screen
+Text formatting	Arranging text output nicely
+Number formatting	Displaying numbers in readable format
+String formatting	Arranging string output
+Variable formatting	Displaying variables clearly
+Object formatting	Showing objects in readable way
+Output spacing	Adding spaces between output items
+Output alignment	Arranging output in columns or rows
+Output indentation	Adding spaces for visual structure
+Output newlines	Controlling line breaks in output
+Output tabs	Using tab characters for spacing
+Output special characters	Displaying non-printable characters
+Output escape sequences	Special character codes like \n, \t
+Newline character	\n character for line breaks
+Tab character	\t character for indentation
+Backslash character	\\ to display backslash
+Quote character	\" to display double quote
+Single quote character	\' to display single quote
+Carriage return	\r character for line beginning
+Form feed	\f character for page break
+Bell character	\a character for system beep
+Backspace character	\b character for cursor movement
+Vertical tab	\v character for vertical spacing
+Null character	\0 character for null termination
+Octal escape	\000 for octal character codes
+Unicode escape	\u0000 for Unicode character codes
+Hexadecimal escape	\x00 for hexadecimal character codes
+Output buffering	Storing output before displaying
+Flush output	Forcing immediate display of buffered output
+System.out.flush()	Method to flush output buffer
+Buffered output	Output stored in memory buffer
+Unbuffered output	Output displayed immediately
+Line buffered	Output flushed at end of each line
+Block buffered	Output flushed when buffer is full
+Fully buffered	Output flushed when program ends
+Output redirection	Sending output to file instead of screen
+Output piping	Connecting output to input of another program
+Output append	Adding output to existing file
+Output overwrite	Replacing file contents with output
+Output stream	Flow of data from program to display
+Standard output	Default output stream (System.out)
+Standard error	Error output stream (System.err)
+Standard input	Default input stream (System.in)
+Console class	Alternative to System.out for output
+PrintStream class	Class that System.out belongs to
+PrintWriter class	Alternative output class
+StringWriter class	Output to string instead of console
+ByteArrayOutputStream	Output to byte array
+FileOutputStream	Output to file
+PipedOutputStream	Output to pipe
+FilterOutputStream	Output with filtering
+BufferedOutputStream	Output with buffering
+DataOutputStream	Output of primitive data types
+ObjectOutputStream	Output of objects
+ZipOutputStream	Compressed output
+GZIPOutputStream	Gzip compressed output
+DeflaterOutputStream	Deflate compressed output
+CheckedOutputStream	Output with checksum
+DigestOutputStream	Output with message digest
+CipherOutputStream	Encrypted output
+DigestOutputStream	Output with cryptographic hash
+HMACOutputStream	Output with HMAC authentication
+SignatureOutputStream	Output with digital signature
+CipherOutputStream	Output with encryption
+SealedObjectOutputStream	Output with sealed objects
+SignedObjectOutputStream	Output with signed objects
+VerifiableOutputStream	Output with verification
+AuthenticatedOutputStream	Output with authentication
+SecureOutputStream	Output with security features
+EncryptedOutputStream	Output with encryption
+CompressedOutputStream	Output with compression
+EncodedOutputStream	Output with encoding
+FormattedOutputStream	Output with formatting
+StructuredOutputStream	Output with structure
+XMLOutputStream	Output in XML format
+JSONOutputStream	Output in JSON format
+CSVOutputStream	Output in CSV format
+HTMLOutputStream	Output in HTML format
+MarkupOutputStream	Output with markup
+TemplateOutputStream	Output with templates
+ReportOutputStream	Output as reports
+LogOutputStream	Output as logs
+DebugOutputStream	Output for debugging
+TraceOutputStream	Output for tracing
+ProfileOutputStream	Output for profiling
+MonitorOutputStream	Output for monitoring
+AuditOutputStream	Output for auditing
+MetricsOutputStream	Output for metrics
+StatisticsOutputStream	Output for statistics
+AnalyticsOutputStream	Output for analytics
+DashboardOutputStream	Output for dashboards
+ChartOutputStream	Output for charts
+GraphOutputStream	Output for graphs
+PlotOutputStream	Output for plots
+VisualizationOutputStream	Output for visualizations
+GUIOutputStream	Output for graphical user interfaces
+SwingOutputStream	Output for Swing components
+AWTOutputStream	Output for AWT components
+JavaFXOutputStream	Output for JavaFX components
+WebOutputStream	Output for web applications
+ServletOutputStream	Output for servlets
+JSPOutputStream	Output for JSP pages
+JSFOutputStream	Output for JSF applications
+SpringOutputStream	Output for Spring applications
+HibernateOutputStream	Output for Hibernate operations
+JPAOutputStream	Output for JPA operations
+EJBOutputStream	Output for EJB operations
+CDIOutputStream	Output for CDI operations
+MicroserviceOutputStream	Output for microservices
+RESTOutputStream	Output for REST APIs
+SOAPOutputStream	Output for SOAP services
+GraphQLOutputStream	Output for GraphQL
+WebSocketOutputStream	Output for WebSocket
+ServerSentEventOutputStream	Output for Server-Sent Events
+ReactiveOutputStream	Output for reactive streams
+AsyncOutputStream	Output for asynchronous operations
+ConcurrentOutputStream	Output for concurrent operations
+ParallelOutputStream	Output for parallel operations
+DistributedOutputStream	Output for distributed systems
+ClusterOutputStream	Output for clustered systems
+GridOutputStream	Output for grid systems
+CloudOutputStream	Output for cloud systems
+ContainerOutputStream	Output for containerized systems
+DockerOutputStream	Output for Docker containers
+KubernetesOutputStream	Output for Kubernetes
+MesosOutputStream	Output for Apache Mesos
+SwarmOutputStream	Output for Docker Swarm
+NomadOutputStream	Output for HashiCorp Nomad
+ConsulOutputStream	Output for Consul
+EtcdOutputStream	Output for etcd
+ZookeeperOutputStream	Output for Apache ZooKeeper
+HadoopOutputStream	Output for Hadoop
+SparkOutputStream	Output for Apache Spark
+FlinkOutputStream	Output for Apache Flink
+KafkaOutputStream	Output for Apache Kafka
+RabbitMQOutputStream	Output for RabbitMQ
+ActiveMQOutputStream	Output for Apache ActiveMQ
+ArtemisOutputStream	Output for Apache Artemis
+HornetQOutputStream	Output for HornetQ
+OpenMQOutputStream	Output for OpenMQ
+WebSphereMQOutputStream	Output for WebSphere MQ
+TibcoOutputStream	Output for TIBCO
+SolaceOutputStream	Output for Solace
+RedisOutputStream	Output for Redis
+MemcachedOutputStream	Output for Memcached
+MongoDBOutputStream	Output for MongoDB
+CassandraOutputStream	Output for Apache Cassandra
+CouchbaseOutputStream	Output for Couchbase
+ElasticsearchOutputStream	Output for Elasticsearch
+SolrOutputStream	Output for Apache Solr
+LuceneOutputStream	Output for Apache Lucene
+Neo4jOutputStream	Output for Neo4j
+ArangoDBOutputStream	Output for ArangoDB
+OrientDBOutputStream	Output for OrientDB
+InfluxDBOutputStream	Output for InfluxDB
+TimescaleDBOutputStream	Output for TimescaleDB
+ClickHouseOutputStream	Output for ClickHouse
+BigQueryOutputStream	Output for Google BigQuery
+RedshiftOutputStream	Output for Amazon Redshift
+SnowflakeOutputStream	Output for Snowflake
+TeradataOutputStream	Output for Teradata
+VerticaOutputStream	Output for Vertica
+GreenplumOutputStream	Output for Greenplum
+PostgreSQLOutputStream	Output for PostgreSQL
+MySQLOutputStream	Output for MySQL
+OracleOutputStream	Output for Oracle Database
+SQLServerOutputStream	Output for Microsoft SQL Server
+DB2OutputStream	Output for IBM DB2
+SybaseOutputStream	Output for Sybase
+InformixOutputStream	Output for IBM Informix
+H2OutputStream	Output for H2 Database
+DerbyOutputStream	Output for Apache Derby
+HSQLDBOutputStream	Output for HSQLDB
+SQLiteOutputStream	Output for SQLite
+FirebirdOutputStream	Output for Firebird
+MariaDBOutputStream	Output for MariaDB
+PerconaOutputStream	Output for Percona
+AuroraOutputStream	Output for Amazon Aurora
+DynamoDBOutputStream	Output for Amazon DynamoDB
+DocumentDBOutputStream	Output for Amazon DocumentDB
+CosmosDBOutputStream	Output for Azure Cosmos DB
+TableStorageOutputStream	Output for Azure Table Storage
+BlobStorageOutputStream	Output for Azure Blob Storage
+FileStorageOutputStream	Output for Azure File Storage
+QueueStorageOutputStream	Output for Azure Queue Storage
+S3OutputStream	Output for Amazon S3
+GlacierOutputStream	Output for Amazon Glacier
+CloudFrontOutputStream	Output for Amazon CloudFront
+CloudWatchOutputStream	Output for Amazon CloudWatch
+CloudTrailOutputStream	Output for Amazon CloudTrail
+XRayOutputStream	Output for AWS X-Ray
+LambdaOutputStream	Output for AWS Lambda
+API GatewayOutputStream	Output for AWS API Gateway
+Elastic BeanstalkOutputStream	Output for AWS Elastic Beanstalk
+ECSOutputStream	Output for Amazon ECS
+EKSOutputStream	Output for Amazon EKS
+FargateOutputStream	Output for AWS Fargate
+BatchOutputStream	Output for AWS Batch
+Step FunctionsOutputStream	Output for AWS Step Functions
+SQSOutputStream	Output for Amazon SQS
+SNSOutputStream	Output for Amazon SNS
+EventBridgeOutputStream	Output for Amazon EventBridge
+KinesisOutputStream	Output for Amazon Kinesis
+FirehoseOutputStream	Output for Amazon Kinesis Data Firehose
+AnalyticsOutputStream	Output for Amazon Kinesis Analytics
+StreamsOutputStream	Output for Amazon Kinesis Data Streams
+ElasticsearchServiceOutputStream	Output for Amazon Elasticsearch Service
+OpenSearchOutputStream	Output for Amazon OpenSearch
+RedshiftSpectrumOutputStream	Output for Amazon Redshift Spectrum
+AthenaOutputStream	Output for Amazon Athena
+QuickSightOutputStream	Output for Amazon QuickSight
+DataPipelineOutputStream	Output for AWS Data Pipeline
+GlueOutputStream	Output for AWS Glue
+EMROutputStream	Output for Amazon EMR
+SageMakerOutputStream	Output for Amazon SageMaker
+RekognitionOutputStream	Output for Amazon Rekognition
+ComprehendOutputStream	Output for Amazon Comprehend
+TranslateOutputStream	Output for Amazon Translate
+PollyOutputStream	Output for Amazon Polly
+TranscribeOutputStream	Output for Amazon Transcribe
+LexOutputStream	Output for Amazon Lex
+ConnectOutputStream	Output for Amazon Connect
+ChimeOutputStream	Output for Amazon Chime
+WorkSpacesOutputStream	Output for Amazon WorkSpaces
+AppStreamOutputStream	Output for Amazon AppStream
+WorkDocsOutputStream	Output for Amazon WorkDocs
+WorkMailOutputStream	Output for Amazon WorkMail
+PinpointOutputStream	Output for Amazon Pinpoint
+SESOutputStream	Output for Amazon SES
+SNSOutputStream	Output for Amazon SNS
+SQSOutputStream	Output for Amazon SQS
+EventBridgeOutputStream	Output for Amazon EventBridge
+Step FunctionsOutputStream	Output for AWS Step Functions
+SWFOutputStream	Output for Amazon SWF
+BatchOutputStream	Output for AWS Batch
+ECSOutputStream	Output for Amazon ECS
+EKSOutputStream	Output for Amazon EKS
+FargateOutputStream	Output for AWS Fargate
+LambdaOutputStream	Output for AWS Lambda
+API GatewayOutputStream	Output for AWS API Gateway
+Elastic BeanstalkOutputStream	Output for AWS Elastic Beanstalk
+CloudFormationOutputStream	Output for AWS CloudFormation
+CDKOutputStream	Output for AWS CDK
+SAMOutputStream	Output for AWS SAM
+ServerlessOutputStream	Output for AWS Serverless
+TerraformOutputStream	Output for Terraform
+AnsibleOutputStream	Output for Ansible
+ChefOutputStream	Output for Chef
+PuppetOutputStream	Output for Puppet
+SaltStackOutputStream	Output for SaltStack
+VagrantOutputStream	Output for Vagrant
+DockerOutputStream	Output for Docker
+KubernetesOutputStream	Output for Kubernetes
+HelmOutputStream	Output for Helm
+IstioOutputStream	Output for Istio
+LinkerdOutputStream	Output for Linkerd
+Consul ConnectOutputStream	Output for Consul Connect
+EnvoyOutputStream	Output for Envoy Proxy
+NGINXOutputStream	Output for NGINX
+ApacheOutputStream	Output for Apache HTTP Server
+TomcatOutputStream	Output for Apache Tomcat
+JettyOutputStream	Output for Eclipse Jetty
+UndertowOutputStream	Output for Undertow
+NettyOutputStream	Output for Netty
+Vert.xOutputStream	Output for Eclipse Vert.x
+Spring BootOutputStream	Output for Spring Boot
+QuarkusOutputStream	Output for Quarkus
+MicronautOutputStream	Output for Micronaut
+HelidonOutputStream	Output for Helidon
+DropwizardOutputStream	Output for Dropwizard
+Play FrameworkOutputStream	Output for Play Framework
+AkkaOutputStream	Output for Akka
+LagomOutputStream	Output for Lightbend Lagom
+FinatraOutputStream	Output for Finatra
+JerseyOutputStream	Output for Jersey
+RESTEasyOutputStream	Output for RESTEasy
+CXFOutputStream	Output for Apache CXF
+AxisOutputStream	Output for Apache Axis
+MetroOutputStream	Output for Metro
+GlassFishOutputStream	Output for GlassFish
+WildFlyOutputStream	Output for WildFly
+JBoss EAPOutputStream	Output for JBoss EAP
+WebLogicOutputStream	Output for Oracle WebLogic
+WebSphereOutputStream	Output for IBM WebSphere
+TomEEOutputStream	Output for Apache TomEE
+OpenLibertyOutputStream	Output for Open Liberty
+PayaraOutputStream	Output for Payara
+ResinOutputStream	Output for Resin
+TcatOutputStream	Output for Tcat
+Pivotal tc ServerOutputStream	Output for Pivotal tc Server

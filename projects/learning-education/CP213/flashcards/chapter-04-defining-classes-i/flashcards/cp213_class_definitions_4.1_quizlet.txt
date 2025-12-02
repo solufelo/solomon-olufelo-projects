@@ -1,0 +1,134 @@
+Class	Type that defines the structure and behavior of objects
+Object	Instance of a class that has both data and actions
+Method	Actions or behaviors that objects can perform
+Instance	Another term for an object of a class
+Instance variable	Data members that belong to each individual object
+Field	Alternative term for instance variable (data members)
+Member	General term for both data items and methods of an object
+Class type	The type of a class (like String, int, but for custom classes)
+Class variable	Variable declared with a class type (holds reference to object)
+Object creation	Process of creating a new instance using 'new' operator
+new operator	Keyword used to create new objects: new ClassName()
+Constructor	Special method that initializes new objects (same name as class)
+public modifier	Access modifier that allows unrestricted access to class members
+Instance variable declaration	Syntax: public Type variableName;
+DateFirstTry example	Sample class with month, day, year instance variables
+Class definition syntax	class ClassName { instance variables and methods }
+Object reference	Variable that holds the memory address of an object
+Variable declaration	DateFirstTry date1, date2; (creates variables, not objects)
+Object instantiation	date1 = new DateFirstTry(); (creates actual object)
+Class as blueprint	Class defines what objects of that type will contain
+Object uniqueness	Each object has different data values but same structure
+Method definition	Actions that all objects of a class can perform
+writeOutput method	Example method that displays object data
+Complex item analogy	Object like a box containing instance variables inside
+Memory allocation	'new' operator allocates memory for the object
+Reference assignment	date1 = new DateFirstTry(); assigns object reference to variable
+Object naming	Objects are named by variables of the class type
+Instance variable access	Access using dot notation: objectName.variableName
+Class interaction	Objects from different classes interact in Java programs
+Type system	Classes are types in Java's type system
+Object-oriented programming	Programming paradigm based on objects and classes
+Data encapsulation	Objects contain both data and methods together
+Class hierarchy	Classes can be organized in inheritance hierarchies
+Object lifecycle	Creation → Usage → Garbage collection
+Memory management	Java automatically manages object memory
+Garbage collection	Automatic cleanup of objects no longer referenced
+Object identity	Each object has unique identity even with same data
+Class loading	Class definitions loaded into memory when first used
+Static vs instance	Static belongs to class, instance belongs to object
+Object state	Current values of all instance variables in an object
+Object behavior	Methods that define what an object can do
+Class responsibility	What the class is designed to represent or model
+Domain modeling	Using classes to represent real-world concepts
+Object composition	Objects can contain other objects as instance variables
+Method invocation	Calling a method on an object: object.method()
+Parameter passing	Values passed to methods when they are called
+Return values	Values that methods can return to the caller
+Method signature	Method name and parameter list (defines the method)
+Method overloading	Multiple methods with same name but different parameters
+Access control	Controlling how class members can be accessed
+Encapsulation	Bundling data and methods together in a class
+Data hiding	Making instance variables private to protect them
+Public interface	Public methods that define how to interact with objects
+Private implementation	Private instance variables and helper methods
+Class design principles	Guidelines for creating well-designed classes
+Single responsibility	Each class should have one clear purpose
+Cohesion	All parts of a class should work together toward same goal
+Coupling	How much one class depends on another
+Object initialization	Setting initial values for instance variables
+Default values	Initial values assigned to instance variables
+Constructor overloading	Multiple constructors with different parameter lists
+Parameterized constructor	Constructor that takes parameters to initialize object
+Default constructor	Constructor with no parameters (provided automatically)
+Object creation process	1. Allocate memory 2. Initialize variables 3. Call constructor
+Memory layout	How objects are arranged in computer memory
+Reference semantics	Variables hold references (addresses) not actual objects
+Value semantics	Primitive variables hold actual values
+Object comparison	Comparing objects using .equals() not ==
+Identity vs equality	== compares references, .equals() compares content
+Mutable objects	Objects whose state can be changed after creation
+Immutable objects	Objects whose state cannot be changed after creation
+Object copying	Creating new objects with same data as existing ones
+Shallow copy	Copy that shares referenced objects with original
+Deep copy	Copy that creates new copies of all referenced objects
+toString method	Method that returns string representation of object
+equals method	Method that compares object content for equality
+hashCode method	Method that returns hash code for object
+Object class	Root class that all other classes inherit from
+Inheritance	Mechanism for creating new classes based on existing ones
+Polymorphism	Ability to use objects of different types interchangeably
+Method overriding	Redefining methods inherited from parent class
+Dynamic binding	Method called determined at runtime based on object type
+Abstract classes	Classes that cannot be instantiated directly
+Interfaces	Contracts that classes must implement
+Package organization	Organizing classes into logical groups
+Import statements	Bringing classes from other packages into current file
+Class visibility	Controlling which classes can be accessed from other packages
+Public classes	Classes accessible from any package
+Package-private classes	Classes accessible only within same package
+Class naming conventions	Use PascalCase for class names (e.g., DateFirstTry)
+Method naming conventions	Use camelCase for method names (e.g., writeOutput)
+Variable naming conventions	Use camelCase for variable names (e.g., date1)
+Constant naming conventions	Use UPPER_SNAKE_CASE for constants (e.g., MAX_SIZE)
+Documentation	Comments that explain what classes and methods do
+Javadoc	Standard format for documenting Java classes and methods
+Class comments	Documentation that explains the purpose of the class
+Method comments	Documentation that explains what methods do and their parameters
+Parameter documentation	Documentation that explains method parameters
+Return value documentation	Documentation that explains what methods return
+Exception documentation	Documentation that explains what exceptions methods might throw
+API documentation	Generated documentation from Javadoc comments
+Class library	Collection of pre-written classes for common tasks
+Standard library	Java's built-in collection of useful classes
+Third-party libraries	Classes written by others for specific purposes
+Dependency management	Managing external libraries your project depends on
+Class versioning	Managing different versions of classes over time
+Backward compatibility	Ensuring new versions work with existing code
+Deprecation	Marking old methods as outdated but still functional
+Migration path	Strategy for moving from old to new versions
+Testing classes	Verifying that classes work correctly
+Unit testing	Testing individual classes in isolation
+Integration testing	Testing how classes work together
+Test-driven development	Writing tests before implementing classes
+Mock objects	Fake objects used for testing
+Stub methods	Simplified method implementations for testing
+Code coverage	Measuring how much of your code is tested
+Regression testing	Ensuring changes don't break existing functionality
+Performance testing	Measuring how fast classes execute
+Memory profiling	Analyzing memory usage of classes
+Optimization	Improving class performance and efficiency
+Refactoring	Improving class design without changing functionality
+Code review	Having others examine your class implementations
+Peer programming	Working with others to write better classes
+Design patterns	Common solutions to recurring class design problems
+Singleton pattern	Ensuring only one instance of a class exists
+Factory pattern	Creating objects without specifying exact class
+Observer pattern	Notifying multiple objects about changes
+Strategy pattern	Encapsulating algorithms in separate classes
+Command pattern	Encapsulating requests as objects
+Adapter pattern	Making incompatible classes work together
+Decorator pattern	Adding behavior to objects dynamically
+Facade pattern	Providing simplified interface to complex subsystem
+Template method pattern	Defining algorithm structure in base class
+Builder pattern	Constructing complex objects step by step

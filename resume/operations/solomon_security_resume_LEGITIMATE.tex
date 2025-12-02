@@ -1,0 +1,191 @@
+%-------------------------
+% Security Resume in Latex
+% Author : Solomon Olufelo
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Solomon I. Olufelo} \\ \vspace{1pt}
+    \textbf{\large Licensed Security Professional} \\ \vspace{2pt}
+    \small 289-233-8317 $|$ \href{mailto:solomonolufelo@outlook.com}{\underline{solomonolufelo@outlook.com}} $|$
+    \small Brampton, ON $|$ Available Immediately
+    \\ \vspace{1pt}
+    \small Ontario Security Guard License: 50050689 $|$ Valid Until: 06/01/2026
+\end{center}
+
+
+%-----------PROFESSIONAL SUMMARY-----------
+\section{Professional Summary}
+\small{Licensed security professional with strong observational skills, technical aptitude, and proven ability to remain calm under pressure. Background in event monitoring, crowd management, and premises surveillance through university athletic events. Tech-savvy with advanced problem-solving abilities from computer science education. Excellent communication skills and commitment to maintaining safe, secure environments.}
+
+
+%-----------LICENSES & CERTIFICATIONS-----------
+\section{Licenses \& Certifications}
+  \resumeSubHeadingListStart
+    \resumeItem{Ontario Security Guard License \#50050689 - Ministry of the Solicitor General (Valid until 06/01/2026)}
+    \resumeItem{Emergency First Aid CPR/AED Level C - Certificate \#103806646 (Valid until 01/20/2026)}
+    \resumeItem{WHMIS Training - \emph{Can complete upon request}}
+    \resumeItem{Smart Serve Certification - \emph{Available if required for venue security}}
+  \resumeSubHeadingListEnd
+
+
+%-----------RELEVANT EXPERIENCE-----------
+\section{Relevant Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Athletics \& Recreation Videographer}{Aug. 2023 -- Present}
+      {Wilfrid Laurier University}{Waterloo, ON}
+      \resumeItemListStart
+        \resumeItem{Monitor large-scale athletic events and recreational activities, maintaining awareness of crowd behavior and potential safety concerns}
+        \resumeItem{Respond quickly to incidents requiring documentation or staff notification}
+        \resumeItem{Operate surveillance equipment and maintain detailed records of event activities}
+        \resumeItem{Collaborate with university athletics staff to ensure smooth event operations and safety protocols}
+        \resumeItem{Demonstrate reliability through consistent attendance and professional conduct at high-traffic events}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Freelance Media Producer}{2020 -- Present}
+      {Self-Employed}{Remote \& Brampton, ON}
+      \resumeItemListStart
+        \resumeItem{Built reputation for trustworthiness and reliability with 1,400+ completed client contracts}
+        \resumeItem{Developed strong attention to detail and observational skills through video surveillance and analysis work}
+        \resumeItem{Maintained strict confidentiality and professionalism with high-profile clients}
+        \resumeItem{Demonstrated excellent time management and ability to work independently or as part of a team}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------SECURITY-RELEVANT SKILLS-----------
+\section{Security-Relevant Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Core Competencies}{: Surveillance \& Monitoring, Incident Documentation, Crowd Management, Conflict De-escalation} \\
+     \textbf{Technical Skills}{: CCTV Systems, Access Control Systems, Security Software, Report Writing} \\
+     \textbf{Soft Skills}{: Excellent Communication, Professional Demeanor, Alert \& Observant, Calm Under Pressure} \\
+     \textbf{Physical}{: Able to stand/patrol for extended periods, physically fit, valid G license (if you have one)} \\
+     \textbf{Technology}{: Computer literate, proficient with security management software, mobile communication devices}
+    }}
+ \end{itemize}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Wilfrid Laurier University}{Waterloo, ON}
+      {Bachelor of Science in Computer Science (In Progress)}{Sep. 2021 -- 2026 (Expected)}
+      \resumeItemListStart
+        \resumeItem{Strong analytical and problem-solving skills applicable to security threat assessment}
+        \resumeItem{Technical expertise beneficial for modern security systems and surveillance technology}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%-----------ADDITIONAL QUALIFICATIONS-----------
+\section{Additional Qualifications}
+  \resumeSubHeadingListStart
+    \resumeItem{Clean Criminal Record - CPIC Clearance Available Upon Request}
+    \resumeItem{Bilingual - Fluent in English, Basic conversational French}
+    \resumeItem{Flexible Availability - Open to all shifts including nights, weekends, and holidays}
+    \resumeItem{Based in Brampton - Available for GTA, Waterloo Region, and surrounding areas}
+    \resumeItem{Reliable Personal Vehicle - Own car, G license in progress (test scheduled), available for mobile patrol assignments}
+    \resumeItem{Professional Appearance - Well-groomed and presentable at all times}
+    \resumeItem{Strong Work Ethic - Proven through academic and professional commitments}
+    \resumeItem{Tech-Savvy - Comfortable with security software, surveillance systems, and reporting tools}
+  \resumeSubHeadingListEnd
+
+
+%-------------------------------------------
+\end{document}
+

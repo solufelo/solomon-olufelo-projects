@@ -1,0 +1,336 @@
+Java programming language	General-purpose programming language for various applications
+Internet applications	Java's well-known use for web-based programs
+General-purpose language	Java suitable for most any application type
+James Gosling	Led team at Sun Microsystems that developed Java
+Sun Microsystems	Company where Java was originally developed
+Oracle Corporation	Current owner of Java (purchased Sun in 2010)
+Home appliances programming	Java's original intended use (washing machines, TVs)
+Wide variety of processors	Challenge in designing language for different chips
+Expensive compilers	Problem with traditional compiler development
+Two-step translation process	Java's solution for multiple processor support
+Intermediate language	Common language for all appliances/computers
+Java byte-code	Intermediate language Java programs compile to
+Byte-code	Java's intermediate language for all platforms
+Machine language	Final language specific to each processor
+Cost savings	Benefit of two-step translation process
+Translation programs	Compilers that convert code to machine language
+Program translation	Converting source code to executable form
+Code compilation	Process of translating source code to byte-code
+Byte-code execution	Running byte-code on Java Virtual Machine
+Java Virtual Machine	JVM - runs byte-code on different platforms
+Platform independence	Java's ability to run on different operating systems
+Write once, run anywhere	Java's platform independence principle
+Patrick Naughton	Developed Web browser for running Java programs
+Jonathan Payne	Developed Web browser for running Java programs
+HotJava browser	Web browser that could run Java programs
+Internet connection	Java's evolution toward web programming
+Netscape Incorporated	Made browser capable of running Java programs
+Web browser compatibility	Browsers supporting Java program execution
+Object-oriented programming	OOP - programming methodology using objects
+OOP methodology	Viewing programs as interacting objects
+Objects in the world	People, automobiles, buildings, streets, etc.
+Object interactions	Objects performing actions affecting other objects
+Object-oriented terminology	Specialized vocabulary for OOP concepts
+Objects	Entities in object-oriented programming
+Methods	Actions that objects can perform
+Class	Group of objects with same type and methods
+Type	Classification of objects in same category
+Airplane class example	Simulation program example of class concept
+Same methods	All objects in class have identical capabilities
+Different characteristics	Objects can have unique data/attributes
+Object data	Information associated with specific objects
+Speed and altitude	Example data for airplane objects
+Procedures	Functions in other languages called methods in Java
+Functions	Subprograms in other languages called methods in Java
+Subprograms	Routines in other languages called methods in Java
+Java methods	All functions/procedures called methods in Java
+Class membership	All Java constructs must be part of a class
+Application program	Regular Java program with main method
+Main method	Entry point for Java application programs
+Run-time system	Java system that automatically invokes main method
+Automatic invocation	JVM automatically calls main method when program starts
+Applets	Java programs designed to run in web browsers
+Java applications	Regular programs running on your computer
+Java applets	Small applications running in web browsers
+Little Java application	Meaning of "applet" (not little apple)
+Web browser execution	Applets run from browsers, not directly
+Internet distribution	Applets can be sent and run remotely
+Windowing interface	Applets always use graphical user interface
+Applet viewer	Program for running applets outside browsers
+Web browser running	Applets typically executed in browsers
+Application running	Applications run like any other program
+Java terminology	Vocabulary specific to Java programming
+Programming language comparison	Java vs other languages terminology
+Method terminology	Java's name for functions/procedures
+Class requirement	All Java code must be within classes
+Object interaction	Objects communicate through method calls
+Action performance	Objects execute methods to perform tasks
+Data association	Objects store information as attributes
+Characteristic differences	Objects can have unique properties
+Simulation programming	Using objects to model real-world systems
+Airport simulation	Example of object-oriented simulation
+Airplane simulation	Modeling airplanes as objects with methods
+Taking off method	Example action airplanes can perform
+Flying method	Example action airplanes can perform
+Landing method	Example action airplanes can perform
+Location specification	Method parameter for airplane actions
+Speed data	Characteristic stored in airplane object
+Altitude data	Characteristic stored in airplane object
+Object identity	Each object is unique instance of class
+Class definition	Template for creating objects
+Object creation	Making new instances of classes
+Instance variables	Data stored in individual objects
+Method definitions	Code that implements object actions
+Object behavior	What objects can do (their methods)
+Object state	Current values of object's data
+State changes	Modifying object's data through methods
+Method invocation	Calling methods to perform actions
+Object communication	Objects interacting through method calls
+Data encapsulation	Objects contain their own data
+Information hiding	Objects control access to their data
+Class hierarchy	Organizing classes in inheritance relationships
+Inheritance	Classes inheriting from other classes
+Polymorphism	Objects of different classes responding differently
+Method overriding	Subclasses providing different method implementations
+Interface implementation	Classes implementing interface contracts
+Abstract classes	Classes that cannot be instantiated directly
+Concrete classes	Classes that can be instantiated
+Object instantiation	Creating objects from class definitions
+Constructor methods	Special methods for object initialization
+Instance creation	Making new objects at runtime
+Memory allocation	Reserving space for objects in memory
+Garbage collection	Automatic cleanup of unused objects
+Object lifecycle	Creation, use, and destruction of objects
+Reference variables	Variables that point to objects
+Object references	Memory addresses pointing to objects
+Null references	References that point to no object
+Object comparison	Comparing objects vs comparing references
+Object equality	Determining if objects are equal
+String objects	Special objects for text data
+Primitive types	Basic data types (int, double, boolean, etc.)
+Wrapper classes	Classes that wrap primitive types
+Autoboxing	Automatic conversion between primitives and wrappers
+Unboxing	Automatic conversion from wrappers to primitives
+Static members	Class-level variables and methods
+Instance members	Object-level variables and methods
+Class variables	Variables shared by all objects of class
+Class methods	Methods that belong to class, not objects
+Package organization	Grouping related classes together
+Import statements	Bringing classes from other packages
+Access modifiers	Public, private, protected, package-private
+Public access	No restrictions on class member access
+Private access	Access restricted to same class only
+Protected access	Access within package and subclasses
+Package-private access	Access within same package only
+Method overloading	Multiple methods with same name, different parameters
+Method overriding	Subclass providing different implementation
+Constructor overloading	Multiple constructors with different parameters
+Default constructor	Constructor provided automatically
+Parameterized constructor	Constructor that takes parameters
+Method parameters	Values passed to methods
+Method return values	Values returned by methods
+Void methods	Methods that return nothing
+Value-returning methods	Methods that return specific types
+Method signatures	Method name and parameter list
+Method bodies	Code that implements method functionality
+Local variables	Variables declared within methods
+Parameter variables	Variables that receive method arguments
+Instance variables	Variables that belong to objects
+Class variables	Variables that belong to classes
+Variable scope	Where variables can be accessed
+Variable lifetime	How long variables exist in memory
+Method calls	Invoking methods to perform actions
+Method execution	Running method code
+Method completion	When method finishes execution
+Return statements	Statements that end method execution
+Exception handling	Managing errors during program execution
+Try-catch blocks	Code for handling exceptions
+Error handling	Dealing with program errors
+Runtime errors	Errors that occur during program execution
+Compile-time errors	Errors detected during compilation
+Logical errors	Errors in program logic
+Syntax errors	Errors in program grammar
+Semantic errors	Errors in program meaning
+Debugging	Process of finding and fixing errors
+Testing	Verifying program correctness
+Unit testing	Testing individual components
+Integration testing	Testing component interactions
+System testing	Testing complete system
+Acceptance testing	Verifying system meets requirements
+Performance testing	Measuring program speed and efficiency
+Memory testing	Checking for memory leaks
+Security testing	Looking for security vulnerabilities
+Usability testing	Verifying ease of use
+Accessibility testing	Ensuring usability for all users
+Compatibility testing	Testing across different systems
+Portability testing	Ensuring code works on different platforms
+Maintainability	How easy code is to modify
+Readability	How easy code is to understand
+Documentation	Written explanations of code
+Comments	Explanatory text in code
+Javadoc	Standard format for documenting Java code
+Code standards	Consistent rules for writing code
+Best practices	Recommended programming approaches
+Design patterns	Common solutions to programming problems
+Refactoring	Improving code structure without changing behavior
+Code review	Having others examine your code
+Pair programming	Working with someone to write code
+Version control	Tracking changes to code over time
+Continuous integration	Automated testing and building
+Automated testing	Using tools to test code automatically
+Build automation	Using tools to compile and package code
+Deployment automation	Using tools to install software
+Monitoring	Tracking program behavior
+Logging	Recording program events
+Profiling	Measuring program performance
+Optimization	Improving program performance
+Scalability	Ability to handle larger problems
+Flexibility	Ability to adapt to changes
+Reusability	Ability to use code in multiple places
+Modularity	Dividing code into independent parts
+Extensibility	Ability to add new features
+Configurability	Ability to customize behavior
+Customizability	Ability to modify for specific needs
+Personalization	Ability to adapt to user preferences
+Localization	Adapting for different languages
+Internationalization	Designing for multiple languages
+Globalization	Making software work worldwide
+Standardization	Following established conventions
+Normalization	Converting to standard formats
+Harmonization	Making different parts work together
+Unification	Combining separate systems
+Consolidation	Merging related functionality
+Aggregation	Combining multiple items
+Integration	Connecting different systems
+Federation	Linking independent systems
+Distribution	Spreading across multiple locations
+Decentralization	Removing central control
+Centralization	Concentrating control in one place
+Clustering	Grouping related items
+Virtualization	Creating virtual versions of resources
+Cloud computing	Using remote computing resources
+Edge computing	Processing data near its source
+Fog computing	Distributed computing infrastructure
+Mobile computing	Computing on mobile devices
+Ubiquitous computing	Computing everywhere
+Pervasive computing	Computing integrated into environment
+Ambient computing	Computing in background
+Context-aware computing	Computing that understands situation
+Adaptive computing	Computing that adjusts to conditions
+Intelligent computing	Computing with artificial intelligence
+Cognitive computing	Computing that mimics human thinking
+Quantum computing	Computing using quantum mechanics
+Neuromorphic computing	Computing inspired by brain structure
+Biological computing	Computing using biological systems
+Chemical computing	Computing using chemical reactions
+Optical computing	Computing using light
+Molecular computing	Computing at molecular level
+DNA computing	Computing using DNA molecules
+Quantum dot computing	Computing using quantum dots
+Photonic computing	Computing using photons
+Plasmonic computing	Computing using surface plasmons
+Spintronic computing	Computing using electron spin
+Memristor computing	Computing using memristors
+Graphene computing	Computing using graphene
+Carbon nanotube computing	Computing using carbon nanotubes
+Silicon photonics computing	Computing using silicon photonics
+Integrated photonics computing	Computing using integrated photonics
+Quantum photonics computing	Computing using quantum photonics
+Topological computing	Computing using topology
+Superconducting computing	Computing using superconductors
+Cryogenic computing	Computing at very low temperatures
+Adiabatic computing	Computing with slow changes
+Reversible computing	Computing that can be reversed
+Reversible logic computing	Computing using reversible logic
+Quantum reversible computing	Quantum computing that can be reversed
+Classical reversible computing	Classical computing that can be reversed
+Probabilistic computing	Computing using probabilities
+Stochastic computing	Computing using randomness
+Approximate computing	Computing with approximate results
+Inexact computing	Computing with inexact results
+Imprecise computing	Computing with imprecise results
+Fuzzy computing	Computing with fuzzy logic
+Rough computing	Computing with rough sets
+Soft computing	Computing with approximate methods
+Hard computing	Computing with exact methods
+Crisp computing	Computing with precise methods
+Deterministic computing	Computing with predictable results
+Non-deterministic computing	Computing with unpredictable results
+Random computing	Computing using randomness
+Pseudo-random computing	Computing using pseudo-randomness
+Chaotic computing	Computing using chaos theory
+Fractal computing	Computing using fractals
+Wavelet computing	Computing using wavelets
+Fourier computing	Computing using Fourier transforms
+Laplace computing	Computing using Laplace transforms
+Z-transform computing	Computing using Z-transforms
+Hilbert computing	Computing using Hilbert transforms
+Karhunen-Loeve computing	Computing using Karhunen-Loeve transforms
+Principal component computing	Computing using principal components
+Independent component computing	Computing using independent components
+Canonical correlation computing	Computing using canonical correlation
+Partial least squares computing	Computing using partial least squares
+Support vector computing	Computing using support vector machines
+Neural network computing	Computing using neural networks
+Deep learning computing	Computing using deep learning
+Machine learning computing	Computing using machine learning
+Artificial intelligence computing	Computing using artificial intelligence
+Expert system computing	Computing using expert systems
+Knowledge base computing	Computing using knowledge bases
+Rule-based computing	Computing using rules
+Case-based computing	Computing using cases
+Model-based computing	Computing using models
+Data-driven computing	Computing driven by data
+Algorithm-driven computing	Computing driven by algorithms
+Pattern-driven computing	Computing driven by patterns
+Event-driven computing	Computing driven by events
+Message-driven computing	Computing driven by messages
+Service-oriented computing	Computing using services
+Component-based computing	Computing using components
+Object-oriented computing	Computing using objects
+Aspect-oriented computing	Computing using aspects
+Agent-oriented computing	Computing using agents
+Multi-agent computing	Computing using multiple agents
+Swarm computing	Computing using swarm intelligence
+Collective computing	Computing using collective intelligence
+Distributed computing	Computing across multiple systems
+Parallel computing	Computing using multiple processors
+Concurrent computing	Computing with simultaneous operations
+Synchronous computing	Computing with synchronized operations
+Asynchronous computing	Computing with independent operations
+Real-time computing	Computing with time constraints
+Near real-time computing	Computing with loose time constraints
+Batch computing	Computing in batches
+Interactive computing	Computing with user interaction
+Streaming computing	Computing on data streams
+Micro-batch computing	Computing in small batches
+Lambda computing	Computing using lambda functions
+Kappa computing	Computing using kappa architecture
+Mu computing	Computing using mu calculus
+Sigma computing	Computing using sigma algebra
+Pi computing	Computing using pi calculus
+Omega computing	Computing using omega automata
+Alpha computing	Computing using alpha-beta pruning
+Beta computing	Computing using beta reduction
+Gamma computing	Computing using gamma functions
+Delta computing	Computing using delta functions
+Epsilon computing	Computing using epsilon machines
+Zeta computing	Computing using zeta functions
+Eta computing	Computing using eta reduction
+Theta computing	Computing using theta functions
+Iota computing	Computing using iota combinators
+Kappa computing	Computing using kappa calculus
+Lambda computing	Computing using lambda calculus
+Mu computing	Computing using mu calculus
+Nu computing	Computing using nu calculus
+Xi computing	Computing using xi functions
+Omicron computing	Computing using omicron notation
+Pi computing	Computing using pi calculus
+Rho computing	Computing using rho calculus
+Sigma computing	Computing using sigma notation
+Tau computing	Computing using tau functions
+Upsilon computing	Computing using upsilon functions
+Phi computing	Computing using phi functions
+Chi computing	Computing using chi-square tests
+Psi computing	Computing using psi functions
+Omega computing	Computing using omega notation

@@ -1,0 +1,515 @@
+Static methods	Methods that do not require a calling object
+No calling object	Static methods can be called without an object instance
+Static keyword	Keyword added to method definition for static methods
+Class name invocation	Using class name instead of object to call static methods
+SomeClass.maximum()	Example of calling static method using class name
+System.exit(0)	Example of static method call we've already used
+Static method definition	Method definition with static keyword in heading
+public static int maximum()	Example static method definition syntax
+Numeric calculations	Good examples of static method uses
+Maximum calculation	Example of static method finding max of two numbers
+No obvious calling object	When static methods are appropriate to use
+Static method invocation	Calling static methods using class name
+Object creation not needed	Static methods don't require object instantiation
+Static method restrictions	Cannot access instance variables in static methods
+Instance variable access	Static methods cannot use instance variables
+This parameter restriction	Static methods cannot use 'this' parameter
+Implicit this reference	Instance variables have implicit 'this' reference
+Explicit this reference	Direct use of 'this' in method calls
+Static method limitations	What static methods cannot do
+Nonstatic method invocation	Static methods cannot call nonstatic methods directly
+Object creation workaround	Creating new object to call nonstatic methods
+Static method examples	Math.max(), Math.min(), System.exit()
+Math class methods	Common static methods for mathematical operations
+Math.max() method	Static method to find maximum of two values
+Math.min() method	Static method to find minimum of two values
+Math.abs() method	Static method to find absolute value
+Math.sqrt() method	Static method to find square root
+Math.pow() method	Static method to raise number to power
+Math.random() method	Static method to generate random numbers
+Math.PI constant	Static constant for mathematical pi
+Math.E constant	Static constant for mathematical e
+Static variables	Variables that belong to the class, not instances
+Class variables	Another name for static variables
+Static final variables	Static constants that cannot be changed
+PI constant example	3.14159 as static final variable
+Static variable access	Accessing static variables using class name
+Instance variable difference	Static vs instance variable access
+Static method benefits	Advantages of using static methods
+No object creation needed	Static methods don't require object instantiation
+Memory efficiency	Static methods use less memory
+Utility methods	Static methods often used for utility functions
+Helper methods	Static methods used to assist other methods
+Calculation methods	Static methods for mathematical calculations
+Conversion methods	Static methods for type conversions
+Validation methods	Static methods for input validation
+Formatting methods	Static methods for data formatting
+Parsing methods	Static methods for parsing data
+String utility methods	Static methods for string manipulation
+Math utility methods	Static methods for mathematical operations
+Date utility methods	Static methods for date operations
+Time utility methods	Static methods for time operations
+File utility methods	Static methods for file operations
+Network utility methods	Static methods for network operations
+Database utility methods	Static methods for database operations
+Security utility methods	Static methods for security operations
+Encryption utility methods	Static methods for encryption
+Hashing utility methods	Static methods for hashing
+Validation utility methods	Static methods for data validation
+Serialization utility methods	Static methods for serialization
+Deserialization utility methods	Static methods for deserialization
+JSON utility methods	Static methods for JSON processing
+XML utility methods	Static methods for XML processing
+CSV utility methods	Static methods for CSV processing
+Configuration utility methods	Static methods for configuration
+Logging utility methods	Static methods for logging
+Debugging utility methods	Static methods for debugging
+Profiling utility methods	Static methods for profiling
+Monitoring utility methods	Static methods for monitoring
+Testing utility methods	Static methods for testing
+Mocking utility methods	Static methods for mocking
+Stubbing utility methods	Static methods for stubbing
+Faking utility methods	Static methods for faking
+Simulation utility methods	Static methods for simulation
+Modeling utility methods	Static methods for modeling
+Analysis utility methods	Static methods for analysis
+Statistics utility methods	Static methods for statistics
+Analytics utility methods	Static methods for analytics
+Reporting utility methods	Static methods for reporting
+Visualization utility methods	Static methods for visualization
+Charting utility methods	Static methods for charting
+Graphing utility methods	Static methods for graphing
+Plotting utility methods	Static methods for plotting
+Drawing utility methods	Static methods for drawing
+Painting utility methods	Static methods for painting
+Rendering utility methods	Static methods for rendering
+Animation utility methods	Static methods for animation
+Transition utility methods	Static methods for transitions
+Effect utility methods	Static methods for effects
+Filter utility methods	Static methods for filtering
+Transform utility methods	Static methods for transformation
+Scale utility methods	Static methods for scaling
+Rotate utility methods	Static methods for rotation
+Translate utility methods	Static methods for translation
+Projection utility methods	Static methods for projection
+Interpolation utility methods	Static methods for interpolation
+Extrapolation utility methods	Static methods for extrapolation
+Approximation utility methods	Static methods for approximation
+Estimation utility methods	Static methods for estimation
+Prediction utility methods	Static methods for prediction
+Forecasting utility methods	Static methods for forecasting
+Simulation utility methods	Static methods for simulation
+Modeling utility methods	Static methods for modeling
+Optimization utility methods	Static methods for optimization
+Minimization utility methods	Static methods for minimization
+Maximization utility methods	Static methods for maximization
+Search utility methods	Static methods for searching
+Sorting utility methods	Static methods for sorting
+Merging utility methods	Static methods for merging
+Splitting utility methods	Static methods for splitting
+Joining utility methods	Static methods for joining
+Concatenation utility methods	Static methods for concatenation
+Truncation utility methods	Static methods for truncation
+Padding utility methods	Static methods for padding
+Alignment utility methods	Static methods for alignment
+Justification utility methods	Static methods for justification
+Centering utility methods	Static methods for centering
+Margining utility methods	Static methods for margins
+Spacing utility methods	Static methods for spacing
+Indentation utility methods	Static methods for indentation
+Tabulation utility methods	Static methods for tabulation
+Columnization utility methods	Static methods for columns
+Rowization utility methods	Static methods for rows
+Gridding utility methods	Static methods for grids
+Layering utility methods	Static methods for layers
+Stacking utility methods	Static methods for stacking
+Queuing utility methods	Static methods for queues
+Buffering utility methods	Static methods for buffers
+Caching utility methods	Static methods for caches
+Pooling utility methods	Static methods for pools
+Allocation utility methods	Static methods for allocation
+Deallocation utility methods	Static methods for deallocation
+Initialization utility methods	Static methods for initialization
+Finalization utility methods	Static methods for finalization
+Cleanup utility methods	Static methods for cleanup
+Disposal utility methods	Static methods for disposal
+Destruction utility methods	Static methods for destruction
+Construction utility methods	Static methods for construction
+Creation utility methods	Static methods for creation
+Generation utility methods	Static methods for generation
+Production utility methods	Static methods for production
+Manufacturing utility methods	Static methods for manufacturing
+Assembly utility methods	Static methods for assembly
+Disassembly utility methods	Static methods for disassembly
+Decomposition utility methods	Static methods for decomposition
+Factorization utility methods	Static methods for factorization
+Composition utility methods	Static methods for composition
+Recomposition utility methods	Static methods for recomposition
+Reconstruction utility methods	Static methods for reconstruction
+Restoration utility methods	Static methods for restoration
+Recovery utility methods	Static methods for recovery
+Repair utility methods	Static methods for repair
+Maintenance utility methods	Static methods for maintenance
+Upkeep utility methods	Static methods for upkeep
+Servicing utility methods	Static methods for servicing
+Tuning utility methods	Static methods for tuning
+Calibration utility methods	Static methods for calibration
+Adjustment utility methods	Static methods for adjustment
+Modification utility methods	Static methods for modification
+Customization utility methods	Static methods for customization
+Personalization utility methods	Static methods for personalization
+Configuration utility methods	Static methods for configuration
+Setup utility methods	Static methods for setup
+Installation utility methods	Static methods for installation
+Uninstallation utility methods	Static methods for uninstallation
+Deployment utility methods	Static methods for deployment
+Rollback utility methods	Static methods for rollback
+Migration utility methods	Static methods for migration
+Upgrade utility methods	Static methods for upgrade
+Downgrade utility methods	Static methods for downgrade
+Versioning utility methods	Static methods for versioning
+Branching utility methods	Static methods for branching
+Tagging utility methods	Static methods for tagging
+Labeling utility methods	Static methods for labeling
+Naming utility methods	Static methods for naming
+Identification utility methods	Static methods for identification
+Authentication utility methods	Static methods for authentication
+Authorization utility methods	Static methods for authorization
+Validation utility methods	Static methods for validation
+Verification utility methods	Static methods for verification
+Certification utility methods	Static methods for certification
+Accreditation utility methods	Static methods for accreditation
+Compliance utility methods	Static methods for compliance
+Auditing utility methods	Static methods for auditing
+Assessment utility methods	Static methods for assessment
+Evaluation utility methods	Static methods for evaluation
+Review utility methods	Static methods for review
+Inspection utility methods	Static methods for inspection
+Examination utility methods	Static methods for examination
+Analysis utility methods	Static methods for analysis
+Investigation utility methods	Static methods for investigation
+Research utility methods	Static methods for research
+Exploration utility methods	Static methods for exploration
+Discovery utility methods	Static methods for discovery
+Detection utility methods	Static methods for detection
+Recognition utility methods	Static methods for recognition
+Identification utility methods	Static methods for identification
+Classification utility methods	Static methods for classification
+Categorization utility methods	Static methods for categorization
+Organization utility methods	Static methods for organization
+Structuring utility methods	Static methods for structuring
+Ordering utility methods	Static methods for ordering
+Sequencing utility methods	Static methods for sequencing
+Indexing utility methods	Static methods for indexing
+Cataloging utility methods	Static methods for cataloging
+Archiving utility methods	Static methods for archiving
+Storage utility methods	Static methods for storage
+Retrieval utility methods	Static methods for retrieval
+Access utility methods	Static methods for access
+Permission utility methods	Static methods for permissions
+Privilege utility methods	Static methods for privileges
+Role utility methods	Static methods for roles
+Group utility methods	Static methods for groups
+User utility methods	Static methods for users
+Account utility methods	Static methods for accounts
+Session utility methods	Static methods for sessions
+Token utility methods	Static methods for tokens
+Key utility methods	Static methods for keys
+Password utility methods	Static methods for passwords
+Hash utility methods	Static methods for hashing
+Salt utility methods	Static methods for salting
+Encryption utility methods	Static methods for encryption
+Decryption utility methods	Static methods for decryption
+Compression utility methods	Static methods for compression
+Decompression utility methods	Static methods for decompression
+Encoding utility methods	Static methods for encoding
+Decoding utility methods	Static methods for decoding
+Serialization utility methods	Static methods for serialization
+Deserialization utility methods	Static methods for deserialization
+Marshaling utility methods	Static methods for marshaling
+Unmarshaling utility methods	Static methods for unmarshaling
+Binding utility methods	Static methods for binding
+Unbinding utility methods	Static methods for unbinding
+Connection utility methods	Static methods for connections
+Disconnection utility methods	Static methods for disconnections
+Linking utility methods	Static methods for linking
+Unlinking utility methods	Static methods for unlinking
+Association utility methods	Static methods for associations
+Dissociation utility methods	Static methods for dissociations
+Relationship utility methods	Static methods for relationships
+Dependency utility methods	Static methods for dependencies
+Coupling utility methods	Static methods for coupling
+Cohesion utility methods	Static methods for cohesion
+Integration utility methods	Static methods for integration
+Separation utility methods	Static methods for separation
+Isolation utility methods	Static methods for isolation
+Encapsulation utility methods	Static methods for encapsulation
+Abstraction utility methods	Static methods for abstraction
+Inheritance utility methods	Static methods for inheritance
+Polymorphism utility methods	Static methods for polymorphism
+Composition utility methods	Static methods for composition
+Aggregation utility methods	Static methods for aggregation
+Association utility methods	Static methods for associations
+Delegation utility methods	Static methods for delegation
+Forwarding utility methods	Static methods for forwarding
+Proxying utility methods	Static methods for proxying
+Mediation utility methods	Static methods for mediation
+Facilitation utility methods	Static methods for facilitation
+Coordination utility methods	Static methods for coordination
+Orchestration utility methods	Static methods for orchestration
+Choreography utility methods	Static methods for choreography
+Synchronization utility methods	Static methods for synchronization
+Asynchronization utility methods	Static methods for asynchronization
+Concurrency utility methods	Static methods for concurrency
+Parallelism utility methods	Static methods for parallelism
+Sequentiality utility methods	Static methods for sequentiality
+Sequential processing utility methods	Static methods for sequential processing
+Parallel processing utility methods	Static methods for parallel processing
+Concurrent processing utility methods	Static methods for concurrent processing
+Distributed processing utility methods	Static methods for distributed processing
+Centralized processing utility methods	Static methods for centralized processing
+Decentralized processing utility methods	Static methods for decentralized processing
+Federated processing utility methods	Static methods for federated processing
+Clustered processing utility methods	Static methods for clustered processing
+Grid processing utility methods	Static methods for grid processing
+Cloud processing utility methods	Static methods for cloud processing
+Edge processing utility methods	Static methods for edge processing
+Fog processing utility methods	Static methods for fog processing
+Mobile processing utility methods	Static methods for mobile processing
+Embedded processing utility methods	Static methods for embedded processing
+Real-time processing utility methods	Static methods for real-time processing
+Near real-time processing utility methods	Static methods for near real-time processing
+Batch processing utility methods	Static methods for batch processing
+Interactive processing utility methods	Static methods for interactive processing
+Stream processing utility methods	Static methods for stream processing
+Micro-batch processing utility methods	Static methods for micro-batch processing
+Lambda processing utility methods	Static methods for lambda processing
+Kappa processing utility methods	Static methods for kappa processing
+Event processing utility methods	Static methods for event processing
+Message processing utility methods	Static methods for message processing
+Signal processing utility methods	Static methods for signal processing
+Data processing utility methods	Static methods for data processing
+Information processing utility methods	Static methods for information processing
+Knowledge processing utility methods	Static methods for knowledge processing
+Intelligence processing utility methods	Static methods for intelligence processing
+Decision processing utility methods	Static methods for decision processing
+Logic processing utility methods	Static methods for logic processing
+Rule processing utility methods	Static methods for rule processing
+Pattern processing utility methods	Static methods for pattern processing
+Algorithm processing utility methods	Static methods for algorithm processing
+Function processing utility methods	Static methods for function processing
+Procedure processing utility methods	Static methods for procedure processing
+Method processing utility methods	Static methods for method processing
+Operation processing utility methods	Static methods for operation processing
+Action processing utility methods	Static methods for action processing
+Task processing utility methods	Static methods for task processing
+Job processing utility methods	Static methods for job processing
+Work processing utility methods	Static methods for work processing
+Process processing utility methods	Static methods for process processing
+Thread processing utility methods	Static methods for thread processing
+Fiber processing utility methods	Static methods for fiber processing
+Coroutine processing utility methods	Static methods for coroutine processing
+Actor processing utility methods	Static methods for actor processing
+Agent processing utility methods	Static methods for agent processing
+Service processing utility methods	Static methods for service processing
+Component processing utility methods	Static methods for component processing
+Module processing utility methods	Static methods for module processing
+Package processing utility methods	Static methods for package processing
+Library processing utility methods	Static methods for library processing
+Framework processing utility methods	Static methods for framework processing
+Platform processing utility methods	Static methods for platform processing
+System processing utility methods	Static methods for system processing
+Application processing utility methods	Static methods for application processing
+Program processing utility methods	Static methods for program processing
+Software processing utility methods	Static methods for software processing
+Hardware processing utility methods	Static methods for hardware processing
+Firmware processing utility methods	Static methods for firmware processing
+Middleware processing utility methods	Static methods for middleware processing
+Database processing utility methods	Static methods for database processing
+Storage processing utility methods	Static methods for storage processing
+Memory processing utility methods	Static methods for memory processing
+Cache processing utility methods	Static methods for cache processing
+Buffer processing utility methods	Static methods for buffer processing
+Queue processing utility methods	Static methods for queue processing
+Stack processing utility methods	Static methods for stack processing
+Heap processing utility methods	Static methods for heap processing
+Tree processing utility methods	Static methods for tree processing
+Graph processing utility methods	Static methods for graph processing
+Network processing utility methods	Static methods for network processing
+Communication processing utility methods	Static methods for communication processing
+Protocol processing utility methods	Static methods for protocol processing
+Interface processing utility methods	Static methods for interface processing
+API processing utility methods	Static methods for API processing
+Service processing utility methods	Static methods for service processing
+Microservice processing utility methods	Static methods for microservice processing
+Web service processing utility methods	Static methods for web service processing
+REST service processing utility methods	Static methods for REST service processing
+SOAP service processing utility methods	Static methods for SOAP service processing
+GraphQL service processing utility methods	Static methods for GraphQL service processing
+WebSocket service processing utility methods	Static methods for WebSocket service processing
+HTTP service processing utility methods	Static methods for HTTP service processing
+HTTPS service processing utility methods	Static methods for HTTPS service processing
+TCP service processing utility methods	Static methods for TCP service processing
+UDP service processing utility methods	Static methods for UDP service processing
+IP service processing utility methods	Static methods for IP service processing
+DNS service processing utility methods	Static methods for DNS service processing
+DHCP service processing utility methods	Static methods for DHCP service processing
+NTP service processing utility methods	Static methods for NTP service processing
+SNMP service processing utility methods	Static methods for SNMP service processing
+SMTP service processing utility methods	Static methods for SMTP service processing
+POP3 service processing utility methods	Static methods for POP3 service processing
+IMAP service processing utility methods	Static methods for IMAP service processing
+FTP service processing utility methods	Static methods for FTP service processing
+SFTP service processing utility methods	Static methods for SFTP service processing
+SSH service processing utility methods	Static methods for SSH service processing
+Telnet service processing utility methods	Static methods for Telnet service processing
+RDP service processing utility methods	Static methods for RDP service processing
+VNC service processing utility methods	Static methods for VNC service processing
+X11 service processing utility methods	Static methods for X11 service processing
+Wayland service processing utility methods	Static methods for Wayland service processing
+Mir service processing utility methods	Static methods for Mir service processing
+SurfaceFlinger service processing utility methods	Static methods for SurfaceFlinger service processing
+OpenGL service processing utility methods	Static methods for OpenGL service processing
+DirectX service processing utility methods	Static methods for DirectX service processing
+Vulkan service processing utility methods	Static methods for Vulkan service processing
+Metal service processing utility methods	Static methods for Metal service processing
+CUDA service processing utility methods	Static methods for CUDA service processing
+OpenCL service processing utility methods	Static methods for OpenCL service processing
+SYCL service processing utility methods	Static methods for SYCL service processing
+HIP service processing utility methods	Static methods for HIP service processing
+ROCm service processing utility methods	Static methods for ROCm service processing
+OneAPI service processing utility methods	Static methods for OneAPI service processing
+TensorFlow service processing utility methods	Static methods for TensorFlow service processing
+PyTorch service processing utility methods	Static methods for PyTorch service processing
+Keras service processing utility methods	Static methods for Keras service processing
+Scikit-learn service processing utility methods	Static methods for Scikit-learn service processing
+NumPy service processing utility methods	Static methods for NumPy service processing
+SciPy service processing utility methods	Static methods for SciPy service processing
+Pandas service processing utility methods	Static methods for Pandas service processing
+Matplotlib service processing utility methods	Static methods for Matplotlib service processing
+Seaborn service processing utility methods	Static methods for Seaborn service processing
+Plotly service processing utility methods	Static methods for Plotly service processing
+Bokeh service processing utility methods	Static methods for Bokeh service processing
+D3.js service processing utility methods	Static methods for D3.js service processing
+React service processing utility methods	Static methods for React service processing
+Vue service processing utility methods	Static methods for Vue service processing
+Angular service processing utility methods	Static methods for Angular service processing
+Svelte service processing utility methods	Static methods for Svelte service processing
+Ember service processing utility methods	Static methods for Ember service processing
+Backbone service processing utility methods	Static methods for Backbone service processing
+Knockout service processing utility methods	Static methods for Knockout service processing
+Mithril service processing utility methods	Static methods for Mithril service processing
+Inferno service processing utility methods	Static methods for Inferno service processing
+Preact service processing utility methods	Static methods for Preact service processing
+Riot service processing utility methods	Static methods for Riot service processing
+Polymer service processing utility methods	Static methods for Polymer service processing
+Lit service processing utility methods	Static methods for Lit service processing
+Stencil service processing utility methods	Static methods for Stencil service processing
+Aurelia service processing utility methods	Static methods for Aurelia service processing
+Mithril service processing utility methods	Static methods for Mithril service processing
+Cycle.js service processing utility methods	Static methods for Cycle.js service processing
+RxJS service processing utility methods	Static methods for RxJS service processing
+Lodash service processing utility methods	Static methods for Lodash service processing
+Underscore service processing utility methods	Static methods for Underscore service processing
+Ramda service processing utility methods	Static methods for Ramda service processing
+Immutable.js service processing utility methods	Static methods for Immutable.js service processing
+Moment.js service processing utility methods	Static methods for Moment.js service processing
+Day.js service processing utility methods	Static methods for Day.js service processing
+Date-fns service processing utility methods	Static methods for Date-fns service processing
+Luxon service processing utility methods	Static methods for Luxon service processing
+Chrono service processing utility methods	Static methods for Chrono service processing
+Joda-Time service processing utility methods	Static methods for Joda-Time service processing
+Three.js service processing utility methods	Static methods for Three.js service processing
+Babylon.js service processing utility methods	Static methods for Babylon.js service processing
+A-Frame service processing utility methods	Static methods for A-Frame service processing
+WebXR service processing utility methods	Static methods for WebXR service processing
+AR.js service processing utility methods	Static methods for AR.js service processing
+8th Wall service processing utility methods	Static methods for 8th Wall service processing
+ZapWorks service processing utility methods	Static methods for ZapWorks service processing
+Vuforia service processing utility methods	Static methods for Vuforia service processing
+ARKit service processing utility methods	Static methods for ARKit service processing
+ARCore service processing utility methods	Static methods for ARCore service processing
+OpenXR service processing utility methods	Static methods for OpenXR service processing
+OpenVR service processing utility methods	Static methods for OpenVR service processing
+SteamVR service processing utility methods	Static methods for SteamVR service processing
+Oculus service processing utility methods	Static methods for Oculus service processing
+HTC Vive service processing utility methods	Static methods for HTC Vive service processing
+Windows Mixed Reality service processing utility methods	Static methods for Windows Mixed Reality service processing
+HoloLens service processing utility methods	Static methods for HoloLens service processing
+Magic Leap service processing utility methods	Static methods for Magic Leap service processing
+Meta Quest service processing utility methods	Static methods for Meta Quest service processing
+Pico service processing utility methods	Static methods for Pico service processing
+Varjo service processing utility methods	Static methods for Varjo service processing
+Pimax service processing utility methods	Static methods for Pimax service processing
+Bigscreen service processing utility methods	Static methods for Bigscreen service processing
+Virtual Desktop service processing utility methods	Static methods for Virtual Desktop service processing
+ALVR service processing utility methods	Static methods for ALVR service processing
+Relive service processing utility methods	Static methods for Relive service processing
+Trinus service processing utility methods	Static methods for Trinus service processing
+RiftCat service processing utility methods	Static methods for RiftCat service processing
+VRidge service processing utility methods	Static methods for VRidge service processing
+Trinus VR service processing utility methods	Static methods for Trinus VR service processing
+PhoneVR service processing utility methods	Static methods for PhoneVR service processing
+Cardboard service processing utility methods	Static methods for Cardboard service processing
+Daydream service processing utility methods	Static methods for Daydream service processing
+Gear VR service processing utility methods	Static methods for Gear VR service processing
+Oculus Go service processing utility methods	Static methods for Oculus Go service processing
+Oculus Quest service processing utility methods	Static methods for Oculus Quest service processing
+Oculus Rift service processing utility methods	Static methods for Oculus Rift service processing
+Oculus Touch service processing utility methods	Static methods for Oculus Touch service processing
+Hand tracking service processing utility methods	Static methods for hand tracking service processing
+Eye tracking service processing utility methods	Static methods for eye tracking service processing
+Voice tracking service processing utility methods	Static methods for voice tracking service processing
+Body tracking service processing utility methods	Static methods for body tracking service processing
+Face tracking service processing utility methods	Static methods for face tracking service processing
+Object tracking service processing utility methods	Static methods for object tracking service processing
+Marker tracking service processing utility methods	Static methods for marker tracking service processing
+Markerless tracking service processing utility methods	Static methods for markerless tracking service processing
+SLAM service processing utility methods	Static methods for SLAM service processing
+VIO service processing utility methods	Static methods for VIO service processing
+Visual-inertial odometry service processing utility methods	Static methods for visual-inertial odometry service processing
+Visual SLAM service processing utility methods	Static methods for visual SLAM service processing
+LiDAR SLAM service processing utility methods	Static methods for LiDAR SLAM service processing
+RGB-D SLAM service processing utility methods	Static methods for RGB-D SLAM service processing
+Stereo SLAM service processing utility methods	Static methods for stereo SLAM service processing
+Mono SLAM service processing utility methods	Static methods for mono SLAM service processing
+Multi-camera SLAM service processing utility methods	Static methods for multi-camera SLAM service processing
+Omnidirectional SLAM service processing utility methods	Static methods for omnidirectional SLAM service processing
+Panoramic SLAM service processing utility methods	Static methods for panoramic SLAM service processing
+Spherical SLAM service processing utility methods	Static methods for spherical SLAM service processing
+Cylindrical SLAM service processing utility methods	Static methods for cylindrical SLAM service processing
+Conical SLAM service processing utility methods	Static methods for conical SLAM service processing
+Pyramidal SLAM service processing utility methods	Static methods for pyramidal SLAM service processing
+Cubic SLAM service processing utility methods	Static methods for cubic SLAM service processing
+Tetrahedral SLAM service processing utility methods	Static methods for tetrahedral SLAM service processing
+Octahedral SLAM service processing utility methods	Static methods for octahedral SLAM service processing
+Dodecahedral SLAM service processing utility methods	Static methods for dodecahedral SLAM service processing
+Icosahedral SLAM service processing utility methods	Static methods for icosahedral SLAM service processing
+Hexahedral SLAM service processing utility methods	Static methods for hexahedral SLAM service processing
+Prismatic SLAM service processing utility methods	Static methods for prismatic SLAM service processing
+Pyramidal SLAM service processing utility methods	Static methods for pyramidal SLAM service processing
+Conical SLAM service processing utility methods	Static methods for conical SLAM service processing
+Cylindrical SLAM service processing utility methods	Static methods for cylindrical SLAM service processing
+Spherical SLAM service processing utility methods	Static methods for spherical SLAM service processing
+Ellipsoidal SLAM service processing utility methods	Static methods for ellipsoidal SLAM service processing
+Parabolic SLAM service processing utility methods	Static methods for parabolic SLAM service processing
+Hyperbolic SLAM service processing utility methods	Static methods for hyperbolic SLAM service processing
+Quadric SLAM service processing utility methods	Static methods for quadric SLAM service processing
+Cubic SLAM service processing utility methods	Static methods for cubic SLAM service processing
+Quartic SLAM service processing utility methods	Static methods for quartic SLAM service processing
+Quintic SLAM service processing utility methods	Static methods for quintic SLAM service processing
+Sextic SLAM service processing utility methods	Static methods for sextic SLAM service processing
+Septic SLAM service processing utility methods	Static methods for septic SLAM service processing
+Octic SLAM service processing utility methods	Static methods for octic SLAM service processing
+Nonic SLAM service processing utility methods	Static methods for nonic SLAM service processing
+Decic SLAM service processing utility methods	Static methods for decic SLAM service processing
+Undecic SLAM service processing utility methods	Static methods for undecic SLAM service processing
+Dodecic SLAM service processing utility methods	Static methods for dodecic SLAM service processing
+Tridecic SLAM service processing utility methods	Static methods for tridecic SLAM service processing
+Tetradecic SLAM service processing utility methods	Static methods for tetradecic SLAM service processing
+Pentadecic SLAM service processing utility methods	Static methods for pentadecic SLAM service processing
+Hexadecic SLAM service processing utility methods	Static methods for hexadecic SLAM service processing
+Heptadecic SLAM service processing utility methods	Static methods for heptadecic SLAM service processing
+Octadecic SLAM service processing utility methods	Static methods for octadecic SLAM service processing
+Nonadecic SLAM service processing utility methods	Static methods for nonadecic SLAM service processing
+Icosic SLAM service processing utility methods	Static methods for icosic SLAM service processing

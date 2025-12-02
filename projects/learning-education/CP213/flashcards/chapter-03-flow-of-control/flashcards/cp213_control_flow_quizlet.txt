@@ -1,0 +1,428 @@
+if-else statement	Chooses between two alternative statements based on Boolean expression
+Boolean expression	Expression that evaluates to true or false
+if statement	Statement that executes code only if condition is true
+else clause	Optional part of if statement for false condition
+compound statement	Multiple statements enclosed in braces { }
+braces	{ and } used to group statements
+parentheses	( and ) used around Boolean expressions
+omitting else	Creating if statement without else clause
+alternative statements	Different code paths in if-else
+condition checking	Evaluating Boolean expression before execution
+true condition	When Boolean expression evaluates to true
+false condition	When Boolean expression evaluates to false
+statement execution	Running code based on condition result
+nested if statements	if statements inside other if statements
+if-else-if chain	Multiple conditions checked in sequence
+multiple alternatives	More than two possible code paths
+Boolean type	Java data type for true/false values
+George Boole	19th century mathematician who developed Boolean logic
+simple Boolean expressions	Basic comparisons like time < limit
+comparison operators	==, !=, <, >, <=, >= for comparing values
+equal to operator	== tests if two values are equal
+not equal to operator	!= tests if two values are different
+greater than operator	> tests if first value is greater
+less than operator	< tests if first value is smaller
+greater than or equal	>= tests if first value is greater or equal
+less than or equal	<= tests if first value is smaller or equal
+assignment vs equality	= assigns values, == compares values
+equals method	String method for comparing string contents
+equalsIgnoreCase method	String method for case-insensitive comparison
+string comparison	Comparing string values, not references
+object comparison	Comparing object references vs contents
+reference comparison	== compares memory addresses for objects
+content comparison	equals() compares actual object contents
+case sensitivity	Distinguishing between upper and lower case
+primitive comparison	== works correctly for primitive types
+object comparison pitfall	== doesn't work for object content comparison
+Boolean expression syntax	Boolean expressions in parentheses for if statements
+loop body	Code that repeats in a loop
+iteration	One complete execution of loop body
+while statement	Loop that checks condition before each iteration
+do-while statement	Loop that checks condition after each iteration
+for statement	Loop with initialization, condition, and update
+loop condition	Boolean expression controlling loop execution
+loop termination	When loop stops executing
+infinite loop	Loop that never stops executing
+off-by-one error	Loop executes one too many or too few times
+zero iterations	Loop body executed zero times
+at least once execution	do-while always executes body at least once
+loop initialization	Setting up variables before loop starts
+loop update	Changing variables during each iteration
+loop counter	Variable tracking number of iterations
+controlling Boolean expression	Condition determining loop continuation
+while vs do-while	Difference in when condition is checked
+compound statement in loops	Multiple statements in loop body using braces
+algorithm	Set of precise instructions leading to solution
+pseudocode	Mixture of programming language and English
+recipe analogy	Algorithm like a cooking recipe
+method of solution	Approach to solving a problem
+precise instructions	Clear, unambiguous steps in algorithm
+problem solving	Breaking down problems into manageable steps
+solution design	Planning approach before coding
+logical thinking	Systematic approach to problem solving
+step-by-step process	Sequential approach to problem solution
+debugging	Process of finding and fixing errors in code
+loop bugs	Common errors in loop programming
+infinite loop bug	Loop that runs forever without stopping
+off-by-one bug	Loop with incorrect number of iterations
+floating-point comparison	Using == with floating-point numbers is dangerous
+exact equality testing	== tests for exact equality, unreliable for floats
+approximate quantities	Floating-point numbers are approximations
+unpredictable results	== with floats can cause unexpected behavior
+less-than comparison	Safer than == for floating-point numbers
+greater-than comparison	Safer than == for floating-point numbers
+variable tracing	Watching variables change during program execution
+tracing variables	Monitoring variable values to find bugs
+debugging utility	IDE tools for tracking program execution
+temporary output statements	Adding println statements for debugging
+variable monitoring	Keeping track of variable values
+execution flow	Following program execution step by step
+debugging techniques	Methods for finding and fixing errors
+system examination	Looking at program as whole, not just parts
+test cases	Different inputs to verify program behavior
+input validation	Checking if input meets expected criteria
+output verification	Confirming program produces correct results
+algorithm logic	Underlying method of solution
+error localization	Finding where error occurs in code
+code commenting	Using /* */ to disable code blocks
+common errors	Frequent mistakes made by programmers
+pitfall sections	Textbook sections highlighting common errors
+extra semicolons	Semicolons that terminate loops early
+string equality pitfall	Using == instead of equals() for strings
+frustration debugging	Becoming impatient when finding bugs
+guessing solutions	Changing code without understanding impact
+slipshod hackery	Making random changes hoping to fix bugs
+logical impact	Understanding what code changes actually do
+fresh perspective	Having someone else look at your code
+taking breaks	Stepping away from debugging to gain perspective
+input validation loop	Loop ensuring user enters valid input
+menu selection	Presenting options for user to choose
+user-friendly design	Allowing both upper and lowercase input
+debugging walkthrough	Step-by-step process of finding bugs
+systematic debugging	Organized approach to finding errors
+error identification	Recognizing what type of error occurred
+error location	Finding where error exists in code
+error correction	Fixing identified problems
+testing fixes	Verifying that corrections work properly
+prevention strategies	Ways to avoid common programming errors
+code review	Having others examine your code
+pair programming	Working with someone to write and debug code
+version control	Tracking changes to code over time
+backup code	Keeping copies of working versions
+incremental testing	Testing code as you write it
+modular programming	Breaking code into small, testable pieces
+clear variable names	Using descriptive names for variables
+meaningful comments	Explaining code purpose and logic
+consistent formatting	Using same style throughout code
+proper indentation	Making code structure visually clear
+logical organization	Arranging code in sensible order
+error handling	Planning for and managing potential errors
+exception handling	Using try-catch blocks for errors
+input validation	Checking user input before processing
+boundary testing	Testing edge cases and limits
+stress testing	Testing with extreme or unusual inputs
+regression testing	Ensuring fixes don't break other functionality
+unit testing	Testing individual components in isolation
+integration testing	Testing how components work together
+performance testing	Measuring program speed and efficiency
+memory testing	Checking for memory leaks or excessive usage
+security testing	Looking for potential security vulnerabilities
+accessibility testing	Ensuring program works for all users
+usability testing	Verifying program is easy to use
+compatibility testing	Testing across different systems
+portability testing	Ensuring code works on different platforms
+maintainability	How easy code is to modify and update
+readability	How easy code is to understand
+documentation	Written explanations of code purpose
+code standards	Consistent rules for writing code
+best practices	Recommended approaches to programming
+learning from errors	Using mistakes as opportunities to improve
+continuous improvement	Always working to make code better
+problem decomposition	Breaking large problems into smaller parts
+abstraction	Hiding implementation details
+encapsulation	Grouping related data and methods
+modularity	Dividing code into independent modules
+reusability	Writing code that can be used multiple times
+flexibility	Designing code that can adapt to changes
+scalability	Ensuring code can handle larger problems
+efficiency	Writing code that runs quickly
+optimization	Improving code performance
+profiling	Measuring where code spends time
+benchmarking	Comparing performance of different approaches
+algorithm analysis	Studying efficiency of solution methods
+complexity analysis	Measuring how performance scales
+big O notation	Mathematical way to describe algorithm efficiency
+time complexity	How execution time grows with input size
+space complexity	How memory usage grows with input size
+worst case analysis	Performance under most difficult conditions
+average case analysis	Typical performance across all inputs
+best case analysis	Performance under ideal conditions
+data structure choice	Selecting appropriate storage methods
+algorithm selection	Choosing best approach for problem
+problem classification	Categorizing problems by type
+pattern recognition	Identifying common problem structures
+solution templates	Reusable approaches to similar problems
+design patterns	Standard solutions to common design problems
+code reuse	Using existing code in new programs
+library utilization	Leveraging pre-written code components
+framework usage	Building on established programming frameworks
+API usage	Using application programming interfaces
+tool utilization	Making use of development tools
+IDE features	Integrated development environment capabilities
+debugger tools	Specialized debugging utilities
+profiling tools	Performance analysis software
+testing frameworks	Tools for automated testing
+version control systems	Software for tracking code changes
+documentation tools	Utilities for creating code documentation
+build automation	Tools for compiling and deploying code
+continuous integration	Automated testing and deployment
+deployment automation	Tools for releasing software
+monitoring tools	Software for tracking program behavior
+logging frameworks	Tools for recording program events
+configuration management	Tools for managing program settings
+dependency management	Handling external code libraries
+package management	Organizing and distributing code
+release management	Coordinating software releases
+change management	Controlling modifications to code
+quality assurance	Processes for ensuring code quality
+code review processes	Formal examination of code by others
+peer review	Having colleagues examine your code
+technical review	Expert evaluation of technical aspects
+user acceptance testing	Verifying software meets user needs
+beta testing	Testing with real users before release
+alpha testing	Internal testing before beta release
+system testing	Testing complete integrated system
+acceptance testing	Final verification before deployment
+performance monitoring	Tracking system performance over time
+error tracking	Recording and analyzing program errors
+user feedback	Collecting input from software users
+issue tracking	Managing reported problems and requests
+bug reporting	Documenting and communicating errors
+feature requests	User suggestions for improvements
+enhancement proposals	Formal suggestions for software changes
+roadmap planning	Planning future software development
+release planning	Coordinating software releases
+milestone tracking	Monitoring progress toward goals
+project management	Coordinating software development efforts
+team collaboration	Working effectively with other developers
+communication skills	Effectively sharing ideas and information
+technical writing	Creating clear documentation and comments
+presentation skills	Explaining technical concepts clearly
+knowledge sharing	Teaching others about programming
+mentoring	Guiding less experienced programmers
+learning new technologies	Keeping up with programming advances
+professional development	Continuously improving programming skills
+industry best practices	Following established professional standards
+ethical programming	Writing code responsibly and ethically
+security awareness	Understanding software security implications
+privacy protection	Safeguarding user data and information
+accessibility compliance	Ensuring software works for everyone
+inclusive design	Creating software usable by diverse users
+sustainability	Writing code that can be maintained long-term
+legacy system support	Working with older software systems
+migration strategies	Moving from old to new systems
+modernization approaches	Updating outdated software
+refactoring	Improving code structure without changing behavior
+code cleanup	Removing unnecessary or outdated code
+optimization techniques	Methods for improving performance
+performance tuning	Fine-tuning software for better speed
+resource management	Efficiently using system resources
+memory management	Handling computer memory properly
+garbage collection	Automatic cleanup of unused memory
+leak prevention	Avoiding memory and resource leaks
+efficient algorithms	Choosing best approaches for problems
+data structure optimization	Selecting most efficient storage methods
+caching strategies	Storing frequently used data for quick access
+database optimization	Improving database performance
+query optimization	Making database queries more efficient
+indexing strategies	Improving database search performance
+network optimization	Improving communication efficiency
+bandwidth management	Efficiently using network capacity
+latency reduction	Minimizing communication delays
+throughput improvement	Increasing data processing rates
+concurrency handling	Managing multiple simultaneous operations
+threading	Using multiple execution paths
+parallel processing	Executing multiple operations simultaneously
+synchronization	Coordinating concurrent operations
+race condition prevention	Avoiding conflicts in concurrent code
+deadlock avoidance	Preventing system lockups
+resource sharing	Safely sharing resources between processes
+load balancing	Distributing work across multiple systems
+scalability planning	Designing systems to handle growth
+capacity planning	Estimating future resource needs
+performance modeling	Predicting system behavior
+bottleneck identification	Finding performance limitations
+optimization prioritization	Focusing on most important improvements
+measurement and monitoring	Tracking system performance
+baseline establishment	Setting performance reference points
+trend analysis	Understanding performance changes over time
+alerting systems	Notifying when problems occur
+automated responses	Systems that fix problems automatically
+fault tolerance	Systems that continue working despite errors
+error recovery	Restoring system after problems
+backup and restore	Protecting against data loss
+disaster recovery	Planning for major system failures
+business continuity	Ensuring operations continue during problems
+risk management	Identifying and mitigating potential problems
+security planning	Protecting against threats and attacks
+vulnerability assessment	Finding potential security weaknesses
+penetration testing	Actively testing security defenses
+compliance requirements	Meeting legal and regulatory standards
+audit preparation	Getting ready for formal examinations
+documentation requirements	Meeting standards for written records
+training programs	Educating users and administrators
+support procedures	Helping users with problems
+maintenance schedules	Regular system upkeep activities
+upgrade planning	Coordinating system improvements
+patch management	Applying security and bug fixes
+version control	Tracking software changes over time
+configuration management	Managing system settings
+deployment procedures	Installing and configuring software
+rollback procedures	Reverting to previous versions
+testing procedures	Verifying system functionality
+quality control	Ensuring software meets standards
+standards compliance	Following established guidelines
+certification processes	Meeting official requirements
+accreditation procedures	Gaining official recognition
+professional development	Continuously improving skills
+industry networking	Connecting with other professionals
+conference participation	Attending professional meetings
+workshop attendance	Learning from expert presentations
+online learning	Using internet resources for education
+certification programs	Earning professional credentials
+skill assessment	Evaluating current abilities
+gap analysis	Identifying areas for improvement
+learning plans	Structured approaches to skill development
+goal setting	Establishing clear objectives
+progress tracking	Monitoring advancement toward goals
+feedback collection	Gathering input on performance
+peer review	Getting input from colleagues
+mentor guidance	Learning from experienced professionals
+knowledge sharing	Teaching others what you know
+community participation	Contributing to professional groups
+open source contribution	Working on public software projects
+research and development	Exploring new technologies and methods
+innovation projects	Creating new solutions to problems
+prototype development	Building experimental systems
+proof of concept	Demonstrating feasibility of ideas
+technology evaluation	Assessing new tools and methods
+tool selection	Choosing appropriate development tools
+framework evaluation	Assessing software frameworks
+library assessment	Evaluating code libraries
+platform comparison	Comparing different development environments
+language selection	Choosing programming languages
+paradigm evaluation	Assessing programming approaches
+methodology assessment	Evaluating development processes
+process improvement	Making development more effective
+workflow optimization	Improving development procedures
+automation opportunities	Finding tasks that can be automated
+efficiency improvements	Making development faster and easier
+productivity enhancement	Increasing output quality and quantity
+quality improvement	Making software more reliable
+reliability enhancement	Reducing software failures
+maintainability improvement	Making code easier to modify
+usability enhancement	Making software easier to use
+user experience improvement	Making software more enjoyable to use
+accessibility improvement	Making software usable by more people
+performance enhancement	Making software run faster
+scalability improvement	Making software handle larger loads
+security enhancement	Making software more secure
+privacy protection	Better safeguarding of user data
+compliance improvement	Better meeting of regulatory requirements
+documentation improvement	Creating better written materials
+training improvement	Better educating users and developers
+support improvement	Better helping users with problems
+maintenance improvement	Better keeping systems running
+upgrade improvement	Better coordinating system updates
+deployment improvement	Better installing and configuring software
+testing improvement	Better verifying system functionality
+monitoring improvement	Better tracking system behavior
+alerting improvement	Better notification of problems
+recovery improvement	Better restoration after failures
+backup improvement	Better protection against data loss
+planning improvement	Better preparing for future needs
+risk management improvement	Better identifying and mitigating problems
+security planning improvement	Better protecting against threats
+compliance planning improvement	Better meeting requirements
+audit preparation improvement	Better getting ready for examinations
+certification improvement	Better meeting professional standards
+professional development improvement	Better advancing career skills
+networking improvement	Better connecting with colleagues
+learning improvement	Better acquiring new knowledge
+skill development improvement	Better building capabilities
+goal achievement improvement	Better reaching objectives
+progress tracking improvement	Better monitoring advancement
+feedback utilization improvement	Better using input for improvement
+peer collaboration improvement	Better working with colleagues
+mentor relationship improvement	Better learning from experts
+knowledge sharing improvement	Better teaching others
+community contribution improvement	Better participating in professional groups
+open source participation improvement	Better contributing to public projects
+research engagement improvement	Better exploring new technologies
+innovation development improvement	Better creating new solutions
+prototype creation improvement	Better building experimental systems
+technology adoption improvement	Better using new tools
+framework utilization improvement	Better leveraging software frameworks
+library usage improvement	Better using code libraries
+platform optimization improvement	Better using development environments
+language mastery improvement	Better programming in chosen languages
+paradigm understanding improvement	Better grasping programming approaches
+methodology application improvement	Better following development processes
+process mastery improvement	Better executing development procedures
+workflow efficiency improvement	Better streamlining development work
+automation implementation improvement	Better automating repetitive tasks
+productivity optimization improvement	Better maximizing output
+quality assurance improvement	Better ensuring software quality
+reliability assurance improvement	Better preventing software failures
+maintainability assurance improvement	Better ensuring code modifiability
+usability assurance improvement	Better ensuring software ease of use
+user experience assurance improvement	Better ensuring positive user interactions
+accessibility assurance improvement	Better ensuring universal usability
+performance assurance improvement	Better ensuring software speed
+scalability assurance improvement	Better ensuring software can grow
+security assurance improvement	Better ensuring software protection
+privacy assurance improvement	Better ensuring data protection
+compliance assurance improvement	Better ensuring regulatory adherence
+documentation assurance improvement	Better ensuring clear written materials
+training assurance improvement	Better ensuring effective education
+support assurance improvement	Better ensuring helpful assistance
+maintenance assurance improvement	Better ensuring system upkeep
+upgrade assurance improvement	Better ensuring smooth updates
+deployment assurance improvement	Better ensuring proper installation
+testing assurance improvement	Better ensuring thorough verification
+monitoring assurance improvement	Better ensuring comprehensive tracking
+alerting assurance improvement	Better ensuring timely notifications
+recovery assurance improvement	Better ensuring quick restoration
+backup assurance improvement	Better ensuring data protection
+planning assurance improvement	Better ensuring future preparedness
+risk management assurance improvement	Better ensuring threat mitigation
+security planning assurance improvement	Better ensuring threat protection
+compliance planning assurance improvement	Better ensuring requirement meeting
+audit preparation assurance improvement	Better ensuring examination readiness
+certification assurance improvement	Better ensuring standard compliance
+professional development assurance improvement	Better ensuring career advancement
+networking assurance improvement	Better ensuring professional connections
+learning assurance improvement	Better ensuring knowledge acquisition
+skill development assurance improvement	Better ensuring capability building
+goal achievement assurance improvement	Better ensuring objective completion
+progress tracking assurance improvement	Better ensuring advancement monitoring
+feedback utilization assurance improvement	Better ensuring input usage
+peer collaboration assurance improvement	Better ensuring colleague cooperation
+mentor relationship assurance improvement	Better ensuring expert guidance
+knowledge sharing assurance improvement	Better ensuring information transfer
+community contribution assurance improvement	Better ensuring group participation
+open source participation assurance improvement	Better ensuring public contribution
+research engagement assurance improvement	Better ensuring technology exploration
+innovation development assurance improvement	Better ensuring solution creation
+prototype creation assurance improvement	Better ensuring experimental development
+technology adoption assurance improvement	Better ensuring tool utilization
+framework utilization assurance improvement	Better ensuring framework leverage
+library usage assurance improvement	Better ensuring library employment
+platform optimization assurance improvement	Better ensuring environment utilization
+language mastery assurance improvement	Better ensuring programming proficiency
+paradigm understanding assurance improvement	Better ensuring approach comprehension
+methodology application assurance improvement	Better ensuring process adherence
+process mastery assurance improvement	Better ensuring procedure execution
+workflow efficiency assurance improvement	Better ensuring development streamlining
+automation implementation assurance improvement	Better ensuring task automation
+productivity optimization assurance improvement	Better ensuring output maximization

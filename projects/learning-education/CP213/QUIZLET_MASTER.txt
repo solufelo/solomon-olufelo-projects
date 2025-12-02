@@ -1,0 +1,492 @@
+CLASS INHERITANCE - Q1: Can you change the return type when overriding a method?	Yes! You can change the return type to any descendant class of the original return type. This is called covariant return types.
+
+CLASS INHERITANCE - Q2: What does the final keyword do when applied to a method?	The final keyword prevents the method from being overridden in a subclass. Once marked final, no subclass can change its implementation.
+
+CLASS INHERITANCE - Q3: Can you derive new classes from a final class?	No! If a class is marked final, you cannot create subclasses from it. The class hierarchy stops there.
+
+CLASS INHERITANCE - Q4: Can you call the base class constructor using the base class name?	No! You MUST use the keyword super to call the base class constructor. You cannot use the base class name directly.
+
+CLASS INHERITANCE - Q5: Which keyword is used to inherit a class in Java?	extends - Example: class Child extends Parent { }
+
+CLASS INHERITANCE - Q6: Is the Object class the topmost class in Java's class hierarchy?	Yes! The Object class is the root of all classes in Java. Every class implicitly extends Object if it doesn't extend another class.
+
+CLASS INHERITANCE - Q7: Must you use super to call the base class constructor?	Yes! If you want to explicitly call a base class constructor, you MUST use super. However, if you don't call super, Java automatically calls the no-argument constructor of the base class.
+
+CLASS INHERITANCE - Q8: Can you use the base class name to call its constructor?	No! You can only use super to call the base class constructor, not the class name itself.
+
+CLASS INHERITANCE - Q9: Which is NOT an access modifier in Java?	package is NOT an access modifier. The access modifiers are: public, private, protected, and default/package-private (no keyword needed).
+
+CLASS INHERITANCE - Q10: If a derived class constructor doesn't call super, what happens?	The no-argument constructor of the base class is automatically invoked. Java does this for you if you don't explicitly call super().
+
+EXCEPTION HANDLING - Q1: Which operator is used to create an exception instance that can be thrown?	new - You use new to create an exception object, then throw to throw it. Example: throw new ArithmeticException("Error!");
+
+EXCEPTION HANDLING - Q2: Can a derived class add exceptions to the throws clause? Can it delete any?	A derived class CAN add new exceptions to the throws clause, but it CANNOT delete any exceptions that the base class declares. You can only add more exceptions, never remove them.
+
+EXCEPTION HANDLING - Q3: What is the term for sending an exception event to a catch block?	Throwing an exception (or "firing an event"). When an exception occurs, it's "thrown" and then "caught" by a catch block.
+
+EXCEPTION HANDLING - Q4: What is the superclass of all exception type classes?	Throwable - This is the root class for all exceptions and errors in Java. Hierarchy: Throwable → Error and Exception → RuntimeException and other exceptions.
+
+EXCEPTION HANDLING - Q5: What happens if an exception is never caught in a non-GUI program?	The program terminates with an error message. Uncaught exceptions cause the program to crash and display a stack trace.
+
+EXCEPTION HANDLING - Q6: Is Error the base class of Exception?	No! Both Error and Exception are subclasses of Throwable. They are siblings, not parent-child. Correct hierarchy: Throwable (parent) → Error (child) and Exception (child).
+
+EXCEPTION HANDLING - Q7: What is the output: try { int a=5/0; System.out.print("A"); } catch(ArithmeticException e) { System.out.print("B"); }	B - The division by zero throws an ArithmeticException, which is caught by the catch block, so "B" is printed. "A" is never printed because the exception occurs before that line.
+
+EXCEPTION HANDLING - Q8: Are checked exceptions checked during compilation time?	Yes! Checked exceptions are verified by the compiler. If a method can throw a checked exception, you must either handle it with try-catch OR declare it in the throws clause. Unchecked exceptions (like RuntimeException) are NOT checked at compile time.
+
+EXCEPTION HANDLING - Q9: Which keyword does a calling function use to handle exceptions thrown by a called function?	throws - This keyword is used in the method signature to declare that the method might throw certain exceptions. Note: throw is for throwing, throws is for declaring!
+
+EXCEPTION HANDLING - Q10: What must a method include if it can throw an exception but doesn't catch it?	A throws clause in the method signature. This tells callers that they need to handle the exception. Example: public void readFile() throws FileNotFoundException { }
+
+INTERFACES - Q1: Can an inner class be extended?	No! Inner classes cannot be extended. They are meant to be used within the context of their outer class and are tightly coupled to their outer class.
+
+INTERFACES - Q2: Can an interface be nested inside another interface?	No! Interfaces cannot be nested inside other interfaces. However, interfaces CAN be nested inside classes. What IS allowed: Interface inside a class ✓, Class inside an interface ✓, Interface inside an interface ✗.
+
+INTERFACES - Q3: Are all methods in interfaces public and abstract by default?	Yes! Even if you don't write public or abstract, all methods in an interface are automatically public (accessible everywhere) and abstract (must be implemented by implementing classes).
+
+INTERFACES - Q4: Do methods of an outer class have access to private methods/variables of the inner class?	Yes! The outer class has full access to everything in the inner class, including private members. This is because the inner class is part of the outer class. Inner classes can access outer class members, AND outer classes can access inner class members!
+
+INTERFACES - Q5: Can a class implement only one interface?	No! A class can implement multiple interfaces. This is one of the key advantages of interfaces over inheritance (where you can only extend one class). Example: class MyClass implements Interface1, Interface2, Interface3 { }
+
+INTERFACES - Q6: Can methods inside an interface be native or strictfp?	No! Methods in interfaces cannot be native (implemented in another language) or strictfp (strict floating-point precision). Why? Interfaces only define contracts (method signatures), not implementations. native and strictfp are implementation details.
+
+INTERFACES - Q7: Which interface allows saving an object's state to a file?	Serializable - This interface marks a class as serializable, meaning its objects can be converted to a byte stream and saved to a file or sent over a network. Other interfaces: Comparable (for comparing/sorting), Runnable (for threading), Cloneable (for cloning objects).
+
+INTERFACES - Q8: Can an interface contain instance variables?	No! Interfaces cannot contain instance variables. They can only contain: Method signatures (public abstract methods), Constants (public static final variables), Default methods (Java 8+), Static methods (Java 8+). Key Point: Interfaces define behavior, not state!
+
+INTERFACES - Q9: Must all method signatures in an interface be declared public?	Yes! All method signatures in an interface must be declared public. Even if you don't write public, it's automatically public, but the signature itself must be public.
+
+INTERFACES - Q10: Is everything defined inside an interface assumed to have public modifier?	Yes! Everything in an interface is public by default: Methods are public abstract, Variables are public static final (constants). You don't need to write public in interfaces, but everything is public!
+
+KEY CONCEPT: throw vs throws	throw = I'm throwing this exception NOW (action). throws = I might throw this exception (declaration in method signature).
+
+KEY CONCEPT: final method vs final class	final method = cannot be overridden in subclasses. final class = cannot be extended (no subclasses allowed).
+
+KEY CONCEPT: Checked vs Unchecked exceptions	Checked exceptions = compiler checks them at compile time (must handle with try-catch or declare with throws). Unchecked exceptions = not checked by compiler (RuntimeException and subclasses).
+
+KEY CONCEPT: Error vs Exception hierarchy	Both Error and Exception extend Throwable. They are siblings, not parent-child. Error is NOT the base class of Exception. Correct: Throwable → Error and Exception.
+
+KEY CONCEPT: Interface vs Abstract Class	Interface = all methods abstract by default, no instance variables, can implement multiple interfaces. Abstract class = can have concrete methods, instance variables, can only extend one class.
+
+KEY CONCEPT: Access modifiers in Java	public = accessible everywhere. private = only within same class. protected = within package and subclasses. default/package-private = within same package (no keyword needed).
+
+KEY CONCEPT: super keyword usage	Must use super() to call base class constructor, NOT the class name. If derived constructor doesn't call super(), no-argument base constructor automatically called.
+
+KEY CONCEPT: Object class	Object is the root of all classes in Java. Every class implicitly extends Object if it doesn't extend another class. Even class MyClass { } is actually class MyClass extends Object { }.
+
+KEY CONCEPT: Covariant return types	When overriding a method, you CAN change the return type to any descendant class of the original return type. Example: Base returns Animal, Override can return Dog (if Dog extends Animal).
+
+KEY CONCEPT: Inner class access rules	Inner class → Outer class: full access including private members ✓. Outer class → Inner class: full access including private members ✓. Inner class: cannot be extended ✗.
+
+KEY CONCEPT: Multiple interfaces vs single inheritance	A class can implement multiple interfaces (interface1, interface2, interface3) but can only extend one class. This is why interfaces are useful for multiple inheritance-like behavior.
+
+KEY CONCEPT: Interface method defaults	All interface methods are automatically: public abstract (even if not written). All interface variables are automatically: public static final (constants).
+
+KEY CONCEPT: Serializable interface	Allows objects to be converted to byte stream and saved to files or sent over networks. It's a marker interface (no methods, just indicates capability).
+
+KEY CONCEPT: Comparable interface	Defines natural ordering for objects. Classes implementing Comparable must define compareTo() method, used for sorting objects in collections.
+
+KEY CONCEPT: Cloneable interface	Marker interface indicating a class can be cloned. Classes implementing Cloneable can use clone() method to create copies of objects.
+
+KEY CONCEPT: Native and strictfp in interfaces	Methods in interfaces CANNOT be native (implemented in another language) or strictfp (strict floating-point precision) because interfaces only define contracts, not implementations.
+
+KEY CONCEPT: Exception handling flow	throw → exception is thrown → catch → exception is caught and handled. If not caught, program terminates (non-GUI) or displays error.
+
+KEY CONCEPT: try-catch-finally	try = code that might throw exceptions. catch = handles specific exception types. finally = always executes, used for cleanup code.
+
+KEY CONCEPT: Multiple catch blocks	You can have multiple catch blocks to handle different exception types. More specific exceptions should come before more general ones.
+
+KEY CONCEPT: throws clause requirement	If a method can throw a checked exception but doesn't catch it, the method MUST include a throws clause in its signature. This tells callers they need to handle it.
+
+KEY CONCEPT: Derived class exception rules	When overriding a method, a derived class can ADD exceptions to the throws clause but CANNOT DELETE any exceptions declared by the base class. This ensures backward compatibility.
+
+KEY CONCEPT: Uncaught exception behavior	In a non-GUI program, if an exception is never caught, the program terminates with an error message and stack trace. This is why exception handling is important!
+
+KEY CONCEPT: Checked exception handling options	If a method throws a checked exception, you have two options: 1) Handle it with try-catch block, OR 2) Declare it in the throws clause (pass responsibility to caller).
+
+KEY CONCEPT: extends keyword	Used for class inheritance. Example: class Child extends Parent { } means Child inherits from Parent. Can only extend one class, but can implement multiple interfaces.
+
+KEY CONCEPT: implements keyword	Used for implementing interfaces. Example: class MyClass implements Interface1, Interface2 { } means MyClass promises to implement all methods in those interfaces.
+
+KEY CONCEPT: final keyword uses	final variable = constant (cannot be changed). final method = cannot be overridden. final class = cannot be extended. final parameter = cannot be reassigned in method.
+
+KEY CONCEPT: super keyword uses	super() = calls base class constructor. super.methodName() = calls base class method. super.variableName = accesses base class variable (if not private).
+
+KEY CONCEPT: this keyword uses	this() = calls another constructor in same class. this.methodName() = calls method in same class. this.variableName = accesses instance variable (distinguishes from parameter).
+
+KEY CONCEPT: Object class methods	All classes inherit from Object, so they have methods like: toString(), equals(), hashCode(), clone(), getClass(), finalize(), notify(), wait().
+
+KEY CONCEPT: instanceof operator	Checks if an object is an instance of a class or interface. Example: if (obj instanceof String) { } Returns true if obj is String or subclass of String.
+
+KEY CONCEPT: getClass() method	Returns the Class object representing the runtime class of the object. More precise than instanceof for type checking. Example: obj.getClass() == String.class
+
+KEY CONCEPT: is-a vs has-a relationships	is-a = inheritance relationship (Dog IS-A Animal). has-a = composition relationship (Car HAS-A Engine). Use extends for is-a, use instance variables for has-a.
+
+KEY CONCEPT: Polymorphism	The ability of objects of different types to be accessed through the same interface. "One interface, many implementations." Enables late binding/dynamic method resolution.
+
+KEY CONCEPT: Late binding (Dynamic binding)	Method calls resolved at runtime based on actual object type, not reference type. Enables polymorphism. Opposite of early/static binding (compile-time resolution).
+
+KEY CONCEPT: Abstract class rules	Cannot be instantiated (cannot create objects). May contain abstract methods (must be implemented by subclasses). May contain concrete methods. Can have instance variables and constructors.
+
+KEY CONCEPT: Abstract method rules	Declared without implementation (no body, just semicolon). Must be implemented by concrete subclasses. If class has abstract method, class must be abstract. Cannot be private, static, or final.
+
+KEY CONCEPT: clone() method	Creates a copy of an object. Class must implement Cloneable interface. Can be shallow copy (default) or deep copy (custom implementation). Returns Object, usually needs casting.
+
+KEY CONCEPT: Static method binding	Static methods use static binding (compile-time resolution). No late binding for static methods. Method called based on reference type, not object type. Cannot be overridden, only hidden.
+
+KEY CONCEPT: toString() method	Returns string representation of object. Inherited from Object class. Should be overridden for meaningful output. Used by System.out.println() automatically.
+
+KEY CONCEPT: equals() method	Compares objects for equality. Inherited from Object class (compares references by default). Should be overridden to compare object contents. Must follow contract: reflexive, symmetric, transitive, consistent.
+
+KEY CONCEPT: hashCode() method	Returns hash code value for object. Used by hash-based collections (HashMap, HashSet). Must be overridden with equals(). Contract: if equals() returns true, hashCode() must return same value.
+
+KEY CONCEPT: Default methods in interfaces	Java 8+ feature. Methods in interfaces with implementation. Allows adding new methods to interfaces without breaking existing implementations. Use default keyword.
+
+KEY CONCEPT: Static methods in interfaces	Java 8+ feature. Static methods can be defined in interfaces. Called using interface name: InterfaceName.staticMethod(). Cannot be overridden, only hidden.
+
+KEY CONCEPT: Interface inheritance	Interfaces can extend other interfaces. Example: interface Child extends Parent { } A class implementing Child must implement methods from both Child and Parent interfaces.
+
+KEY CONCEPT: Abstract class implementing interface	An abstract class can implement an interface without implementing all methods. Unimplemented methods remain abstract. Concrete subclasses must implement all abstract methods.
+
+KEY CONCEPT: Inner class instantiation	To create inner class object from outside: OuterClass outer = new OuterClass(); OuterClass.InnerClass inner = outer.new InnerClass(); From inside outer class: InnerClass inner = new InnerClass();
+
+KEY CONCEPT: Anonymous classes	Classes without names. Defined and instantiated at the same time. Often used for event handlers, listeners. Syntax: new InterfaceName() { /* implementation */ } or new ClassName() { /* implementation */ }
+
+KEY CONCEPT: Generic types (Type parameters)	Makes code reusable with different types. Uses angle brackets: class MyClass<T> { } T is type parameter. Can have multiple: class MyClass<T, U> { } Provides type safety at compile time.
+
+KEY CONCEPT: Generic method	Method with type parameters. Syntax: public <T> void methodName(T param) { } Type parameter declared before return type. Can be used with non-generic classes.
+
+KEY CONCEPT: Bounded type parameters	Restricts type parameter to specific types. Syntax: class MyClass<T extends Number> { } T must be Number or subclass. Can use extends for classes, extends for interfaces, & for multiple bounds.
+
+KEY CONCEPT: Wildcards in generics	? = unknown type. ? extends Type = upper bounded (Type or subclass). ? super Type = lower bounded (Type or superclass). Used in method parameters for flexibility.
+
+KEY CONCEPT: Raw types	Using generic class without type parameters. Example: ArrayList instead of ArrayList<String>. Backward compatibility feature. Loses type safety, compiler warnings.
+
+KEY CONCEPT: Type erasure	Java generics use type erasure. Type parameters removed at compile time, replaced with Object or bounds. Runtime doesn't know generic types. Enables backward compatibility.
+
+KEY CONCEPT: JFrame	Main window container in Swing applications. Top-level window with title bar, borders, menu bar. setDefaultCloseOperation() sets close behavior. getContentPane() gets container for components.
+
+KEY CONCEPT: JButton	Button component in Swing. Can have text or icon. addActionListener() adds click handler. setActionCommand() sets command string. getActionCommand() retrieves command string.
+
+KEY CONCEPT: JLabel	Label component for displaying text or images. Used for non-editable text. setText() sets text. setIcon() sets image. Can have both text and icon.
+
+KEY CONCEPT: JTextField	Single-line text input component. getText() retrieves text. setText() sets text. setEditable() makes editable/read-only. Used for user input.
+
+KEY CONCEPT: JTextArea	Multi-line text input/display component. Can have scroll bars. setText() sets text. getText() retrieves text. setLineWrap() enables line wrapping. Used for longer text.
+
+KEY CONCEPT: Layout managers	Control how components are arranged in containers. FlowLayout = left-to-right, top-to-bottom. BorderLayout = five regions (North, South, East, West, Center). GridLayout = grid of equal cells.
+
+KEY CONCEPT: FlowLayout	Arranges components left-to-right, top-to-bottom like text flow. Components wrap to next line when needed. Default for JPanel. Simple, flexible layout.
+
+KEY CONCEPT: BorderLayout	Arranges components in five regions: North (top), South (bottom), East (right), West (left), Center (fills remaining). Default for JFrame content pane. Only one component per region.
+
+KEY CONCEPT: GridLayout	Arranges components in a grid of equal-sized cells. All cells same size. Components fill cells completely. Specify rows and columns in constructor.
+
+KEY CONCEPT: JPanel	Container component for grouping and organizing other components. Can have its own layout manager. Used to create complex layouts by nesting panels. Lightweight container.
+
+KEY CONCEPT: ActionListener	Interface for handling action events (button clicks, menu selections). Must implement actionPerformed(ActionEvent e) method. addActionListener() registers listener with component.
+
+KEY CONCEPT: ActionEvent	Event object representing an action (button click, menu selection). getActionCommand() returns command string. getSource() returns component that fired event. Contains event information.
+
+KEY CONCEPT: Event-driven programming	Program flow determined by events (user actions, exceptions, system events). Program responds to events as they occur. GUI programming is event-driven. Exception handling is event-driven.
+
+KEY CONCEPT: Menu bars and menus	JMenuBar contains menus. JMenu contains menu items. JMenuItem represents menu item. add() adds items to menu. setJMenuBar() sets menu bar on JFrame.
+
+KEY CONCEPT: setDefaultCloseOperation	Sets what happens when window is closed. EXIT_ON_CLOSE = terminate program. HIDE_ON_CLOSE = hide window (default). DISPOSE_ON_CLOSE = dispose window. DO_NOTHING_ON_CLOSE = do nothing.
+
+KEY CONCEPT: WindowListener	Interface for handling window events (opening, closing, minimizing, maximizing). Multiple methods: windowOpened(), windowClosing(), windowClosed(), etc. WindowAdapter provides empty implementations.
+
+KEY CONCEPT: WindowAdapter	Class providing empty implementations of all WindowListener methods. Extend this instead of implementing WindowListener if you only need some methods. Reduces boilerplate code.
+
+KEY CONCEPT: dispose() method	Releases resources and closes window. Called when window is disposed. Proper cleanup method. Frees memory and system resources.
+
+KEY CONCEPT: Scroll bars	JScrollPane provides scroll bars for components. Used with JTextArea, JList, etc. Automatically shows scroll bars when content exceeds visible area. setHorizontalScrollBarPolicy() and setVerticalScrollBarPolicy() control visibility.
+
+KEY CONCEPT: paint() method	Method in Component class for custom drawing. Override to draw custom graphics. Called automatically by system. Should not be called directly, use repaint() instead.
+
+KEY CONCEPT: paintComponent() method	Method in JComponent for custom drawing. Should override this instead of paint() for Swing components. Called by paint() method. Use Graphics object for drawing.
+
+KEY CONCEPT: Graphics class	Provides methods for drawing shapes, text, images. Methods: drawLine(), drawRect(), drawOval(), drawString(), fillRect(), fillOval(), setColor(), etc. Used in paintComponent() method.
+
+KEY CONCEPT: repaint() method	Requests component to be repainted. Triggers paint() or paintComponent() method. Called when component needs to be redrawn. System schedules repaint when appropriate.
+
+KEY CONCEPT: Thread	Separate execution path in a program. Allows concurrent execution of multiple tasks. Extend Thread class or implement Runnable interface. start() method begins execution.
+
+KEY CONCEPT: Runnable interface	Interface for creating threads. Defines run() method containing thread code. Implement Runnable and pass to Thread constructor. Preferred over extending Thread class.
+
+KEY CONCEPT: run() method	Contains code executed by thread. Defined in Runnable interface. Called automatically when thread starts. Thread terminates when run() method completes.
+
+KEY CONCEPT: start() method	Begins thread execution. Creates new thread and calls run() method. Must call start(), not run() directly. Each thread can only be started once.
+
+KEY CONCEPT: Thread.sleep()	Static method that pauses current thread for specified milliseconds. Thread.sleep(1000) pauses for 1 second. Can throw InterruptedException (checked exception). Used for timing/delays.
+
+KEY CONCEPT: Race condition	Occurs when multiple threads access shared data simultaneously, leading to unpredictable results. Data corruption possible. Need synchronization to prevent. Example: two threads incrementing same counter.
+
+KEY CONCEPT: Synchronize (synchronized keyword)	Ensures only one thread can access synchronized block/method at a time. Prevents race conditions. Provides mutual exclusion. Thread must acquire lock before entering synchronized block.
+
+KEY CONCEPT: JavaFX	Modern GUI framework for Java, replacing Swing. Uses scene graph model. CSS styling support. Better performance and modern look. Stage = window, Scene = content, Node = component.
+
+KEY CONCEPT: Stage (JavaFX)	Top-level container (window) in JavaFX. Equivalent to JFrame in Swing. Primary stage created by JavaFX runtime. setScene() sets scene to display. show() displays stage.
+
+KEY CONCEPT: Scene (JavaFX)	Container holding all visual elements (scene graph) for display in Stage. Contains root node and all child nodes. setScene() attaches scene to stage. One scene per stage at a time.
+
+KEY CONCEPT: Pane (JavaFX)	Base class for layout containers. Examples: BorderPane, AnchorPane, FlowPane, GridPane. Arranges child nodes. Root node of scene graph. Different panes have different layout behaviors.
+
+KEY CONCEPT: BorderPane (JavaFX)	Layout container with five regions: top, bottom, left, right, center. Similar to BorderLayout in Swing. setTop(), setBottom(), setLeft(), setRight(), setCenter() methods.
+
+KEY CONCEPT: AnchorPane (JavaFX)	Layout container that allows anchoring child nodes to edges or corners. setTopAnchor(), setBottomAnchor(), setLeftAnchor(), setRightAnchor() methods. Flexible positioning.
+
+KEY CONCEPT: Graphic (JavaFX)	Visual element in JavaFX scene graph. Can be shapes, images, text. All graphics are nodes. Added to panes/containers. Styled with CSS.
+
+KEY CONCEPT: FillTransition (JavaFX)	Animation that transitions a shape's fill color over time. Part of JavaFX animation API. setDuration() sets animation duration. play() starts animation.
+
+KEY CONCEPT: start() method (JavaFX)	Main entry point for JavaFX applications. Called by JavaFX runtime. Receives Stage object. Application class must extend javafx.application.Application and override start().
+
+KEY CONCEPT: validate() method	Validates and lays out components in container. Ensures proper sizing and positioning. Called automatically by layout manager. Can be called manually if needed.
+
+KEY CONCEPT: pack() method	Sizes window to fit its contents. Used in Swing. Automatically calculates optimal window size. Called on JFrame before making visible.
+
+KEY CONCEPT: .class file naming for inner classes	Compiled inner class files named: OuterClass$InnerClass.class. Dollar sign separates outer and inner class names. Example: MyClass$InnerClass.class.
+
+KEY CONCEPT: AWT (Abstract Window Toolkit)	Original Java GUI framework, predecessor to Swing. Heavyweight components (native OS components). Swing built on top of AWT. Some AWT classes still used (Event, Graphics).
+
+KEY CONCEPT: Component class	Base class for all GUI components in AWT/Swing. Defines common behavior. Methods: setSize(), setLocation(), setVisible(), paint(), repaint(), etc. Abstract class.
+
+KEY CONCEPT: Container class	Base class for components that can hold other components. Extends Component. Methods: add(), remove(), setLayout(), getComponents(), etc. JFrame, JPanel extend Container.
+
+KEY CONCEPT: getContentPane()	Returns the content pane of a JFrame. Content pane is the container where components are added. In older Java versions, had to get content pane explicitly. Modern Java: add() works directly.
+
+KEY CONCEPT: setActionCommand()	Sets the command string for a button or menu item. Used to identify which component fired the event. getActionCommand() retrieves the command string. Useful when multiple components share same listener.
+
+KEY CONCEPT: getActionCommand()	Returns the command string associated with an action event. Identifies which component fired the event. Set with setActionCommand(). Useful for identifying event source.
+
+KEY CONCEPT: Event-driven programming in GUI	User actions (clicks, typing) generate events. Program responds to events through listeners. ActionListener handles button clicks. Event loop processes events. Asynchronous programming model.
+
+KEY CONCEPT: Nested try-catch blocks	try-catch blocks inside other try-catch blocks. Inner exceptions handled by inner catch blocks. Outer exceptions handled by outer catch blocks. Allows fine-grained exception handling.
+
+KEY CONCEPT: Multiple catch blocks	Multiple catch blocks for single try block. Each catch handles different exception type. More specific exceptions should come before more general ones. Only one catch block executes per exception.
+
+KEY CONCEPT: finally block	Block that always executes, whether exception occurs or not. Used for cleanup code (closing files, releasing resources). Executes even if return statement in try or catch. Exception in finally can mask original exception.
+
+KEY CONCEPT: Custom exception classes	Creating your own exception classes. Extend Exception (checked) or RuntimeException (unchecked). Usually extend existing exception classes. Add custom constructors and methods. Provides specific exception types for your application.
+
+KEY CONCEPT: Exception object characteristics	Exception objects contain: message (error description), stack trace (method call chain), cause (nested exception). getMessage() returns message. printStackTrace() prints stack trace. getCause() returns cause.
+
+KEY CONCEPT: Rethrowing exceptions	Throwing an exception again after catching it. Allows higher-level code to handle exception. Can wrap in new exception. Preserves original exception information. Use throw keyword in catch block.
+
+KEY CONCEPT: When to use exceptions	Use for exceptional conditions (errors, invalid input, resource unavailable). Don't use for normal control flow. Use checked exceptions for recoverable errors. Use unchecked exceptions for programming errors.
+
+KEY CONCEPT: Exception handling and event-driven programming	Exceptions are events that interrupt normal program flow. Exception handling is event-driven: exception occurs (event fires), catch block handles it (event handler). Similar to GUI event handling.
+
+KEY CONCEPT: Access modifiers in inheritance	Private members: not accessible in subclasses. Protected members: accessible in subclasses and same package. Public members: accessible everywhere. Package-private: accessible in same package only.
+
+KEY CONCEPT: this constructor	Calling another constructor in the same class. Uses this() syntax. Must be first statement in constructor. Reduces code duplication. Allows constructor chaining.
+
+KEY CONCEPT: super constructor	Calling base class constructor from derived class. Uses super() syntax. Must be first statement in constructor. If not called, no-argument base constructor automatically called. Must match base constructor signature.
+
+KEY CONCEPT: instanceof vs getClass()	for type checking. instanceof checks if object is instance of class or subclass (returns true for subclasses). getClass() returns exact runtime class (more precise, only exact match). Use instanceof for polymorphism, getClass() for exact type.
+
+KEY CONCEPT: is-a vs has-a relationships	is-a = inheritance relationship (Dog IS-A Animal, use extends). has-a = composition relationship (Car HAS-A Engine, use instance variables). Prefer composition over inheritance when possible. Inheritance for specialization, composition for functionality.
+
+KEY CONCEPT: Late binding for instance methods	Instance methods use late binding (runtime resolution) based on actual object type. Enables polymorphism. Overridden methods resolved at runtime. Virtual method calls.
+
+KEY CONCEPT: Static method binding	Static methods use static binding (compile-time resolution). No late binding for static methods. Method called based on reference type, not object type. Cannot be overridden, only hidden. Use class name to call.
+
+KEY CONCEPT: Object knows method definitions	At runtime, object knows which method definitions to use based on its actual type. Enables polymorphism. Method resolution happens at runtime for instance methods. Virtual method table used.
+
+KEY CONCEPT: clone() method implementation	Must implement Cloneable interface (marker interface). Override clone() method. Call super.clone() for shallow copy. Handle CloneNotSupportedException. Usually need to cast return value. Deep copy requires custom implementation.
+
+KEY CONCEPT: Copy constructor	Alternative to clone(). Constructor that takes object of same type and creates copy. More explicit than clone(). No need for Cloneable interface. Example: public MyClass(MyClass other) { /* copy fields */ }
+
+KEY CONCEPT: Overriding toString() properly	Should return meaningful string representation. Include all important fields. Format should be readable. Used by System.out.println() automatically. Good for debugging. Example: return "Student[name=" + name + ", id=" + id + "]";
+
+KEY CONCEPT: Overriding equals() properly	Must follow contract: reflexive (a.equals(a)), symmetric (a.equals(b) == b.equals(a)), transitive (if a.equals(b) and b.equals(c), then a.equals(c)), consistent (multiple calls return same result), null handling (a.equals(null) returns false). Compare all significant fields.
+
+KEY CONCEPT: Overriding hashCode() with equals()	Must override hashCode() when overriding equals(). Contract: if equals() returns true, hashCode() must return same value. If equals() returns false, hashCode() can be same or different (but different is better for performance). Use same fields in both methods.
+
+KEY CONCEPT: Default methods in interfaces (Java 8+)	Methods with implementation in interfaces. Use default keyword. Allows adding new methods without breaking existing implementations. Can be overridden by implementing classes. Enables interface evolution.
+
+KEY CONCEPT: Static methods in interfaces (Java 8+)	Static methods can be defined in interfaces. Called using interface name: InterfaceName.staticMethod(). Cannot be overridden, only hidden. Useful for utility methods related to interface.
+
+KEY CONCEPT: Interface extending another interface	Interfaces can extend other interfaces. Example: interface Child extends Parent { } Child inherits all methods from Parent. Class implementing Child must implement methods from both Child and Parent. Multiple inheritance allowed for interfaces.
+
+KEY CONCEPT: Abstract class implementing interface	Abstract class can implement interface without implementing all methods. Unimplemented methods remain abstract. Concrete subclasses must implement all abstract methods (from both abstract class and interface). Provides partial implementation.
+
+KEY CONCEPT: Inner class instantiation from outside	To create inner class object from outside outer class: OuterClass outer = new OuterClass(); OuterClass.InnerClass inner = outer.new InnerClass(); Need instance of outer class first. Use outer.new syntax.
+
+KEY CONCEPT: Inner class instantiation from inside	From inside outer class, can create inner class directly: InnerClass inner = new InnerClass(); Outer class has direct access. No need for OuterClass.InnerClass syntax when inside outer class.
+
+KEY CONCEPT: Anonymous classes	Classes without names, defined and instantiated at same time. Syntax: new InterfaceName() { /* implementation */ } or new ClassName() { /* implementation */ } Often used for event handlers, listeners. Reduces code verbosity.
+
+KEY CONCEPT: Generic class syntax	class MyClass<T> { } T is type parameter. Can have multiple: class MyClass<T, U> { } Type parameter used throughout class. Provides type safety. Eliminates need for casting.
+
+KEY CONCEPT: Generic method syntax	public <T> void methodName(T param) { } Type parameter declared before return type. Can be used with non-generic classes. Type parameter can be different from class type parameter. Provides flexibility.
+
+KEY CONCEPT: Bounded type parameters	Restricts type parameter: class MyClass<T extends Number> { } T must be Number or subclass. Can use extends for classes. Can use extends for interfaces. Can use & for multiple bounds: <T extends Number & Comparable>
+
+KEY CONCEPT: Wildcards (? extends, ? super)	? = unknown type. ? extends Type = upper bounded (Type or subclass), read-only. ? super Type = lower bounded (Type or superclass), write-only. Used in method parameters for flexibility. Provides bounded wildcard flexibility.
+
+KEY CONCEPT: Raw types and type erasure	Raw type = using generic class without type parameters (ArrayList instead of ArrayList<String>). Type erasure = type parameters removed at compile time, replaced with Object or bounds. Runtime doesn't know generic types. Enables backward compatibility but loses type safety.
+
+KEY CONCEPT: Type safety with generics	Generics provide type safety at compile time. Prevents ClassCastException. Compiler checks type usage. Eliminates need for explicit casting. Catches type errors early.
+
+KEY CONCEPT: JFrame basics	Main window in Swing. setTitle() sets window title. setSize() sets size. setLocation() sets position. setVisible(true) makes visible. setDefaultCloseOperation() sets close behavior. getContentPane() gets container.
+
+KEY CONCEPT: JButton basics	Button component. new JButton("Text") creates button with text. addActionListener() adds click handler. setEnabled() enables/disables. setText() sets text. getText() gets text. Can have icons.
+
+KEY CONCEPT: JLabel basics	Label for displaying text or images. new JLabel("Text") creates label. setText() sets text. setIcon() sets image. Can have both. Used for non-editable text display.
+
+KEY CONCEPT: JTextField basics	Single-line text input. new JTextField(columns) creates field. getText() retrieves text. setText() sets text. setEditable(false) makes read-only. addActionListener() handles Enter key press.
+
+KEY CONCEPT: JTextArea basics	Multi-line text component. new JTextArea(rows, columns) creates area. getText() retrieves text. setText() sets text. setLineWrap(true) enables wrapping. Usually put in JScrollPane for scrolling.
+
+KEY CONCEPT: Layout manager basics	Controls component arrangement. setLayout() sets layout manager. Different managers have different behaviors. FlowLayout = simple flow. BorderLayout = five regions. GridLayout = grid. null = absolute positioning (not recommended).
+
+KEY CONCEPT: FlowLayout details	Left-to-right, top-to-bottom arrangement. Components wrap to next line when needed. Default for JPanel. Can specify alignment (LEFT, CENTER, RIGHT). Simple and flexible.
+
+KEY CONCEPT: BorderLayout details	Five regions: North (top), South (bottom), East (right), West (left), Center (fills remaining). Default for JFrame content pane. Only one component per region (replacing old one). Specify region when adding: add(component, BorderLayout.NORTH).
+
+KEY CONCEPT: GridLayout details	Grid of equal-sized cells. All cells same size. Components fill cells completely. Specify rows and columns: new GridLayout(rows, cols). Components added left-to-right, top-to-bottom.
+
+KEY CONCEPT: JPanel usage	Container for grouping components. Can have own layout manager. Used to create complex layouts by nesting panels. Lightweight container. add() adds components. setLayout() sets layout.
+
+KEY CONCEPT: ActionListener implementation	Interface with actionPerformed(ActionEvent e) method. Implement interface or use anonymous class. Register with addActionListener(). Called when action occurs (button click). Can use lambda expressions (Java 8+).
+
+KEY CONCEPT: ActionEvent details	Event object for actions. getActionCommand() returns command string. getSource() returns component that fired event. getWhen() returns timestamp. Contains all event information.
+
+KEY CONCEPT: Menu creation	JMenuBar contains menus. JMenu contains items. JMenuItem represents item. add() adds items. setJMenuBar() sets bar on JFrame. addActionListener() handles clicks. Can have submenus.
+
+KEY CONCEPT: WindowListener implementation	Interface for window events. Methods: windowOpened(), windowClosing(), windowClosed(), windowIconified(), windowDeiconified(), windowActivated(), windowDeactivated(). WindowAdapter provides empty implementations. Register with addWindowListener().
+
+KEY CONCEPT: WindowAdapter usage	Class with empty implementations of all WindowListener methods. Extend this instead of implementing WindowListener if you only need some methods. Reduces boilerplate. Override only needed methods.
+
+KEY CONCEPT: dispose() and cleanup	Releases resources and closes window. Called when window disposed. Proper cleanup method. Frees memory. Should release all resources. System calls automatically on close.
+
+KEY CONCEPT: JScrollPane usage	Provides scroll bars for components. Wrap component: new JScrollPane(textArea). Automatically shows scroll bars when needed. setHorizontalScrollBarPolicy() and setVerticalScrollBarPolicy() control visibility. Used with JTextArea, JList.
+
+KEY CONCEPT: Custom drawing with paintComponent	Override paintComponent(Graphics g) in JComponent subclass. Use Graphics methods to draw. Called automatically by system. Should call super.paintComponent(g) first. Use repaint() to trigger redraw.
+
+KEY CONCEPT: Graphics drawing methods	drawLine(), drawRect(), drawOval(), drawArc(), drawString(), drawPolygon(). fillRect(), fillOval(), fillArc(), fillPolygon() for filled shapes. setColor() sets color. setFont() sets font. Many drawing options.
+
+KEY CONCEPT: repaint() and update cycle	repaint() requests component repaint. Triggers paint() → update() → paintComponent() chain. System schedules repaint when appropriate. Don't call paint() directly. Use repaint() for manual redraw requests.
+
+KEY CONCEPT: Thread creation methods	Extend Thread class and override run(). Implement Runnable interface and pass to Thread constructor. Use anonymous class. Use lambda expression (Java 8+). Preferred: implement Runnable (more flexible).
+
+KEY CONCEPT: Thread lifecycle	NEW → RUNNABLE → RUNNING → BLOCKED/WAITING → TERMINATED. start() transitions to RUNNABLE. run() executes code. Thread terminates when run() completes. Can check state with getState().
+
+KEY CONCEPT: Thread.sleep() details	Static method: Thread.sleep(milliseconds). Pauses current thread. Can throw InterruptedException (checked). Must handle or declare. Used for timing, delays. Doesn't guarantee exact time.
+
+KEY CONCEPT: Race condition example	Two threads incrementing same counter: thread1 reads (value=5), thread2 reads (value=5), thread1 writes (value=6), thread2 writes (value=6). Result should be 7 but is 6. Data corruption occurs.
+
+KEY CONCEPT: Synchronization basics	synchronized keyword provides mutual exclusion. Only one thread can execute synchronized block at a time. Other threads wait. Prevents race conditions. Can synchronize methods or blocks. Requires lock object.
+
+KEY CONCEPT: Synchronized methods	Method declared with synchronized keyword. Entire method is synchronized. Uses object's lock (this). Only one thread can execute method at a time. Other threads wait for lock.
+
+KEY CONCEPT: Synchronized blocks	synchronized(object) { /* code */ } Synchronizes specific block of code. Uses specified object's lock. More granular than synchronized methods. Can synchronize on different objects. More flexible.
+
+KEY CONCEPT: JavaFX application structure	Extend javafx.application.Application. Override start(Stage primaryStage) method. Create Scene with root node. Set scene on stage. Show stage. main() method calls launch().
+
+KEY CONCEPT: JavaFX Stage methods	setTitle() sets title. setScene() sets scene. show() displays stage. setResizable() allows/disallows resizing. setFullScreen() sets fullscreen. Primary stage created by runtime.
+
+KEY CONCEPT: JavaFX Scene creation	new Scene(root, width, height) creates scene. Root is top-level node (usually Pane). Can specify width and height. setScene() attaches to stage. One scene per stage at a time.
+
+KEY CONCEPT: JavaFX Pane types	BorderPane (five regions), AnchorPane (anchoring), FlowPane (flow layout), GridPane (grid layout), HBox (horizontal), VBox (vertical), StackPane (stacked). Each has different layout behavior.
+
+KEY CONCEPT: JavaFX BorderPane regions	setTop(), setBottom(), setLeft(), setRight(), setCenter() methods. Similar to BorderLayout in Swing. Center fills remaining space. Only one node per region (replacing old one).
+
+KEY CONCEPT: JavaFX AnchorPane anchoring	setTopAnchor(node, value), setBottomAnchor(node, value), setLeftAnchor(node, value), setRightAnchor(node, value). Anchors node to edges. Flexible positioning. Can anchor multiple edges.
+
+KEY CONCEPT: JavaFX Graphics and Nodes	All visual elements are Nodes. Shapes (Circle, Rectangle, Line), Text, ImageView, etc. Added to Panes. Styled with CSS. Part of scene graph.
+
+KEY CONCEPT: JavaFX FillTransition animation	Animates fill color change. new FillTransition(duration, shape). setFromValue() and setToValue() set colors. play() starts animation. Part of animation API. Smooth color transitions.
+
+KEY CONCEPT: JavaFX start() method	Main entry point. Called by JavaFX runtime. Receives Stage object (primary stage). Create Scene. Set scene on stage. Show stage. Application initialization happens here.
+
+KEY CONCEPT: validate() and layout	Validates component layout. Ensures proper sizing. Called automatically by layout manager. Can be called manually. Forces layout recalculation. Useful after programmatic changes.
+
+KEY CONCEPT: pack() method usage	Calls pack() on JFrame to size window to fit contents. Calculates optimal size based on components. Usually called before setVisible(true). Ensures window fits content nicely.
+
+KEY CONCEPT: Inner class .class file naming	Compiled files: OuterClass$InnerClass.class. Dollar sign separates names. Example: MyClass$InnerClass.class. Multiple inner classes: MyClass$Inner1.class, MyClass$Inner2.class. Static inner: OuterClass$StaticInner.class.
+
+KEY CONCEPT: AWT vs Swing	AWT = Abstract Window Toolkit, original GUI framework, heavyweight components. Swing = built on AWT, lightweight components, more components, better look-and-feel. Swing preferred for new applications. Some AWT classes still used.
+
+KEY CONCEPT: Component class hierarchy	Component (base) → Container → JComponent → specific components (JButton, JLabel, etc.). Component defines common behavior. Container can hold components. JComponent adds Swing features.
+
+KEY CONCEPT: Container class usage	Base for components holding other components. Methods: add(), remove(), removeAll(), setLayout(), getComponents(), getComponentCount(). JFrame, JPanel, JDialog extend Container. Manages child components.
+
+KEY CONCEPT: getContentPane() history	In older Java, had to explicitly get content pane: frame.getContentPane().add(component). Modern Java (5.0+): frame.add(component) works directly. getContentPane() still available for compatibility. Content pane is Container.
+
+KEY CONCEPT: ActionCommand usage	Identifies component that fired event. setActionCommand("command") sets command. getActionCommand() retrieves command. Useful when multiple components share listener. Can check command to determine source. Default is component text.
+
+KEY CONCEPT: Event-driven model	Program responds to events as they occur. Events: user actions, exceptions, system events. Listeners handle events. Asynchronous programming. GUI and exception handling are event-driven. Program doesn't control flow, events do.
+
+KEY CONCEPT: Exception as event	Exception is an event that interrupts normal flow. Exception occurs (event fires). Catch block handles it (event handler). Similar to button click event. Event-driven exception handling.
+
+KEY CONCEPT: Nested exception handling	try-catch inside try-catch. Inner exceptions handled by inner catch. Outer exceptions handled by outer catch. Allows handling exceptions at different levels. Fine-grained control. Can rethrow from inner to outer.
+
+KEY CONCEPT: Exception handling order	More specific exceptions should come before more general ones. catch(FileNotFoundException) before catch(IOException). catch(IOException) before catch(Exception). Compiler enforces this. First matching catch executes.
+
+KEY CONCEPT: finally block execution	Always executes: after try (if no exception), after catch (if exception caught), even if return in try/catch, even if exception in catch. Used for cleanup. Exception in finally can mask original exception.
+
+KEY CONCEPT: Creating custom exceptions	Extend Exception (checked) or RuntimeException (unchecked). Usually extend existing exception class. Add constructors: default, message, cause. Add custom methods if needed. Provides specific exception types for application domain.
+
+KEY CONCEPT: Exception information access	getMessage() returns error message. printStackTrace() prints stack trace to console. getCause() returns nested exception. getStackTrace() returns stack trace array. toString() returns string representation. All inherited from Throwable.
+
+KEY CONCEPT: Exception propagation	Exception propagates up call stack if not caught. Each method can catch or declare with throws. Continues until caught or program terminates. Can catch and rethrow. Can wrap in new exception. Preserves information.
+
+KEY CONCEPT: Exception handling best practices	Use for exceptional conditions, not normal flow. Use checked exceptions for recoverable errors. Use unchecked exceptions for programming errors. Don't catch and ignore. Provide meaningful messages. Log exceptions. Clean up resources in finally.
+
+KEY CONCEPT: Inheritance access rules	Private: not accessible in subclasses. Protected: accessible in subclasses and same package. Public: accessible everywhere. Package-private: accessible in same package. Subclasses can access protected and public members of superclass.
+
+KEY CONCEPT: Constructor chaining with this	this() calls another constructor in same class. Must be first statement. Allows constructor reuse. Reduces duplication. Can chain multiple constructors. Parameters determine which constructor called.
+
+KEY CONCEPT: Constructor chaining with super	super() calls base class constructor. Must be first statement. If not called, no-argument base constructor automatically called. Must match base constructor signature. Can pass parameters. Enables proper initialization.
+
+KEY CONCEPT: Type checking comparison	instanceof checks type or subclass (polymorphic check). getClass() checks exact type (precise check). instanceof: if (obj instanceof String) returns true for String and subclasses. getClass(): obj.getClass() == String.class returns true only for exact String type. Use instanceof for polymorphism, getClass() for exact type matching.
+
+KEY CONCEPT: Relationship types	is-a = inheritance (Dog IS-A Animal, use extends). has-a = composition (Car HAS-A Engine, use instance variable). Prefer composition over inheritance. Inheritance for specialization, composition for functionality. is-a is stronger relationship.
+
+KEY CONCEPT: Polymorphism mechanism	Same reference type can refer to different object types. Method calls resolved at runtime based on actual object type. Enables "one interface, many implementations". Late binding enables polymorphism. Overridden methods use object's type, not reference type.
+
+KEY CONCEPT: Binding types	Static binding = compile-time resolution (static methods, private methods, final methods). Dynamic binding = runtime resolution (instance methods, overridden methods). Late binding = same as dynamic binding. Enables polymorphism for instance methods.
+
+KEY CONCEPT: Abstract class characteristics	Cannot instantiate (new AbstractClass() causes error). Can have abstract methods (no implementation). Can have concrete methods (with implementation). Can have instance variables. Can have constructors. Can implement interfaces. Provides partial implementation.
+
+KEY CONCEPT: Abstract method requirements	No implementation (just semicolon). Must be in abstract class (or interface). Must be implemented by concrete subclasses. Cannot be private (must be accessible to subclasses). Cannot be static (belongs to instance). Cannot be final (must be overridable).
+
+KEY CONCEPT: clone() method requirements	Class must implement Cloneable interface (marker interface). Override clone() method. Call super.clone() for shallow copy. Handle CloneNotSupportedException. Return type is Object, usually need casting. Deep copy requires custom implementation copying all fields.
+
+KEY CONCEPT: Copy constructor advantages	More explicit than clone(). No need for Cloneable interface. No exception handling needed. Can control what gets copied. Easier to understand. Preferred in many cases. Example: public MyClass(MyClass other) { this.field = other.field; }
+
+KEY CONCEPT: toString() best practices	Return meaningful string representation. Include all important fields. Format should be readable. Used automatically by System.out.println(). Good for debugging. Should be informative. Example: "Student[name=John, id=12345]"
+
+KEY CONCEPT: equals() contract requirements	Reflexive: a.equals(a) must be true. Symmetric: if a.equals(b), then b.equals(a). Transitive: if a.equals(b) and b.equals(c), then a.equals(c). Consistent: multiple calls return same result. Null handling: a.equals(null) returns false. Must compare all significant fields.
+
+KEY CONCEPT: hashCode() contract with equals()	If equals() returns true, hashCode() must return same value. If equals() returns false, hashCode() can be same or different (different is better). Use same fields in both methods. Violating contract breaks hash-based collections. Critical for HashMap, HashSet.
+
+KEY CONCEPT: Default methods purpose	Allow adding new methods to interfaces without breaking existing implementations. Enable interface evolution. Provide default implementation. Can be overridden. Use default keyword. Java 8+ feature. Example: default void newMethod() { /* implementation */ }
+
+KEY CONCEPT: Static methods in interfaces	Can be defined in interfaces (Java 8+). Called using interface name: InterfaceName.staticMethod(). Cannot be overridden, only hidden. Useful for utility methods. Don't need implementing class instance. Example: interface MyInterface { static void utility() { } }
+
+KEY CONCEPT: Interface inheritance rules	Interfaces can extend other interfaces. Child interface inherits all methods from parent. Class implementing child must implement methods from both. Multiple inheritance allowed: interface Child extends Parent1, Parent2 { } No implementation inheritance, only contract inheritance.
+
+KEY CONCEPT: Abstract class with interface	Abstract class can implement interface partially. Unimplemented methods remain abstract. Concrete subclasses must implement all abstract methods. Provides base implementation. Can add additional methods. Useful for providing common functionality.
+
+KEY CONCEPT: Inner class access from outside	Need instance of outer class first: OuterClass outer = new OuterClass(); Then create inner: OuterClass.InnerClass inner = outer.new InnerClass(); Use outer.new syntax. Inner class tied to outer instance. Each inner instance belongs to specific outer instance.
+
+KEY CONCEPT: Inner class access from inside	From inside outer class, can create directly: InnerClass inner = new InnerClass(); No need for OuterClass.InnerClass syntax. Outer class has direct access. Can access private members of inner class. Inner can access private members of outer.
+
+KEY CONCEPT: Anonymous class syntax and usage	No name, defined and instantiated together. new InterfaceName() { /* implement methods */ } or new ClassName() { /* override methods */ } Often used for listeners, event handlers. Reduces verbosity. Can access final or effectively final variables from enclosing scope.
+
+KEY CONCEPT: Generic class benefits	Type safety at compile time. Eliminates need for casting. Prevents ClassCastException. Makes code more readable. Reusable with different types. Example: ArrayList<String> instead of ArrayList with casting. Compiler enforces type usage.
+
+KEY CONCEPT: Generic method flexibility	Can be used with non-generic classes. Type parameter can be different from class type parameter. Provides method-level generics. More flexible than class-level generics. Example: public <T> void method(T param) { } where class is not generic.
+
+KEY CONCEPT: Bounded type parameter benefits	Restricts type to specific hierarchy. Provides more specific type information. Enables use of type's methods. Can use extends for classes and interfaces. Multiple bounds with &: <T extends Number & Comparable> T must be Number subclass AND implement Comparable.
+
+KEY CONCEPT: Wildcard flexibility	? = unknown type, provides flexibility. ? extends Type = upper bound, read-only operations. ? super Type = lower bound, write-only operations. Used in method parameters. Enables methods that work with ranges of types. PECS: Producer Extends, Consumer Super.
+
+KEY CONCEPT: Type erasure implications	Type information erased at runtime. Generic types become Object or bounds. Runtime doesn't know generic types. Enables backward compatibility. But loses some type information. Reflection limitations. Cannot create arrays of generic types directly.
+
+KEY CONCEPT: Generic type safety	Compile-time type checking. Prevents wrong type usage. Eliminates ClassCastException risk. Makes code more robust. Catches errors early. Better than raw types. Compiler enforces type constraints.
+

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 3 - Student Class Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .code {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            border-left: 4px solid #007acc;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lab 3 - Student Class Implementation</h1>
+    
+    <div class="highlight">
+        <h2>Student Information</h2>
+        <p><strong>Name:</strong> Solomon Olufelo</p>
+        <p><strong>Student ID:</strong> oluf9170</p>
+        <p><strong>Course:</strong> CP213 - Object-Oriented Programming</p>
+        <p><strong>Lab:</strong> 3 - Java Classes and Objects</p>
+    </div>
+
+    <h2>Project Overview</h2>
+    <p>This lab implements a complete Student class with proper object-oriented programming principles including encapsulation, constructors, getters, setters, and the Comparable interface.</p>
+
+    <h2>Class Structure</h2>
+    
+    <h3>Student Class Attributes</h3>
+    <ul>
+        <li><code>private LocalDate birthDate</code> - Student's birth date</li>
+        <li><code>private String forename</code> - Student's first name</li>
+        <li><code>private int id</code> - Student's unique ID number</li>
+        <li><code>private String surname</code> - Student's last name</li>
+    </ul>
+
+    <h3>Implemented Methods</h3>
+    
+    <h4>Constructor</h4>
+    <div class="code">
+        public Student(int id, String surname, String forename, LocalDate birthDate)
+    </div>
+    <p>Creates a new Student object with the provided parameters.</p>
+
+    <h4>toString() Method</h4>
+    <div class="code">
+        public String toString()
+    </div>
+    <p>Returns a formatted string representation of the student with all attributes.</p>
+
+    <h4>compareTo() Method</h4>
+    <div class="code">
+        public int compareTo(final Student target)
+    </div>
+    <p>Implements the Comparable interface. Compares students by surname first, then by forename if surnames are equal. Returns negative, zero, or positive integer based on alphabetical ordering.</p>
+
+    <h4>Getter Methods</h4>
+    <ul>
+        <li><code>getBirthDate()</code> - Returns the student's birth date</li>
+        <li><code>getForename()</code> - Returns the student's first name</li>
+        <li><code>getId()</code> - Returns the student's ID</li>
+        <li><code>getSurname()</code> - Returns the student's last name</li>
+    </ul>
+
+    <h4>Setter Methods</h4>
+    <ul>
+        <li><code>setBirthDate(LocalDate birthDate)</code> - Sets the student's birth date</li>
+        <li><code>setForename(String forename)</code> - Sets the student's first name</li>
+        <li><code>setId(int id)</code> - Sets the student's ID</li>
+        <li><code>setSurname(String surname)</code> - Sets the student's last name</li>
+    </ul>
+
+    <h2>Main Class Testing</h2>
+    <p>The Main class provides comprehensive testing of all Student class functionality:</p>
+    <ul>
+        <li>Student object creation and display</li>
+        <li>Testing all getter methods</li>
+        <li>Testing all setter methods with new values</li>
+        <li>Testing the compareTo method with multiple student objects</li>
+    </ul>
+
+    <h2>Key Programming Concepts Demonstrated</h2>
+    <ul>
+        <li><strong>Encapsulation:</strong> Private attributes with public getter/setter methods</li>
+        <li><strong>Constructor:</strong> Proper object initialization</li>
+        <li><strong>Method Overriding:</strong> toString() and compareTo() methods</li>
+        <li><strong>Interfaces:</strong> Implementation of Comparable&lt;Student&gt;</li>
+        <li><strong>JavaDoc Documentation:</strong> Comprehensive method documentation</li>
+        <li><strong>LocalDate Usage:</strong> Proper handling of date objects</li>
+    </ul>
+
+    <h2>Compilation and Execution</h2>
+    <p>To compile and run this project:</p>
+    <div class="code">
+        javac -cp src src/cp213/*.java<br>
+        java -cp src cp213.Main
+    </div>
+
+    <h2>Testing Results</h2>
+    <p>All methods have been implemented and tested successfully. The program demonstrates proper object creation, data manipulation through getters and setters, and object comparison functionality.</p>
+</body>
+</html>

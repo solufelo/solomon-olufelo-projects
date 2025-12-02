@@ -1,0 +1,564 @@
+---
+alwaysApply: true
+---
+
+# Whiteboard Learning Guide for CP213
+*Your visual toolkit for mastering programming concepts*
+
+## 🎯 Daily Setup Template
+
+```
+┌─────────────────┬─────────────────┐
+│   TODAY'S GOAL  │   KEY CONCEPTS  │
+│                 │                 │
+│ [Write here]    │ • Concept 1     │
+│                 │ • Concept 2     │
+│                 │ • Concept 3     │
+├─────────────────┼─────────────────┤
+│   CODE TRACE    │   QUESTIONS     │
+│                 │                 │
+│ [Trace area]    │ • Why...?       │
+│                 │ • What if...?   │
+│                 │ • How does...?  │
+└─────────────────┴─────────────────┘
+```
+
+## 🔍 Code Tracing Method
+
+### Step-by-Step Execution Table
+```
+Line | Code                    | Variables        | Output/Action
+-----|------------------------|------------------|---------------
+1    | int x = 5;             | x = 5            |
+2    | Scanner input = new... | x = 5            |
+3    | while(input.hasNext()) | x = 5            | Check: TRUE
+4    | String line = input... | x = 5, line="3"  | Read "3"
+5    | if(line.equals("q"))   | x = 5, line="3"  | Check: FALSE
+```
+
+### Variable State Boxes
+```
+BEFORE:                    AFTER:
+┌─────────────┐           ┌─────────────┐
+│ x = 5       │    →      │ x = 6       │ ← CHANGED!
+│ y = 10      │           │ y = 10      │
+│ count = 0   │           │ count = 1   │ ← CHANGED!
+└─────────────┘           └─────────────┘
+```
+
+## 🌊 Control Flow Diagrams
+
+### Basic Decision Tree
+```
+      [Start]
+         |
+    [Read Input]
+         |
+  [Is it "q"?] ──YES──> [QUIT]
+         |
+        NO
+         |
+ [Is it a digit?] ──NO──> [THROW ERROR]
+         |
+        YES
+         |
+  [Process digit]
+         |
+  [Loop back to start]
+```
+
+### Exception Flow
+```
+Normal Flow:          Exception Flow:
+[Read] ────────>      [Read]
+   │                     │
+[Validate] ──>        [Validate] ──EXCEPTION──> [Catch Block]
+   │                                               │
+[Process]                                    [Handle Error]
+   │                                               │
+[Continue]                                   [Recovery/Exit]
+```
+
+## 🎮 Gamification Sketches
+
+### Level Progress Bar
+```
+WEEK 1: Basic Java     ████████████ 100% ✓
+WEEK 2: Input/Output   ████████████ 100% ✓
+WEEK 3: Flow Control   ██████░░░░░░  50% ⚡ CURRENT
+WEEK 4: Classes        ░░░░░░░░░░░░   0%
+```
+
+### Concept Mastery Health Bar
+```
+IF/ELSE STATEMENTS:    ████████░░ 80% 
+WHILE LOOPS:          ██████░░░░ 60%
+FOR LOOPS:            ████░░░░░░ 40%
+NESTED LOGIC:         ██░░░░░░░░ 20% ← FOCUS HERE
+```
+
+### Achievement Unlocked
+```
+┌─────────────────────────────────┐
+│        🏆 ACHIEVEMENT!          │
+│                                 │
+│     "Loop Master Unlocked"     │
+│                                 │
+│   Successfully traced through  │
+│   5 nested loops without error │
+└─────────────────────────────────┘
+```
+
+## 📚 Course-Specific Templates
+
+### Week 3: Flow of Control
+```
+CONDITION TESTING:
+Input: "5"
+├── Is it null? NO ✓
+├── Is it empty? NO ✓  
+├── Is it "q"? NO ✓
+├── Is it a digit? YES ✓
+└── RESULT: Process normally
+
+Input: "abc"
+├── Is it null? NO ✓
+├── Is it empty? NO ✓
+├── Is it "q"? NO ✓
+├── Is it a digit? NO → EXCEPTION
+└── RESULT: Throw error
+```
+
+### Week 4-5: Classes and Objects
+```
+Class: Student               Class: Course
+┌─────────────────┐         ┌─────────────────┐
+│ - name: String  │────────>│ - title: String │
+│ - id: int       │ enrolls │ - credits: int  │
+│ + getName()     │    in   │ + getTitle()    │
+│ + setGrade()    │         │ + addStudent()  │
+└─────────────────┘         └─────────────────┘
+```
+
+### Week 6: Arrays
+```
+BEFORE:  [1][2][3][ ][ ]
+         0  1  2  3  4
+           ↑
+        index 1
+
+OPERATION: Insert 9 at index 1
+
+AFTER:   [1][9][2][3][ ]
+         0  1  2  3  4
+```
+
+### Week 7: Inheritance
+```
+        Animal
+       /      \
+    Dog        Cat
+   /   \      /   \
+Beagle Poodle Persian Maine
+
+INHERITANCE CHAIN:
+Beagle → Dog → Animal
+```
+
+### Week 9: Exception Handling
+```
+TRY BLOCK:
+┌─────────────────┐
+│ risky code here │ ──exception──> CATCH BLOCK:
+│                 │                ┌─────────────────┐
+│                 │                │ handle error    │
+└─────────────────┘                │ log message     │
+         │                         │ recover/cleanup │
+         │                         └─────────────────┘
+         ▼
+FINALLY BLOCK:
+┌─────────────────┐
+│ cleanup code    │
+│ (always runs)   │
+└─────────────────┘
+```
+
+## 🎨 Color Coding System
+
+- **BLACK**: Normal code flow
+- **RED**: Exceptions/errors/problems
+- **BLUE**: Variable values/data
+- **GREEN**: Successful outcomes/correct answers
+- **ORANGE**: Questions/things to investigate
+
+## 🚀 Problem-Solving Framework
+
+### The APEX Method
+```
+┌──────────────────────────────────────┐
+│              ANALYZE                 │
+│ What is the problem asking?         │
+├──────────────────────────────────────┤
+│              PLAN                    │
+│ 1. Step one                         │
+│ 2. Step two                         │
+│ 3. Step three                       │
+├──────────────────────────────────────┤
+│              EXECUTE                 │
+│ [Write code/pseudocode here]        │
+├──────────────────────────────────────┤
+│              XAMINE (Test)           │
+│ Input: [test] → Expected: [result]  │
+│ Input: [test] → Expected: [result]  │
+└──────────────────────────────────────┘
+```
+
+## 📝 Weekly Review Template
+
+```
+WEEK [X]: [Topic] 
+┌─────────────────────────────────────┐
+│ MASTERED:        │ STRUGGLING WITH: │
+│ • Concept A      │ • Problem X      │
+│ • Concept B      │ • Problem Y      │
+│                  │                  │
+│ NEXT WEEK PREP:  │ PRACTICE NEEDED: │
+│ • Read Ch [X]    │ • More examples  │
+│ • Review [topic] │ • Debug practice │
+└─────────────────────────────────────┘
+```
+
+## 🧠 Memory Palace Method
+
+### Method Call Stack
+```
+main()
+├── calls readInput()
+│   ├── calls validateInput()
+│   │   ├── calls isDigit()
+│   │   │   └── returns true/false
+│   │   └── returns valid/invalid
+│   └── returns processed value
+└── continues with result
+```
+
+## ⚡ Quick Reference Symbols
+
+```
+✓  = Correct/Working
+✗  = Error/Problem  
+⚡ = Currently working on
+🎯 = Goal/Target
+🔄 = Loop/Repeat
+➡️ = Flow direction
+⚠️  = Warning/Caution
+💡 = Insight/Idea
+🐛 = Bug found
+🏆 = Achievement/Success
+```
+
+## 📋 Pre-Study Checklist
+
+Before each programming session, draw:
+- [ ] Problem statement
+- [ ] What I know
+- [ ] What confuses me  
+- [ ] Similar examples
+- [ ] Expected outcome
+
+## 📸 Post-Study Actions
+
+After each session:
+- [ ] Erase and redraw from memory
+- [ ] Explain to the whiteboard
+- [ ] Take photo for review
+- [ ] Note breakthrough moments
+- [ ] Plan tomorrow's focus
+
+---
+
+## 🎯 Remember: Think Like a Game!
+
+Every program is a puzzle to solve, every bug is a boss to defeat, and every concept mastered is a level completed. Your whiteboard is your strategy guide!
+
+**Pro Tip**: Start each session by writing "What will the computer do with THIS input?" at the top. This keeps you thinking like the machine!
+# Whiteboard Learning Guide for CP213
+*Your visual toolkit for mastering programming concepts*
+
+## 🎯 Daily Setup Template
+
+```
+┌─────────────────┬─────────────────┐
+│   TODAY'S GOAL  │   KEY CONCEPTS  │
+│                 │                 │
+│ [Write here]    │ • Concept 1     │
+│                 │ • Concept 2     │
+│                 │ • Concept 3     │
+├─────────────────┼─────────────────┤
+│   CODE TRACE    │   QUESTIONS     │
+│                 │                 │
+│ [Trace area]    │ • Why...?       │
+│                 │ • What if...?   │
+│                 │ • How does...?  │
+└─────────────────┴─────────────────┘
+```
+
+## 🔍 Code Tracing Method
+
+### Step-by-Step Execution Table
+```
+Line | Code                    | Variables        | Output/Action
+-----|------------------------|------------------|---------------
+1    | int x = 5;             | x = 5            |
+2    | Scanner input = new... | x = 5            |
+3    | while(input.hasNext()) | x = 5            | Check: TRUE
+4    | String line = input... | x = 5, line="3"  | Read "3"
+5    | if(line.equals("q"))   | x = 5, line="3"  | Check: FALSE
+```
+
+### Variable State Boxes
+```
+BEFORE:                    AFTER:
+┌─────────────┐           ┌─────────────┐
+│ x = 5       │    →      │ x = 6       │ ← CHANGED!
+│ y = 10      │           │ y = 10      │
+│ count = 0   │           │ count = 1   │ ← CHANGED!
+└─────────────┘           └─────────────┘
+```
+
+## 🌊 Control Flow Diagrams
+
+### Basic Decision Tree
+```
+      [Start]
+         |
+    [Read Input]
+         |
+  [Is it "q"?] ──YES──> [QUIT]
+         |
+        NO
+         |
+ [Is it a digit?] ──NO──> [THROW ERROR]
+         |
+        YES
+         |
+  [Process digit]
+         |
+  [Loop back to start]
+```
+
+### Exception Flow
+```
+Normal Flow:          Exception Flow:
+[Read] ────────>      [Read]
+   │                     │
+[Validate] ──>        [Validate] ──EXCEPTION──> [Catch Block]
+   │                                               │
+[Process]                                    [Handle Error]
+   │                                               │
+[Continue]                                   [Recovery/Exit]
+```
+
+## 🎮 Gamification Sketches
+
+### Level Progress Bar
+```
+WEEK 1: Basic Java     ████████████ 100% ✓
+WEEK 2: Input/Output   ████████████ 100% ✓
+WEEK 3: Flow Control   ██████░░░░░░  50% ⚡ CURRENT
+WEEK 4: Classes        ░░░░░░░░░░░░   0%
+```
+
+### Concept Mastery Health Bar
+```
+IF/ELSE STATEMENTS:    ████████░░ 80% 
+WHILE LOOPS:          ██████░░░░ 60%
+FOR LOOPS:            ████░░░░░░ 40%
+NESTED LOGIC:         ██░░░░░░░░ 20% ← FOCUS HERE
+```
+
+### Achievement Unlocked
+```
+┌─────────────────────────────────┐
+│        🏆 ACHIEVEMENT!          │
+│                                 │
+│     "Loop Master Unlocked"     │
+│                                 │
+│   Successfully traced through  │
+│   5 nested loops without error │
+└─────────────────────────────────┘
+```
+
+## 📚 Course-Specific Templates
+
+### Week 3: Flow of Control
+```
+CONDITION TESTING:
+Input: "5"
+├── Is it null? NO ✓
+├── Is it empty? NO ✓  
+├── Is it "q"? NO ✓
+├── Is it a digit? YES ✓
+└── RESULT: Process normally
+
+Input: "abc"
+├── Is it null? NO ✓
+├── Is it empty? NO ✓
+├── Is it "q"? NO ✓
+├── Is it a digit? NO → EXCEPTION
+└── RESULT: Throw error
+```
+
+### Week 4-5: Classes and Objects
+```
+Class: Student               Class: Course
+┌─────────────────┐         ┌─────────────────┐
+│ - name: String  │────────>│ - title: String │
+│ - id: int       │ enrolls │ - credits: int  │
+│ + getName()     │    in   │ + getTitle()    │
+│ + setGrade()    │         │ + addStudent()  │
+└─────────────────┘         └─────────────────┘
+```
+
+### Week 6: Arrays
+```
+BEFORE:  [1][2][3][ ][ ]
+         0  1  2  3  4
+           ↑
+        index 1
+
+OPERATION: Insert 9 at index 1
+
+AFTER:   [1][9][2][3][ ]
+         0  1  2  3  4
+```
+
+### Week 7: Inheritance
+```
+        Animal
+       /      \
+    Dog        Cat
+   /   \      /   \
+Beagle Poodle Persian Maine
+
+INHERITANCE CHAIN:
+Beagle → Dog → Animal
+```
+
+### Week 9: Exception Handling
+```
+TRY BLOCK:
+┌─────────────────┐
+│ risky code here │ ──exception──> CATCH BLOCK:
+│                 │                ┌─────────────────┐
+│                 │                │ handle error    │
+└─────────────────┘                │ log message     │
+         │                         │ recover/cleanup │
+         │                         └─────────────────┘
+         ▼
+FINALLY BLOCK:
+┌─────────────────┐
+│ cleanup code    │
+│ (always runs)   │
+└─────────────────┘
+```
+
+## 🎨 Color Coding System
+
+- **BLACK**: Normal code flow
+- **RED**: Exceptions/errors/problems
+- **BLUE**: Variable values/data
+- **GREEN**: Successful outcomes/correct answers
+- **ORANGE**: Questions/things to investigate
+
+## 🚀 Problem-Solving Framework
+
+### The APEX Method
+```
+┌──────────────────────────────────────┐
+│              ANALYZE                 │
+│ What is the problem asking?         │
+├──────────────────────────────────────┤
+│              PLAN                    │
+│ 1. Step one                         │
+│ 2. Step two                         │
+│ 3. Step three                       │
+├──────────────────────────────────────┤
+│              EXECUTE                 │
+│ [Write code/pseudocode here]        │
+├──────────────────────────────────────┤
+│              XAMINE (Test)           │
+│ Input: [test] → Expected: [result]  │
+│ Input: [test] → Expected: [result]  │
+└──────────────────────────────────────┘
+```
+
+## 📝 Weekly Review Template
+
+```
+WEEK [X]: [Topic] 
+┌─────────────────────────────────────┐
+│ MASTERED:        │ STRUGGLING WITH: │
+│ • Concept A      │ • Problem X      │
+│ • Concept B      │ • Problem Y      │
+│                  │                  │
+│ NEXT WEEK PREP:  │ PRACTICE NEEDED: │
+│ • Read Ch [X]    │ • More examples  │
+│ • Review [topic] │ • Debug practice │
+└─────────────────────────────────────┘
+```
+
+## 🧠 Memory Palace Method
+
+### Method Call Stack
+```
+main()
+├── calls readInput()
+│   ├── calls validateInput()
+│   │   ├── calls isDigit()
+│   │   │   └── returns true/false
+│   │   └── returns valid/invalid
+│   └── returns processed value
+└── continues with result
+```
+
+## ⚡ Quick Reference Symbols
+
+```
+✓  = Correct/Working
+✗  = Error/Problem  
+⚡ = Currently working on
+🎯 = Goal/Target
+🔄 = Loop/Repeat
+➡️ = Flow direction
+⚠️  = Warning/Caution
+💡 = Insight/Idea
+🐛 = Bug found
+🏆 = Achievement/Success
+```
+
+## 📋 Pre-Study Checklist
+
+Before each programming session, draw:
+- [ ] Problem statement
+- [ ] What I know
+- [ ] What confuses me  
+- [ ] Similar examples
+- [ ] Expected outcome
+
+## 📸 Post-Study Actions
+
+After each session:
+- [ ] Erase and redraw from memory
+- [ ] Explain to the whiteboard
+- [ ] Take photo for review
+- [ ] Note breakthrough moments
+- [ ] Plan tomorrow's focus
+
+---
+
+## 🎯 Remember: Think Like a Game!
+
+Every program is a puzzle to solve, every bug is a boss to defeat, and every concept mastered is a level completed. Your whiteboard is your strategy guide!
+
+**Pro Tip**: Start each session by writing "What will the computer do with THIS input?" at the top. This keeps you thinking like the machine!

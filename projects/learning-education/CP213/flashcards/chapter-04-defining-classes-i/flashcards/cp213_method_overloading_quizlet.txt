@@ -1,0 +1,228 @@
+Method overloading	Two or more methods in same class with same name but different parameters
+Overloading definition	Multiple methods with same name but different signatures
+Method signature	Method name plus list of parameter types
+Signature example	setDate(int, int, int)
+Different signatures	setDate(String, int, int) vs setDate(int, int, int)
+Parameter type difference	Methods differ in type of first parameter
+Parameter number difference	Methods differ in number of parameters
+Parameter order difference	Methods differ in order of parameters
+Valid overloading	setDate(int month, int day, int year)
+Valid overloading	setDate(String month, int day, int year)
+Valid overloading	setDate(int year)
+Invalid overloading	Same name, same parameter types, different return type only
+Invalid overloading	Same name, same parameters, different parameter names only
+Compiler resolution	Java uses parameter types to determine which method to call
+Type matching	Java matches actual arguments to parameter types
+Automatic type conversion	Java can convert compatible types for method calls
+int to double conversion	Automatic widening conversion in method calls
+byte to int conversion	Automatic widening conversion in method calls
+Method selection	Java selects most specific matching method
+Ambiguous call	Compiler error when multiple methods match equally well
+Exact match preference	Java prefers exact type matches over conversions
+Constructor overloading	Multiple constructors with different parameter lists
+Default constructor	Constructor with no parameters
+Parameterized constructor	Constructor that takes parameters for initialization
+toString method overloading	Multiple classes can have toString method
+Class-specific methods	Each class defines its own version of overloaded methods
+PrintStream overloading	println method has multiple overloaded versions
+println(int)	Prints integer values
+println(String)	Prints string values
+println(double)	Prints double values
+println(boolean)	Prints boolean values
+println(char)	Prints character values
+println(Object)	Prints any object using its toString method
+Math class overloading	Math.max has overloaded versions for different types
+Math.max(int, int)	Returns maximum of two integers
+Math.max(double, double)	Returns maximum of two doubles
+Math.max(long, long)	Returns maximum of two longs
+Math.max(float, float)	Returns maximum of two floats
+Scanner overloading	nextInt, nextDouble, nextLine methods
+nextInt()	Reads integer from input
+nextDouble()	Reads double from input
+nextLine()	Reads entire line from input
+next()	Reads next token from input
+String overloading	Multiple constructors for String class
+String(String)	Creates string from another string
+String(char[])	Creates string from character array
+String(byte[])	Creates string from byte array
+Overloading benefits	Provides flexibility in method usage
+Method flexibility	Same method name can handle different input types
+Code readability	Overloading makes code more intuitive to read
+API simplification	Reduces number of method names to remember
+Polymorphism support	Overloading enables compile-time polymorphism
+Static polymorphism	Method resolution at compile time
+Dynamic polymorphism	Method resolution at runtime (inheritance)
+Method resolution	Process of determining which method to call
+Parameter matching	Matching actual arguments to formal parameters
+Type promotion	Automatic conversion to more general types
+Narrowing conversion	Manual conversion to more specific types
+Widening conversion	Automatic conversion to less specific types
+Method call syntax	objectName.methodName(arguments)
+Argument passing	Values passed to method parameters
+Formal parameters	Parameters defined in method signature
+Actual parameters	Values passed when calling method
+Parameter binding	Associating actual arguments with formal parameters
+Method invocation	Process of calling a method
+Call stack	Stack of method calls during program execution
+Return value handling	How method return values are processed
+Void method	Method that returns nothing
+Value-returning method	Method that returns a specific type
+Method chaining	Calling multiple methods in sequence
+Overloading vs overriding	Overloading: same class, different parameters
+Overriding: different classes, same signature
+Method hiding	Static method hiding in inheritance
+Method resolution order	Order Java uses to find matching method
+Most specific method	Method with most specific parameter types
+Least specific method	Method with most general parameter types
+Type hierarchy	Order of types from specific to general
+Primitive type hierarchy	byte → short → int → long → float → double
+Wrapper type hierarchy	Wrapper classes follow same promotion rules
+Boxing and unboxing	Automatic conversion between primitives and wrappers
+Autoboxing	Automatic conversion from primitive to wrapper
+Unboxing	Automatic conversion from wrapper to primitive
+Method overload resolution	Steps Java takes to resolve method calls
+Exact match first	Java looks for exact parameter type match
+Widening conversion second	Java looks for widening conversion match
+Boxing conversion third	Java looks for boxing conversion match
+Varargs consideration	Java considers variable arguments as last resort
+Ambiguity resolution	How Java handles ambiguous method calls
+Compiler error	When multiple methods match equally well
+Explicit casting	Manual type conversion to resolve ambiguity
+Method selection algorithm	Algorithm Java uses to select best method
+Type inference	Java's ability to determine types automatically
+Generic method overloading	Overloading with generic type parameters
+Raw type consideration	Overloading with raw vs generic types
+Erasure impact	How type erasure affects method overloading
+Bridge methods	Synthetic methods created by compiler
+Method table	Table used for method resolution
+Virtual method table	Table for runtime method resolution
+Method dispatch	Process of selecting method to execute
+Static dispatch	Method selection at compile time
+Dynamic dispatch	Method selection at runtime
+Method binding	Associating method call with method implementation
+Early binding	Binding at compile time
+Late binding	Binding at runtime
+Method lookup	Process of finding method implementation
+Inheritance method lookup	How Java finds methods in inheritance hierarchy
+Interface method lookup	How Java finds methods in interface hierarchy
+Default method resolution	How Java resolves default interface methods
+Multiple inheritance resolution	How Java handles diamond problem
+Method resolution cache	Cache for frequently resolved methods
+Performance optimization	How overloading affects performance
+JIT optimization	Just-in-time compilation optimization
+Method inlining	Replacing method call with method body
+Dead code elimination	Removing unreachable code
+Constant folding	Evaluating constant expressions at compile time
+Method specialization	Creating specialized versions of methods
+Hot spot optimization	Optimizing frequently called methods
+Profiling support	Tools for analyzing method call patterns
+Benchmarking	Measuring performance of overloaded methods
+Memory usage	How overloading affects memory consumption
+Code size impact	How overloading affects compiled code size
+Debugging challenges	Difficulties in debugging overloaded methods
+Stack trace analysis	Analyzing call stacks with overloaded methods
+Exception handling	How exceptions work with overloaded methods
+Error messages	Compiler error messages for overloaded methods
+IDE support	How IDEs help with overloaded methods
+Auto-completion	IDE features for overloaded method selection
+Documentation generation	How Javadoc handles overloaded methods
+API documentation	Documenting overloaded methods clearly
+Method naming conventions	Best practices for overloaded method names
+Parameter naming	Best practices for overloaded method parameters
+Code comments	Commenting overloaded methods effectively
+Testing strategies	Testing overloaded methods thoroughly
+Unit testing	Testing each overloaded method version
+Integration testing	Testing overloaded methods together
+Mock testing	Mocking overloaded methods in tests
+Refactoring considerations	Refactoring code with overloaded methods
+Legacy code maintenance	Maintaining code with overloaded methods
+Version compatibility	Ensuring overloaded methods remain compatible
+Migration strategies	Moving from overloaded to different approaches
+Design patterns	Using overloading in design patterns
+Factory pattern overloading	Overloaded factory methods
+Builder pattern overloading	Overloaded builder methods
+Strategy pattern overloading	Overloaded strategy methods
+Command pattern overloading	Overloaded command methods
+Observer pattern overloading	Overloaded observer methods
+Singleton pattern overloading	Overloaded singleton methods
+Prototype pattern overloading	Overloaded prototype methods
+Template method overloading	Overloaded template methods
+Visitor pattern overloading	Overloaded visitor methods
+Chain of responsibility overloading	Overloaded chain methods
+Mediator pattern overloading	Overloaded mediator methods
+Memento pattern overloading	Overloaded memento methods
+State pattern overloading	Overloaded state methods
+Decorator pattern overloading	Overloaded decorator methods
+Facade pattern overloading	Overloaded facade methods
+Proxy pattern overloading	Overloaded proxy methods
+Adapter pattern overloading	Overloaded adapter methods
+Bridge pattern overloading	Overloaded bridge methods
+Composite pattern overloading	Overloaded composite methods
+Flyweight pattern overloading	Overloaded flyweight methods
+Interpreter pattern overloading	Overloaded interpreter methods
+Iterator pattern overloading	Overloaded iterator methods
+Observer pattern overloading	Overloaded observer methods
+Publisher-subscriber overloading	Overloaded pub-sub methods
+Event-driven overloading	Overloaded event handling methods
+Callback overloading	Overloaded callback methods
+Lambda overloading	Overloading with lambda expressions
+Functional interface overloading	Overloading functional interfaces
+Stream API overloading	Overloading in Stream API methods
+Optional overloading	Overloading with Optional types
+CompletableFuture overloading	Overloading with asynchronous methods
+Reactive programming overloading	Overloading in reactive streams
+Microservices overloading	Overloading in microservice APIs
+REST API overloading	Overloading in REST endpoints
+GraphQL overloading	Overloading in GraphQL resolvers
+Database overloading	Overloading in database operations
+ORM overloading	Overloading in object-relational mapping
+JPA overloading	Overloading in Java Persistence API
+Hibernate overloading	Overloading in Hibernate operations
+Spring overloading	Overloading in Spring framework
+Dependency injection overloading	Overloading in DI containers
+AOP overloading	Overloading in aspect-oriented programming
+Transaction overloading	Overloading in transaction management
+Security overloading	Overloading in security frameworks
+Authentication overloading	Overloading in authentication methods
+Authorization overloading	Overloading in authorization methods
+Encryption overloading	Overloading in encryption methods
+Hashing overloading	Overloading in hashing methods
+Validation overloading	Overloading in validation methods
+Serialization overloading	Overloading in serialization methods
+JSON overloading	Overloading in JSON processing
+XML overloading	Overloading in XML processing
+CSV overloading	Overloading in CSV processing
+File I/O overloading	Overloading in file operations
+Network overloading	Overloading in network operations
+HTTP overloading	Overloading in HTTP operations
+TCP overloading	Overloading in TCP operations
+UDP overloading	Overloading in UDP operations
+Socket overloading	Overloading in socket operations
+Stream overloading	Overloading in stream operations
+Buffer overloading	Overloading in buffer operations
+Channel overloading	Overloading in channel operations
+Selector overloading	Overloading in selector operations
+Thread overloading	Overloading in threading operations
+Executor overloading	Overloading in executor services
+Future overloading	Overloading in future operations
+CompletableFuture overloading	Overloading in completable future operations
+ScheduledExecutor overloading	Overloading in scheduled operations
+Timer overloading	Overloading in timer operations
+ScheduledFuture overloading	Overloading in scheduled future operations
+CountDownLatch overloading	Overloading in countdown latch operations
+CyclicBarrier overloading	Overloading in cyclic barrier operations
+Semaphore overloading	Overloading in semaphore operations
+Phaser overloading	Overloading in phaser operations
+Exchanger overloading	Overloading in exchanger operations
+BlockingQueue overloading	Overloading in blocking queue operations
+ConcurrentHashMap overloading	Overloading in concurrent hash map operations
+AtomicInteger overloading	Overloading in atomic integer operations
+AtomicLong overloading	Overloading in atomic long operations
+AtomicBoolean overloading	Overloading in atomic boolean operations
+AtomicReference overloading	Overloading in atomic reference operations
+Lock overloading	Overloading in lock operations
+ReadWriteLock overloading	Overloading in read-write lock operations
+ReentrantLock overloading	Overloading in reentrant lock operations
+ReentrantReadWriteLock overloading	Overloading in reentrant read-write lock operations
+StampedLock overloading	Overloading in stamped lock operations
+Condition overloading	Overloading in condition operations

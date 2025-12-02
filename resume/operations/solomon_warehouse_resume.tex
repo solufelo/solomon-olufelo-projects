@@ -1,0 +1,187 @@
+%-------------------------
+% Warehouse Resume in Latex
+% Author : Solomon Olufelo
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Solomon I. Olufelo} \\ \vspace{1pt}
+    \textbf{\large Warehouse Associate \& Logistics Support} \\ \vspace{2pt}
+    \small 289-233-8317 $|$ \href{mailto:solomonolufelo@outlook.com}{\underline{solomonolufelo@outlook.com}} $|$
+    \small Brampton, ON $|$ Available Immediately
+\end{center}
+
+
+%-----------PROFESSIONAL SUMMARY-----------
+\section{Professional Summary}
+\small{Reliable and hardworking individual with strong organizational skills and attention to detail. Experience managing high-volume orders and tight deadlines through freelance business operations. Physically fit with proven ability to work independently and as part of a team. Tech-savvy with computer literacy for inventory systems and warehouse management software. Quick learner ready to contribute to efficient warehouse operations.}
+
+
+%-----------RELEVANT EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Freelance Media Producer \& Business Operations}{2020 -- Present}
+      {Self-Employed via Fiverr}{Remote \& Brampton, ON}
+      \resumeItemListStart
+        \resumeItem{Managed 1,400+ orders with strict deadlines, maintaining 99\% on-time delivery rate}
+        \resumeItem{Organized and tracked multiple concurrent projects using digital inventory and project management systems}
+        \resumeItem{Handled shipping, packaging, and quality control for digital product delivery}
+        \resumeItem{Maintained detailed records and documentation for all transactions and deliveries}
+        \resumeItem{Demonstrated reliability and consistency with 4.8-star rating across 700+ client reviews}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Athletics \& Recreation Assistant}{Aug. 2023 -- Present}
+      {Wilfrid Laurier University}{Waterloo, ON}
+      \resumeItemListStart
+        \resumeItem{Set up and break down equipment for athletic events and recreational activities}
+        \resumeItem{Manage inventory of sports equipment and recording devices}
+        \resumeItem{Work efficiently under time constraints to prepare venues for scheduled events}
+        \resumeItem{Collaborate with team members to ensure smooth operations and event execution}
+        \resumeItem{Maintain equipment in proper working order through regular inspection and organization}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Wilfrid Laurier University}{Waterloo, ON}
+      {Bachelor of Science in Computer Science (In Progress)}{Sep. 2021 -- 2026 (Expected)}
+      \resumeItemListStart
+        \resumeItem{Computer literate with experience in data management and digital systems}
+        \resumeItem{Strong problem-solving and analytical skills}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications}
+  \resumeSubHeadingListStart
+    \resumeItem{Emergency First Aid CPR/AED Level C - Certificate \#103806646 (Valid until 01/20/2026)}
+    \resumeItem{WHMIS Training - \emph{Can complete immediately upon request}}
+    \resumeItem{Forklift Certification - \emph{Available to obtain if required}}
+  \resumeSubHeadingListEnd
+
+
+%-----------SKILLS-----------
+\section{Skills \& Qualifications}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Physical Capabilities}{: Able to lift 50+ lbs, stand for extended periods, physically fit and active} \\
+     \textbf{Technical Skills}{: Computer literate, inventory systems, warehouse management software, barcode scanners} \\
+     \textbf{Organizational}{: Order fulfillment, package handling, inventory tracking, quality control} \\
+     \textbf{Work Ethic}{: Punctual, reliable, detail-oriented, team player, independent worker} \\
+     \textbf{Additional}{: Own vehicle (G license in progress), flexible availability, quick learner}
+    }}
+ \end{itemize}
+
+
+%-----------ADDITIONAL QUALIFICATIONS-----------
+\section{Additional Information}
+  \resumeSubHeadingListStart
+    \resumeItem{Flexible Availability - Open to all shifts including nights, weekends, and holidays}
+    \resumeItem{Reliable Personal Vehicle - Own car, G license in progress (test scheduled)}
+    \resumeItem{Based in Brampton - Available for GTA warehouses and distribution centers}
+    \resumeItem{Bilingual - Fluent in English, Basic conversational French}
+    \resumeItem{Clean Criminal Record - Background check available upon request}
+    \resumeItem{Strong Work Ethic - Proven through academic commitments and successful freelance business}
+  \resumeSubHeadingListEnd
+
+
+%-------------------------------------------
+\end{document}
+

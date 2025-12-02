@@ -1,0 +1,179 @@
+%-------------------------
+% Retail Resume in Latex
+% Author : Solomon Olufelo
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Solomon I. Olufelo} \\ \vspace{1pt}
+    \textbf{\large Customer Service \& Retail Sales Associate} \\ \vspace{2pt}
+    \small 289-233-8317 $|$ \href{mailto:solomonolufelo@outlook.com}{\underline{solomonolufelo@outlook.com}} $|$
+    \small Brampton, ON $|$ Available Immediately
+\end{center}
+
+
+%-----------PROFESSIONAL SUMMARY-----------
+\section{Professional Summary}
+\small{Customer-focused and tech-savvy individual with proven track record of delivering exceptional service. Successfully managed 1,400+ client relationships with 4.8-star rating through independent business operations. Strong communication skills, detail-oriented, and experienced in solving customer problems efficiently. Professional appearance with friendly demeanor and ability to work in fast-paced retail environments.}
+
+
+%-----------RELEVANT EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Freelance Creative Services \& Client Relations}{2020 -- Present}
+      {Self-Employed via Fiverr}{Remote \& Brampton, ON}
+      \resumeItemListStart
+        \resumeItem{Provided exceptional customer service to 700+ clients, maintaining 4.8-star rating and 99\% satisfaction rate}
+        \resumeItem{Handled customer inquiries, product recommendations, and problem resolution via chat and email}
+        \resumeItem{Upsold additional services and products, increasing average transaction value by 40\%}
+        \resumeItem{Processed payments, managed refunds, and handled customer concerns professionally}
+        \resumeItem{Built long-term customer relationships resulting in high repeat business rate}
+        \resumeItem{Managed scheduling, inventory of services, and timely order fulfillment}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Athletics \& Recreation Assistant}{Aug. 2023 -- Present}
+      {Wilfrid Laurier University}{Waterloo, ON}
+      \resumeItemListStart
+        \resumeItem{Interact professionally with students, staff, and visitors in university setting}
+        \resumeItem{Provide information and assistance regarding athletic programs and services}
+        \resumeItem{Maintain clean and organized event spaces ensuring positive customer experience}
+        \resumeItem{Work collaboratively with team members to deliver excellent service at events}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Wilfrid Laurier University}{Waterloo, ON}
+      {Bachelor of Science in Computer Science (In Progress)}{Sep. 2021 -- 2026 (Expected)}
+      \resumeItemListStart
+        \resumeItem{Tech-savvy with expertise in POS systems, inventory software, and digital tools}
+        \resumeItem{Strong problem-solving and analytical skills applicable to retail operations}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%-----------SKILLS-----------
+\section{Skills \& Strengths}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Customer Service}{: Active listening, problem-solving, conflict resolution, friendly demeanor} \\
+     \textbf{Sales Skills}{: Product knowledge, upselling, cross-selling, closing sales, building rapport} \\
+     \textbf{Technical}{: POS systems, inventory management, cash handling, Excel, scheduling software} \\
+     \textbf{Communication}{: Bilingual (English/French), clear communicator, team player, professional} \\
+     \textbf{Personal Qualities}{: Reliable, punctual, detail-oriented, adaptable, positive attitude}
+    }}
+ \end{itemize}
+
+
+%-----------ADDITIONAL QUALIFICATIONS-----------
+\section{Additional Information}
+  \resumeSubHeadingListStart
+    \resumeItem{Flexible Availability - Open to all shifts including nights, weekends, and holidays}
+    \resumeItem{Bilingual - Fluent in English, Basic conversational French (asset for diverse customers)}
+    \resumeItem{Based in Brampton - Available for GTA retail locations}
+    \resumeItem{Reliable Personal Vehicle - Own car for consistent attendance}
+    \resumeItem{Professional Appearance - Well-groomed and presentable}
+    \resumeItem{Emergency First Aid CPR/AED Level C Certified - Can respond to customer emergencies}
+    \resumeItem{Clean Criminal Record - Background check available upon request}
+  \resumeSubHeadingListEnd
+
+
+%-------------------------------------------
+\end{document}
+

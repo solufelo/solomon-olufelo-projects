@@ -1,0 +1,253 @@
+%-------------------------
+% Resume in Latex
+% Author : Solomon Olufelo
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Solomon Olufelo} \\ \vspace{1pt}
+    \textbf{\large Computer Science Student \& Full-Stack Developer} \\ \vspace{2pt}
+    \small 289-233-8317 $|$ \href{mailto:oluf9170@mylaurier.ca}{\underline{oluf9170@mylaurier.ca}} $|$ 
+    \href{https://captainsolo.ca}{\underline{captainsolo.ca}} $|$
+    \href{https://github.com/solufelo}{\underline{github.com/solufelo}} $|$
+    \href{https://linkedin.com/in/solomon-olufeo-854360241}{\underline{linkedin.com/in/solomon-olufeo-854360241}}
+    \\ \vspace{1pt}
+    \small Student ID: 210729170 $|$ SASP Program Participant $|$ Waterloo, Canada
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Wilfrid Laurier University}{Waterloo, ON}
+      {Bachelor of Science in Computer Science}{Sep. 2021 -- Spring 2026 (Expected)}
+      \resumeItemListStart
+        \resumeItem{SASP (Student Academic Success Program) participant with structured approach to academic excellence}
+        \resumeItem{Current Focus: CP213 Object-Oriented Programming, Data Structures, Software Engineering}
+        \resumeItem{Academic Advisor: Esther - Regular progress monitoring and goal setting}
+        \resumeItem{Recent Achievement: Completed Object-Oriented Programming certification (2024)}
+      \resumeItemListEnd
+    \resumeSubheading
+      {St. Roch Catholic Secondary School}{Brampton, ON}
+      {Regional Arts Media Program}{Sep. 2018 -- June 2021}
+      \resumeItemListStart
+        \resumeItem{Competition Recognition: Bronze and Silver medals in provincial 3D animation competition}
+        \resumeItem{Specialized Training: Web Design, Digital Photography, Video Production, 3D Animation}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Freelance Creative Producer \& Full-Stack Developer}{2020 -- Present}
+      {Self-Employed via Fiverr}{Remote}
+      \resumeItemListStart
+        \resumeItem{Achieved top-tier freelancer status with 4.8-star rating across 1,400+ completed orders and 700+ client reviews}
+        \resumeItem{Scaled independent business from zero to \$30K+ revenue serving global clientele with exceptional service quality}
+        \resumeItem{Delivered 1,400+ technical projects including audio production, custom voice tags, graphic design, and video editing}
+        \resumeItem{Maintained 99\%+ client satisfaction through consistent quality delivery and responsive communication}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Co-Creator and Audio Engineer}{May 2021 -- 2023}
+      {CLSO Media}{Brampton, ON}
+      \resumeItemListStart
+        \resumeItem{Founded collaborative freelance media group utilizing AI and audio engineering software to deliver remote audio services}
+        \resumeItem{Implemented AI voice generation technology (Eleven Labs) to expand service offerings and capture additional market segments}
+        \resumeItem{Mentored and trained team members on marketing strategies, sales techniques, and operational management tools}
+        \resumeItem{Capitalized on market trends to generate \$30K+ yearly net income at 80\% profit margins}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Athletics \& Recreation Videographer}{Aug. 2023 -- Present}
+      {Wilfrid Laurier University}{Waterloo, ON}
+      \resumeItemListStart
+        \resumeItem{Capture and produce high-quality video content for university athletic events and recreational activities}
+        \resumeItem{Operate professional video recording equipment ensuring optimal framing, focus, and audio quality}
+        \resumeItem{Edit and post-produce footage to create engaging highlight reels and promotional videos}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Media Arts Apprentice}{Sep. 2018 -- June 2021}
+      {RochTV}{Brampton, ON}
+      \resumeItemListStart
+        \resumeItem{Completed comprehensive media arts training program with hands-on industry experience}
+        \resumeItem{Developed proficiency in graphic design, video editing, photography, animation, and multimedia production}
+        \resumeItem{Mastered industry-standard Adobe Creative Suite applications for professional creative projects}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Full-Stack Portfolio Platform with E-Commerce System} $|$ \emph{React, Supabase, Stripe, Google Drive API}}{2024 -- 2025}
+          \resumeItemListStart
+            \resumeItem{Developed production-ready portfolio website with complete order management and payment processing system}
+            \resumeItem{Implemented Stripe payment integration with secure webhook handling via serverless Netlify Functions}
+            \resumeItem{Designed PostgreSQL database with Row Level Security (RLS) for secure multi-user authentication and authorization}
+            \resumeItem{Built comprehensive admin dashboard with analytics (revenue tracking, order management, user management)}
+            \resumeItem{Integrated Google Drive API with OAuth 2.0 authentication for seamless file upload functionality}
+            \resumeItem{Implemented blog CMS system with dynamic content management and role-based access control}
+            \resumeItem{Deployed full-stack application to Netlify with serverless architecture and Supabase backend}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{StudyOS - AI-Powered Learning Platform} $|$ \emph{Wasp Framework, React 18, TypeScript, OpenAI API}}{2024}
+          \resumeItemListStart
+            \resumeItem{Developed full-stack study application using Wasp framework with React 18 and TypeScript}
+            \resumeItem{Implemented spaced repetition algorithm (Leitner system) for flashcard learning}
+            \resumeItem{Integrated OpenAI API for automated PDF-to-flashcard generation with quality controls}
+            \resumeItem{Built Pomodoro timer, task management, and focus training games with progress tracking}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Captain-Funds MERN Stack Application} $|$ \emph{MongoDB, Express.js, React, Node.js, Ant Design}}{2024}
+          \resumeItemListStart
+            \resumeItem{Built comprehensive fundraising platform using MongoDB, Express.js, React, and Node.js}
+            \resumeItem{Implemented role-based access control, JWT authentication, and campaign management}
+            \resumeItem{Designed responsive UI with Ant Design components and TailwindCSS styling}
+            \resumeItem{Integrated payment processing and real-time analytics dashboards}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{JobScanner Pro - Automation Tool} $|$ \emph{Python, Playwright, Tkinter, Web Scraping}}{2024}
+          \resumeItemListStart
+            \resumeItem{Created Python-based job aggregation system with multi-platform web scraping}
+            \resumeItem{Built dual CLI/GUI interface using Tkinter for job search automation}
+            \resumeItem{Implemented automated application system using Playwright for form filling}
+            \resumeItem{Developed smart filtering and deduplication algorithms for job matching}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Velare - 3D Creative Studio Website} $|$ \emph{Next.js, Three.js, React Three Fiber, WebGL}}{2024}
+          \resumeItemListStart
+            \resumeItem{Designed immersive Next.js website with Three.js and React Three Fiber integration}
+            \resumeItem{Implemented advanced 3D graphics, WebGL rendering, and interactive animations}
+            \resumeItem{Built responsive design with Framer Motion and GSAP for smooth user experience}
+            \resumeItem{Optimized performance with lazy loading and code splitting}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: JavaScript (ES6+), Python, TypeScript, HTML5, CSS3, SQL} \\
+     \textbf{Frontend}{: React.js, Next.js, TailwindCSS, Three.js, React Three Fiber, Ant Design, Shadcn/ui, GSAP} \\
+     \textbf{Backend}{: Node.js, Express.js, Wasp Framework, RESTful APIs, GraphQL, Netlify Functions, Supabase} \\
+     \textbf{Databases}{: MongoDB, PostgreSQL, SQLite, Supabase (PostgreSQL), Prisma ORM, Mongoose, Row Level Security (RLS)} \\
+     \textbf{APIs \& Integrations}{: Stripe API, Google Drive API, OpenAI API, EmailJS, Webhooks, OAuth 2.0} \\
+     \textbf{Cloud \& DevOps}{: Vercel, Netlify, Heroku, Docker, Git/GitHub, CI/CD} \\
+     \textbf{AI/ML}{: OpenAI API, TensorFlow, Pandas, NumPy} \\
+     \textbf{Creative \& Design}{: Adobe Creative Suite, Blender, 3D Animation, Video Production}
+    }}
+ \end{itemize}
+
+%-------------------------------------------
+\end{document}

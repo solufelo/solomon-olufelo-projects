@@ -1,0 +1,206 @@
+Constructor	Special method designed to perform initialization when creating objects
+Constructor purpose	Initialize instance variables and perform setup actions
+Constructor invocation	new DateSixthTry() calls the constructor
+Constructor name	Must have same name as the class
+Default constructor	Automatically provided constructor with no arguments
+Automatic constructor	Java creates default constructor if none defined
+Default constructor behavior	Creates object but does little else
+Custom constructor	User-defined constructor for specific initialization
+Constructor overloading	Multiple constructors with different parameter lists
+Constructor signature	Constructor name plus parameter list
+Constructor body	Code that executes when constructor is called
+Instance variable initialization	Setting initial values for object data
+Object initialization	Process of setting up new object state
+Constructor parameters	Values passed to constructor for initialization
+Constructor arguments	Actual values passed when calling constructor
+this keyword in constructor	Refers to the object being constructed
+Constructor chaining	One constructor calling another constructor
+Super constructor	Calling parent class constructor
+Constructor visibility	Public, private, or protected access modifiers
+Private constructor	Constructor that cannot be called from outside class
+Public constructor	Constructor accessible from anywhere
+Protected constructor	Constructor accessible within package and subclasses
+Constructor inheritance	Constructors are not inherited from parent classes
+Constructor overriding	Constructors cannot be overridden
+Constructor polymorphism	Different constructors for different initialization needs
+Parameterized constructor	Constructor that takes parameters for initialization
+No-argument constructor	Constructor with no parameters
+Copy constructor	Constructor that creates object from another object
+Static constructor	No such thing - constructors are always instance methods
+Constructor return type	Constructors have no return type (not even void)
+Constructor vs method	Constructor: same name as class, no return type
+Method: different name, has return type
+Constructor execution	Runs automatically when new object is created
+Constructor timing	Executes after memory allocation, before object reference returned
+Constructor exceptions	Constructors can throw exceptions
+Constructor validation	Can validate parameters before initialization
+Constructor side effects	Can perform actions beyond just initialization
+Constructor logging	Can log object creation for debugging
+Constructor resource allocation	Can allocate resources like file handles
+Constructor database connection	Can establish database connections
+Constructor network connection	Can establish network connections
+Constructor configuration loading	Can load configuration settings
+Constructor dependency injection	Can inject dependencies into object
+Constructor factory pattern	Can create related objects
+Constructor builder pattern	Can build complex objects step by step
+Constructor singleton pattern	Can ensure only one instance exists
+Constructor observer pattern	Can register object as observer
+Constructor command pattern	Can set up command objects
+Constructor strategy pattern	Can initialize strategy objects
+Constructor template method	Can set up template method framework
+Constructor visitor pattern	Can prepare object for visitor operations
+Constructor adapter pattern	Can adapt object to different interface
+Constructor decorator pattern	Can wrap object with additional functionality
+Constructor facade pattern	Can simplify complex subsystem interface
+Constructor proxy pattern	Can create proxy for remote object
+Constructor bridge pattern	Can separate abstraction from implementation
+Constructor composite pattern	Can build tree-like object structures
+Constructor flyweight pattern	Can share common data among objects
+Constructor memento pattern	Can create snapshot of object state
+Constructor state pattern	Can initialize object in specific state
+Constructor chain of responsibility	Can set up handler chain
+Constructor mediator pattern	Can register with mediator
+Constructor iterator pattern	Can prepare object for iteration
+Constructor observer pattern	Can register for notifications
+Constructor publisher-subscriber	Can subscribe to events
+Constructor event-driven	Can set up event handling
+Constructor callback	Can register callback functions
+Constructor lambda	Can set up lambda expressions
+Constructor functional interface	Can prepare functional interfaces
+Constructor stream	Can initialize stream operations
+Constructor optional	Can create optional values
+Constructor completable future	Can set up asynchronous operations
+Constructor reactive	Can set up reactive streams
+Constructor microservice	Can initialize microservice components
+Constructor REST API	Can set up REST endpoints
+Constructor GraphQL	Can initialize GraphQL resolvers
+Constructor database	Can establish database connections
+Constructor ORM	Can set up object-relational mapping
+Constructor JPA	Can initialize Java Persistence API
+Constructor Hibernate	Can set up Hibernate sessions
+Constructor Spring	Can initialize Spring beans
+Constructor dependency injection	Can inject Spring dependencies
+Constructor AOP	Can set up aspect-oriented programming
+Constructor transaction	Can initialize transaction management
+Constructor security	Can set up security context
+Constructor authentication	Can initialize authentication
+Constructor authorization	Can set up authorization
+Constructor encryption	Can initialize encryption keys
+Constructor hashing	Can set up hashing algorithms
+Constructor validation	Can initialize validation rules
+Constructor serialization	Can set up serialization
+Constructor JSON	Can initialize JSON processing
+Constructor XML	Can set up XML processing
+Constructor CSV	Can initialize CSV processing
+Constructor file I/O	Can set up file operations
+Constructor network	Can initialize network connections
+Constructor HTTP	Can set up HTTP client
+Constructor TCP	Can initialize TCP connections
+Constructor UDP	Can set up UDP connections
+Constructor socket	Can initialize socket connections
+Constructor stream	Can set up stream operations
+Constructor buffer	Can initialize buffer operations
+Constructor channel	Can set up channel operations
+Constructor selector	Can initialize selector operations
+Constructor thread	Can set up threading
+Constructor executor	Can initialize executor services
+Constructor future	Can set up future operations
+Constructor completable future	Can initialize completable future
+Constructor scheduled executor	Can set up scheduled operations
+Constructor timer	Can initialize timer operations
+Constructor scheduled future	Can set up scheduled future
+Constructor countdown latch	Can initialize countdown latch
+Constructor cyclic barrier	Can set up cyclic barrier
+Constructor semaphore	Can initialize semaphore
+Constructor phaser	Can set up phaser
+Constructor exchanger	Can initialize exchanger
+Constructor blocking queue	Can set up blocking queue
+Constructor concurrent hash map	Can initialize concurrent hash map
+Constructor atomic integer	Can set up atomic integer
+Constructor atomic long	Can initialize atomic long
+Constructor atomic boolean	Can set up atomic boolean
+Constructor atomic reference	Can initialize atomic reference
+Constructor lock	Can set up lock operations
+Constructor read-write lock	Can initialize read-write lock
+Constructor reentrant lock	Can set up reentrant lock
+Constructor reentrant read-write lock	Can initialize reentrant read-write lock
+Constructor stamped lock	Can set up stamped lock
+Constructor condition	Can initialize condition operations
+Constructor performance	Can optimize constructor performance
+Constructor memory	Can optimize memory usage
+Constructor CPU	Can optimize CPU usage
+Constructor disk	Can optimize disk operations
+Constructor network	Can optimize network usage
+Constructor cache	Can set up caching
+Constructor algorithm	Can optimize algorithms
+Constructor data structure	Can optimize data structures
+Constructor search	Can optimize search operations
+Constructor sort	Can optimize sorting operations
+Constructor filter	Can optimize filtering operations
+Constructor transform	Can optimize transformations
+Constructor aggregation	Can optimize aggregations
+Constructor calculation	Can optimize calculations
+Constructor computation	Can optimize computations
+Constructor processing	Can optimize data processing
+Constructor storage	Can optimize storage
+Constructor retrieval	Can optimize retrieval
+Constructor update	Can optimize updates
+Constructor deletion	Can optimize deletions
+Constructor insertion	Can optimize insertions
+Constructor query	Can optimize queries
+Constructor index	Can optimize indexes
+Constructor transaction	Can optimize transactions
+Constructor connection	Can optimize connections
+Constructor pool	Can optimize resource pools
+Constructor buffer	Can optimize buffers
+Constructor queue	Can optimize queues
+Constructor stack	Can optimize stacks
+Constructor tree	Can optimize tree structures
+Constructor graph	Can optimize graph operations
+Constructor matrix	Can optimize matrix operations
+Constructor vector	Can optimize vector operations
+Constructor set	Can optimize set operations
+Constructor map	Can optimize map operations
+Constructor list	Can optimize list operations
+Constructor array	Can optimize array operations
+Constructor string	Can optimize string operations
+Constructor number	Can optimize number operations
+Constructor date	Can optimize date operations
+Constructor time	Can optimize time operations
+Constructor file	Can optimize file operations
+Constructor directory	Can optimize directory operations
+Constructor path	Can optimize path operations
+Constructor URL	Can optimize URL operations
+Constructor HTTP	Can optimize HTTP operations
+Constructor TCP	Can optimize TCP operations
+Constructor UDP	Can optimize UDP operations
+Constructor socket	Can optimize socket operations
+Constructor stream	Can optimize stream operations
+Constructor pipe	Can optimize pipe operations
+Constructor channel	Can optimize channel operations
+Constructor selector	Can optimize selector operations
+Constructor event	Can optimize event operations
+Constructor callback	Can optimize callback operations
+Constructor listener	Can optimize listener operations
+Constructor observer	Can optimize observer operations
+Constructor subject	Can optimize subject operations
+Constructor mediator	Can optimize mediator operations
+Constructor facade	Can optimize facade operations
+Constructor proxy	Can optimize proxy operations
+Constructor decorator	Can optimize decorator operations
+Constructor adapter	Can optimize adapter operations
+Constructor bridge	Can optimize bridge operations
+Constructor composite	Can optimize composite operations
+Constructor strategy	Can optimize strategy operations
+Constructor command	Can optimize command operations
+Constructor state	Can optimize state operations
+Constructor template	Can optimize template operations
+Constructor visitor	Can optimize visitor operations
+Constructor chain	Can optimize chain operations
+Constructor builder	Can optimize builder operations
+Constructor factory	Can optimize factory operations
+Constructor singleton	Can optimize singleton operations
+Constructor prototype	Can optimize prototype operations
+Constructor memento	Can optimize memento operations
+Constructor interpreter	Can optimize interpreter operations
+Constructor flyweight	Can optimize flyweight operations

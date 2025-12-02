@@ -1,0 +1,204 @@
+%-------------------------
+% Hospitality / Hotel Resume in Latex
+% Author : Solomon Olufelo
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Solomon I. Olufelo} \\ \vspace{1pt}
+    \textbf{\large Hospitality Professional | Hotel Service Associate} \\ \vspace{2pt}
+    \small 289-233-8317 $|$ \href{mailto:solomonolufelo@outlook.com}{\underline{solomonolufelo@outlook.com}} $|$
+    \small Brampton, ON $|$ Available Immediately
+\end{center}
+
+
+%-----------PROFESSIONAL SUMMARY-----------
+\section{Professional Summary}
+\small{Service-oriented hospitality professional with proven experience delivering exceptional guest experiences. Successfully managed 700+ client relationships with 4.8-star satisfaction rating through independent service business. Strong interpersonal skills, professional presentation, and genuine passion for creating memorable guest experiences. Thrives in fast-paced environments while maintaining attention to detail and service excellence.}
+
+
+%-----------RELEVANT EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Independent Service Provider \& Client Relations}{2020 -- Present}
+      {Self-Employed via Professional Platform}{Remote \& Brampton, ON}
+      \resumeItemListStart
+        \resumeItem{Delivered premium service to 700+ clients globally, maintaining 4.8-star rating and 99\% satisfaction rate}
+        \resumeItem{Managed 1,400+ service transactions with attention to detail and quality excellence}
+        \resumeItem{Provided personalized recommendations and tailored service to meet individual client needs}
+        \resumeItem{Handled special requests, complaints, and concerns with professionalism and discretion}
+        \resumeItem{Consistently exceeded client expectations resulting in 60\%+ repeat business rate}
+        \resumeItem{Maintained detailed records of client preferences and service history}
+        \resumeItem{Built long-term relationships through exceptional service and follow-up communication}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Athletics \& Recreation Events Associate}{Aug. 2023 -- Present}
+      {Wilfrid Laurier University}{Waterloo, ON}
+      \resumeItemListStart
+        \resumeItem{Provide welcoming and professional service to students, staff, and event guests}
+        \resumeItem{Assist with event setup, operations, and breakdown ensuring smooth guest experiences}
+        \resumeItem{Maintain cleanliness and organization of facilities to uphold university standards}
+        \resumeItem{Respond to guest inquiries and provide accurate information about services and programs}
+        \resumeItem{Collaborate with team members to deliver seamless event experiences}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Wilfrid Laurier University}{Waterloo, ON}
+      {Bachelor of Science in Computer Science (In Progress)}{Sep. 2021 -- 2026 (Expected)}
+      \resumeItemListStart
+        \resumeItem{Strong technical proficiency with property management systems and booking software}
+        \resumeItem{Excellent problem-solving and critical thinking abilities}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications}
+  \resumeSubHeadingListStart
+    \resumeItem{Emergency First Aid CPR/AED Level C - Certificate \#103806646 (Valid until 01/20/2026)}
+    \resumeItem{Food Handler Certification - \emph{Can obtain immediately if required}}
+    \resumeItem{Smart Serve Certification - \emph{Can obtain immediately upon request}}
+    \resumeItem{WHMIS Training - \emph{Can complete immediately if needed}}
+  \resumeSubHeadingListEnd
+
+
+%-----------SKILLS-----------
+\section{Skills \& Strengths}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Guest Service}{: Warm hospitality, anticipating needs, personalized service, VIP handling, guest relations} \\
+     \textbf{Communication}{: Professional demeanor, active listening, multilingual capability, conflict resolution} \\
+     \textbf{Operations}{: Check-in/out procedures, reservation systems, PMS software, cash handling, POS systems} \\
+     \textbf{Attention to Detail}{: Quality control, cleanliness standards, accuracy in records, service consistency} \\
+     \textbf{Teamwork}{: Collaborative approach, shift handoffs, cross-departmental coordination, team support} \\
+     \textbf{Languages}{: Fluent English, Basic conversational French}
+    }}
+ \end{itemize}
+
+
+%-----------KEY ACHIEVEMENTS-----------
+\section{Key Achievements}
+  \resumeSubHeadingListStart
+    \resumeItem{Maintained 4.8/5.0 client satisfaction rating across 700+ guest interactions}
+    \resumeItem{Achieved 99\% service quality score through consistent attention to detail and guest needs}
+    \resumeItem{Generated 60\%+ repeat client rate through exceptional service and relationship building}
+    \resumeItem{Successfully managed multiple concurrent guest requests during peak periods}
+    \resumeItem{Received numerous commendations for professionalism, courtesy, and going above and beyond}
+  \resumeSubHeadingListEnd
+
+
+%-----------ADDITIONAL INFORMATION-----------
+\section{Additional Information}
+  \resumeSubHeadingListStart
+    \resumeItem{Flexible Availability - Open to all shifts including early mornings, evenings, weekends, and holidays}
+    \resumeItem{Professional Appearance - Well-groomed, polished presentation, understands importance of image}
+    \resumeItem{Bilingual - Fluent in English, Basic conversational French for international guests}
+    \resumeItem{Based in Brampton - Available for GTA hotel locations, willing to commute}
+    \resumeItem{Reliable Transportation - Own vehicle for consistent attendance}
+    \resumeItem{Tech-Savvy - Quick to learn property management systems, booking software, and hotel technology}
+    \resumeItem{Cultural Sensitivity - Experience serving diverse, international clientele}
+    \resumeItem{Clean Criminal Record - Background check available upon request}
+  \resumeSubHeadingListEnd
+
+
+%-------------------------------------------
+\end{document}
+

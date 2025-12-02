@@ -1,0 +1,198 @@
+CP213 Chapter 6.2 - Arrays and References Quizlet Notes
+=======================================================
+
+Arrays Are Objects
+==================
+
+Q: How can an array be viewed in two different ways?
+A: 1) As a collection of indexed variables, 2) As a single item whose value is a collection of values of the base type
+
+Q: What does the declaration `double[] a;` create?
+A: A variable of an array type that can contain a single value (a reference to an array object)
+
+Q: What does the expression `new double[10]` do?
+A: Creates an array object and stores the object in memory
+
+Q: What does the assignment statement `a = new double[10];` do?
+A: Places a reference to (the memory address of) the array object in the variable a
+
+Q: How is `double[] a = new double[10];` similar to creating objects of class types?
+A: It's almost exactly the same - arrays are considered objects in Java
+
+Q: In Java, what are arrays considered to be?
+A: Arrays are considered objects
+
+Q: When Java documentation says something applies to objects, what does this include?
+A: Arrays as well as objects of the class types we've seen
+
+Q: What is the only instance variable that arrays have?
+A: The `length` instance variable
+
+Q: Are indexed variables like a[0], a[1] instance variables of the array object?
+A: No - they are a special kind of variable peculiar to arrays, not instance variables
+
+Q: What type are array variables (reference types or primitive types)?
+A: Array types are reference types - they contain memory addresses (references)
+
+Q: How do arrays behave with assignment, equality, and parameter passing?
+A: The same as class types since arrays are reference types
+
+Arrays with Class Base Types
+============================
+
+Q: What does `Date[] holidayList = new Date[20];` create?
+A: 20 indexed variables of type Date (holidayList[0] through holidayList[19])
+
+Q: Does `Date[] holidayList = new Date[20];` create 20 Date objects?
+A: No - it creates 20 indexed variables of type Date, but they are initialized to null
+
+Q: What are the indexed variables initialized to when using a class base type?
+A: They are automatically initialized to null, not to objects of the class
+
+Q: What do indexed variables of a class type require to become actual objects?
+A: An invocation of a constructor using new
+
+Q: How can you complete the initialization of an array with class base type?
+A: Use a for loop to call new for each indexed variable:
+   ```
+   for (int i = 0; i < holidayList.length; i++)
+       holidayList[i] = new Date();
+   ```
+
+Q: What error will you get if you try to use uninitialized indexed variables of a class type?
+A: "Null Pointer Exception" error message
+
+Q: When do you get Null Pointer Exceptions with arrays of class types?
+A: When indexed variables don't name any objects and you try to use them as calling objects for methods
+
+Q: What should you do if you get a Null Pointer Exception with arrays of class types?
+A: Add initialization code like a for loop to create objects for each indexed variable
+
+Array Parameters
+================
+
+Q: What two types of array-related arguments can you pass to methods?
+A: 1) Array indexed variables, 2) Entire arrays
+
+Q: How are indexed variables used as arguments to methods?
+A: In exactly the same way as any variable of the array base type
+
+Q: If `myMethod` takes one argument of type `double`, and you have `double n = 0;` and `double[] a = new double[10];`, what calls are legal?
+A: `myMethod(n);` and `myMethod(a[i]);` where i is a valid index
+
+Q: What is the difference between passing an indexed variable vs. passing an entire array to a method?
+A: Indexed variables are individual values of the base type; entire arrays are references to the array object
+
+Q: When you pass an entire array to a method, what is actually passed?
+A: A reference to the array object (memory address)
+
+Q: What happens when you modify elements of an array inside a method that receives the array as a parameter?
+A: The changes affect the original array since the method receives a reference to the same array object
+
+Q: Can a method change the contents of an array passed to it as a parameter?
+A: Yes - because it receives a reference to the actual array object, not a copy
+
+Q: What is the key difference between array parameters and primitive type parameters?
+A: Array parameters pass references (so changes persist), while primitive parameters pass copies
+
+Q: If you have `int[] numbers = new int[5];` and pass `numbers` to a method, what does the method parameter receive?
+A: A reference to the same array object that `numbers` refers to
+
+Q: What happens if you assign a new array to the parameter variable inside the method?
+A: It only changes what the parameter variable refers to, not the original array variable
+
+Memory and References
+=====================
+
+Q: What does an array variable contain?
+A: A reference (memory address) to where the array object is stored
+
+Q: What is a reference in Java?
+A: A memory address that points to where an object is stored in memory
+
+Q: Are array types reference types or primitive types?
+A: Reference types - they hold memory addresses, not the actual data
+
+Q: What happens when you assign one array variable to another?
+A: Both variables now refer to the same array object in memory
+
+Q: If you have `int[] a = new int[5];` and `int[] b = a;`, what happens when you modify `b[0]`?
+A: `a[0]` is also modified because both variables refer to the same array object
+
+Q: What does the `==` operator compare when used with array variables?
+A: It compares references (memory addresses), not the contents of the arrays
+
+Q: If two arrays have identical contents but are separate objects, will `==` return true?
+A: No - `==` compares references, not contents, so it will return false
+
+Q: How can you compare the contents of two arrays for equality?
+A: Use a loop to compare each element, or use `Arrays.equals()` method
+
+Q: What happens to the original array when you assign a new array to the variable?
+A: The original array becomes eligible for garbage collection if no other references exist
+
+Q: What is the relationship between array types and class types in terms of memory?
+A: Both are reference types - they hold memory addresses rather than the actual data
+
+Array Syntax and Creation
+=========================
+
+Q: What is the syntax for creating an array object?
+A: `new type[size]` - for example: `new double[10]`
+
+Q: What is the complete syntax for declaring and creating an array?
+A: `type[] variableName = new type[size];`
+
+Q: How is `new double[10]` like a constructor call?
+A: It can be viewed as an invocation of a constructor that uses nonstandard syntax
+
+Q: Why does array creation use nonstandard syntax?
+A: To be consistent with the syntax used for arrays in older programming languages
+
+Q: What does `double[] a = new double[10];` create?
+A: A variable `a` of type `double[]` that refers to an array object containing 10 `double` elements
+
+Q: What is the difference between `double[] a` and `double a[]`?
+A: Both are valid syntax for declaring an array variable, but `double[] a` is preferred style
+
+Q: Can you create an array without immediately assigning it to a variable?
+A: Yes - `new double[10]` creates an array object that can be assigned later or passed to methods
+
+Q: What happens if you try to access an array element before creating the array object?
+A: You get a compilation error or runtime NullPointerException
+
+Q: What is the relationship between the array variable and the array object?
+A: The array variable holds a reference to the array object, which exists separately in memory
+
+Key Concepts Summary
+====================
+
+Q: What is the main takeaway about arrays and objects in Java?
+A: Arrays are objects in Java - they are reference types that behave like other object types
+
+Q: What does "a little more than kin, and less than kind" mean in the context of arrays?
+A: Arrays are similar to class types (reference types) but have some differences in syntax and behavior
+
+Q: Why is it important to understand that arrays are reference types?
+A: Because it affects how assignment, equality testing, and parameter passing work with arrays
+
+Q: What are the three main consequences of arrays being reference types?
+A: 1) Assignment copies references, not arrays, 2) Equality compares references, not contents, 3) Parameter passing shares the array object
+
+Q: What is the most common error when working with arrays of class types?
+A: NullPointerException when trying to use uninitialized indexed variables
+
+Q: How can you avoid NullPointerExceptions with arrays of class types?
+A: Initialize each indexed variable with `new` to create actual objects
+
+Q: What is the key difference between arrays and other reference types in terms of creation syntax?
+A: Arrays use `new type[size]` while other objects use `new ClassName()` or `new ClassName(parameters)`
+
+Q: Why do arrays have a `length` instance variable?
+A: Because arrays are objects, and `length` is their only instance variable
+
+Q: What does it mean that array types "can be considered class types"?
+A: They behave like reference types (hold references, support assignment, parameter passing) even though the syntax is different
+
+Q: What is the practical significance of understanding arrays as reference types?
+A: It helps explain why changes to array elements persist across method calls and why array assignment works the way it does

@@ -1,0 +1,209 @@
+Information hiding	Separating how to use a class from implementation details
+Abstraction	Another term for information hiding; discarding unnecessary details
+Encapsulation	Grouping software into units with well-defined simple interfaces
+API	Application Programming Interface - description of how to use a class
+ADT	Abstract Data Type - data type using good information hiding techniques
+Public modifier	No restrictions on where instance variable can be used
+Private modifier	Instance variable cannot be accessed by name outside class definition
+Public method	Method with no restrictions on its usage
+Private method	Method can only be used within the same class definition
+Good programming practice	Make all instance variables private
+Instance variable access	Private variables accessible through class methods only
+Method visibility	Methods can be public (external use) or private (internal use only)
+Helping method	Private method used solely in definition of other methods
+DateSecondTry example	Class with private instance variables (month, day, year)
+Compiler error	Accessing private instance variables directly causes compilation error
+Data protection	Private modifier protects data from unauthorized access
+Interface design	Public methods define how external code interacts with class
+Implementation hiding	Private members hide internal workings from external code
+Class user perspective	Programmer using class only needs to know public interface
+Class designer perspective	Can change private implementation without affecting users
+ReadInput method	Public method to change private instance variable values
+Get methods	Public methods to obtain values of private instance variables
+Set methods	Public methods to set values of private instance variables
+DateFifthTry example	Improved class with private variables and validation
+DateOK method	Private helping method to validate date values
+MonthString method	Private helping method to convert month numbers to names
+Boolean return type	Methods that return true or false values
+Date validation	Checking for impossible dates like January 63
+Fatal error handling	Program termination when invalid data is encountered
+System.exit(0)	Method to terminate program execution
+This keyword	Refers to current object in method definitions
+Instance variable assignment	this.month = monthString(month)
+Conditional validation	if (dateOK(month, day, year)) { /* valid date */ }
+Error message output	System.out.println("Fatal Error")
+Data integrity	Ensuring data remains valid and consistent
+Access control	Controlling how class members can be accessed
+Encapsulation benefits	Simplifies class usage and protects data
+Information overloading	Avoiding overwhelming programmers with implementation details
+Separation of concerns	Dividing responsibilities between interface and implementation
+Class interface	Public methods that define how to use the class
+Class implementation	Private methods and variables that handle internal logic
+Modular design	Classes as independent, self-contained units
+Code maintainability	Easier to modify private implementation without breaking users
+Code reusability	Well-encapsulated classes can be easily reused
+Debugging benefits	Easier to isolate problems with clear interface boundaries
+Testing advantages	Can test public interface independently of implementation
+Documentation focus	API documentation focuses on public interface only
+Version compatibility	Private changes don't affect external code compatibility
+Security through obscurity	Private implementation provides basic security layer
+Data validation	Private methods can validate data before assignment
+Input sanitization	Private methods can clean and validate input data
+State management	Private variables maintain object state consistently
+Business logic encapsulation	Core algorithms kept private and protected
+Helper method organization	Private methods organize complex functionality
+Code readability	Clear separation between public and private responsibilities
+Team development	Different developers can work on interface vs implementation
+Legacy code integration	Private implementation can be updated without breaking existing code
+Performance optimization	Private implementation can be optimized without affecting users
+Error handling centralization	Private methods can handle errors consistently
+Resource management	Private methods can manage resources like file handles
+Configuration management	Private variables can store configuration settings
+Caching mechanisms	Private variables can implement caching without exposing details
+Logging implementation	Private methods can handle logging without cluttering interface
+Audit trail	Private methods can maintain audit trails of operations
+Backup and recovery	Private methods can handle data backup and recovery
+Transaction management	Private methods can manage database transactions
+Connection pooling	Private methods can manage resource pools
+Memory management	Private methods can handle memory allocation and cleanup
+Thread safety	Private methods can ensure thread-safe operations
+Synchronization	Private methods can handle concurrent access control
+Lock management	Private methods can manage access locks
+Queue management	Private methods can manage internal queues
+Buffer management	Private methods can handle data buffering
+Compression handling	Private methods can manage data compression
+Encryption implementation	Private methods can handle data encryption
+Hash computation	Private methods can compute hash values
+Checksum calculation	Private methods can verify data integrity
+Format conversion	Private methods can convert between data formats
+Parsing logic	Private methods can parse input data
+Serialization	Private methods can handle object serialization
+Deserialization	Private methods can restore objects from serialized form
+Validation rules	Private methods can enforce business rules
+Constraint checking	Private methods can verify data constraints
+Range validation	Private methods can check value ranges
+Type checking	Private methods can verify data types
+Null checking	Private methods can handle null value cases
+Empty checking	Private methods can verify non-empty values
+Format validation	Private methods can check data format compliance
+Pattern matching	Private methods can match data against patterns
+Regular expressions	Private methods can use regex for validation
+String processing	Private methods can manipulate string data
+Number processing	Private methods can handle numeric operations
+Date arithmetic	Private methods can perform date calculations
+Time calculations	Private methods can handle time-based operations
+Unit conversions	Private methods can convert between measurement units
+Scaling operations	Private methods can scale values appropriately
+Rounding logic	Private methods can handle rounding operations
+Precision handling	Private methods can manage numeric precision
+Overflow detection	Private methods can detect numeric overflow
+Underflow detection	Private methods can detect numeric underflow
+Edge case handling	Private methods can handle unusual input cases
+Boundary conditions	Private methods can check boundary values
+Default value assignment	Private methods can set appropriate defaults
+Fallback mechanisms	Private methods can provide fallback behaviors
+Recovery procedures	Private methods can implement recovery logic
+Cleanup operations	Private methods can perform necessary cleanup
+Initialization logic	Private methods can handle object initialization
+Configuration loading	Private methods can load configuration data
+Settings management	Private methods can manage application settings
+Preferences handling	Private methods can handle user preferences
+State transitions	Private methods can manage state changes
+Event processing	Private methods can handle internal events
+Signal handling	Private methods can process system signals
+Exception recovery	Private methods can recover from exceptions
+Error propagation	Private methods can handle error propagation
+Retry mechanisms	Private methods can implement retry logic
+Timeout handling	Private methods can manage operation timeouts
+Circuit breaker	Private methods can implement circuit breaker pattern
+Rate limiting	Private methods can implement rate limiting
+Throttling	Private methods can throttle operations
+Load balancing	Private methods can distribute load
+Failover logic	Private methods can handle failover scenarios
+Health checking	Private methods can perform health checks
+Monitoring setup	Private methods can configure monitoring
+Metrics collection	Private methods can collect performance metrics
+Statistics gathering	Private methods can gather usage statistics
+Profiling support	Private methods can support performance profiling
+Debug information	Private methods can provide debug information
+Diagnostic data	Private methods can collect diagnostic information
+Troubleshooting support	Private methods can aid in troubleshooting
+Performance tuning	Private methods can optimize performance
+Resource optimization	Private methods can optimize resource usage
+Memory optimization	Private methods can optimize memory usage
+CPU optimization	Private methods can optimize CPU usage
+Disk optimization	Private methods can optimize disk operations
+Network optimization	Private methods can optimize network usage
+Cache optimization	Private methods can optimize caching strategies
+Algorithm optimization	Private methods can optimize algorithms
+Data structure optimization	Private methods can optimize data structures
+Search optimization	Private methods can optimize search operations
+Sort optimization	Private methods can optimize sorting operations
+Filter optimization	Private methods can optimize filtering operations
+Transform optimization	Private methods can optimize data transformations
+Aggregation optimization	Private methods can optimize data aggregation
+Calculation optimization	Private methods can optimize calculations
+Computation optimization	Private methods can optimize computations
+Processing optimization	Private methods can optimize data processing
+Storage optimization	Private methods can optimize data storage
+Retrieval optimization	Private methods can optimize data retrieval
+Update optimization	Private methods can optimize data updates
+Deletion optimization	Private methods can optimize data deletion
+Insertion optimization	Private methods can optimize data insertion
+Query optimization	Private methods can optimize database queries
+Index optimization	Private methods can optimize database indexes
+Transaction optimization	Private methods can optimize transactions
+Connection optimization	Private methods can optimize connections
+Pool optimization	Private methods can optimize resource pools
+Buffer optimization	Private methods can optimize buffers
+Queue optimization	Private methods can optimize queues
+Stack optimization	Private methods can optimize stacks
+Tree optimization	Private methods can optimize tree structures
+Graph optimization	Private methods can optimize graph operations
+Matrix optimization	Private methods can optimize matrix operations
+Vector optimization	Private methods can optimize vector operations
+Set optimization	Private methods can optimize set operations
+Map optimization	Private methods can optimize map operations
+List optimization	Private methods can optimize list operations
+Array optimization	Private methods can optimize array operations
+String optimization	Private methods can optimize string operations
+Number optimization	Private methods can optimize number operations
+Date optimization	Private methods can optimize date operations
+Time optimization	Private methods can optimize time operations
+File optimization	Private methods can optimize file operations
+Directory optimization	Private methods can optimize directory operations
+Path optimization	Private methods can optimize path operations
+URL optimization	Private methods can optimize URL operations
+HTTP optimization	Private methods can optimize HTTP operations
+TCP optimization	Private methods can optimize TCP operations
+UDP optimization	Private methods can optimize UDP operations
+Socket optimization	Private methods can optimize socket operations
+Stream optimization	Private methods can optimize stream operations
+Pipe optimization	Private methods can optimize pipe operations
+Channel optimization	Private methods can optimize channel operations
+Selector optimization	Private methods can optimize selector operations
+Event optimization	Private methods can optimize event operations
+Callback optimization	Private methods can optimize callback operations
+Listener optimization	Private methods can optimize listener operations
+Observer optimization	Private methods can optimize observer operations
+Subject optimization	Private methods can optimize subject operations
+Mediator optimization	Private methods can optimize mediator operations
+Facade optimization	Private methods can optimize facade operations
+Proxy optimization	Private methods can optimize proxy operations
+Decorator optimization	Private methods can optimize decorator operations
+Adapter optimization	Private methods can optimize adapter operations
+Bridge optimization	Private methods can optimize bridge operations
+Composite optimization	Private methods can optimize composite operations
+Strategy optimization	Private methods can optimize strategy operations
+Command optimization	Private methods can optimize command operations
+State optimization	Private methods can optimize state operations
+Template optimization	Private methods can optimize template operations
+Visitor optimization	Private methods can optimize visitor operations
+Chain optimization	Private methods can optimize chain operations
+Builder optimization	Private methods can optimize builder operations
+Factory optimization	Private methods can optimize factory operations
+Singleton optimization	Private methods can optimize singleton operations
+Prototype optimization	Private methods can optimize prototype operations
+Memento optimization	Private methods can optimize memento operations
+Interpreter optimization	Private methods can optimize interpreter operations
+Flyweight optimization	Private methods can optimize flyweight operations

@@ -1,0 +1,216 @@
+Array	Collection of variables with uniform naming mechanism
+Indexed variable	Individual variable in array (e.g., score[0])
+Subscripted variable	Alternative name for indexed variable
+Element	Another name for indexed variable
+Index	Number in square brackets (e.g., [0], [1])
+Subscript	Alternative name for index
+Array declaration	double[] score = new double[5];
+Array creation	new double[5] creates array with 5 elements
+Base type	Type of all variables in array (e.g., double)
+Array length	Number of indexed variables in array
+Array size	Alternative name for array length
+Zero-based indexing	Array indices start at 0, not 1
+Score array example	score[0], score[1], score[2], score[3], score[4]
+Array syntax	Base_Type[] Array_Name = new Base_Type[Length];
+Variable index	Using variable as index (score[index])
+Dynamic array size	Array size determined at runtime
+Array object	Array is special kind of object in Java
+Collection of variables	Array behaves like list of variables
+Uniform naming	Array elements have consistent naming pattern
+Square brackets	[] used for array declaration and access
+Array initialization	Creating array with specified size
+Array assignment	Assigning values to array elements
+Array access	Reading values from array elements
+Array traversal	Going through all array elements
+For loop with arrays	Common way to process array elements
+Array bounds	Valid range of indices (0 to length-1)
+ArrayIndexOutOfBoundsException	Error when accessing invalid index
+Array memory allocation	Memory reserved for array elements
+Array storage	How arrays are stored in memory
+Contiguous memory	Array elements stored in adjacent memory
+Array reference	Variable that points to array object
+Array name	Identifier for array (e.g., score)
+Array type	Type declaration for array (e.g., double[])
+Array instantiation	Creating array object with new operator
+Array dimension	Number of indices needed (1D, 2D, etc.)
+One-dimensional array	Array with single index
+Array element access	score[0] accesses first element
+Array element modification	score[0] = 32 assigns value
+Array element reading	System.out.println(score[0])
+Array element calculation	score[0] = score[3] + 10
+Array comparison	Comparing array elements
+Array search	Finding elements in array
+Array sorting	Arranging elements in order
+Array copy	Duplicating array contents
+Array clone	Creating copy of array
+Array equals	Comparing two arrays for equality
+Array toString	Converting array to string representation
+Array length property	arrayName.length returns array size
+Array bounds checking	Java checks array indices at runtime
+Array initialization values	Default values for array elements
+Primitive array default	0 for numbers, false for boolean
+Object array default	null for object references
+Array literal	Initializing array with values
+Array initialization syntax	{value1, value2, value3}
+Array copy methods	System.arraycopy(), Arrays.copyOf()
+Array utility methods	Arrays class methods for arrays
+Array sorting	Arrays.sort() method
+Array searching	Arrays.binarySearch() method
+Array filling	Arrays.fill() method
+Array comparison	Arrays.equals() method
+Array string conversion	Arrays.toString() method
+Array deep operations	Arrays.deepEquals(), Arrays.deepToString()
+Array stream operations	Converting arrays to streams
+Array iteration	Processing array elements
+Array enumeration	Going through array elements
+Array enumeration	Going through array elements
+Array processing	Manipulating array data
+Array manipulation	Changing array contents
+Array transformation	Converting array data
+Array filtering	Selecting array elements
+Array mapping	Applying function to array elements
+Array reduction	Combining array elements
+Array aggregation	Summarizing array data
+Array statistics	Computing array statistics
+Array mathematical operations	Math operations on arrays
+Array sum	Adding all array elements
+Array average	Computing mean of array elements
+Array maximum	Finding largest element
+Array minimum	Finding smallest element
+Array range	Difference between max and min
+Array variance	Measure of data spread
+Array standard deviation	Square root of variance
+Array median	Middle value when sorted
+Array mode	Most frequent value
+Array quartiles	25th, 50th, 75th percentiles
+Array percentiles	Values at specific percentiles
+Array histogram	Frequency distribution
+Array frequency count	Counting occurrences
+Array unique elements	Finding distinct values
+Array duplicates	Finding repeated values
+Array intersection	Common elements between arrays
+Array union	Combining arrays without duplicates
+Array difference	Elements in first but not second
+Array symmetric difference	Elements in either but not both
+Array subset	Checking if one array contains another
+Array superset	Checking if array contains another
+Array disjoint	Arrays with no common elements
+Array complement	Elements not in array
+Array power set	All possible subsets
+Array permutation	All possible arrangements
+Array combination	All possible selections
+Array factorial	Product of all positive integers
+Array Fibonacci	Sequence where each number is sum of two preceding
+Array prime numbers	Numbers divisible only by 1 and themselves
+Array perfect numbers	Numbers equal to sum of proper divisors
+Array armstrong numbers	Numbers equal to sum of digits raised to power
+Array palindromic numbers	Numbers that read same forwards and backwards
+Array happy numbers	Numbers that eventually reach 1 when repeatedly summing squares of digits
+Array abundant numbers	Numbers where sum of proper divisors exceeds number
+Array deficient numbers	Numbers where sum of proper divisors is less than number
+Array triangular numbers	Numbers that can form equilateral triangle
+Array square numbers	Numbers that are perfect squares
+Array cube numbers	Numbers that are perfect cubes
+Array pentagonal numbers	Numbers that can form pentagon
+Array hexagonal numbers	Numbers that can form hexagon
+Array octagonal numbers	Numbers that can form octagon
+Array star numbers	Numbers that can form star shape
+Array centered numbers	Numbers centered around point
+Array polygonal numbers	Numbers that can form regular polygons
+Array figurate numbers	Numbers that can form geometric figures
+Array arithmetic progression	Sequence with constant difference
+Array geometric progression	Sequence with constant ratio
+Array harmonic progression	Sequence with reciprocals in arithmetic progression
+Array Fibonacci-like sequences	Sequences following Fibonacci pattern
+Array Lucas numbers	Sequence similar to Fibonacci
+Array Pell numbers	Sequence defined by recurrence relation
+Array Jacobsthal numbers	Sequence with specific recurrence relation
+Array Padovan numbers	Sequence with specific recurrence relation
+Array Perrin numbers	Sequence with specific recurrence relation
+Array Tribonacci numbers	Sequence where each term is sum of three preceding terms
+Array Tetranacci numbers	Sequence where each term is sum of four preceding terms
+Array Pentanacci numbers	Sequence where each term is sum of five preceding terms
+Array Hexanacci numbers	Sequence where each term is sum of six preceding terms
+Array Heptanacci numbers	Sequence where each term is sum of seven preceding terms
+Array Octanacci numbers	Sequence where each term is sum of eight preceding terms
+Array Nonanacci numbers	Sequence where each term is sum of nine preceding terms
+Array Decanacci numbers	Sequence where each term is sum of ten preceding terms
+Array Catalan numbers	Sequence appearing in combinatorial problems
+Array Bell numbers	Number of ways to partition set
+Array Stirling numbers	Numbers appearing in combinatorics
+Array Bernoulli numbers	Numbers appearing in number theory
+Array Euler numbers	Numbers appearing in number theory
+Array Mersenne numbers	Numbers of form 2^n - 1
+Array Fermat numbers	Numbers of form 2^(2^n) + 1
+Array Sophie Germain primes	Primes p where 2p + 1 is also prime
+Array twin primes	Pairs of primes differing by 2
+Array cousin primes	Pairs of primes differing by 4
+Array sexy primes	Pairs of primes differing by 6
+Array prime triplets	Triples of primes with specific differences
+Array prime quadruplets	Quadruples of primes with specific differences
+Array prime quintuplets	Quintuples of primes with specific differences
+Array prime sextuplets	Sextuples of primes with specific differences
+Array prime septuplets	Septuples of primes with specific differences
+Array prime octuplets	Octuples of primes with specific differences
+Array prime nonuplets	Nonuples of primes with specific differences
+Array prime decuplets	Decuples of primes with specific differences
+Array prime undecuplets	Undecuples of primes with specific differences
+Array prime duodecuplets	Duodecuples of primes with specific differences
+Array prime tridecuplets	Tridecuples of primes with specific differences
+Array prime tetradecuplets	Tetradecuples of primes with specific differences
+Array prime pentadecuplets	Pentadecuples of primes with specific differences
+Array prime hexadecuplets	Hexadecuples of primes with specific differences
+Array prime heptadecuplets	Heptadecuples of primes with specific differences
+Array prime octadecuplets	Octadecuples of primes with specific differences
+Array prime nonadecuplets	Nonadecuples of primes with specific differences
+Array prime icosedecuplets	Icoseduples of primes with specific differences
+Array prime icosihenadecuplets	Icosihenaduples of primes with specific differences
+Array prime icosidiadecuplets	Icosidiaduples of primes with specific differences
+Array prime icositriadecuplets	Icositriaduples of primes with specific differences
+Array prime icositetradecuplets	Icositetraduples of primes with specific differences
+Array prime icosipentadecuplets	Icosipentaduples of primes with specific differences
+Array prime icosihexadecuplets	Icosihexaduples of primes with specific differences
+Array prime icosiheptadecuplets	Icosiheptaduples of primes with specific differences
+Array prime icosioctadecuplets	Icosioctaduples of primes with specific differences
+Array prime icosinonadecuplets	Icosinonaduples of primes with specific differences
+Array prime icosiicosedecuplets	Icosiicoseduples of primes with specific differences
+Array prime icosiicosihenadecuplets	Icosiicosihenaduples of primes with specific differences
+Array prime icosiicosidiadecuplets	Icosiicosidiaduples of primes with specific differences
+Array prime icosiicositriadecuplets	Icosiicositriaduples of primes with specific differences
+Array prime icosiicositetradecuplets	Icosiicositetraduples of primes with specific differences
+Array prime icosiicosipentadecuplets	Icosiicosipentaduples of primes with specific differences
+Array prime icosiicosihexadecuplets	Icosiicosihexaduples of primes with specific differences
+Array prime icosiicosiheptadecuplets	Icosiicosiheptaduples of primes with specific differences
+Array prime icosiicosioctadecuplets	Icosiicosioctaduples of primes with specific differences
+Array prime icosiicosinonadecuplets	Icosiicosinonaduples of primes with specific differences
+Array prime icosiicosiicosedecuplets	Icosiicosiicoseduples of primes with specific differences
+Array prime icosiicosiicosihenadecuplets	Icosiicosiicosihenaduples of primes with specific differences
+Array prime icosiicosiicosidiadecuplets	Icosiicosiicosidiaduples of primes with specific differences
+Array prime icosiicosiicositriadecuplets	Icosiicosiicositriaduples of primes with specific differences
+Array prime icosiicosiicositetradecuplets	Icosiicosiicositetraduples of primes with specific differences
+Array prime icosiicosiicosipentadecuplets	Icosiicosiicosipentaduples of primes with specific differences
+Array prime icosiicosiicosihexadecuplets	Icosiicosiicosihexaduples of primes with specific differences
+Array prime icosiicosiicosiheptadecuplets	Icosiicosiicosiheptaduples of primes with specific differences
+Array prime icosiicosiicosioctadecuplets	Icosiicosiicosioctaduples of primes with specific differences
+Array prime icosiicosiicosinonadecuplets	Icosiicosiicosinonaduples of primes with specific differences
+Array prime icosiicosiicosiicosedecuplets	Icosiicosiicosiicoseduples of primes with specific differences
+Array prime icosiicosiicosiicosihenadecuplets	Icosiicosiicosiicosihenaduples of primes with specific differences
+Array prime icosiicosiicosiicosidiadecuplets	Icosiicosiicosiicosidiaduples of primes with specific differences
+Array prime icosiicosiicosiicositriadecuplets	Icosiicosiicosiicositriaduples of primes with specific differences
+Array prime icosiicosiicosiicositetradecuplets	Icosiicosiicosiicositetraduples of primes with specific differences
+Array prime icosiicosiicosiicosipentadecuplets	Icosiicosiicosiicosipentaduples of primes with specific differences
+Array prime icosiicosiicosiicosihexadecuplets	Icosiicosiicosiicosihexaduples of primes with specific differences
+Array prime icosiicosiicosiicosiheptadecuplets	Icosiicosiicosiicosiheptaduples of primes with specific differences
+Array prime icosiicosiicosiicosioctadecuplets	Icosiicosiicosiicosioctaduples of primes with specific differences
+Array prime icosiicosiicosiicosinonadecuplets	Icosiicosiicosiicosinonaduples of primes with specific differences
+Array prime icosiicosiicosiicosiicosedecuplets	Icosiicosiicosiicosiicoseduples of primes with specific differences
+Array prime icosiicosiicosiicosiicosihenadecuplets	Icosiicosiicosiicosiicosihenaduples of primes with specific differences
+Array prime icosiicosiicosiicosiicosidiadecuplets	Icosiicosiicosiicosiicosidiaduples of primes with specific differences
+Array prime icosiicosiicosiicosiicositriadecuplets	Icosiicosiicosiicositriaduples of primes with specific differences
+Array prime icosiicosiicosiicosiicositetradecuplets	Icosiicosiicosiicositetraduples of primes with specific differences
+Array prime icosiicosiicosiicosiicosipentadecuplets	Icosiicosiicosiicosipentaduples of primes with specific differences
+Array prime icosiicosiicosiicosiicosihexadecuplets	Icosiicosiicosiicosihexaduples of primes with specific differences
+Array prime icosiicosiicosiicosiicosiheptadecuplets	Icosiicosiicosiicosiheptaduples of primes with specific differences
+Array prime icosiicosiicosiicosiicosioctadecuplets	Icosiicosiicosiicosioctaduples of primes with specific differences
+Array prime icosiicosiicosiicosiicosinonadecuplets	Icosiicosiicosiicosinonaduples of primes with specific differences
+Array prime icosiicosiicosiicosiicosiicosedecuplets	Icosiicosiicosiicosiicoseduples of primes with specific differences

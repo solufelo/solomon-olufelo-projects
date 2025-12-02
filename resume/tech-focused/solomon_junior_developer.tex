@@ -1,0 +1,239 @@
+%-------------------------
+% Junior Software Developer Resume in Latex
+% Author : Solomon Olufelo
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Solomon Olufelo} \\ \vspace{1pt}
+    \textbf{\large Junior Software Developer | Full-Stack Engineer} \\ \vspace{2pt}
+    \small 289-233-8317 $|$ \href{mailto:oluf9170@mylaurier.ca}{\underline{oluf9170@mylaurier.ca}} $|$ 
+    \href{https://captainsolo.ca}{\underline{captainsolo.ca}} $|$
+    \href{https://github.com/solufelo}{\underline{github.com/solufelo}} $|$
+    \href{https://linkedin.com/in/solomon-olufeo-854360241}{\underline{linkedin.com/in/solomon-olufeo}}
+\end{center}
+
+
+%-----------PROFESSIONAL SUMMARY-----------
+\section{Professional Summary}
+\small{Motivated Computer Science student with hands-on experience building full-stack web applications using modern JavaScript frameworks, React, Node.js, and Python. Proven ability to deliver production-ready applications with payment processing (Stripe), database management (Supabase/PostgreSQL), third-party API integrations (Google Drive, OAuth), and scalable architecture. Experienced in implementing authentication systems, admin dashboards, and real-time features. Strong problem-solver with entrepreneurial mindset, having successfully scaled independent tech business serving 700+ clients. Seeking junior developer role to contribute to innovative software solutions.}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Wilfrid Laurier University}{Waterloo, ON}
+      {Bachelor of Science in Computer Science}{Sep. 2021 -- Spring 2026 (Expected)}
+      \resumeItemListStart
+        \resumeItem{Relevant Coursework: Data Structures, Object-Oriented Programming, Software Engineering, Algorithm Design}
+        \resumeItem{SASP Program Participant - Structured approach to academic excellence}
+        \resumeItem{Current Focus: Advanced OOP concepts, data structures, and software design patterns}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%-----------TECHNICAL PROJECTS-----------
+\section{Technical Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Full-Stack Portfolio Platform with E-Commerce} $|$ \emph{React, Supabase, Stripe, Google Drive API, Netlify Functions}}{2024 -- 2025}
+          \resumeItemListStart
+            \resumeItem{Built production-ready portfolio website with complete order management system using React, Vite, and Supabase}
+            \resumeItem{Implemented Stripe payment integration with webhook handling via Netlify Functions for secure payment processing}
+            \resumeItem{Designed PostgreSQL database schema with Row Level Security (RLS) policies for secure multi-user access}
+            \resumeItem{Developed admin dashboard with analytics (revenue tracking, order management, user management) and blog CMS}
+            \resumeItem{Integrated Google Drive API with OAuth 2.0 for seamless file upload functionality in order workflow}
+            \resumeItem{Implemented authentication system with role-based access control (admin vs user) and real-time user presence}
+            \resumeItem{Deployed full-stack application to Netlify with serverless functions and Supabase backend}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{StudyOS - AI-Powered Learning Platform} $|$ \emph{Wasp, React 18, TypeScript, OpenAI API, PostgreSQL}}{2024}
+          \resumeItemListStart
+            \resumeItem{Architected full-stack study application using Wasp framework with React 18, TypeScript, and PostgreSQL}
+            \resumeItem{Implemented spaced repetition algorithm (Leitner system) with state management for flashcard learning}
+            \resumeItem{Integrated OpenAI API for automated PDF-to-flashcard generation with quality validation logic}
+            \resumeItem{Built RESTful API endpoints, authentication system, and real-time progress tracking features}
+            \resumeItem{Deployed to production with CI/CD pipeline using Vercel and database hosted on Railway}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Captain-Funds Fundraising Platform} $|$ \emph{MongoDB, Express.js, React, Node.js, TailwindCSS}}{2024}
+          \resumeItemListStart
+            \resumeItem{Developed comprehensive MERN stack application with role-based access control and JWT authentication}
+            \resumeItem{Designed RESTful API with Express.js handling campaign CRUD operations and user management}
+            \resumeItem{Implemented responsive frontend using React hooks, Context API, and Ant Design components}
+            \resumeItem{Integrated Stripe payment processing and built real-time analytics dashboard with Chart.js}
+            \resumeItem{Containerized application with Docker and deployed to Heroku with MongoDB Atlas}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{JobScanner Pro - Job Search Automation} $|$ \emph{Python, Playwright, Tkinter, BeautifulSoup}}{2024}
+          \resumeItemListStart
+            \resumeItem{Built Python automation tool with web scraping across multiple job platforms using Playwright and BeautifulSoup}
+            \resumeItem{Developed dual CLI/GUI interface using Tkinter with user-friendly job search configuration}
+            \resumeItem{Implemented smart filtering algorithms, deduplication logic, and automated form-filling system}
+            \resumeItem{Created SQLite database for job storage with efficient querying and data persistence}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Velare - 3D Creative Studio Website} $|$ \emph{Next.js 14, Three.js, React Three Fiber, WebGL}}{2024}
+          \resumeItemListStart
+            \resumeItem{Engineered immersive portfolio website using Next.js 14 with Three.js and React Three Fiber for 3D rendering}
+            \resumeItem{Optimized performance with lazy loading, code splitting, and image optimization (Next/Image)}
+            \resumeItem{Implemented advanced WebGL shaders, particle systems, and interactive 3D animations}
+            \resumeItem{Built with TypeScript for type safety and deployed to Vercel with automatic CI/CD}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Freelance Full-Stack Developer \& Technical Consultant}{2020 -- Present}
+      {Self-Employed via Fiverr}{Remote}
+      \resumeItemListStart
+        \resumeItem{Delivered 1,400+ technical projects including web development, automation scripts, and digital solutions}
+        \resumeItem{Achieved 4.8-star rating serving 700+ clients with 99\% satisfaction and 60\%+ repeat business rate}
+        \resumeItem{Managed full project lifecycle from requirements gathering to deployment and maintenance}
+        \resumeItem{Communicated technical concepts to non-technical stakeholders and provided ongoing support}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Co-Founder \& Technical Lead}{May 2021 -- 2023}
+      {CLSO Media}{Brampton, ON}
+      \resumeItemListStart
+        \resumeItem{Founded media tech startup integrating AI voice generation (Eleven Labs API) into service offerings}
+        \resumeItem{Mentored team members on technical tools, automation workflows, and operational systems}
+        \resumeItem{Implemented scalable business processes generating \$30K+ revenue at 80\% profit margins}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: JavaScript (ES6+), TypeScript, Python, HTML5, CSS3, SQL} \\
+     \textbf{Frontend}{: React.js, Next.js 14, TailwindCSS, Three.js, React Three Fiber, Ant Design, Shadcn/ui, Framer Motion, GSAP} \\
+     \textbf{Backend}{: Node.js, Express.js, RESTful APIs, GraphQL, Wasp Framework, Netlify Functions, Supabase} \\
+     \textbf{Databases}{: MongoDB, PostgreSQL, SQLite, Supabase (PostgreSQL), Prisma ORM, Mongoose, Row Level Security (RLS)} \\
+     \textbf{APIs \& Integrations}{: Stripe API, Google Drive API, OpenAI API, EmailJS, RESTful APIs, Webhooks} \\
+     \textbf{Tools \& DevOps}{: Git/GitHub, Docker, Vercel, Netlify, Heroku, Postman, VS Code, Linux/Unix} \\
+     \textbf{AI/ML}{: OpenAI API, TensorFlow, Pandas, NumPy, Machine Learning basics} \\
+     \textbf{Other}{: Agile/Scrum, Responsive Design, Web Accessibility, UI/UX principles, Testing (Jest), Authentication \& Authorization}
+    }}
+ \end{itemize}
+
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications}
+  \resumeSubHeadingListStart
+    \resumeItem{Object-Oriented Programming Certification - Udemy (2024)}
+    \resumeItem{The Complete Web Developer Bootcamp - Udemy (2022-2024)}
+    \resumeItem{Data Structures + Algorithms Certification (2022)}
+  \resumeSubHeadingListEnd
+
+
+%-----------ADDITIONAL INFORMATION-----------
+\section{Additional Information}
+  \resumeSubHeadingListStart
+    \resumeItem{GitHub Portfolio: Active contributor with 15+ repositories showcasing full-stack projects}
+    \resumeItem{Availability: Open to full-time, internship, and co-op opportunities starting immediately}
+    \resumeItem{Work Authorization: Canadian citizen, no work permit required}
+    \resumeItem{Soft Skills: Strong communication, client management, self-directed learning, entrepreneurial mindset}
+  \resumeSubHeadingListEnd
+
+
+%-------------------------------------------
+\end{document}
+

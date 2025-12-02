@@ -1,0 +1,119 @@
+Term	Definition
+
+# Chapter 1 — Getting Started
+Java programming language	General-purpose programming language for various applications
+Internet applications	Java's well-known use for web-based programs
+General-purpose language	Java suitable for most any application type
+James Gosling	Led team at Sun Microsystems that developed Java
+Sun Microsystems	Company where Java was originally developed
+Oracle Corporation	Current owner of Java (purchased Sun in 2010)
+Home appliances programming	Java's original intended use (washing machines, TVs)
+Wide variety of processors	Challenge in designing language for different chips
+Expensive compilers	Problem with traditional compiler development
+Two-step translation process	Java's solution for multiple processor support
+Intermediate language	Common language for all appliances/computers
+Java byte-code	Intermediate language Java programs compile to
+Byte-code	Java's intermediate language for all platforms
+Machine language	Final language specific to each processor
+Cost savings	Benefit of two-step translation process
+Translation programs	Compilers that convert code to machine language
+Program translation	Converting source code to executable form
+Code compilation	Process of translating source code to byte-code
+Byte-code execution	Running byte-code on Java Virtual Machine
+Java Virtual Machine	JVM - runs byte-code on different platforms
+Platform independence	Java's ability to run on different operating systems
+Write once, run anywhere	Java's platform independence principle
+Object-oriented programming	OOP - programming methodology using objects
+Class	Group of objects with same type and methods
+Method	Action that objects can perform
+
+# Chapter 2 — Console I/O (selected)
+System.out.println	Method to output data to display screen with newline
+System.out.print	Method to output data to display screen without newline
+Concatenation operator	+ operator combines strings and values
+Escape sequence \n	Newline character
+Scanner class	Java class for keyboard and file input (Java 5.0+)
+keyboard = new Scanner(System.in)	Create Scanner for console input
+FileInputStream	Handles connection between program and file
+FileNotFoundException	Thrown when file doesn't exist
+hasNextLine()	Checks if more data available in file
+nextInt()/nextLine() issue	nextInt() leaves newline; add extra nextLine() to clear buffer
+
+# Chapter 3 — Flow of Control (selected)
+if-else statement	Chooses between alternatives based on Boolean expression
+equals() for Strings	Use equals()/equalsIgnoreCase() not ==
+while loop	Checks condition before each iteration
+do-while loop	Executes body at least once
+for loop	Initialization; condition; update
+Off-by-one error	Loop executes one too many or few times
+Random in [a,b]	rand.nextInt(b - a + 1) + a
+
+# Chapter 4 — Defining Classes I (selected)
+Encapsulation	Keep fields private; expose getters/setters with validation
+Constructor	Initializes instance variables; may chain with this(...)
+Method overloading	Same name, different parameter lists (number/types/order)
+Static members	Belong to class, not instances
+
+# Chapter 5 — Defining Classes II (selected)
+Reference semantics	Assignments copy references; objects can be aliased
+Privacy leak	Returning internal mutable references; fix with defensive copies
+Packages/imports	Organize classes; bring types into scope
+
+# Chapter 6 — Arrays
+Array	Collection of variables with uniform naming mechanism
+Zero-based indexing	Array indices start at 0
+array.length	Number of indexed variables in array
+ArrayIndexOutOfBoundsException	Error when accessing invalid index
+Partially filled array	Track numberUsed separate from capacity
+Use count in loops	for (int i = 0; i < numberUsed; i++)
+
+# Chapter 6.2 — Arrays & References (Q/A normalized)
+What does the declaration `double[] a;` create?	A variable of an array type that can hold a reference to an array object
+What does `new double[10]` do?	Creates an array object in memory
+What does `a = new double[10];` do?	Stores the reference to the array object in variable a
+What is the only instance variable arrays have?	length
+How do arrays behave for assignment/equality/parameters?	As reference types; assignment copies references; equality compares references; passing shares the object
+
+# Chapter 6.4 — Multidimensional Arrays (Q/A normalized)
+What is a multidimensional array?	An array with more than one index (e.g., rows and columns)
+Syntax for 2D array?	Base_Type[][] name = new Base_Type[rows][columns];
+Access element in 2D array?	array[row][col]
+2D in Java actually is?	Array of arrays (ragged allowed)
+Invalid index result?	ArrayIndexOutOfBoundsException
+
+# Chapter 4 — Encapsulation / API / Packages
+Information hiding	Separate public use from private implementation
+Encapsulation	Bundle data + methods; expose minimal public API
+API	Public methods documenting how to use the class
+Private fields	Disallow direct external access to state
+Get/Set methods	Public accessors/mutators with validation
+Package	Groups related classes; controls visibility
+import statement	Brings classes from a package into scope
+
+# Chapter 4 — Constructors
+Constructor	Special method to initialize new objects
+Default constructor	No-arg constructor auto-provided if none defined
+Constructor overloading	Multiple constructors with different parameters
+this(...) chaining	One constructor calls another in same class
+Constructor vs method	Constructor has no return type; same name as class
+
+# Chapter 4 — Method Overloading
+Overloading	Same method name, different parameter lists
+Signature	Method name + parameter types (return type not part)
+Invalid overloading	Changing only return type (same parameters)
+Compiler selection	Chooses most specific match by parameter types
+
+# Chapter 4 — Static
+Static method	Callable via ClassName.method(); no instance required
+Static field	One copy shared by all instances
+Static limits	Cannot access instance fields or use this
+Math.max/abs/sqrt	Common static utility examples
+
+# Chapter 5 — References & Parameters
+Reference variable	Stores an address to an object (not the object)
+Assignment copies reference	Two variables can alias same object
+equals() vs ==	Use equals() for content; == compares references
+Array parameter behavior	Methods can modify original array elements
+Pass-by-value	Java passes copies (including copies of references)
+
+

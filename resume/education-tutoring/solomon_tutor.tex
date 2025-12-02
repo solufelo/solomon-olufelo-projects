@@ -1,0 +1,235 @@
+%-------------------------
+% Tutor / Teaching Assistant Resume in Latex
+% Author : Solomon Olufelo
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Solomon Olufelo} \\ \vspace{1pt}
+    \textbf{\large Computer Science Tutor | Programming Instructor} \\ \vspace{2pt}
+    \small 289-233-8317 $|$ \href{mailto:oluf9170@mylaurier.ca}{\underline{oluf9170@mylaurier.ca}} $|$
+    \href{https://captainsolo.ca}{\underline{captainsolo.ca}}
+    \\ \vspace{1pt}
+    \small Waterloo, ON $|$ Wilfrid Laurier University Student
+\end{center}
+
+
+%-----------PROFESSIONAL SUMMARY-----------
+\section{Professional Summary}
+\small{Patient and knowledgeable Computer Science student with hands-on experience teaching technical concepts to diverse audiences. Proven ability to break down complex programming topics into understandable lessons through 700+ successful client interactions. Strong communication skills with track record of 4.8-star satisfaction rating. Experienced in JavaScript, Python, web development, and computer science fundamentals. Passionate about helping students succeed through personalized instruction and supportive learning environment.}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Wilfrid Laurier University}{Waterloo, ON}
+      {Bachelor of Science in Computer Science (In Progress)}{Sep. 2021 -- Spring 2026 (Expected)}
+      \resumeItemListStart
+        \resumeItem{Relevant Coursework: CP213 Object-Oriented Programming, Data Structures, Algorithm Design, Software Engineering}
+        \resumeItem{SASP (Student Academic Success Program) Participant - Structured academic success strategies}
+        \resumeItem{Recent Achievement: Completed Object-Oriented Programming Certification via Udemy (2024)}
+        \resumeItem{Strong academic foundation in programming concepts, problem-solving, and computational thinking}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%-----------RELEVANT EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Freelance Technical Instructor \& Consultant}{2020 -- Present}
+      {Self-Employed}{Remote}
+      \resumeItemListStart
+        \resumeItem{Provided technical guidance and instruction to 700+ clients achieving 4.8-star satisfaction rating}
+        \resumeItem{Explained complex technical concepts in accessible language tailored to individual learning styles}
+        \resumeItem{Developed customized learning materials and examples to support client understanding}
+        \resumeItem{Demonstrated patience and adaptability working with students of varying skill levels}
+        \resumeItem{Received numerous positive reviews highlighting clear communication and teaching ability}
+        \resumeItem{Maintained 60\%+ repeat client rate through effective instruction and supportive approach}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Athletics \& Recreation Student Assistant}{Aug. 2023 -- Present}
+      {Wilfrid Laurier University}{Waterloo, ON}
+      \resumeItemListStart
+        \resumeItem{Interact professionally with students, providing guidance and information}
+        \resumeItem{Collaborate with university staff in educational and recreational environment}
+        \resumeItem{Demonstrate reliability, punctuality, and professional conduct}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------TECHNICAL EXPERTISE-----------
+\section{Technical Expertise - Subjects I Can Teach}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Programming Languages}{: JavaScript (ES6+), Python, TypeScript, HTML5, CSS3, SQL basics} \\
+     \textbf{Web Development}{: React.js, Next.js, Node.js, Express.js, responsive design, frontend/backend basics} \\
+     \textbf{Computer Science Fundamentals}{: Data structures (arrays, linked lists, trees, graphs), algorithms, OOP} \\
+     \textbf{Development Tools}{: Git/GitHub, VS Code, command line, debugging techniques, project setup} \\
+     \textbf{Beginner Topics}{: Programming basics, syntax, variables, loops, functions, problem-solving strategies} \\
+     \textbf{Study Skills}{: Time management, project planning, debugging strategies, academic success techniques}
+    }}
+ \end{itemize}
+
+
+%-----------TEACHING APPROACH-----------
+\section{Teaching Approach \& Skills}
+  \resumeSubHeadingListStart
+    \resumeItem{Patient Communication - Skilled at explaining concepts multiple ways until understanding is achieved}
+    \resumeItem{Personalized Instruction - Adapt teaching style to individual student needs and learning preferences}
+    \resumeItem{Real-World Examples - Use practical projects and examples to demonstrate abstract concepts}
+    \resumeItem{Problem-Solving Focus - Teach debugging skills and logical thinking, not just code memorization}
+    \resumeItem{Supportive Environment - Create encouraging atmosphere where students feel comfortable asking questions}
+    \resumeItem{Progress Tracking - Monitor student understanding and adjust pace accordingly}
+    \resumeItem{Resource Sharing - Provide additional learning materials, practice problems, and helpful resources}
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS & TEACHING PORTFOLIO-----------
+\section{Projects (Can Be Used as Teaching Examples)}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{StudyOS - AI Learning Platform} $|$ \emph{React, TypeScript, OpenAI API}}{2024}
+          \resumeItemListStart
+            \resumeItem{Full-stack application demonstrating modern web development, API integration, and state management}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Captain-Funds Platform} $|$ \emph{MERN Stack (MongoDB, Express, React, Node.js)}}{2024}
+          \resumeItemListStart
+            \resumeItem{Comprehensive project showcasing full-stack development, authentication, and database design}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{JobScanner Pro} $|$ \emph{Python, Web Scraping, GUI Development}}{2024}
+          \resumeItemListStart
+            \resumeItem{Python automation tool demonstrating algorithms, data structures, and practical problem-solving}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications}
+  \resumeSubHeadingListStart
+    \resumeItem{Object-Oriented Programming Certification - Udemy (2024)}
+    \resumeItem{The Complete Web Developer Bootcamp - Udemy (2022-2024)}
+    \resumeItem{Data Structures + Algorithms Certification (2022)}
+  \resumeSubHeadingListEnd
+
+
+%-----------KEY ACHIEVEMENTS-----------
+\section{Key Achievements}
+  \resumeSubHeadingListStart
+    \resumeItem{Maintained 4.8/5.0 client satisfaction rating across 700+ technical consulting interactions}
+    \resumeItem{Built 8+ full-stack applications demonstrating mastery of modern development practices}
+    \resumeItem{Successfully completed comprehensive OOP certification solidifying teaching knowledge}
+    \resumeItem{Generated 60\%+ repeat client rate through clear communication and effective instruction}
+  \resumeSubHeadingListEnd
+
+
+%-----------ADDITIONAL INFORMATION-----------
+\section{Additional Information}
+  \resumeSubHeadingListStart
+    \resumeItem{Availability - Flexible schedule for evenings, weekends, and online tutoring sessions}
+    \resumeItem{Format - Available for in-person (Waterloo/Brampton) and remote tutoring via video call}
+    \resumeItem{Rate - Competitive and negotiable based on subject difficulty and session length}
+    \resumeItem{Age Groups - Comfortable teaching high school students, university peers, and adult learners}
+    \resumeItem{Portfolio - Professional website (captainsolo.ca) showcasing projects and technical abilities}
+    \resumeItem{Bilingual - English (Fluent), French (Basic)}
+  \resumeSubHeadingListEnd
+
+
+%-------------------------------------------
+\end{document}
+

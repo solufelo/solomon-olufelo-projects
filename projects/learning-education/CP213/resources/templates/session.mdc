@@ -1,0 +1,16 @@
+---
+alwaysApply: true
+---
+
+name: Study Session
+args:
+  goal: ""
+  constraints: "No direct solutions to graded items; provide guidance."
+---
+We are working on {{goal}}. Provide hints, breakdowns, and tests-first suggestions. Respect constraints: {{constraints}}.
+name: Study Session
+args:
+  goal: ""
+  constraints: "No direct solutions to graded items; provide guidance."
+---
+We are working on {{goal}}. Provide hints, breakdowns, and tests-first suggestions. Respect constraints: {{constraints}}.

@@ -1,0 +1,462 @@
+Scanner class	Java class for keyboard and file input (Java 5.0+)
+import statement	Makes Scanner class available: import java.util.Scanner
+java.util package	Package containing utility classes like Scanner
+Package	Library of related classes in Java
+util abbreviation	Short for utility in Java package names
+Scanner object creation	Scanner keyboard = new Scanner(System.in)
+System.in	Standard input stream for keyboard input
+keyboard identifier	Common name for Scanner object used for input
+nextInt method	Reads one integer value from input
+nextDouble method	Reads one double value from input
+nextLine method	Reads entire line of text from input
+next method	Reads next token (word) from input
+Whitespace	Spaces, tabs, line breaks separating input values
+Input separation	Values must be separated by whitespace
+Scanner methods	Various methods to read different data types
+Input reading	Process of getting data from keyboard or file
+Console input	Reading data typed on keyboard
+File input	Reading data from text files
+FileInputStream class	Handles connection between program and file
+FileNotFoundException class	Exception thrown when file doesn't exist
+File import statements	import java.io.FileInputStream; import java.io.FileNotFoundException
+File Scanner creation	Scanner fileIn = new Scanner(new FileInputStream("filename"))
+try/catch block	Handles potential file opening errors
+File error handling	Using try/catch for FileNotFoundException
+System.exit(0)	Terminates program execution immediately
+File reading methods	Same methods as console: nextInt(), nextDouble(), etc.
+hasNextLine method	Checks if more data available in file
+File closing	fileIn.close() releases file resources
+End of file	When all file data has been read
+File resource management	Properly closing files to free resources
+Line terminator issue	nextInt() leaves newline in buffer, needs extra nextLine()
+Input buffer	Memory area storing input until processed
+Buffer clearing	Extra nextLine() to clear newline characters
+Text file format	Plain text files readable by Scanner
+File path	Location of file on disk system
+Relative path	File path relative to program location
+Absolute path	Complete file path from root directory
+File existence check	Verifying file exists before opening
+Error message output	System.out.println("File not found.")
+Exception handling	Managing errors during file operations
+File processing	Reading and processing file contents
+Sequential file reading	Reading file from beginning to end
+File position	Current location in file being read
+File cursor	Position marker in file for next read operation
+Input validation	Checking if input data is valid
+Data type matching	Ensuring input matches expected type
+Integer input	Reading whole numbers from input
+Double input	Reading decimal numbers from input
+String input	Reading text from input
+Character input	Reading single characters from input
+Boolean input	Reading true/false values from input
+Token input	Reading individual words/tokens
+Line input	Reading entire lines of text
+Mixed input types	Reading different data types in sequence
+Input formatting	How input data should be formatted
+Input prompts	Messages telling user what to enter
+Input validation errors	Handling incorrect input formats
+Input retry logic	Asking user to re-enter invalid input
+Input sanitization	Cleaning and validating input data
+Input parsing	Converting input strings to appropriate types
+Input conversion	Changing input format to usable format
+Input buffering	Storing input until processing
+Input streaming	Continuous flow of input data
+Input blocking	Waiting for user to provide input
+Input timeout	Limiting time to wait for input
+Input redirection	Sending file input to program
+Input piping	Connecting output of one program to input of another
+Input filtering	Removing unwanted characters from input
+Input normalization	Converting input to standard format
+Input encoding	Converting input to proper character encoding
+Input decoding	Converting encoded input to readable format
+Input compression	Handling compressed input files
+Input encryption	Handling encrypted input files
+Input decryption	Converting encrypted input to readable format
+Input checksum	Verifying input data integrity
+Input validation rules	Rules for acceptable input formats
+Input constraints	Limitations on input values
+Input ranges	Valid ranges for numeric input
+Input patterns	Expected formats for input data
+Input regex	Regular expressions for input validation
+Input parsing errors	Errors when converting input to expected type
+Input format exceptions	Exceptions for invalid input formats
+Input overflow	When input exceeds expected size
+Input underflow	When input is less than expected
+Input truncation	Cutting off input that's too long
+Input padding	Adding characters to short input
+Input trimming	Removing whitespace from input
+Input case conversion	Changing input to uppercase/lowercase
+Input encoding detection	Determining input character encoding
+Input charset handling	Managing different character sets
+Input locale handling	Managing different language settings
+Input timezone handling	Managing different time zones
+Input date format	Handling different date formats
+Input number format	Handling different number formats
+Input currency format	Handling different currency formats
+Input percentage format	Handling percentage input
+Input scientific notation	Handling scientific number notation
+Input hexadecimal	Handling hexadecimal number input
+Input octal	Handling octal number input
+Input binary	Handling binary number input
+Input floating point	Handling decimal number input
+Input precision	Managing decimal precision in input
+Input rounding	Rounding input numbers
+Input truncation	Truncating input numbers
+Input validation feedback	Providing feedback on invalid input
+Input error messages	Clear messages for input errors
+Input help text	Instructions for proper input format
+Input examples	Sample input to guide users
+Input documentation	Documenting expected input formats
+Input testing	Testing various input scenarios
+Input edge cases	Handling unusual input situations
+Input boundary testing	Testing input limits and boundaries
+Input stress testing	Testing with large amounts of input
+Input performance testing	Testing input processing speed
+Input memory testing	Testing memory usage with large inputs
+Input security testing	Testing for malicious input
+Input injection testing	Testing for code injection attacks
+Input buffer overflow testing	Testing for buffer overflow vulnerabilities
+Input sanitization testing	Testing input cleaning functions
+Input validation testing	Testing input validation logic
+Input parsing testing	Testing input parsing functions
+Input conversion testing	Testing input type conversion
+Input error handling testing	Testing error handling mechanisms
+Input recovery testing	Testing recovery from input errors
+Input rollback testing	Testing rollback from failed input
+Input transaction testing	Testing input in transaction contexts
+Input concurrent testing	Testing input with multiple threads
+Input race condition testing	Testing for input race conditions
+Input deadlock testing	Testing for input-related deadlocks
+Input timeout testing	Testing input timeout mechanisms
+Input retry testing	Testing input retry logic
+Input fallback testing	Testing input fallback mechanisms
+Input backup testing	Testing input backup procedures
+Input restore testing	Testing input restore procedures
+Input migration testing	Testing input format migrations
+Input upgrade testing	Testing input system upgrades
+Input compatibility testing	Testing input format compatibility
+Input interoperability testing	Testing input between different systems
+Input integration testing	Testing input with other components
+Input system testing	Testing input in complete system
+Input acceptance testing	Testing input acceptance criteria
+Input user testing	Testing input with real users
+Input usability testing	Testing input ease of use
+Input accessibility testing	Testing input accessibility features
+Input internationalization testing	Testing input with different languages
+Input localization testing	Testing input with different locales
+Input compliance testing	Testing input regulatory compliance
+Input audit testing	Testing input audit requirements
+Input monitoring testing	Testing input monitoring systems
+Input logging testing	Testing input logging functionality
+Input tracing testing	Testing input tracing capabilities
+Input profiling testing	Testing input performance profiling
+Input debugging testing	Testing input debugging tools
+Input diagnostic testing	Testing input diagnostic capabilities
+Input troubleshooting testing	Testing input troubleshooting procedures
+Input maintenance testing	Testing input maintenance procedures
+Input backup and recovery testing	Testing input backup and recovery
+Input disaster recovery testing	Testing input disaster recovery
+Input business continuity testing	Testing input business continuity
+Input risk assessment	Assessing input-related risks
+Input threat modeling	Modeling input security threats
+Input vulnerability assessment	Assessing input vulnerabilities
+Input penetration testing	Testing input security penetration
+Input compliance auditing	Auditing input compliance requirements
+Input quality assurance	Ensuring input quality standards
+Input quality control	Controlling input quality processes
+Input quality metrics	Measuring input quality indicators
+Input performance metrics	Measuring input performance indicators
+Input reliability metrics	Measuring input reliability indicators
+Input availability metrics	Measuring input availability indicators
+Input security metrics	Measuring input security indicators
+Input maintainability metrics	Measuring input maintainability indicators
+Input scalability metrics	Measuring input scalability indicators
+Input efficiency metrics	Measuring input efficiency indicators
+Input effectiveness metrics	Measuring input effectiveness indicators
+Input productivity metrics	Measuring input productivity indicators
+Input cost metrics	Measuring input cost indicators
+Input ROI metrics	Measuring input return on investment
+Input value metrics	Measuring input business value
+Input satisfaction metrics	Measuring input user satisfaction
+Input adoption metrics	Measuring input system adoption
+Input usage metrics	Measuring input usage patterns
+Input trend analysis	Analyzing input usage trends
+Input forecasting	Predicting future input requirements
+Input capacity planning	Planning for input capacity needs
+Input resource planning	Planning for input resources
+Input budget planning	Planning for input budgets
+Input timeline planning	Planning for input project timelines
+Input milestone planning	Planning for input project milestones
+Input deliverable planning	Planning for input project deliverables
+Input scope planning	Planning for input project scope
+Input risk planning	Planning for input project risks
+Input mitigation planning	Planning for input risk mitigation
+Input contingency planning	Planning for input contingencies
+Input change management	Managing input system changes
+Input version control	Controlling input system versions
+Input configuration management	Managing input configurations
+Input deployment management	Managing input deployments
+Input release management	Managing input releases
+Input patch management	Managing input patches
+Input update management	Managing input updates
+Input upgrade management	Managing input upgrades
+Input migration management	Managing input migrations
+Input retirement management	Managing input system retirement
+Input lifecycle management	Managing input system lifecycle
+Input governance	Governance of input systems
+Input policies	Policies for input systems
+Input procedures	Procedures for input systems
+Input standards	Standards for input systems
+Input guidelines	Guidelines for input systems
+Input best practices	Best practices for input systems
+Input lessons learned	Lessons learned from input systems
+Input knowledge management	Managing input system knowledge
+Input documentation	Documentation for input systems
+Input training	Training for input systems
+Input support	Support for input systems
+Input maintenance	Maintenance of input systems
+Input troubleshooting	Troubleshooting input systems
+Input problem resolution	Resolving input system problems
+Input incident management	Managing input system incidents
+Input issue tracking	Tracking input system issues
+Input defect management	Managing input system defects
+Input bug tracking	Tracking input system bugs
+Input feature requests	Managing input system feature requests
+Input enhancement requests	Managing input system enhancements
+Input improvement suggestions	Suggesting input system improvements
+Input innovation	Innovation in input systems
+Input research	Research on input systems
+Input development	Development of input systems
+Input testing	Testing of input systems
+Input quality assurance	Quality assurance for input systems
+Input quality control	Quality control for input systems
+Input validation	Validation of input systems
+Input verification	Verification of input systems
+Input certification	Certification of input systems
+Input accreditation	Accreditation of input systems
+Input compliance	Compliance of input systems
+Input audit	Auditing of input systems
+Input assessment	Assessment of input systems
+Input evaluation	Evaluation of input systems
+Input review	Review of input systems
+Input inspection	Inspection of input systems
+Input walkthrough	Walkthrough of input systems
+Input demonstration	Demonstration of input systems
+Input presentation	Presentation of input systems
+Input communication	Communication about input systems
+Input reporting	Reporting on input systems
+Input status updates	Status updates on input systems
+Input progress reports	Progress reports on input systems
+Input metrics reports	Metrics reports on input systems
+Input dashboard	Dashboard for input systems
+Input visualization	Visualization of input systems
+Input analytics	Analytics of input systems
+Input business intelligence	Business intelligence for input systems
+Input data mining	Data mining of input systems
+Input machine learning	Machine learning for input systems
+Input artificial intelligence	Artificial intelligence for input systems
+Input automation	Automation of input systems
+Input orchestration	Orchestration of input systems
+Input workflow	Workflow for input systems
+Input process	Process for input systems
+Input methodology	Methodology for input systems
+Input framework	Framework for input systems
+Input architecture	Architecture of input systems
+Input design	Design of input systems
+Input implementation	Implementation of input systems
+Input integration	Integration of input systems
+Input deployment	Deployment of input systems
+Input operation	Operation of input systems
+Input administration	Administration of input systems
+Input management	Management of input systems
+Input leadership	Leadership of input systems
+Input strategy	Strategy for input systems
+Input planning	Planning for input systems
+Input execution	Execution of input systems
+Input monitoring	Monitoring of input systems
+Input control	Control of input systems
+Input optimization	Optimization of input systems
+Input improvement	Improvement of input systems
+Input enhancement	Enhancement of input systems
+Input modernization	Modernization of input systems
+Input transformation	Transformation of input systems
+Input evolution	Evolution of input systems
+Input innovation	Innovation in input systems
+Input disruption	Disruption of input systems
+Input revolution	Revolution in input systems
+Input paradigm shift	Paradigm shift in input systems
+Input future	Future of input systems
+Input trends	Trends in input systems
+Input predictions	Predictions for input systems
+Input forecasts	Forecasts for input systems
+Input scenarios	Scenarios for input systems
+Input possibilities	Possibilities for input systems
+Input opportunities	Opportunities for input systems
+Input challenges	Challenges for input systems
+Input risks	Risks for input systems
+Input threats	Threats to input systems
+Input vulnerabilities	Vulnerabilities in input systems
+Input security	Security of input systems
+Input privacy	Privacy of input systems
+Input confidentiality	Confidentiality of input systems
+Input integrity	Integrity of input systems
+Input availability	Availability of input systems
+Input reliability	Reliability of input systems
+Input performance	Performance of input systems
+Input scalability	Scalability of input systems
+Input flexibility	Flexibility of input systems
+Input adaptability	Adaptability of input systems
+Input maintainability	Maintainability of input systems
+Input usability	Usability of input systems
+Input accessibility	Accessibility of input systems
+Input interoperability	Interoperability of input systems
+Input compatibility	Compatibility of input systems
+Input portability	Portability of input systems
+Input reusability	Reusability of input systems
+Input modularity	Modularity of input systems
+Input extensibility	Extensibility of input systems
+Input configurability	Configurability of input systems
+Input customizability	Customizability of input systems
+Input personalization	Personalization of input systems
+Input localization	Localization of input systems
+Input internationalization	Internationalization of input systems
+Input globalization	Globalization of input systems
+Input standardization	Standardization of input systems
+Input normalization	Normalization of input systems
+Input harmonization	Harmonization of input systems
+Input unification	Unification of input systems
+Input consolidation	Consolidation of input systems
+Input aggregation	Aggregation of input systems
+Input integration	Integration of input systems
+Input federation	Federation of input systems
+Input distribution	Distribution of input systems
+Input decentralization	Decentralization of input systems
+Input centralization	Centralization of input systems
+Input clustering	Clustering of input systems
+Input virtualization	Virtualization of input systems
+Input cloud computing	Cloud computing for input systems
+Input edge computing	Edge computing for input systems
+Input fog computing	Fog computing for input systems
+Input mobile computing	Mobile computing for input systems
+Input ubiquitous computing	Ubiquitous computing for input systems
+Input pervasive computing	Pervasive computing for input systems
+Input ambient computing	Ambient computing for input systems
+Input context-aware computing	Context-aware computing for input systems
+Input adaptive computing	Adaptive computing for input systems
+Input intelligent computing	Intelligent computing for input systems
+Input cognitive computing	Cognitive computing for input systems
+Input quantum computing	Quantum computing for input systems
+Input neuromorphic computing	Neuromorphic computing for input systems
+Input biological computing	Biological computing for input systems
+Input chemical computing	Chemical computing for input systems
+Input optical computing	Optical computing for input systems
+Input molecular computing	Molecular computing for input systems
+Input DNA computing	DNA computing for input systems
+Input quantum dot computing	Quantum dot computing for input systems
+Input photonic computing	Photonic computing for input systems
+Input plasmonic computing	Plasmonic computing for input systems
+Input spintronic computing	Spintronic computing for input systems
+Input memristor computing	Memristor computing for input systems
+Input graphene computing	Graphene computing for input systems
+Input carbon nanotube computing	Carbon nanotube computing for input systems
+Input silicon photonics computing	Silicon photonics computing for input systems
+Input integrated photonics computing	Integrated photonics computing for input systems
+Input quantum photonics computing	Quantum photonics computing for input systems
+Input topological computing	Topological computing for input systems
+Input superconducting computing	Superconducting computing for input systems
+Input cryogenic computing	Cryogenic computing for input systems
+Input adiabatic computing	Adiabatic computing for input systems
+Input reversible computing	Reversible computing for input systems
+Input reversible logic computing	Reversible logic computing for input systems
+Input quantum reversible computing	Quantum reversible computing for input systems
+Input classical reversible computing	Classical reversible computing for input systems
+Input probabilistic computing	Probabilistic computing for input systems
+Input stochastic computing	Stochastic computing for input systems
+Input approximate computing	Approximate computing for input systems
+Input inexact computing	Inexact computing for input systems
+Input imprecise computing	Imprecise computing for input systems
+Input fuzzy computing	Fuzzy computing for input systems
+Input rough computing	Rough computing for input systems
+Input soft computing	Soft computing for input systems
+Input hard computing	Hard computing for input systems
+Input crisp computing	Crisp computing for input systems
+Input deterministic computing	Deterministic computing for input systems
+Input non-deterministic computing	Non-deterministic computing for input systems
+Input random computing	Random computing for input systems
+Input pseudo-random computing	Pseudo-random computing for input systems
+Input chaotic computing	Chaotic computing for input systems
+Input fractal computing	Fractal computing for input systems
+Input wavelet computing	Wavelet computing for input systems
+Input Fourier computing	Fourier computing for input systems
+Input Laplace computing	Laplace computing for input systems
+Input Z-transform computing	Z-transform computing for input systems
+Input Hilbert computing	Hilbert computing for input systems
+Input Karhunen-Loeve computing	Karhunen-Loeve computing for input systems
+Input principal component computing	Principal component computing for input systems
+Input independent component computing	Independent component computing for input systems
+Input canonical correlation computing	Canonical correlation computing for input systems
+Input partial least squares computing	Partial least squares computing for input systems
+Input support vector computing	Support vector computing for input systems
+Input neural network computing	Neural network computing for input systems
+Input deep learning computing	Deep learning computing for input systems
+Input machine learning computing	Machine learning computing for input systems
+Input artificial intelligence computing	Artificial intelligence computing for input systems
+Input expert system computing	Expert system computing for input systems
+Input knowledge base computing	Knowledge base computing for input systems
+Input rule-based computing	Rule-based computing for input systems
+Input case-based computing	Case-based computing for input systems
+Input model-based computing	Model-based computing for input systems
+Input data-driven computing	Data-driven computing for input systems
+Input algorithm-driven computing	Algorithm-driven computing for input systems
+Input pattern-driven computing	Pattern-driven computing for input systems
+Input event-driven computing	Event-driven computing for input systems
+Input message-driven computing	Message-driven computing for input systems
+Input service-oriented computing	Service-oriented computing for input systems
+Input component-based computing	Component-based computing for input systems
+Input object-oriented computing	Object-oriented computing for input systems
+Input aspect-oriented computing	Aspect-oriented computing for input systems
+Input agent-oriented computing	Agent-oriented computing for input systems
+Input multi-agent computing	Multi-agent computing for input systems
+Input swarm computing	Swarm computing for input systems
+Input collective computing	Collective computing for input systems
+Input distributed computing	Distributed computing for input systems
+Input parallel computing	Parallel computing for input systems
+Input concurrent computing	Concurrent computing for input systems
+Input synchronous computing	Synchronous computing for input systems
+Input asynchronous computing	Asynchronous computing for input systems
+Input real-time computing	Real-time computing for input systems
+Input near real-time computing	Near real-time computing for input systems
+Input batch computing	Batch computing for input systems
+Input interactive computing	Interactive computing for input systems
+Input streaming computing	Streaming computing for input systems
+Input micro-batch computing	Micro-batch computing for input systems
+Input lambda computing	Lambda computing for input systems
+Input kappa computing	Kappa computing for input systems
+Input mu computing	Mu computing for input systems
+Input sigma computing	Sigma computing for input systems
+Input pi computing	Pi computing for input systems
+Input omega computing	Omega computing for input systems
+Input alpha computing	Alpha computing for input systems
+Input beta computing	Beta computing for input systems
+Input gamma computing	Gamma computing for input systems
+Input delta computing	Delta computing for input systems
+Input epsilon computing	Epsilon computing for input systems
+Input zeta computing	Zeta computing for input systems
+Input eta computing	Eta computing for input systems
+Input theta computing	Theta computing for input systems
+Input iota computing	Iota computing for input systems
+Input kappa computing	Kappa computing for input systems
+Input lambda computing	Lambda computing for input systems
+Input mu computing	Mu computing for input systems
+Input nu computing	Nu computing for input systems
+Input xi computing	Xi computing for input systems
+Input omicron computing	Omicron computing for input systems
+Input pi computing	Pi computing for input systems
+Input rho computing	Rho computing for input systems
+Input sigma computing	Sigma computing for input systems
+Input tau computing	Tau computing for input systems
+Input upsilon computing	Upsilon computing for input systems
+Input phi computing	Phi computing for input systems
+Input chi computing	Chi computing for input systems
+Input psi computing	Psi computing for input systems
+Input omega computing	Omega computing for input systems

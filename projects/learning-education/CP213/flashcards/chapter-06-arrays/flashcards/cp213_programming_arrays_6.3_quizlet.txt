@@ -1,0 +1,158 @@
+Q: What is a partially filled array?
+A: An array where not all elements are used - the program uses only as much of the array as needed, keeping track of how many elements are actually filled.
+
+Q: Why are partially filled arrays useful?
+A: They handle situations where the exact size needed is not known when the program is written, or the size may vary from one run to another.
+
+Q: How do you handle partially filled arrays?
+A: Declare the array to be of the largest size the program could possibly need, then use only as much as needed while keeping track of how much is used.
+
+Q: What variable is typically used to track partially filled arrays?
+A: A variable like `numberUsed` that keeps track of how many elements are stored in the array.
+
+Q: What are the valid indices for a partially filled array with `numberUsed` elements?
+A: The elements are stored in positions `score[0]` through `score[numberUsed - 1]`.
+
+Q: What must be passed as an argument to methods that manipulate partially filled arrays?
+A: The `numberUsed` variable to ensure that only meaningful array indices are used.
+
+Q: What is the difference between a partially filled array and a fully used array?
+A: In a partially filled array, only elements 0 through `numberUsed-1` contain meaningful data, while a fully used array uses all elements 0 through `length-1`.
+
+Q: How do you prevent accessing uninitialized elements in a partially filled array?
+A: Always check that the index is less than `numberUsed` before accessing array elements.
+
+Q: What happens if you access an element beyond `numberUsed` in a partially filled array?
+A: You may access an uninitialized element with garbage data, leading to unpredictable program behavior.
+
+Q: Why is it important to track `numberUsed` separately from `array.length`?
+A: Because `array.length` tells you the total size of the array, while `numberUsed` tells you how many elements actually contain meaningful data.
+
+Q: In the golf scores example, what does `numberUsed` represent?
+A: The number of golf scores that have been read and stored in the array.
+
+Q: How does the `showDifference` method use `numberUsed`?
+A: It uses `numberUsed` as a parameter to ensure it only processes elements that contain actual golf scores.
+
+Q: How does the `computeAverage` method use `numberUsed`?
+A: It uses `numberUsed` to calculate the average only from the meaningful elements in the partially filled array.
+
+Q: What is the typical loop pattern for processing a partially filled array?
+A: `for (int i = 0; i < numberUsed; i++)` to iterate through only the meaningful elements.
+
+Q: Can a partially filled array be used with array.length in loops?
+A: No, because `array.length` includes unused elements that may contain garbage data.
+
+Q: What is the main advantage of using partially filled arrays?
+A: Flexibility to handle varying amounts of data without needing to know the exact size beforehand.
+
+Q: What is the main disadvantage of partially filled arrays?
+A: You must be careful to track usage and avoid accessing uninitialized elements.
+
+Q: How do you add a new element to a partially filled array?
+A: Store the new element at position `numberUsed`, then increment `numberUsed`.
+
+Q: What happens if you try to add an element when `numberUsed` equals `array.length`?
+A: The array is full, so you cannot add more elements without either creating a larger array or removing existing elements.
+
+Q: How do you remove an element from a partially filled array?
+A: Shift all elements after the removed element one position to the left, then decrement `numberUsed`.
+
+Q: What is the time complexity of removing an element from a partially filled array?
+A: O(n) where n is the number of elements, because you may need to shift all remaining elements.
+
+Q: How do you find the index of a specific value in a partially filled array?
+A: Loop through elements 0 to `numberUsed-1` comparing each element to the target value.
+
+Q: What is the time complexity of searching in a partially filled array?
+A: O(n) where n is `numberUsed`, because you may need to check every meaningful element.
+
+Q: How do you sort a partially filled array?
+A: Use any sorting algorithm, but only sort elements 0 through `numberUsed-1`.
+
+Q: What is the difference between `numberUsed` and `array.length`?
+A: `numberUsed` is the count of meaningful elements, while `array.length` is the total capacity of the array.
+
+Q: Can you use enhanced for loops with partially filled arrays?
+A: Yes, but you must be careful not to process uninitialized elements beyond `numberUsed`.
+
+Q: How do you initialize a partially filled array?
+A: Set `numberUsed = 0` initially, then add elements one by one, incrementing `numberUsed` each time.
+
+Q: What happens if you forget to increment `numberUsed` when adding an element?
+A: The next element will overwrite the previous one, and `numberUsed` won't reflect the actual number of meaningful elements.
+
+Q: How do you clear a partially filled array?
+A: Set `numberUsed = 0` to effectively empty the array without changing the underlying array data.
+
+Q: Can you have multiple partially filled arrays in the same program?
+A: Yes, each array should have its own `numberUsed` variable to track its individual usage.
+
+Q: What is a common mistake when working with partially filled arrays?
+A: Forgetting to update `numberUsed` when adding or removing elements, leading to inconsistent state.
+
+Q: How do you ensure data integrity in a partially filled array?
+A: Always update `numberUsed` when modifying the array and validate indices before accessing elements.
+
+Q: What is the relationship between partially filled arrays and dynamic arrays?
+A: Partially filled arrays are a simple approach to handling variable data, while dynamic arrays can resize themselves as needed.
+
+Q: In the context of arrays as class instance variables, what does this mean?
+A: Arrays can be declared as instance variables in a class, allowing objects to have array data as part of their state.
+
+Q: How do you initialize an array instance variable in a constructor?
+A: Use `new` operator to create the array: `this.scores = new double[maxSize];`
+
+Q: What access modifier should typically be used for array instance variables?
+A: Usually `private` to maintain encapsulation, with public methods to access array elements.
+
+Q: How do you provide access to array elements when the array is private?
+A: Create public getter and setter methods, or methods that return specific elements or perform operations on the array.
+
+Q: What is the advantage of using arrays as instance variables?
+A: Objects can maintain collections of data as part of their state, providing organized data management.
+
+Q: How do you handle array bounds checking in instance methods?
+A: Validate indices before accessing array elements to prevent `ArrayIndexOutOfBoundsException`.
+
+Q: What is a common pattern for array instance variables?
+A: Private array with public methods for adding, removing, accessing, and manipulating elements.
+
+Q: How do you ensure thread safety with array instance variables?
+A: Use synchronization mechanisms or make the array immutable, depending on the application requirements.
+
+Q: What is the difference between an array instance variable and a local array variable?
+A: Instance variables belong to the object and persist for the object's lifetime, while local variables exist only within their scope.
+
+Q: How do you handle array initialization in constructors with different sizes?
+A: Accept size parameters or use default sizes, then create the array with the appropriate length.
+
+Q: What happens if you don't initialize an array instance variable?
+A: It will be `null`, and attempting to access it will cause a `NullPointerException`.
+
+Q: How do you copy an array instance variable?
+A: Create a new array and copy elements using a loop or `System.arraycopy()` method.
+
+Q: What is the difference between shallow and deep copy for array instance variables?
+A: Shallow copy copies array references, deep copy creates new arrays and copies all elements.
+
+Q: How do you implement the `equals` method for a class with array instance variables?
+A: Compare array lengths and elements individually, or use `Arrays.equals()` for primitive arrays.
+
+Q: How do you implement the `toString` method for a class with array instance variables?
+A: Use `Arrays.toString()` or loop through elements to create a string representation.
+
+Q: What is the advantage of encapsulating array operations in instance methods?
+A: Provides controlled access, validation, and maintains the class's invariants and data integrity.
+
+Q: How do you handle array resizing in instance methods?
+A: Create a new larger array, copy existing elements, and update the reference to point to the new array.
+
+Q: What is a common use case for array instance variables?
+A: Storing collections of related data that belong to the object, such as student grades, inventory items, or game scores.
+
+Q: How do you prevent privacy leaks with array instance variables?
+A: Return copies of arrays instead of direct references, and validate all inputs to setter methods.
+
+Q: What is the relationship between partially filled arrays and array instance variables?
+A: Array instance variables can be partially filled, combining both concepts for flexible data management in objects.

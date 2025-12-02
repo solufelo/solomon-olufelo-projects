@@ -1,0 +1,216 @@
+%-------------------------
+% Delivery Driver Resume in Latex
+% Author : Solomon Olufelo
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Solomon I. Olufelo} \\ \vspace{1pt}
+    \textbf{\large Delivery Driver | Courier} \\ \vspace{2pt}
+    \small 289-233-8317 $|$ \href{mailto:solomonolufelo@outlook.com}{\underline{solomonolufelo@outlook.com}} $|$
+    \small Brampton, ON $|$ Available Immediately
+\end{center}
+
+
+%-----------PROFESSIONAL SUMMARY-----------
+\section{Professional Summary}
+\small{Reliable and safety-conscious driver with proven track record of managing 1,400+ time-sensitive deliveries with 99\% on-time completion rate. Experienced in route optimization, customer service, and handling high-volume workloads efficiently. Clean driving record with own reliable vehicle. Strong work ethic with commitment to punctuality, professionalism, and excellent customer interactions.}
+
+
+%-----------RELEVANT EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Independent Service Provider \& Order Fulfillment}{2020 -- Present}
+      {Self-Employed}{Brampton, ON \& GTA}
+      \resumeItemListStart
+        \resumeItem{Successfully completed 1,400+ time-sensitive deliveries maintaining 99\% on-time arrival rate}
+        \resumeItem{Managed daily route planning and scheduling to optimize efficiency and meet tight deadlines}
+        \resumeItem{Provided friendly customer service during 700+ client interactions achieving 4.8-star rating}
+        \resumeItem{Handled order verification, safe package handling, and accurate delivery confirmation}
+        \resumeItem{Maintained detailed delivery logs and documentation for quality tracking}
+        \resumeItem{Resolved delivery issues and customer concerns professionally with 95\% first-contact resolution}
+        \resumeItem{Adapted to changing schedules and urgent delivery requests while maintaining quality standards}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Athletics \& Recreation Equipment Handler}{Aug. 2023 -- Present}
+      {Wilfrid Laurier University}{Waterloo, ON}
+      \resumeItemListStart
+        \resumeItem{Transport and set up equipment for athletic events requiring punctuality and reliability}
+        \resumeItem{Safely handle and secure valuable sports equipment and materials}
+        \resumeItem{Follow strict timelines to ensure events run smoothly without delays}
+        \resumeItem{Maintain equipment inventory and organization systems}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------DRIVING QUALIFICATIONS-----------
+\section{Driving Qualifications}
+  \resumeSubHeadingListStart
+    \resumeItem{Valid G License - Full Ontario Driver's License in good standing}
+    \resumeItem{Clean Driving Record - No accidents, violations, or demerit points}
+    \resumeItem{Reliable Personal Vehicle - Well-maintained car available for daily use}
+    \resumeItem{Comprehensive Auto Insurance - Full coverage with commercial rider available}
+    \resumeItem{GTA Area Knowledge - Familiar with Brampton, Mississauga, Toronto, and surrounding areas}
+    \resumeItem{GPS Proficient - Experienced with Google Maps, Waze, and navigation apps}
+    \resumeItem{Winter Driving Experience - Comfortable driving in all weather conditions}
+  \resumeSubHeadingListEnd
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Wilfrid Laurier University}{Waterloo, ON}
+      {Bachelor of Science in Computer Science (In Progress)}{Sep. 2021 -- 2026 (Expected)}
+      \resumeItemListStart
+        \resumeItem{Tech-savvy with proficiency in delivery apps, GPS systems, and mobile technology}
+        \resumeItem{Strong problem-solving and route optimization abilities}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications \& Training}
+  \resumeSubHeadingListStart
+    \resumeItem{Emergency First Aid CPR/AED Level C - Certificate \#103806646 (Valid until 01/20/2026)}
+    \resumeItem{WHMIS Training - \emph{Can complete immediately upon request}}
+    \resumeItem{Food Handler Certification - \emph{Can obtain for food delivery if required}}
+    \resumeItem{Defensive Driving Course - \emph{Can complete if needed}}
+  \resumeSubHeadingListEnd
+
+
+%-----------SKILLS-----------
+\section{Skills \& Strengths}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Driving}{: Safe driving practices, route optimization, time management, navigation, parking expertise} \\
+     \textbf{Customer Service}{: Friendly demeanor, professional communication, problem-solving, reliability} \\
+     \textbf{Technical}{: Delivery apps (Uber Eats, DoorDash, Skip), GPS navigation, smartphone proficiency} \\
+     \textbf{Physical}{: Lifting and carrying packages, loading/unloading, stamina for long shifts} \\
+     \textbf{Organization}{: Package handling, order verification, accurate record-keeping, inventory tracking} \\
+     \textbf{Work Ethic}{: Punctual, reliable, self-motivated, works independently, attention to detail}
+    }}
+ \end{itemize}
+
+
+%-----------KEY ACHIEVEMENTS-----------
+\section{Key Achievements}
+  \resumeSubHeadingListStart
+    \resumeItem{Maintained 99\% on-time completion rate across 1,400+ time-sensitive deliveries}
+    \resumeItem{Achieved 4.8/5.0 customer satisfaction rating through professional service and reliability}
+    \resumeItem{Zero accidents or traffic violations over 4+ years of regular driving}
+    \resumeItem{Successfully handled peak period deliveries with up to 50+ orders per day}
+    \resumeItem{Consistently met or exceeded service quality and efficiency targets}
+  \resumeSubHeadingListEnd
+
+
+%-----------ADDITIONAL INFORMATION-----------
+\section{Additional Information}
+  \resumeSubHeadingListStart
+    \resumeItem{Flexible Availability - Open to all shifts including early mornings, evenings, weekends, and holidays}
+    \resumeItem{Own Reliable Vehicle - Well-maintained car ready for immediate use}
+    \resumeItem{Based in Brampton - Familiar with entire GTA, can start immediately in any zone}
+    \resumeItem{Smartphone Equipped - iPhone with data plan for delivery apps and GPS}
+    \resumeItem{Professional Appearance - Clean, presentable for customer-facing deliveries}
+    \resumeItem{Physical Fitness - Able to lift 50+ lbs, walk/stand for extended periods}
+    \resumeItem{Clean Criminal Record - Background check available upon request}
+    \resumeItem{Bilingual - English (Fluent), French (Basic)}
+  \resumeSubHeadingListEnd
+
+
+%-------------------------------------------
+\end{document}
+
