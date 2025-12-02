@@ -14,26 +14,26 @@ Currently pursuing SASP program at Laurier with academic advisor Esther. Passion
 ## 📁 Project Categories
 
 ### 🎬 3D & Animation Projects
-- **[Laurier Football Shell Game](#laurier-football-shell-game)** - Professional 3D shell game animation addon for Blender
+- **[Laurier Football Shell Game](projects/3d-animation/laurierAthletics)** - Professional 3D shell game animation addon for Blender
 - **[Documentary3D](#documentary3d)** - 3D documentary project
 - **[3D_Portfolio](#3d_portfolio)** - 3D portfolio showcase
 
 ### 🌐 Web Development
-- **[StudyOS](#studyos)** - Multi-purpose study application with spaced repetition
-- **[CAPTAIN-FUNDS-MERN](#captain-funds-mern)** - Full-stack MERN application
-- **[CinemaVerse](#cinemaverse)** - Movie database and review platform
-- **[JobScanner Pro](#jobscanner-pro)** - Job search and application tracking tool
-- **[Awwwards-Portfolio](#awwwards-portfolio)** - Award-winning portfolio website
+- **[StudyOS](projects/web-development/StudyOS)** - Multi-purpose study application with spaced repetition
+- **[CAPTAIN-FUNDS-MERN](projects/web-development/CAPTAIN-FUNDS-MERN)** - Full-stack MERN application
+- **[CinemaVerse](projects/web-development/CinemaVerse)** - Movie database and review platform
+- **[JobScanner Pro](projects/web-development/JobScanner%20Pro)** - Job search and application tracking tool
+- **[Awwwards-Portfolio](projects/web-development/Awwwards-Portfolio)** - Award-winning portfolio website
 
 ### 🛠️ Tools & Utilities
-- **[Preset Manager](#preset-manager)** - Blender addon for managing presets
+- **[Preset Manager](projects/tools-utilities)** - Blender addon for managing presets
 - **[AuditBuddy](#auditbuddy)** - Audit and compliance management tool
 - **[TodoApp](#todoapp)** - Task management application
 
 ### 📚 Learning & Education
-- **[CP213](#cp213)** - Object-Oriented Programming course materials
-- **[SASP-001](#sasp-001)** - Academic project repository
-- **[Learning3JS](#learning3js)** - Three.js learning projects
+- **[CP213](projects/learning-education/CP213)** - Object-Oriented Programming course materials
+- **[SASP-001](projects/learning-education/SASP-001)** - Academic project repository
+- **[Learning3JS](projects/learning-education/Learning3JS)** - Three.js learning projects
 
 ## 🏆 Featured Projects
 
@@ -92,10 +92,10 @@ Full-stack financial management application built with the MERN stack.
 
 ## 🎯 Current Focus
 
-- **CP213** - Object-Oriented Programming course
-- **StudyOS** - Advanced study platform development
-- **3D Animation** - Professional Blender addon development
-- **Web Development** - Full-stack application development
+- **[CP213](projects/learning-education/CP213)** - Object-Oriented Programming course
+- **[StudyOS](projects/web-development/StudyOS)** - Advanced study platform development
+- **[3D Animation](projects/3d-animation)** - Professional Blender addon development
+- **[Web Development](projects/web-development)** - Full-stack application development
 
 ## 📞 Contact & Collaboration
 
