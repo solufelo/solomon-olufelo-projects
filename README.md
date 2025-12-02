@@ -24,6 +24,17 @@ I specialize in building **production-ready applications** that solve real user 
 
 ## 🏆 Featured Projects
 
+### 🔥 [C++ Graphics Portfolio](https://github.com/solufelo/cpp-graphics-portfolio)
+**Specialized Graphics Engineering Workspace**
+*A dedicated portfolio for real-time rendering engines, physics simulations, and low-level systems programming.*
+
+*   **Core Tech:** C++17/20, OpenGL 3.3, GLSL, SFML, Box2D, CMake.
+*   **Key Projects:**
+    *   **Engine Renderer:** Custom OpenGL rendering engine with shader pipeline and Phong lighting.
+    *   **Raytracer:** CPU-based physically plausible ray tracer (dielectrics, global illumination).
+    *   **2D Game Engine:** ECS-based game architecture with physics integration.
+*   **Status:** High Priority | **Focus:** Engine Architecture & GPU Programming.
+
 ### 1. [StudyOS](projects/web-development/StudyOS)
 **Advanced Learning Management Platform**
 *A comprehensive study ecosystem designed to optimize retention through scientific learning methods.*
