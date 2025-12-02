@@ -3,9 +3,9 @@
 
 Welcome to my portfolio repository. Here you'll find a collection of professional-grade software projects demonstrating expertise in full-stack web development, 3D tool creation, and algorithmic problem-solving.
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](https://linkedin.com/in/solomon-olufelo)
-[![Portfolio](https://img.shields.io/badge/Portfolio-View%20Work-purple?style=flat-square&logo=google-chrome)](https://solomon-olufelo.dev)
-[![Email](https://img.shields.io/badge/Email-Contact%20Me-red?style=flat-square&logo=gmail)](mailto:oluf9170@mylaurier.ca)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/solomonolufelo/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-View%20Work-purple?style=flat-square&logo=google-chrome)](https://www.captainsolo.ca/)
+[![Email](https://img.shields.io/badge/Email-Contact%20Me-red?style=flat-square&logo=gmail)](mailto:solomonolufelo@Outlook.com)
 
 ---
 
@@ -97,6 +97,6 @@ I specialize in building **production-ready applications** that solve real user 
 
 I am open to opportunities in **Software Engineering**, **Web Development**, and **Creative Technology**.
 
-*   **Email:** [oluf9170@mylaurier.ca](mailto:oluf9170@mylaurier.ca)
+*   **Email:** [solomonolufelo@Outlook.com](mailto:solomonolufelo@Outlook.com)
 *   **Phone:** 289-233-8317
 *   **Location:** Waterloo / Brampton, ON
