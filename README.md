@@ -1,115 +1,102 @@
-# Solomon Olufelo - Portfolio & Projects
+# Solomon Olufelo
+### Full-Stack Developer | Creative Technologist | 3D Specialist
 
-Welcome to my comprehensive portfolio repository! This contains a collection of my software development projects, ranging from web applications to 3D animations and productivity tools.
+Welcome to my portfolio repository. Here you'll find a collection of professional-grade software projects demonstrating expertise in full-stack web development, 3D tool creation, and algorithmic problem-solving.
 
-## 🚀 About Me
-
-**Solomon Olufelo**  
-Student ID: 210729170  
-Email: oluf9170@mylaurier.ca  
-Phone: 289-233-8317  
-
-Currently pursuing SASP program at Laurier with academic advisor Esther. Passionate about web development, 3D graphics, and creating innovative solutions.
-
-## 📁 Project Categories
-
-### 🎬 3D & Animation Projects
-- **[Laurier Football Shell Game](projects/3d-animation/laurierAthletics)** - Professional 3D shell game animation addon for Blender
-- **[Documentary3D](#documentary3d)** - 3D documentary project
-- **[3D_Portfolio](#3d_portfolio)** - 3D portfolio showcase
-
-### 🌐 Web Development
-- **[StudyOS](projects/web-development/StudyOS)** - Multi-purpose study application with spaced repetition
-- **[CAPTAIN-FUNDS-MERN](projects/web-development/CAPTAIN-FUNDS-MERN)** - Full-stack MERN application
-- **[CinemaVerse](projects/web-development/CinemaVerse)** - Movie database and review platform
-- **[JobScanner Pro](projects/web-development/JobScanner%20Pro)** - Job search and application tracking tool
-- **[Awwwards-Portfolio](projects/web-development/Awwwards-Portfolio)** - Award-winning portfolio website
-
-### 🛠️ Tools & Utilities
-- **[Preset Manager](projects/tools-utilities)** - Blender addon for managing presets
-- **[AuditBuddy](#auditbuddy)** - Audit and compliance management tool
-- **[TodoApp](#todoapp)** - Task management application
-
-### 📚 Learning & Education
-- **[CP213](projects/learning-education/CP213)** - Object-Oriented Programming course materials
-- **[SASP-001](projects/learning-education/SASP-001)** - Academic project repository
-- **[Learning3JS](projects/learning-education/Learning3JS)** - Three.js learning projects
-
-## 🏆 Featured Projects
-
-### Laurier Football Shell Game
-A professional-grade Blender addon for creating 3D shell game animations. Features auto-scaling, world-class UI/UX, and bulletproof error handling.
-
-**Technologies:** Python, Blender API, 3D Animation  
-**Status:** Production Ready  
-**Version:** 2.1.0 (World-Class Edition)
-
-### StudyOS
-A comprehensive study platform combining multiple learning methodologies and productivity tools, built with Wasp framework.
-
-**Technologies:** Wasp, React, TypeScript, Prisma, Tailwind CSS  
-**Features:** Spaced repetition, task management, Pomodoro timer, gamification  
-**Status:** Active Development
-
-### CAPTAIN-FUNDS-MERN
-Full-stack financial management application built with the MERN stack.
-
-**Technologies:** MongoDB, Express.js, React, Node.js  
-**Features:** Financial tracking, portfolio management, analytics  
-**Status:** Production Ready
-
-## 🛠️ Tech Stack
-
-### Frontend
-- **React** - Component-based UI development
-- **TypeScript** - Type-safe JavaScript
-- **Tailwind CSS** - Utility-first CSS framework
-- **Three.js** - 3D graphics and animations
-
-### Backend
-- **Node.js** - Server-side JavaScript
-- **Express.js** - Web application framework
-- **MongoDB** - NoSQL database
-- **Prisma** - Database ORM
-
-### 3D & Animation
-- **Blender** - 3D modeling and animation
-- **Python** - Blender scripting and automation
-- **Three.js** - Web-based 3D graphics
-
-### Development Tools
-- **Git** - Version control
-- **Wasp** - Full-stack framework
-- **Vite** - Build tool and dev server
-- **ESLint** - Code linting
-
-## 📈 Key Achievements
-
-- **Academic Redemption** - Transformed from required withdrawal to academic success
-- **Professional Development** - Completed Udemy OOP course with certification
-- **Project Portfolio** - 15+ completed projects across multiple domains
-- **Technical Skills** - Full-stack development, 3D graphics, animation
-
-## 🎯 Current Focus
-
-- **[CP213](projects/learning-education/CP213)** - Object-Oriented Programming course
-- **[StudyOS](projects/web-development/StudyOS)** - Advanced study platform development
-- **[3D Animation](projects/3d-animation)** - Professional Blender addon development
-- **[Web Development](projects/web-development)** - Full-stack application development
-
-## 📞 Contact & Collaboration
-
-I'm always interested in collaborating on interesting projects! Feel free to reach out:
-
-- **Email:** oluf9170@mylaurier.ca
-- **Phone:** 289-233-8317
-- **LinkedIn:** [Connect with me](https://linkedin.com/in/solomon-olufelo)
-- **Portfolio:** [View my work](https://solomon-olufelo.dev)
-
-## 📄 License
-
-This repository contains various projects with different licensing terms. Please check individual project directories for specific license information.
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](https://linkedin.com/in/solomon-olufelo)
+[![Portfolio](https://img.shields.io/badge/Portfolio-View%20Work-purple?style=flat-square&logo=google-chrome)](https://solomon-olufelo.dev)
+[![Email](https://img.shields.io/badge/Email-Contact%20Me-red?style=flat-square&logo=gmail)](mailto:oluf9170@mylaurier.ca)
 
 ---
 
-*"Transforming challenges into opportunities, one project at a time."* 🚀
+## 🚀 Professional Summary
+
+I am a **Computer Science student** and **Software Developer** who combines technical rigor with creative problem-solving. My journey is defined by **resilience and rapid growth**—transforming academic challenges into a disciplined, "gamified" approach to mastery.
+
+I specialize in building **production-ready applications** that solve real user problems, from "intelligent simplicity" in study tools to professional-grade automation for 3D animation.
+
+**Core Competencies:**
+*   **Full-Stack Development:** React, Node.js, TypeScript, MongoDB, PostgreSQL.
+*   **3D & Animation:** Python scripting for Blender, 3D math, Add-on development.
+*   **Product Engineering:** Role-based access control (RBAC), Spaced Repetition Algorithms, AI integration.
+
+---
+
+## 🏆 Featured Projects
+
+### 1. [StudyOS](projects/web-development/StudyOS)
+**Advanced Learning Management Platform**
+*A comprehensive study ecosystem designed to optimize retention through scientific learning methods.*
+
+*   **Core Tech:** Wasp Framework (React/Node.js/Prisma), TypeScript, Tailwind CSS, OpenAI API.
+*   **Key Features:**
+    *   **AI-Powered Content:** Automatically converts PDF documents into flashcards using OpenAI.
+    *   **Spaced Repetition Engine:** Implements the Leitner system for optimized memory retention.
+    *   **Gamification:** Cognitive exercises and streak tracking to boost engagement.
+    *   **Integrated Productivity:** Combines Pomodoro timers with task management.
+*   **Status:** Active Development | **Focus:** Accessibility (WCAG 2.1 AA) & Mobile-First Design.
+
+### 2. [Laurier Football Shell Game](projects/3d-animation/laurierAthletics)
+**Professional Blender Add-on**
+*A production-ready 3D animation tool built for high-performance workflow automation.*
+
+*   **Core Tech:** Python, Blender API.
+*   **Key Features:**
+    *   **Smart Animation Algorithms:** Uses sine wave functions for natural, non-linear movement.
+    *   **Auto-Scaling System:** Automatically detects object dimensions to adjust animation parameters.
+    *   **Bulletproof Error Handling:** Robust validation ensures stability in complex scenes.
+    *   **World-Class UI/UX:** Custom Blender panels designed for professional animators.
+*   **Impact:** Streamlines the creation of 3D assets for athletic presentations.
+
+### 3. [CAPTAIN-FUNDS](projects/web-development/CAPTAIN-FUNDS-MERN)
+**Enterprise-Grade Fundraising Platform**
+*A secure, scalable MERN stack application for managing campaigns and donations.*
+
+*   **Core Tech:** MongoDB, Express.js, React 18, Node.js, TypeScript, Ant Design, Zustand.
+*   **Key Features:**
+    *   **Security:** JWT authentication with HTTP-only cookies and role-based access control (RBAC).
+    *   **State Management:** Scalable architecture using Zustand for complex global state.
+    *   **Admin Dashboard:** Comprehensive user management and analytics reporting.
+*   **Status:** Production Ready.
+
+---
+
+## 🛠 Technical Skills
+
+| Domain | Technologies |
+| :--- | :--- |
+| **Frontend** | React 18, TypeScript, Tailwind CSS, Ant Design, Zustand, Three.js, Vite |
+| **Backend** | Node.js, Express.js, Python, Prisma (ORM), Mongoose |
+| **Database** | MongoDB, PostgreSQL |
+| **3D & Tools** | Blender API (Python), Git, Linux/WSL, Wasp Framework |
+| **Concepts** | OOP, REST APIs, MVC Architecture, Spaced Repetition Algorithms, Accessibility |
+
+---
+
+## 📁 Complete Project Directory
+
+### 🌐 Web Development
+- **[StudyOS](projects/web-development/StudyOS)** - Intelligent study platform (TypeScript/Wasp).
+- **[CAPTAIN-FUNDS](projects/web-development/CAPTAIN-FUNDS-MERN)** - Full-stack MERN fundraising app.
+- **[JobScanner Pro](projects/web-development/JobScanner%20Pro)** - Application tracking system.
+- **[CinemaVerse](projects/web-development/CinemaVerse)** - Movie database with review functionality.
+- **[Awwwards-Portfolio](projects/web-development/Awwwards-Portfolio)** - Creative developer portfolio.
+
+### 🎬 3D & Animation
+- **[Laurier Shell Game](projects/3d-animation/laurierAthletics)** - Python-based Blender automation.
+- **[Documentary3D](#)** - 3D storytelling project.
+- **[3D_Portfolio](#)** - Interactive 3D web showcase.
+
+### 📚 Learning & Academics
+- **[CP213](projects/learning-education/CP213)** - Java Object-Oriented Programming (Coursework & Exam Prep).
+- **[Learning3JS](projects/learning-education/Learning3JS)** - Three.js graphics experiments.
+
+---
+
+## 📞 Contact
+
+I am open to opportunities in **Software Engineering**, **Web Development**, and **Creative Technology**.
+
+*   **Email:** [oluf9170@mylaurier.ca](mailto:oluf9170@mylaurier.ca)
+*   **Phone:** 289-233-8317
+*   **Location:** Waterloo / Brampton, ON
