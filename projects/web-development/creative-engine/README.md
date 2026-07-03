@@ -1,159 +1,111 @@
-# Turborepo starter
+# Creative Engine — Scalable Agency Operating System 🚀
 
-This Turborepo starter is maintained by the Turborepo core team.
+A multi-tenant, serverless booking, checkout, and client-management pipeline designed to automate scheduling, payment deposits, and intake pipelines for GTA creatives and agencies.
 
-## Using this example
+> [!NOTE]
+> **Project Status:** This repository is the **next active target** on the development roadmap. Work will begin immediately following the final release of the `light-years-game` executable and web demo. The monorepo layout and Next.js boilerplate setup are initialized.
 
-Run the following command:
+---
 
-```sh
-npx create-turbo@latest
+## 🎯 Architecture & Highlight Features
+
+*   **Monorepo Core (Turborepo):** Combines separate agency checkouts and developer management dashboards inside a single unified typescript project, sharing a centralized Tailwind UI package.
+*   **Cryptographic Tenant Isolation (Supabase RLS):** Database-level security enforcing strict tenant data segregation via PostgreSQL Row-Level Security (RLS) rules.
+*   **Stripe Connect Checkout (Planned):** Automated retainer deposit collections and transaction routing for client bookings.
+*   **Edge Subdomain Rewriting (Planned):** Next.js middleware that intercepts custom subdomain paths (e.g. `nolosses.creativeengine.ca`) and resolves them dynamically.
+*   **AI Onboarding Setup Wizard (Planned):** Dynamic setup assistant powered by the Vercel AI SDK and local LLMs (Ollama) to extract services, durations, and rates via conversational intake.
+
+---
+
+## 🛠️ Tech Stack & Utilities
+
+### Frameworks & UI
+- **Turborepo** for monorepo build caching and execution pipelines
+- **Next.js (App Router)** for frontend deployment and React Server Actions
+- **Tailwind CSS** & **shadcn/ui** for fluid liquid-glass styling configurations
+
+### Database & Security
+- **Supabase (PostgreSQL)** for transactional persistence
+- **Drizzle ORM** for compile-time safe database queries and automated schema migrations
+- **Postgres Row-Level Security (RLS)** for tenant workspace isolation
+
+### Payments & Automation
+- **Stripe Connect** for hosted billing checkouts and webhook reconciliations
+- **Vercel AI SDK** with **Ollama** (local development) / OpenAI (production) for client setup automation
+
+---
+
+## 📁 Monorepo Layout
+
+```
+creative-engine/
+├── apps/
+│   ├── boilerplate/      # The bare-metal SaaS core (Auth, Stripe Billing, Tenant Admin)
+│   └── client-demo/      # The customized client storefront (Beta template for @nolosses)
+├── packages/
+│   ├── ui/               # Shared primitives library (Calendars, Buttons, Form inputs)
+│   └── database/         # Shared Drizzle schemas and PostgreSQL connection helpers
+├── package.json
+└── turbo.json
 ```
 
-## What's inside?
+---
 
-This Turborepo includes the following packages/apps:
+## 📊 Database Schema Model
 
-### Apps and Packages
+Drizzle relational definitions enforcing security-isolated booking routes:
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+```typescript
+// Tenants / Agency workspaces
+export const tenants = pgTable('tenants', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  name: text('name').notNull(),
+  subdomain: text('subdomain').unique().notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+// Profiles (Creators & Clients)
+export const profiles = pgTable('profiles', {
+  id: uuid('id').primaryKey(), // Maps to Supabase auth.users
+  tenantId: uuid('tenant_id').references(() => tenants.id),
+  fullName: text('full_name').notNull(),
+  email: text('email').unique().notNull(),
+  role: text('role').default('client').notNull(), // 'admin' | 'creator' | 'client'
+});
 
-### Utilities
+// Booking Services
+export const services = pgTable('services', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  tenantId: uuid('tenant_id').references(() => tenants.id),
+  title: text('title').notNull(),
+  price: integer('price').notNull(), // represented in cents
+});
 
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo build
+// Bookings
+export const bookings = pgTable('bookings', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  tenantId: uuid('tenant_id').references(() => tenants.id),
+  clientId: uuid('client_id').references(() => profiles.id),
+  serviceId: uuid('service_id').references(() => services.id),
+  sessionDate: timestamp('session_date').notNull(),
+  status: text('status').default('pending').notNull(),
+});
 ```
 
-Without global `turbo`, use your package manager:
+---
 
-```sh
-cd my-turborepo
-npx turbo build
-npm dlx turbo build
-npm exec turbo build
-```
+## 🏁 Development Roadmap
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+- [x] **Phase 1: Foundation Setup:** Turborepo initialization, package configurations, ESLint/Prettier setups, and local workspace hooks.
+- [ ] **Phase 2: DB & RLS Core:** Setting up Supabase relational tables and deploying PostgreSQL Row-Level Security policies.
+- [ ] **Phase 3: The Booking Slice:** Developing reusable calendar components and hooking client selections to Server Actions.
+- [ ] **Phase 4: Stripe Connect Setup:** Implementing checkout session endpoints and handling webhook validations.
+- [ ] **Phase 5: Subdomain Routing Middleware:** Coding Next.js middleware hooks to parse incoming subdomains and rewrite dynamic paths.
+- [ ] **Phase 6: AI Onboarding Agent:** Wiring Vercel AI SDK panels to auto-populate services database tables.
+- [ ] **Phase 7: Live Deploy & GTM:** Custom domain mapping and live testing the `@nolosses` studio portal.
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+---
 
-```sh
-turbo build --filter=docs
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo build --filter=docs
-npm exec turbo build --filter=docs
-npm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo dev
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo dev
-npm exec turbo dev
-npm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo dev --filter=web
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo dev --filter=web
-npm exec turbo dev --filter=web
-npm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo login
-npm exec turbo login
-npm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo link
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo link
-npm exec turbo link
-npm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+## 🔒 Safety & Deployment Protocols
+- Local database instances use Docker configs. Production schemas enforce strict SSL certificates.
+- Stripe client credentials are dynamically parsed through encrypted server actions.

@@ -3,7 +3,7 @@
 A C++ 2D space shooter and custom game engine designed to compile directly to **WebAssembly (WASM)** via **Emscripten** for instant browser-playable deployment.
 
 > [!NOTE]
-> **Project Status:** This repository is a **work in progress**. Currently, the native fixed-timestep game loop and window initialization shell are fully functional. The Raylib rendering port and Emscripten WebAssembly pipeline are active target goals on the development roadmap.
+> **Project Status:** This repository is the **current active focus of development**. The primary goal is compiling the native fixed-timestep game loop into a true desktop executable (`.exe`) and deploying the compiled Emscripten WebAssembly web build. Once these milestones are complete, active development will shift to the **Creative Engine** operating system.
 
 Currently completed features:
 - **Custom Fixed-Timestep Loop:** Decouples execution physics simulation from rendering frame rate, ensuring deterministic actor ticks on all monitors (60Hz to 380Hz).
@@ -71,8 +71,8 @@ light-years-game/
 - [ ] **Phase 3:** Port Actor, World, and Asset Pool architecture.
 - [ ] **Phase 4:** Player input, projectile firing, and high-frequency Object Pooling.
 - [ ] **Phase 5:** Integrate Emscripten SDK compiler bindings (`emcc` / `emcmake`).
-- [ ] **Phase 6:** Build WASM shell + asset preloading pipeline and deploy live demo to itch.io / GitHub Pages.
-- [ ] **Phase 7:** Polish engine mechanics, write case study documentation.
+- [ ] **Phase 6:** Build WASM shell + asset preloading pipeline, compile native `.exe` build, and deploy live web demo.
+- [ ] **Phase 7:** Polish mechanics, finalize documentation, and transition development focus to the **Creative Engine** SaaS platform.
 
 ---
 

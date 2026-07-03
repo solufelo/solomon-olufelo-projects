@@ -1,41 +1,98 @@
-# CinemaVerse - Movie & TV Tracking Platform
+# CinemaVerse — Movie & TV Tracking Platform 🎬
 
-🎬 A full-stack web application for tracking movies and TV shows with AI-powered recommendations.
+A full-stack, AI-enhanced movie and TV tracking web application that allows users to search titles, manage personalized watchlists, and receive AI-driven recommendations based on their viewing preferences.
 
-**Live Demo**: [Coming Soon - Deploy to Render]
+> [!NOTE]
+> **Project Status:** This repository is an **active work in progress (WIP)** built on the Wasp framework and deployed to Netlify. All core search capabilities, database watchlists, and user authentication modules are operational. The next developmental sprint focuses on refining the OpenRouter API integrations and AI recommender prompts.
 
-## Tech Stack
-- **Framework**: [Wasp](https://wasp.sh) (React + Node.js + PostgreSQL)
-- **Frontend**: React, TypeScript, Tailwind CSS
-- **Backend**: Node.js, Express, Prisma ORM
-- **Database**: PostgreSQL
-- **APIs**: TMDB (movie data), OpenRouter (AI recommendations)
-- **Authentication**: Email/Password + Google OAuth
+---
 
-## Features
-- 🔍 Search movies and TV shows (TMDB API)
-- 📝 Personal watchlists with progress tracking
-- 🤖 AI-powered recommendations
-- 👤 User authentication (email + Google)
-- 📱 Responsive design
-- 🎭 Episode tracking for TV shows
-- 💬 Discussion forums
+## 🎯 Architecture & Highlight Features
 
-## Project Structure
-1. `app/` - Main Wasp web application
-2. `e2e-tests/` - Playwright end-to-end tests  
-3. `blog/` - Documentation site (Astro/Starlight)
+*   **TMDB API Integration (Completed):** Direct searches, trailer streams, and metadata aggregation for thousands of movies and TV series.
+*   **Personal Watchlists (Completed):** Detailed watchlists mapped directly to authenticated user profiles with watch progress indicators.
+*   **OpenSaaS Boilerplate Foundation (Completed):** Implements a production-grade full-stack framework with built-in Tailwind styling, Prisma migrations, and routes.
+*   **AI Recommendations (In Progress):** Generates personalized recommendations using TMDB viewing history processed through OpenRouter AI models.
+*   **Google OAuth Authentication (Completed):** Built-in email/password credentials combined with Google OAuth API profiles.
 
-## Quick Start
-```bash
-cd app/
-wasp start
+---
+
+## 🛠️ Tech Stack & Utilities
+
+### Full-Stack Core
+- **Wasp Framework:** Declarative configuration layer compile-generating the React frontend and Node.js backend.
+- **Prisma ORM:** Database connection, relations mapping, and SQL query generation.
+- **PostgreSQL:** Reliable relational store for user listings, watchlists, and discussion forums.
+
+### Frontend
+- **React** (via Wasp compiler bundle)
+- **TypeScript** for type-safe components
+- **Tailwind CSS** for responsive styling
+
+### APIs & AI Integration
+- **TMDB API:** Movie metadata, poster image endpoints, and search index queries.
+- **OpenRouter API:** Connects watch histories to LLM recommendation prompts.
+
+---
+
+## 🚀 Getting Started & Installation
+
+### Prerequisites
+- Node.js (v18+ recommended)
+- Wasp CLI (latest version installed)
+- PostgreSQL local server or hosted connection URL
+
+### Local Setup
+
+1. **Install dependencies and start Wasp dev engine:**
+   ```bash
+   cd app/
+   wasp start
+   ```
+
+2. **Database Migrations:**
+   Ensure your local database connection is active, then apply migrations:
+   ```bash
+   wasp db migrate-dev
+   ```
+
+3. **Access Development Ports:**
+   - Client App: `http://localhost:3000`
+   - Server API logs will stream to the terminal.
+
+---
+
+## 📁 Repository Structure
+
+```
+CinemaVerse/
+├── app/                  # Main Wasp application files
+│   ├── src/
+│   │   ├── client/       # React pages, buttons, and state logic
+│   │   ├── server/       # Node.js actions, queries, and cron tasks
+│   │   └── shared/       # Shared TS type interfaces
+│   ├── main.wasp         # Declarative full-stack routing schema config
+│   └── schema.prisma     # Prisma database schemas
+├── e2e-tests/            # Playwright testing scripts
+├── blog/                 # Documentation website (Astro/Starlight framework)
+└── README.md
 ```
 
-## Deployment
-See deployment guides in `app/` directory:
-- `portfolio-deployment.md` - Free Render deployment for portfolio
-- `render-deployment-guide.md` - Detailed Render setup
-- `fly-deployment-guide.md` - Fly.io deployment (paid)
+---
 
-Built with ❤️ using [OpenSaaS](https://opensaas.sh) template
+## 🏁 Development Roadmap
+
+- [x] **Phase 1: Project Initialization:** Wasp boilerplate setup, database config, and OpenSaaS integration.
+- [x] **Phase 2: TMDB Search Engine:** Direct API queries, search boxes, and responsive grid layouts.
+- [x] **Phase 3: Watchlist Databases:** SQLite/Postgres schemas, card listing operations, and add/remove logic.
+- [x] **Phase 4: Multi-Provider Auth:** Implementing secure email signup and Google OAuth hooks.
+- [ ] **Phase 5: OpenRouter AI recommendations:** Custom system prompts generating title recommendations from watch logs.
+- [ ] **Phase 6: Discussion Forums:** Social comment boards and episode progress reviews.
+- [ ] **Phase 7: Production Deployments:** Static client build to Netlify and backend server build to Render.
+
+---
+
+## 🔒 Security & AI Guidelines
+To maintain API limits and safety:
+- Never commit private TMDB or OpenRouter keys; use `app/.env.server` configurations.
+- All database operations are written as declarative Wasp actions to guarantee Prisma type safety.
