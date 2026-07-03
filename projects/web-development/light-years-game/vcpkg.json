@@ -1,0 +1,8 @@
+{
+  "name": "light-years",
+  "version": "0.1.0",
+  "dependencies": [
+    "sfml"
+  ],
+  "$comment": "box2d gets added in Phase 4 (physics). Keep the first build lean."
+}
