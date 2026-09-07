@@ -369,14 +369,63 @@ def setup_demo_scene_if_needed(slot_spacing: float = 2.4):
             bsdf.inputs['Roughness'].default_value = 0.65
         fb_mesh.data.materials.append(mat)
 
-    # Ensure Camera
-    if not scene.camera:
+    # Ensure Broadcast Camera & Stadium Lighting Rig
+    cam_obj = bpy.data.objects.get("Shuffle_Camera")
+    if not cam_obj:
         cam_data = bpy.data.cameras.new("Shuffle_Camera")
         cam_obj = bpy.data.objects.new("Shuffle_Camera", cam_data)
         cam_obj.location = (0.0, -8.0, 4.0)
         cam_obj.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+        cam_data.lens = 50.0
         coll.objects.link(cam_obj)
-        scene.camera = cam_obj
+        
+    scene.camera = cam_obj
+    if cam_obj.data:
+        cam_obj.data.dof.use_dof = True
+        cam_obj.data.dof.focus_object = bpy.data.objects.get("Helmet_2")
+        cam_obj.data.dof.aperture_fstop = 2.8
+
+    # Broadcast Stadium Turf Ground Stage
+    if not bpy.data.objects.get("Stadium_Turf_Pitch"):
+        bpy.ops.mesh.primitive_plane_add(size=24.0, location=(0.0, 0.0, -0.01))
+        turf = bpy.context.active_object
+        turf.name = "Stadium_Turf_Pitch"
+        link_obj(turf)
+        
+        mat_turf = bpy.data.materials.new(name="Mat_Stadium_Turf")
+        mat_turf.use_nodes = True
+        bsdf_t = mat_turf.node_tree.nodes.get("Principled BSDF")
+        if bsdf_t:
+            bsdf_t.inputs['Base Color'].default_value = (0.04, 0.18, 0.06, 1.0) # Field green
+            bsdf_t.inputs['Roughness'].default_value = 0.45
+            bsdf_t.inputs['Specular IOR Level'].default_value = 0.35
+        turf.data.materials.append(mat_turf)
+
+    # 4-Point Stadium Floodlight Rig
+    light_rig = [
+        ("Floodlight_Key_L", (-5.5, -4.5, 6.0), (1.0, 0.95, 0.85, 1.0), 1200.0),
+        ("Floodlight_Key_R", (5.5, -4.5, 6.0), (1.0, 0.95, 0.85, 1.0), 1200.0),
+        ("Floodlight_Rim_Back", (0.0, 5.0, 4.5), (0.45, 0.15, 0.95, 1.0), 800.0), # Laurier Purple Rim
+        ("Floodlight_Fill_Front", (0.0, -6.5, 3.5), (0.99, 0.72, 0.10, 1.0), 450.0), # Laurier Gold Fill
+    ]
+    for l_name, l_pos, l_color, l_power in light_rig:
+        if not bpy.data.objects.get(l_name):
+            l_data = bpy.data.lights.new(name=l_name, type='SPOT')
+            l_data.energy = l_power
+            l_data.color = l_color[:3]
+            l_data.spot_size = math.radians(65.0)
+            l_data.spot_blend = 0.35
+            
+            l_obj = bpy.data.objects.new(name=l_name, object_data=l_data)
+            l_obj.location = l_pos
+            # Angle light toward center
+            dx, dy, dz = -l_pos[0], -l_pos[1], -l_pos[2]
+            dist = math.sqrt(dx*dx + dy*dy + dz*dz)
+            rot_y = math.atan2(dx, dz)
+            rot_x = -math.asin(dy / dist) if dist > 0 else 0
+            l_obj.rotation_euler = (rot_x, rot_y, 0.0)
+            
+            coll.objects.link(l_obj)
 
 
 def setup_phase_text_banner(coll, name, text, z_offset=0.0):
