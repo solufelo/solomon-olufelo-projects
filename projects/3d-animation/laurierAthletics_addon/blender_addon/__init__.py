@@ -120,7 +120,8 @@ class ShufflePlan:
         swap_duration_frames: int = 24,
         pause_frames: int = 4,
         target_item: Optional[int] = None,
-        style: str = 'SMOOTH'
+        style: str = 'SMOOTH',
+        start_frame: int = 30
     ):
         self.moves.clear()
         self.slot_occupant = list(range(self.num_items))
@@ -131,7 +132,7 @@ class ShufflePlan:
         else:
             self.ball_holder_item_id = random.randint(0, self.num_items - 1)
         
-        current_frame = 30  # Intro cushion
+        current_frame = start_frame
         last_swapped_pair = None
         
         for i in range(num_swaps):
@@ -371,6 +372,42 @@ def setup_demo_scene_if_needed(slot_spacing: float = 2.4):
         scene.camera = cam_obj
 
 
+def setup_phase_text_banner(coll, name, text, z_offset=0.0):
+    """Creates a stylized 3D stadium text banner object in front of the camera."""
+    txt_obj = bpy.data.objects.get(name)
+    if not txt_obj:
+        txt_data = bpy.data.curves.new(type='FONT', name=name)
+        txt_obj = bpy.data.objects.new(name, txt_data)
+        txt_data.body = text
+        txt_data.align_x = 'CENTER'
+        txt_data.align_y = 'CENTER'
+        txt_data.size = 0.52
+        txt_data.extrude = 0.04
+        txt_data.bevel_depth = 0.012
+        
+        # Position banner slightly in front of the items angled toward camera
+        txt_obj.location = (0.0, -3.8, -0.6 + z_offset)
+        txt_obj.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+        coll.objects.link(txt_obj)
+        
+        # Shiny gold Laurier material
+        mat_name = "Mat_Story_Banner"
+        mat = bpy.data.materials.get(mat_name)
+        if not mat:
+            mat = bpy.data.materials.new(name=mat_name)
+            mat.use_nodes = True
+            bsdf = mat.node_tree.nodes.get("Principled BSDF")
+            if bsdf:
+                bsdf.inputs['Base Color'].default_value = (0.992, 0.722, 0.075, 1.0) # Laurier Gold
+                bsdf.inputs['Metallic'].default_value = 0.85
+                bsdf.inputs['Roughness'].default_value = 0.2
+        txt_obj.data.materials.append(mat)
+    else:
+        txt_obj.data.body = text
+        
+    return txt_obj
+
+
 def get_shuffle_objects(props):
     """
     Resolves the 3 shuffling objects (over items) and the hidden prize object (under item).
@@ -414,13 +451,17 @@ def bake_shuffle_to_scene(props):
         fps=props.fps
     )
     
+    # Storyboard Intro: if enabled, reserve frames at beginning for showing where ball is hidden
+    intro_offset = props.intro_lift_duration if props.show_intro_reveal else 20
+    
     target_idx = props.reveal_target - 1 if not props.randomize_target else None
     plan.generate_routine(
         num_swaps=props.num_swaps,
         swap_duration_frames=props.swap_duration,
         pause_frames=props.pause_frames,
         target_item=target_idx,
-        style=props.movement_style
+        style=props.movement_style,
+        start_frame=intro_offset + 10
     )
     
     # Clear existing animation data on target objects
@@ -428,8 +469,11 @@ def bake_shuffle_to_scene(props):
         if obj and obj.animation_data:
             obj.animation_data_clear()
 
-    # 1. Animate Helmets / Upper Items
-    for frame in range(1, plan.total_frames + 1):
+    winning_item_id = plan.reveal_item_id
+    winner_obj = objects[winning_item_id]
+
+    # 1. Animate Helmets / Upper Items across the shuffle routine
+    for frame in range(intro_offset + 1, plan.total_frames + 1):
         evals = plan.evaluate_at_frame(frame)
         for item_id, obj in enumerate(objects):
             if not obj:
@@ -440,8 +484,65 @@ def bake_shuffle_to_scene(props):
             obj.keyframe_insert(data_path="location", frame=frame)
             obj.keyframe_insert(data_path="rotation_euler", frame=frame)
 
-    # 2. Animate Football / Prize following the winner helmet
-    winning_item_id = plan.reveal_item_id
+    # 2. Animate Storyboard Intro Phase (Showcasing where the ball is hidden FIRST)
+    if props.show_intro_reveal and winner_obj:
+        init_evals = plan.evaluate_at_frame(intro_offset + 1)
+        for item_id, obj in enumerate(objects):
+            if not obj:
+                continue
+            base_p, _ = init_evals[item_id]
+            if item_id == winning_item_id:
+                # Frame 1 to 10: rest
+                # Frame 10 to intro_offset - 10: lifted up displaying football
+                # Frame intro_offset - 10 to intro_offset: drops back down over ball
+                lift_h = props.reveal_height * 0.95
+                tilt_rad = math.radians(props.reveal_tilt * 0.8)
+                
+                # Frame 1: on ground
+                obj.location = base_p.as_tuple()
+                obj.rotation_euler = (0.0, 0.0, 0.0)
+                obj.keyframe_insert(data_path="location", frame=1)
+                obj.keyframe_insert(data_path="rotation_euler", frame=1)
+                
+                # Frame 12: lifted
+                f_lift = max(2, int(intro_offset * 0.25))
+                obj.location = (base_p.x, base_p.y, base_p.z + lift_h)
+                obj.rotation_euler = (tilt_rad, 0.0, 0.0)
+                obj.keyframe_insert(data_path="location", frame=f_lift)
+                obj.keyframe_insert(data_path="rotation_euler", frame=f_lift)
+                
+                # Frame hold:
+                f_hold = int(intro_offset * 0.70)
+                obj.location = (base_p.x, base_p.y, base_p.z + lift_h)
+                obj.rotation_euler = (tilt_rad, 0.0, 0.0)
+                obj.keyframe_insert(data_path="location", frame=f_hold)
+                obj.keyframe_insert(data_path="rotation_euler", frame=f_hold)
+                
+                # Frame drop down:
+                obj.location = base_p.as_tuple()
+                obj.rotation_euler = (0.0, 0.0, 0.0)
+                obj.keyframe_insert(data_path="location", frame=intro_offset)
+                obj.keyframe_insert(data_path="rotation_euler", frame=intro_offset)
+            else:
+                # Other helmets stay resting on ground
+                obj.location = base_p.as_tuple()
+                obj.rotation_euler = (0.0, 0.0, 0.0)
+                obj.keyframe_insert(data_path="location", frame=1)
+                obj.keyframe_insert(data_path="rotation_euler", frame=1)
+                obj.keyframe_insert(data_path="location", frame=intro_offset)
+                obj.keyframe_insert(data_path="rotation_euler", frame=intro_offset)
+    elif not props.show_intro_reveal:
+        # Pre-roll rest keyframes
+        init_evals = plan.evaluate_at_frame(intro_offset + 1)
+        for item_id, obj in enumerate(objects):
+            if obj:
+                base_p, _ = init_evals[item_id]
+                obj.location = base_p.as_tuple()
+                obj.rotation_euler = (0.0, 0.0, 0.0)
+                obj.keyframe_insert(data_path="location", frame=1)
+                obj.keyframe_insert(data_path="rotation_euler", frame=1)
+
+    # 3. Animate Football / Prize following the winner helmet
     if fb_ctrl:
         for frame in range(1, plan.total_frames + 1):
             evals = plan.evaluate_at_frame(frame)
@@ -449,10 +550,9 @@ def bake_shuffle_to_scene(props):
             fb_ctrl.location = (winner_pos.x, winner_pos.y, 0.0)
             fb_ctrl.keyframe_insert(data_path="location", frame=frame)
 
-    # 3. Animate Reveal (Lifting helmet & tilt)
+    # 4. Animate Final Reveal (Lifting winning helmet & tilt)
     reveal_start = plan.total_frames - 35
     reveal_end = plan.total_frames
-    winner_obj = objects[winning_item_id]
     
     if winner_obj:
         evals_reveal = plan.evaluate_at_frame(reveal_start)
@@ -468,6 +568,41 @@ def bake_shuffle_to_scene(props):
             winner_obj.rotation_euler = (tilt_x, 0.0, 0.0)
             winner_obj.keyframe_insert(data_path="location", frame=frame)
             winner_obj.keyframe_insert(data_path="rotation_euler", frame=frame)
+
+    # 5. Animated 3D Jumbotron Storyboard Text Banners
+    if props.create_text_banner:
+        coll = bpy.data.collections.get("Wolfpack_Shuffle") or bpy.context.scene.collection
+        
+        banner_intro = setup_phase_text_banner(coll, "Wolfpack_Banner_Intro", props.banner_intro_text)
+        banner_shuf = setup_phase_text_banner(coll, "Wolfpack_Banner_Shuffle", props.banner_shuffle_text)
+        banner_rev = setup_phase_text_banner(coll, "Wolfpack_Banner_Reveal", props.banner_reveal_text)
+        
+        phase_banners = [
+            (banner_intro, 1, intro_offset + 5),
+            (banner_shuf, intro_offset + 6, reveal_start - 5),
+            (banner_rev, reveal_start - 4, plan.total_frames)
+        ]
+        
+        for b_obj, p_start, p_end in phase_banners:
+            if b_obj.animation_data:
+                b_obj.animation_data_clear()
+            
+            # Hidden before phase
+            if p_start > 1:
+                b_obj.scale = (0.0, 0.0, 0.0)
+                b_obj.keyframe_insert(data_path="scale", frame=1)
+                b_obj.keyframe_insert(data_path="scale", frame=p_start - 2)
+            
+            # Pop-in
+            b_obj.scale = (1.0, 1.0, 1.0)
+            b_obj.keyframe_insert(data_path="scale", frame=p_start)
+            b_obj.keyframe_insert(data_path="scale", frame=p_end)
+            
+            # Pop-out
+            if p_end < plan.total_frames:
+                b_obj.scale = (0.0, 0.0, 0.0)
+                b_obj.keyframe_insert(data_path="scale", frame=p_end + 2)
+                b_obj.keyframe_insert(data_path="scale", frame=plan.total_frames)
 
     scene.frame_start = 1
     scene.frame_end = plan.total_frames
@@ -591,6 +726,37 @@ class WolfpackShuffleProperties(bpy.types.PropertyGroup):
         ],
         default='SMOOTH'
     )
+    # Storyboard & Broadcast Presentation Options
+    show_intro_reveal: bpy.props.BoolProperty(
+        name="Intro Storyboard Phase",
+        description="Lift helmet at start to showcase where the prize is hidden before shuffling begins",
+        default=True
+    )
+    intro_lift_duration: bpy.props.IntProperty(
+        name="Intro Duration (Frames)",
+        description="Frames spent showcasing the prize before the shuffle starts",
+        default=45,
+        min=20,
+        max=120
+    )
+    create_text_banner: bpy.props.BoolProperty(
+        name="3D Jumbotron Text Banner",
+        description="Adds an animated 3D stadium text sign (e.g. 'KEEP YOUR EYES ON THE BALL!' -> 'SHUFFLING...' -> 'WHERE IS IT?')",
+        default=True
+    )
+    banner_intro_text: bpy.props.StringProperty(
+        name="Intro Text",
+        default="WATCH CLOSELY!"
+    )
+    banner_shuffle_text: bpy.props.StringProperty(
+        name="Shuffle Text",
+        default="KEEP YOUR EYES ON THE BALL!"
+    )
+    banner_reveal_text: bpy.props.StringProperty(
+        name="Reveal Text",
+        default="WHERE IS IT?"
+    )
+
     min_safe_distance: bpy.props.FloatProperty(
         name="Min Safe Distance",
         description="Collision threshold for safety check",
@@ -743,6 +909,18 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
             box_rev.prop(props, "reveal_target")
         box_rev.prop(props, "reveal_height")
         box_rev.prop(props, "reveal_tilt")
+
+        # Storyboard Presentation Box
+        box_story = layout.box()
+        box_story.label(text="Storyboard & Game Presentation", icon='SCENE')
+        box_story.prop(props, "show_intro_reveal", text="Show Ball First (Intro Lift)")
+        if props.show_intro_reveal:
+            box_story.prop(props, "intro_lift_duration", text="Intro Lift Duration")
+        box_story.prop(props, "create_text_banner", text="Generate 3D Stadium Banner")
+        if props.create_text_banner:
+            box_story.prop(props, "banner_intro_text", text="Intro Text")
+            box_story.prop(props, "banner_shuffle_text", text="Shuffle Text")
+            box_story.prop(props, "banner_reveal_text", text="Reveal Text")
 
         layout.separator()
         btn = layout.operator("wolfpack.generate_shuffle", text="Generate Animation", icon='PLAY')
