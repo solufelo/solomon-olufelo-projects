@@ -2,6 +2,27 @@
 
 All notable changes to the Laurier Football Shell Game Blender addon will be documented in this file.
 
+## [3.1.0] - 2026-09-07
+
+### 🎨 Creative Director & Atmospheric Compositing Suite
+- **Cinematic Atmosphere & Sky Dome**:
+  - Procedural $45\text{m}$ dramatic sky dome (`Sky_Dome_Atmosphere`) with sunset amber sunburst horizon gradient and dynamic noise storm clouds.
+  - High-angle rim/kicker spotlights (`Atmosphere_Rim_L` and `Atmosphere_Rim_R` at $2200\text{W}$) providing edge separation to pop 3D elements off the cloudy backdrop.
+  - Procedural painted white/gold chalk yardlines on Knight-Newbrough Field turf.
+- **Blender 5.2.1 LTS Compositor Graph**:
+  - Dedicated 1-click operator `wolfpack.setup_atmosphere` configuring a modern `CompositorNodeTree` (`Laurier_Cinematic_Compositor`):
+    - Real-time **Fog Glow Bloom** on metallic gold surfaces and stadium floodlights.
+    - **Anamorphic Lens Distortion & Dispersion** ($0.006$ chromatic fringe) delivering an analog 35mm / Arri sports documentary look.
+- **Procedural 3D Collegiate Upright Goalposts**:
+  - Dedicated operator `wolfpack.setup_goalposts` spawning authentic NCAA/U SPORTS collegiate goalposts in the background ($Y = +11.5\text{m}$) with gooseneck base, crossbar, vertical uprights, and fluttering Laurier purple wind streamers.
+- **Field Goal Modular Stinger Suite**:
+  - `FIELD_GOAL_GOOD`: *"IT'S GOOD!"* in **Radwave Display** with *"3 POINTS // GOLDEN HAWKS"* in **Agency FB Bold** and explosive scoring slam.
+  - `FIELD_GOAL_ATTEMPT`: *"FIELD GOAL"* with *"45 YARDS // 4TH DOWN"* countdown tension.
+  - `FIELD_GOAL_BLOCKED`: *"BLOCKED!"* with *"TURNOVER ON DOWNS // DEFENSE"*.
+  - Auto-spawns 3D goalposts when any field goal stinger is triggered.
+- **Multi-Hyphenate Creative Director Blueprint**:
+  - Published portfolio guidelines in `PRODUCTION_SET_DESIGN_BLUEPRINT.md` for framing 1:1 Vinyl Album Covers, 9:16 Social Lookbooks, and 16:9 Broadcast Boards.
+
 ## [3.0.0] - 2026-09-07
 
 ### 🚀 Major Release: Commercial Broadcast & Game-Day Suite

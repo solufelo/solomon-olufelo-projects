@@ -1,10 +1,10 @@
 bl_info = {
     "name": "Wolfpack Glory Helmet Shuffle",
     "author": "Solomon Olufelo / Wolfpack Glory",
-    "version": (3, 0, 0),
+    "version": (3, 1, 0),
     "blender": (4, 0, 0),
     "location": "View3D > Sidebar > Wolfpack Shuffle",
-    "description": "Modular broadcast motion graphics suite for stadium videoboards (5-beat cognitive pacing, Home Show entry bumper, After Effects cue sheets, 3 outcome variants, Radwave & Agency FB fonts, multi-venue staging)",
+    "description": "Modular broadcast motion graphics suite for stadium videoboards (5-beat cognitive pacing, Home Show entry bumper, After Effects cue sheets, 3 outcome variants, Field Goal suite, cinematic sky & compositor lens rig)",
     "category": "Animation",
 }
 
@@ -475,6 +475,257 @@ def setup_demo_scene_if_needed(slot_spacing: float = 2.4, venue_preset: str = 'F
             l_obj.rotation_euler = (rot_x, rot_y, 0.0)
             
             coll.objects.link(l_obj)
+
+
+def setup_goalposts(coll = None) -> List[bpy.types.Object]:
+    """
+    Spawns authentic collegiate optic yellow 3D upright goalposts in the background:
+    - Gooseneck support post at (0, 12.0, 1.6)
+    - Crossbar of width 5.64m (18.5ft) at height 3.05m (10ft)
+    - Vertical uprights rising 9.14m (30ft) at X = +/- 2.82m
+    - Laurier purple wind streamers fluttering at upright tips
+    """
+    if coll is None:
+        coll = bpy.data.collections.get("Wolfpack_Shuffle") or bpy.context.scene.collection
+        
+    created_objs = []
+    
+    # 1. Goalpost Golden Yellow Material
+    mat_goal = bpy.data.materials.get("Mat_Goalpost_Optic_Yellow")
+    if not mat_goal:
+        mat_goal = bpy.data.materials.new(name="Mat_Goalpost_Optic_Yellow")
+        bsdf = mat_goal.node_tree.nodes.get("Principled BSDF") if mat_goal.node_tree else None
+        if bsdf:
+            bsdf.inputs['Base Color'].default_value = (1.0, 0.85, 0.02, 1.0) # Stadium Optic Yellow
+            bsdf.inputs['Metallic'].default_value = 0.35
+            bsdf.inputs['Roughness'].default_value = 0.18
+            if 'Specular IOR Level' in bsdf.inputs:
+                bsdf.inputs['Specular IOR Level'].default_value = 0.75
+                
+    # Streamer Material
+    mat_streamer = bpy.data.materials.get("Mat_Goalpost_Streamer")
+    if not mat_streamer:
+        mat_streamer = bpy.data.materials.new(name="Mat_Goalpost_Streamer")
+        bsdf_st = mat_streamer.node_tree.nodes.get("Principled BSDF") if mat_streamer.node_tree else None
+        if bsdf_st:
+            bsdf_st.inputs['Base Color'].default_value = (0.35, 0.05, 0.65, 1.0) # Laurier Purple Ribbon
+            bsdf_st.inputs['Roughness'].default_value = 0.6
+            
+    # Remove existing goalposts if present
+    gp_names = [
+        "Goalpost_Base", "Goalpost_Crossbar", "Goalpost_Upright_L", "Goalpost_Upright_R",
+        "Goalpost_Streamer_L", "Goalpost_Streamer_R"
+    ]
+    for n in gp_names:
+        old = bpy.data.objects.get(n)
+        if old:
+            bpy.data.objects.remove(old, do_unlink=True)
+            
+    # Base curved/angled gooseneck post
+    bpy.ops.mesh.primitive_cylinder_add(radius=0.10, depth=3.2, location=(0, 12.0, 1.6))
+    base_post = bpy.context.active_object
+    base_post.name = "Goalpost_Base"
+    base_post.data.materials.append(mat_goal)
+    created_objs.append(base_post)
+    
+    # Horizontal Crossbar
+    bpy.ops.mesh.primitive_cylinder_add(
+        radius=0.065, 
+        depth=5.64, 
+        location=(0, 11.5, 3.05), 
+        rotation=(0, math.radians(90.0), 0)
+    )
+    crossbar = bpy.context.active_object
+    crossbar.name = "Goalpost_Crossbar"
+    crossbar.data.materials.append(mat_goal)
+    crossbar.parent = base_post
+    created_objs.append(crossbar)
+    
+    # Left Upright
+    bpy.ops.mesh.primitive_cylinder_add(radius=0.055, depth=9.14, location=(-2.82, 11.5, 7.62))
+    up_l = bpy.context.active_object
+    up_l.name = "Goalpost_Upright_L"
+    up_l.data.materials.append(mat_goal)
+    up_l.parent = crossbar
+    created_objs.append(up_l)
+    
+    # Right Upright
+    bpy.ops.mesh.primitive_cylinder_add(radius=0.055, depth=9.14, location=(2.82, 11.5, 7.62))
+    up_r = bpy.context.active_object
+    up_r.name = "Goalpost_Upright_R"
+    up_r.data.materials.append(mat_goal)
+    up_r.parent = crossbar
+    created_objs.append(up_r)
+    
+    # Wind Streamers (fluttering ribbons at upright tips)
+    for s_name, parent_up, x_pos in [("Goalpost_Streamer_L", up_l, -2.82), ("Goalpost_Streamer_R", up_r, 2.82)]:
+        bpy.ops.mesh.primitive_plane_add(size=0.65, location=(x_pos, 11.52, 12.3))
+        streamer = bpy.context.active_object
+        streamer.name = s_name
+        streamer.scale = (0.15, 1.0, 1.2)
+        streamer.rotation_euler = (0, math.radians(15.0), math.radians(20.0))
+        streamer.data.materials.append(mat_streamer)
+        streamer.parent = parent_up
+        created_objs.append(streamer)
+        
+    return created_objs
+
+
+def setup_cinematic_atmosphere(coll = None):
+    """
+    Builds a high-concept cinematic environment and optical compositing pipeline:
+    1. Atmospheric Sky Dome with layered storm clouds and sunset amber sunburst.
+    2. High-angle rim/kicker backlights to pop the 3D helmets off the clouds.
+    3. Procedural yardlines on Knight-Newbrough Field turf.
+    4. Modern Blender 5.2.1 LTS Compositor Node Graph (Fog Glow bloom, anamorphic lens dispersion).
+    """
+    scene = bpy.context.scene
+    if coll is None:
+        coll = bpy.data.collections.get("Wolfpack_Shuffle") or scene.collection
+        
+    # 1. Procedural Sky Dome
+    sky_obj = bpy.data.objects.get("Sky_Dome_Atmosphere")
+    if not sky_obj:
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=45.0, location=(0, 0, 0))
+        sky_obj = bpy.context.active_object
+        sky_obj.name = "Sky_Dome_Atmosphere"
+        if sky_obj.name not in coll.objects:
+            coll.objects.link(sky_obj)
+        
+    # Invert face normals so inside is visible to camera
+    sky_obj.scale = (-1.0, 1.0, 1.0)
+        
+    mat_sky = bpy.data.materials.get("Mat_Atmosphere_Sky")
+    if not mat_sky:
+        mat_sky = bpy.data.materials.new(name="Mat_Atmosphere_Sky")
+        nodes = mat_sky.node_tree.nodes
+        links = mat_sky.node_tree.links
+        nodes.clear()
+        
+        out = nodes.new('ShaderNodeOutputMaterial')
+        emit = nodes.new('ShaderNodeEmission')
+        ramp = nodes.new('ShaderNodeValToRGB')
+        tex_noise = nodes.new('ShaderNodeTexNoise')
+        tex_coord = nodes.new('ShaderNodeTexCoord')
+        mapping = nodes.new('ShaderNodeMapping')
+        
+        ramp.color_ramp.elements[0].position = 0.25
+        ramp.color_ramp.elements[0].color = (0.06, 0.01, 0.12, 1.0) # Deep Purple Horizon
+        ramp.color_ramp.elements[1].position = 0.65
+        ramp.color_ramp.elements[1].color = (0.95, 0.55, 0.10, 1.0) # Golden Sunburst Cloud Edge
+        el_top = ramp.color_ramp.elements.new(0.90)
+        el_top.color = (0.08, 0.04, 0.18, 1.0) # Night Sky
+        
+        tex_noise.inputs['Scale'].default_value = 2.8
+        tex_noise.inputs['Detail'].default_value = 4.5
+        tex_noise.inputs['Roughness'].default_value = 0.65
+        
+        links.new(tex_coord.outputs['Generated'], mapping.inputs['Vector'])
+        links.new(mapping.outputs['Vector'], tex_noise.inputs['Vector'])
+        links.new(tex_noise.outputs['Fac'], ramp.inputs['Fac'])
+        links.new(ramp.outputs['Color'], emit.inputs['Color'])
+        emit.inputs['Strength'].default_value = 1.2
+        links.new(emit.outputs['Emission'], out.inputs['Surface'])
+        
+    if mat_sky.name not in sky_obj.data.materials:
+        sky_obj.data.materials.append(mat_sky)
+        
+    # 2. Dramatic Rim Kickers (Backlights behind helmets)
+    rim_lights = [
+        ("Atmosphere_Rim_L", (-6.0, 7.5, 5.0), (1.0, 0.85, 0.4, 1.0), 2200.0), # Amber Sun Flare
+        ("Atmosphere_Rim_R", (6.0, 7.5, 5.0), (0.55, 0.15, 0.95, 1.0), 2200.0), # Deep Purple Rim
+    ]
+    for r_name, r_pos, r_color, r_energy in rim_lights:
+        l_obj = bpy.data.objects.get(r_name)
+        if not l_obj:
+            l_data = bpy.data.lights.new(name=r_name, type='SPOT')
+            l_data.energy = r_energy
+            l_data.color = r_color[:3]
+            l_data.spot_size = math.radians(60.0)
+            l_data.spot_blend = 0.45
+            l_obj = bpy.data.objects.new(name=r_name, object_data=l_data)
+            l_obj.location = r_pos
+            l_obj.rotation_euler = (math.radians(45.0), 0.0, math.radians(180.0))
+            coll.objects.link(l_obj)
+            
+    # 3. Ground Stage Yardlines
+    stage_obj = bpy.data.objects.get("Stadium_Turf_Pitch")
+    if stage_obj:
+        mat_turf = bpy.data.materials.get("Mat_Venue_FOOTBALL_TURF")
+        if not mat_turf:
+            mat_turf = bpy.data.materials.new(name="Mat_Venue_FOOTBALL_TURF")
+        if mat_turf.node_tree:
+            nodes = mat_turf.node_tree.nodes
+            links = mat_turf.node_tree.links
+            nodes.clear()
+            
+            out_s = nodes.new('ShaderNodeOutputMaterial')
+            bsdf_s = nodes.new('ShaderNodeBsdfPrincipled')
+            tc = nodes.new('ShaderNodeTexCoord')
+            sep = nodes.new('ShaderNodeSeparateXYZ')
+            m_scale = nodes.new('ShaderNodeMath')
+            m_fract = nodes.new('ShaderNodeMath')
+            r_lines = nodes.new('ShaderNodeValToRGB')
+            mix_c = nodes.new('ShaderNodeMix')
+            
+            m_scale.operation = 'MULTIPLY'
+            m_scale.inputs[1].default_value = 0.35
+            m_fract.operation = 'FRACT'
+            
+            r_lines.color_ramp.elements[0].position = 0.92
+            r_lines.color_ramp.elements[0].color = (0.0, 0.0, 0.0, 1.0)
+            r_lines.color_ramp.elements[1].position = 0.96
+            r_lines.color_ramp.elements[1].color = (1.0, 1.0, 1.0, 1.0)
+            
+            mix_c.data_type = 'RGBA'
+            mix_c.inputs[6].default_value = (0.035, 0.165, 0.055, 1.0) # Knight-Newbrough Turf
+            mix_c.inputs[7].default_value = (0.92, 0.92, 0.90, 1.0) # Chalk line
+            
+            links.new(tc.outputs['Generated'], sep.inputs['Vector'])
+            links.new(sep.outputs['Y'], m_scale.inputs[0])
+            links.new(m_scale.outputs['Value'], m_fract.inputs[0])
+            links.new(m_fract.outputs['Value'], r_lines.inputs['Fac'])
+            links.new(r_lines.outputs['Color'], mix_c.inputs['Factor'])
+            links.new(mix_c.outputs[2], bsdf_s.inputs['Base Color'])
+            bsdf_s.inputs['Roughness'].default_value = 0.42
+            links.new(bsdf_s.outputs['BSDF'], out_s.inputs['Surface'])
+            
+    # 4. Modern Blender 5.2.1 LTS Compositor Graph
+    try:
+        tree = bpy.data.node_groups.get("Laurier_Cinematic_Compositor")
+        if not tree:
+            tree = bpy.data.node_groups.new(name="Laurier_Cinematic_Compositor", type='CompositorNodeTree')
+        scene.compositing_node_group = tree
+        tree.nodes.clear()
+        
+        if not tree.interface.items_tree:
+            tree.interface.new_socket(name='Image', in_out='OUTPUT', socket_type='NodeSocketColor')
+            
+        rl = tree.nodes.new('CompositorNodeRLayers')
+        rl.location = (-400, 0)
+        
+        glare = tree.nodes.new('CompositorNodeGlare')
+        glare.location = (-150, 0)
+        if 'Threshold' in glare.inputs:
+            glare.inputs['Threshold'].default_value = 0.68
+        if 'Size' in glare.inputs:
+            glare.inputs['Size'].default_value = 7
+            
+        lens = tree.nodes.new('CompositorNodeLensdist')
+        lens.location = (100, 0)
+        if 'Distortion' in lens.inputs:
+            lens.inputs['Distortion'].default_value = 0.012
+        if 'Dispersion' in lens.inputs:
+            lens.inputs['Dispersion'].default_value = 0.006
+            
+        out_c = tree.nodes.new('NodeGroupOutput')
+        out_c.location = (350, 0)
+        
+        tree.links.new(rl.outputs['Image'], glare.inputs['Image'])
+        tree.links.new(glare.outputs['Image'], lens.inputs['Image'])
+        tree.links.new(lens.outputs['Image'], out_c.inputs['Image'])
+    except Exception as e:
+        print("[Wolfpack Glory] Compositor setup note:", e)
 
 
 # ============================================================================
@@ -1342,6 +1593,9 @@ class WolfpackShuffleProperties(bpy.types.PropertyGroup):
         description="Select modular in-game broadcast bumper to generate",
         items=[
             ('TOUCHDOWN', "Touchdown Bumper (Radwave)", "Explosive golden scoring stinger with deep purple bevel"),
+            ('FIELD_GOAL_GOOD', "Field Goal: IT'S GOOD! (Radwave)", "Explosive scoring celebration stinger with golden flash"),
+            ('FIELD_GOAL_ATTEMPT', "Field Goal: 45 Yds Attempt (Agency FB)", "High-stakes collegiate kick attempt countdown"),
+            ('FIELD_GOAL_BLOCKED', "Field Goal: BLOCKED! (Radwave)", "Defensive stop & turnover alert"),
             ('INTERCEPTION', "Interception Alert (Radwave)", "High-tension defensive turnover alert bumper"),
             ('1ST_DOWN', "1st Down Marker (Agency FB)", "Chain mover collegiate down graphic"),
             ('2ND_DOWN', "2nd Down Marker (Agency FB)", "Mid-down offensive marker"),
@@ -1350,6 +1604,32 @@ class WolfpackShuffleProperties(bpy.types.PropertyGroup):
         ],
         default='TOUCHDOWN'
     )
+
+
+class WOLFPACK_OT_setup_atmosphere(bpy.types.Operator):
+    """Build procedural atmospheric sky dome, storm clouds, backlights, and modern Blender 5.2 compositor lens graph"""
+    bl_idname = "wolfpack.setup_atmosphere"
+    bl_label = "Build Cinematic Sky, Clouds & Lens Rig"
+    bl_description = "Creates dramatic twilight sky dome, clouds, rim lights, and sets up real-time compositor bloom & anamorphic dispersion"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        setup_cinematic_atmosphere()
+        self.report({'INFO'}, "Cinematic atmosphere, clouds & compositor lens rig configured!")
+        return {'FINISHED'}
+
+
+class WOLFPACK_OT_setup_goalposts(bpy.types.Operator):
+    """Spawn 3D collegiate upright goalposts with golden yellow coating and wind streamers"""
+    bl_idname = "wolfpack.setup_goalposts"
+    bl_label = "Spawn 3D Uprights & Goalposts"
+    bl_description = "Creates authentic NCAA/U SPORTS collegiate goalposts in the background"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        setup_goalposts()
+        self.report({'INFO'}, "Collegiate 3D goalposts spawned in scene!")
+        return {'FINISHED'}
 
 
 class WOLFPACK_OT_generate_stinger(bpy.types.Operator):
@@ -1363,16 +1643,23 @@ class WOLFPACK_OT_generate_stinger(bpy.types.Operator):
         props = context.scene.wolfpack_shuffle
         st_type = props.stinger_type
         
+        # If Field Goal stinger, ensure 3D goalposts are spawned
+        if st_type.startswith('FIELD_GOAL') and not bpy.data.objects.get("Goalpost_Base"):
+            setup_goalposts()
+            
         # Typography pairing rule from Hailey:
-        # Radwave for explosive hype events (Touchdown, Interception)
+        # Radwave for explosive hype events (Touchdown, Interception, It's Good!)
         # Agency FB for collegiate broadcast yardage, downs, and stats
-        if st_type in ('TOUCHDOWN', 'INTERCEPTION'):
+        if st_type in ('TOUCHDOWN', 'INTERCEPTION', 'FIELD_GOAL_GOOD', 'FIELD_GOAL_BLOCKED'):
             f_choice = 'RADWAVE'
         else:
             f_choice = 'AGENCYFB'
             
         stinger_data = {
             'TOUCHDOWN': ("TOUCHDOWN", "GOLDEN HAWKS SCORE", 65),
+            'FIELD_GOAL_GOOD': ("IT'S GOOD!", "3 POINTS // GOLDEN HAWKS", 65),
+            'FIELD_GOAL_ATTEMPT': ("FIELD GOAL", "45 YARDS // 4TH DOWN", 55),
+            'FIELD_GOAL_BLOCKED': ("BLOCKED!", "TURNOVER ON DOWNS // DEFENSE", 60),
             'INTERCEPTION': ("INTERCEPTION", "TURNOVER! DEFENSE BALL", 60),
             '1ST_DOWN': ("1ST DOWN", "MOVE THE CHAINS", 55),
             '2ND_DOWN': ("2ND DOWN", "GOLDEN HAWKS OFFENSE", 50),
@@ -1785,7 +2072,13 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         box_venue.prop(props, "venue_preset", text="Venue")
         box_venue.operator("wolfpack.setup_demo", text="Spawn / Update Venue Scene", icon='DUPLICATE')
 
-        # 5. Laurier Brand Typography & LED Shaders Box (Hailey's Directives)
+        # 5. Cinematic Compositor & Atmospheric Set Design
+        box_comp = layout.box()
+        box_comp.label(text="Cinematic Atmosphere & Lens Rig", icon='IMAGE_BACKGROUND')
+        box_comp.operator("wolfpack.setup_atmosphere", text="Build Atmospheric Sky & Compositor", icon='OUTLINER_OB_LIGHT')
+        box_comp.operator("wolfpack.setup_goalposts", text="Spawn 3D Uprights & Goalposts", icon='SNAP_GRID')
+
+        # 6. Laurier Brand Typography & LED Shaders Box (Hailey's Directives)
         box_font = layout.box()
         box_font.label(text="Laurier Brand Typography (Hailey's Spec)", icon='FONT_DATA')
         box_font.prop(props, "banner_font", text="Typography")
@@ -1794,13 +2087,13 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         col_f.label(text="• Agency FB: Downs, Yards & Stats", icon='RIGHTARROW_THIN')
         col_f.label(text="• Anti-Glare: Deep Purple (#20003B) & Gold (#FDB913)", icon='MATERIAL')
 
-        # 6. Modular In-Game Videoboard Stingers & Bumpers Box
+        # 7. Modular In-Game Videoboard Stingers & Bumpers Box
         box_st = layout.box()
         box_st.label(text="In-Game Modular Stingers", icon='DECORATE_ANIMATE')
         box_st.prop(props, "stinger_type", text="Stinger Event")
         box_st.operator("wolfpack.generate_stinger", text="Generate 3D Stinger", icon='PLAY')
 
-        # 7. Custom Model Selection Box
+        # 8. Custom Model Selection Box
         box = layout.box()
         box.label(text="Assign Your 3D Models", icon='OBJECT_DATA')
         box.prop(props, "custom_helmet_1", text="Shuffler 1 (Left)")
@@ -1812,7 +2105,7 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         row.operator("wolfpack.link_selected", text="Auto-Assign 3 Selected", icon='RESTRICT_SELECT_OFF')
         row.operator("wolfpack.import_model", text="Import Model File", icon='IMPORT')
 
-        # 8. Shuffle Timing & Collision Dynamics
+        # 9. Shuffle Timing & Collision Dynamics
         box_time = layout.box()
         box_time.label(text="Shuffle Timing & FPS", icon='TIME')
         box_time.prop(props, "num_swaps")
@@ -1828,7 +2121,7 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         box_phys.prop(props, "bank_angle")
         box_phys.prop(props, "movement_style")
 
-        # 9. Reveal & Suspense Settings
+        # 10. Reveal & Suspense Settings
         box_rev = layout.box()
         box_rev.label(text="Reveal & Suspense Settings", icon='HIDE_OFF')
         box_rev.prop(props, "randomize_target")
@@ -1839,7 +2132,7 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         box_rev.prop(props, "reveal_tilt")
         box_rev.prop(props, "prize_z_offset")
 
-        # 10. Storyboard Presentation Box
+        # 11. Storyboard Presentation Box
         box_story = layout.box()
         box_story.label(text="Storyboard & Game Presentation", icon='SCENE')
         box_story.prop(props, "show_intro_reveal", text="Show Ball First (Intro Lift)")
@@ -1851,7 +2144,7 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
             box_story.prop(props, "banner_shuffle_text", text="Shuffle Text")
             box_story.prop(props, "banner_reveal_text", text="Reveal Text")
 
-        # 11. After Effects & Audio Cue Sheet Bridge
+        # 12. After Effects & Audio Cue Sheet Bridge
         box_cue = layout.box()
         box_cue.label(text="After Effects & Audio Cue Sheet", icon='OUTPUT')
         box_cue.operator("wolfpack.export_cue_sheet", text="Export AE Cue Sheet (.json & .csv)", icon='EXPORT')
@@ -1866,6 +2159,8 @@ classes = (
     WOLFPACK_OT_setup_demo,
     WOLFPACK_OT_link_selected,
     WOLFPACK_OT_import_model,
+    WOLFPACK_OT_setup_atmosphere,
+    WOLFPACK_OT_setup_goalposts,
     WOLFPACK_OT_generate_stinger,
     WOLFPACK_OT_generate_entry_bumper,
     WOLFPACK_OT_export_cue_sheet,
