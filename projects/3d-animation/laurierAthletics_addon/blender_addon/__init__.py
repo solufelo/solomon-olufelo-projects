@@ -1,14 +1,15 @@
 bl_info = {
     "name": "Wolfpack Glory Helmet Shuffle",
     "author": "Solomon Olufelo / Wolfpack Glory",
-    "version": (2, 5, 0),
+    "version": (2, 6, 0),
     "blender": (4, 0, 0),
     "location": "View3D > Sidebar > Wolfpack Shuffle",
-    "description": "Broadcast-grade collision-free helmet shuffle generator for jumbotron promos & Behance motion graphics",
+    "description": "Modular broadcast motion graphics suite for stadium videoboards (3 outcome variants, Radwave & Agency FB fonts, LED high-contrast shaders, touchdown/interception/downs packaging)",
     "category": "Animation",
 }
 
 import bpy
+import os
 import math
 import random
 from typing import List, Tuple, Dict, Optional
@@ -123,6 +124,7 @@ class ShufflePlan:
         swap_duration_frames: int = 24,
         pause_frames: int = 4,
         target_item: Optional[int] = None,
+        desired_outcome_slot: Optional[int] = None,
         style: str = 'SMOOTH',
         start_frame: int = 30,
         suspense_duration: int = 30
@@ -167,6 +169,31 @@ class ShufflePlan:
             self.slot_occupant[s1], self.slot_occupant[s2] = occ2, occ1
             self.item_slot[occ1] = s2
             self.item_slot[occ2] = s1
+        
+        # Enforce deterministic outcome variant (Variant A: Slot 1 / Left, Variant B: Slot 2 / Center, Variant C: Slot 3 / Right)
+        if desired_outcome_slot is not None and 0 <= desired_outcome_slot < self.num_items:
+            curr_slot = self.item_slot[self.ball_holder_item_id]
+            if curr_slot != desired_outcome_slot:
+                s1, s2 = curr_slot, desired_outcome_slot
+                dist_factor = abs(s1 - s2)
+                y_depth = self.y_depth_base * (1.0 + (dist_factor - 1) * 0.35)
+                move = MoveStep(
+                    move_type='PAIR_SWAP',
+                    slots=[s1, s2],
+                    start_frame=current_frame,
+                    end_frame=current_frame + swap_duration_frames,
+                    y_depth=y_depth,
+                    bounce_height=self.bounce_height,
+                    style=style,
+                    bank_angle=self.bank_angle
+                )
+                self.moves.append(move)
+                current_frame = move.end_frame + pause_frames
+                
+                occ1, occ2 = self.slot_occupant[s1], self.slot_occupant[s2]
+                self.slot_occupant[s1], self.slot_occupant[s2] = occ2, occ1
+                self.item_slot[occ1] = s2
+                self.item_slot[occ2] = s1
         
         self.reveal_item_id = self.ball_holder_item_id
         self.shuffle_end_frame = current_frame - pause_frames
@@ -393,8 +420,7 @@ def setup_demo_scene_if_needed(slot_spacing: float = 2.4):
         link_obj(turf)
         
         mat_turf = bpy.data.materials.new(name="Mat_Stadium_Turf")
-        mat_turf.use_nodes = True
-        bsdf_t = mat_turf.node_tree.nodes.get("Principled BSDF")
+        bsdf_t = mat_turf.node_tree.nodes.get("Principled BSDF") if mat_turf.node_tree else None
         if bsdf_t:
             bsdf_t.inputs['Base Color'].default_value = (0.04, 0.18, 0.06, 1.0) # Field green
             bsdf_t.inputs['Roughness'].default_value = 0.45
@@ -428,39 +454,158 @@ def setup_demo_scene_if_needed(slot_spacing: float = 2.4):
             coll.objects.link(l_obj)
 
 
-def setup_phase_text_banner(coll, name, text, z_offset=0.0):
-    """Creates a stylized 3D stadium text banner object in front of the camera."""
+# ============================================================================
+# LAURIER BRAND ASSETS: TYPOGRAPHY & LED CONTRAST MATERIALS
+# ============================================================================
+
+def load_laurier_font(font_type: str = 'RADWAVE') -> Optional[bpy.types.VectorFont]:
+    """
+    Loads Hailey's specified typography for Laurier Athletics:
+    - RADWAVE: Display / Hype headers & explosive stingers ("Radwave Demo 400.otf")
+    - AGENCYFB: Condensed sports broadcast font for downs/numerals ("AGENCYB.TTF", "agencyfb_bold.ttf")
+    """
+    if font_type == 'DEFAULT':
+        return None
+        
+    font_file_map = {
+        'RADWAVE': ['Radwave Demo 400.otf', 'RadwaveFont-Demo.otf', 'radwave_demo_400.otf'],
+        'AGENCYFB': ['AGENCYB.TTF', 'agencyfb_bold.ttf', 'Agency FB Black Wide.ttf', 'AGENCYR.TTF']
+    }
+    
+    # Check already loaded fonts in Blender
+    for font_obj in bpy.data.fonts:
+        name_lower = font_obj.name.lower()
+        if font_type == 'RADWAVE' and 'radwave' in name_lower:
+            return font_obj
+        elif font_type == 'AGENCYFB' and 'agency' in name_lower:
+            return font_obj
+            
+    search_paths = [
+        "C:/Windows/Fonts",
+        "C:/Windows/Fonts/",
+        os.path.expandvars("%WINDIR%/Fonts"),
+    ]
+    
+    candidates = font_file_map.get(font_type, [])
+    for folder in search_paths:
+        for fname in candidates:
+            fp = os.path.join(folder, fname)
+            if os.path.exists(fp):
+                try:
+                    loaded = bpy.data.fonts.load(fp)
+                    return loaded
+                except Exception:
+                    continue
+    return None
+
+
+def get_laurier_materials() -> Tuple[bpy.types.Material, bpy.types.Material]:
+    """
+    Creates or retrieves high-contrast stadium LED shaders:
+    - Mat_Laurier_Gold_Core: Metallic Golden Hawks gold face (#FDB913) with gentle emission for diode clarity
+    - Mat_Laurier_Purple_Bevel: Laurier darkness deep purple outline/bevel (#20003B) - zero white border glare
+    """
+    # 1. Gold Core Face
+    mat_gold = bpy.data.materials.get("Mat_Laurier_Gold_Core")
+    if not mat_gold:
+        mat_gold = bpy.data.materials.new(name="Mat_Laurier_Gold_Core")
+        bsdf = mat_gold.node_tree.nodes.get("Principled BSDF") if mat_gold.node_tree else None
+        if bsdf:
+            bsdf.inputs['Base Color'].default_value = (0.992, 0.725, 0.075, 1.0) # #FDB913
+            bsdf.inputs['Metallic'].default_value = 0.88
+            bsdf.inputs['Roughness'].default_value = 0.18
+            if 'Emission Color' in bsdf.inputs:
+                bsdf.inputs['Emission Color'].default_value = (0.992, 0.725, 0.075, 1.0)
+                bsdf.inputs['Emission Strength'].default_value = 0.22
+            elif 'Emission' in bsdf.inputs:
+                bsdf.inputs['Emission'].default_value = (0.992, 0.725, 0.075, 1.0)
+
+    # 2. Deep Purple Bevel / Stroke
+    mat_purple = bpy.data.materials.get("Mat_Laurier_Purple_Bevel")
+    if not mat_purple:
+        mat_purple = bpy.data.materials.new(name="Mat_Laurier_Purple_Bevel")
+        bsdf = mat_purple.node_tree.nodes.get("Principled BSDF") if mat_purple.node_tree else None
+        if bsdf:
+            bsdf.inputs['Base Color'].default_value = (0.125, 0.0, 0.231, 1.0) # #20003B Deep Purple
+            bsdf.inputs['Roughness'].default_value = 0.35
+            bsdf.inputs['Metallic'].default_value = 0.4
+            if 'Specular IOR Level' in bsdf.inputs:
+                bsdf.inputs['Specular IOR Level'].default_value = 0.5
+            
+    return mat_gold, mat_purple
+
+
+def setup_phase_text_banner(coll, name, text, font_type='RADWAVE', z_offset=0.0):
+    """
+    Creates a stylized 3D stadium text banner with dual-layer collegiate lockup:
+    - Front face: Laurier Gold Core
+    - Backing bevel: Laurier Deep Purple Stroke (prevents LED clipping/APL dimming)
+    - Applied typography: Hailey's Radwave / Agency FB
+    """
+    mat_gold, mat_purple = get_laurier_materials()
+    vfont = load_laurier_font(font_type)
+    
     txt_obj = bpy.data.objects.get(name)
+    stroke_obj = bpy.data.objects.get(f"{name}_Stroke")
+    
     if not txt_obj:
-        txt_data = bpy.data.curves.new(type='FONT', name=name)
+        txt_data = bpy.data.curves.new(type='FONT', name=f"{name}_Data")
         txt_obj = bpy.data.objects.new(name, txt_data)
         txt_data.body = text
+        if vfont:
+            txt_data.font = vfont
         txt_data.align_x = 'CENTER'
         txt_data.align_y = 'CENTER'
         txt_data.size = 0.52
-        txt_data.extrude = 0.04
-        txt_data.bevel_depth = 0.012
+        txt_data.extrude = 0.045
+        txt_data.bevel_depth = 0.008
         
         # Position banner slightly in front of the items angled toward camera
         txt_obj.location = (0.0, -3.8, -0.6 + z_offset)
         txt_obj.rotation_euler = (math.radians(65.0), 0.0, 0.0)
         coll.objects.link(txt_obj)
+        txt_obj.data.materials.append(mat_gold)
         
-        # Shiny gold Laurier material
-        mat_name = "Mat_Story_Banner"
-        mat = bpy.data.materials.get(mat_name)
-        if not mat:
-            mat = bpy.data.materials.new(name=mat_name)
-            mat.use_nodes = True
-            bsdf = mat.node_tree.nodes.get("Principled BSDF")
-            if bsdf:
-                bsdf.inputs['Base Color'].default_value = (0.992, 0.722, 0.075, 1.0) # Laurier Gold
-                bsdf.inputs['Metallic'].default_value = 0.85
-                bsdf.inputs['Roughness'].default_value = 0.2
-        txt_obj.data.materials.append(mat)
+        # Backing Purple Bevel Stroke
+        stroke_data = bpy.data.curves.new(type='FONT', name=f"{name}_Stroke_Data")
+        stroke_obj = bpy.data.objects.new(f"{name}_Stroke", stroke_data)
+        stroke_data.body = text
+        if vfont:
+            stroke_data.font = vfont
+        stroke_data.align_x = 'CENTER'
+        stroke_data.align_y = 'CENTER'
+        stroke_data.size = 0.52
+        stroke_data.extrude = 0.040
+        stroke_data.bevel_depth = 0.024
+        
+        stroke_obj.parent = txt_obj
+        stroke_obj.location = (0.0, 0.008, -0.002)
+        coll.objects.link(stroke_obj)
+        stroke_obj.data.materials.append(mat_purple)
     else:
         txt_obj.data.body = text
-        
+        if vfont:
+            txt_obj.data.font = vfont
+        if not stroke_obj:
+            stroke_data = bpy.data.curves.new(type='FONT', name=f"{name}_Stroke_Data")
+            stroke_obj = bpy.data.objects.new(f"{name}_Stroke", stroke_data)
+            stroke_data.body = text
+            if vfont:
+                stroke_data.font = vfont
+            stroke_data.align_x = 'CENTER'
+            stroke_data.align_y = 'CENTER'
+            stroke_data.size = 0.52
+            stroke_data.extrude = 0.040
+            stroke_data.bevel_depth = 0.024
+            stroke_obj.parent = txt_obj
+            stroke_obj.location = (0.0, 0.008, -0.002)
+            coll.objects.link(stroke_obj)
+            stroke_obj.data.materials.append(mat_purple)
+        else:
+            stroke_obj.data.body = text
+            if vfont:
+                stroke_obj.data.font = vfont
+                
     return txt_obj
 
 
@@ -511,12 +656,21 @@ def bake_shuffle_to_scene(props):
     # Storyboard Intro: if enabled, reserve frames at beginning for showing where ball is hidden
     intro_offset = props.intro_lift_duration if props.show_intro_reveal else 20
     
+    desired_slot = None
+    if props.target_outcome == 'SLOT_1':
+        desired_slot = 0
+    elif props.target_outcome == 'SLOT_2':
+        desired_slot = 1
+    elif props.target_outcome == 'SLOT_3':
+        desired_slot = 2
+
     target_idx = props.reveal_target - 1 if not props.randomize_target else None
     plan.generate_routine(
         num_swaps=props.num_swaps,
         swap_duration_frames=props.swap_duration,
         pause_frames=props.pause_frames,
         target_item=target_idx,
+        desired_outcome_slot=desired_slot,
         style=props.movement_style,
         start_frame=intro_offset + 10,
         suspense_duration=props.suspense_duration
@@ -648,9 +802,9 @@ def bake_shuffle_to_scene(props):
     if props.create_text_banner:
         coll = bpy.data.collections.get("Wolfpack_Shuffle") or bpy.context.scene.collection
         
-        banner_intro = setup_phase_text_banner(coll, "Wolfpack_Banner_Intro", props.banner_intro_text)
-        banner_shuf = setup_phase_text_banner(coll, "Wolfpack_Banner_Shuffle", props.banner_shuffle_text)
-        banner_rev = setup_phase_text_banner(coll, "Wolfpack_Banner_Reveal", props.banner_reveal_text)
+        banner_intro = setup_phase_text_banner(coll, "Wolfpack_Banner_Intro", props.banner_intro_text, font_type=props.banner_font)
+        banner_shuf = setup_phase_text_banner(coll, "Wolfpack_Banner_Shuffle", props.banner_shuffle_text, font_type=props.banner_font)
+        banner_rev = setup_phase_text_banner(coll, "Wolfpack_Banner_Reveal", props.banner_reveal_text, font_type=props.banner_font)
         
         phase_banners = [
             (banner_intro, 1, intro_offset + 5),
@@ -863,6 +1017,179 @@ class WolfpackShuffleProperties(bpy.types.PropertyGroup):
         min=0.5,
         max=3.0
     )
+    
+    # Game-Day 3 Deterministic Outcome Variants
+    target_outcome: bpy.props.EnumProperty(
+        name="Game-Day Outcome Variant",
+        description="Select outcome variation for game-day rotation (prevents fans seeing repetitive winners)",
+        items=[
+            ('RANDOM', "Random Outcome (Surprise)", "Ball lands under naturally winning helmet"),
+            ('SLOT_1', "Variant A: Left Helmet Wins (Slot 1)", "Guarantees the ball finishes under Slot 1 (Left)"),
+            ('SLOT_2', "Variant B: Center Helmet Wins (Slot 2)", "Guarantees the ball finishes under Slot 2 (Center)"),
+            ('SLOT_3', "Variant C: Right Helmet Wins (Slot 3)", "Guarantees the ball finishes under Slot 3 (Right)"),
+        ],
+        default='RANDOM'
+    )
+    
+    # Laurier Athletics Brand Typography (Hailey's Directives)
+    banner_font: bpy.props.EnumProperty(
+        name="Brand Typography Font",
+        description="Select typography for 3D stadium graphics (Hailey's Brand Guidelines: Radwave & Agency FB)",
+        items=[
+            ('RADWAVE', "Radwave Display (Headline / Hype)", "High-impact athletic display typeface"),
+            ('AGENCYFB', "Agency FB Bold (Broadcast / Downs)", "Crisp condensed collegiate broadcast typography"),
+            ('DEFAULT', "Blender Standard (Bfont)", "Default vector font"),
+        ],
+        default='RADWAVE'
+    )
+    
+    # Modular In-Game Videoboard Stingers & Bumpers
+    stinger_type: bpy.props.EnumProperty(
+        name="Stinger Cue",
+        description="Select modular in-game broadcast bumper to generate",
+        items=[
+            ('TOUCHDOWN', "Touchdown Bumper (Radwave)", "Explosive golden scoring stinger with deep purple bevel"),
+            ('INTERCEPTION', "Interception Alert (Radwave)", "High-tension defensive turnover alert bumper"),
+            ('1ST_DOWN', "1st Down Marker (Agency FB)", "Chain mover collegiate down graphic"),
+            ('2ND_DOWN', "2nd Down Marker (Agency FB)", "Mid-down offensive marker"),
+            ('3RD_DOWN_SHORT', "3rd & Short (Agency FB)", "High-stakes short yardage tension cue"),
+            ('3RD_DOWN_LONG', "3rd & Long (Agency FB)", "Crowd noise / defense stand-up rally cue"),
+        ],
+        default='TOUCHDOWN'
+    )
+
+
+class WOLFPACK_OT_generate_stinger(bpy.types.Operator):
+    """Generate modular 3D in-game videoboard stinger with Hailey's typography (Radwave / Agency FB) and LED anti-glare shaders"""
+    bl_idname = "wolfpack.generate_stinger"
+    bl_label = "Generate 3D Stinger"
+    bl_description = "Generates an animated ESPN-style 3D stinger for the selected game-day event"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        props = context.scene.wolfpack_shuffle
+        st_type = props.stinger_type
+        
+        # Typography pairing rule from Hailey:
+        # Radwave for explosive hype events (Touchdown, Interception)
+        # Agency FB for collegiate broadcast yardage, downs, and stats
+        if st_type in ('TOUCHDOWN', 'INTERCEPTION'):
+            f_choice = 'RADWAVE'
+        else:
+            f_choice = 'AGENCYFB'
+            
+        stinger_data = {
+            'TOUCHDOWN': ("TOUCHDOWN", "GOLDEN HAWKS SCORE", 65),
+            'INTERCEPTION': ("INTERCEPTION", "TURNOVER! DEFENSE BALL", 60),
+            '1ST_DOWN': ("1ST DOWN", "MOVE THE CHAINS", 55),
+            '2ND_DOWN': ("2ND DOWN", "GOLDEN HAWKS OFFENSE", 50),
+            '3RD_DOWN_SHORT': ("3RD & SHORT", "GET ON YOUR FEET!", 55),
+            '3RD_DOWN_LONG': ("3RD & LONG", "DEFENSE // STAND UP!", 60),
+        }
+        
+        headline, subtitle, total_frames = stinger_data.get(st_type, ("GOLDEN HAWKS", "WILFRID LAURIER", 60))
+        
+        coll_name = "Wolfpack_Stingers"
+        coll = bpy.data.collections.get(coll_name)
+        if not coll:
+            coll = bpy.data.collections.new(coll_name)
+            bpy.context.scene.collection.children.link(coll)
+            
+        mat_gold, mat_purple = get_laurier_materials()
+        vfont_head = load_laurier_font(f_choice)
+        vfont_sub = load_laurier_font('AGENCYFB')
+        
+        base_name = f"Stinger_{st_type}"
+        old_obj = bpy.data.objects.get(base_name)
+        if old_obj:
+            bpy.data.objects.remove(old_obj, do_unlink=True)
+        old_stroke = bpy.data.objects.get(f"{base_name}_Stroke")
+        if old_stroke:
+            bpy.data.objects.remove(old_stroke, do_unlink=True)
+        old_sub = bpy.data.objects.get(f"{base_name}_Sub")
+        if old_sub:
+            bpy.data.objects.remove(old_sub, do_unlink=True)
+            
+        # 1. Headline 3D Curve (Front Gold Face)
+        txt_d = bpy.data.curves.new(type='FONT', name=f"{base_name}_Text")
+        txt_d.body = headline
+        if vfont_head:
+            txt_d.font = vfont_head
+        txt_d.align_x = 'CENTER'
+        txt_d.align_y = 'CENTER'
+        txt_d.size = 0.95
+        txt_d.extrude = 0.06
+        txt_d.bevel_depth = 0.012
+        
+        obj_head = bpy.data.objects.new(base_name, txt_d)
+        obj_head.location = (0.0, -3.6, 0.45)
+        obj_head.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+        coll.objects.link(obj_head)
+        obj_head.data.materials.append(mat_gold)
+        
+        # Headline Backing Stroke (Deep Purple Bevel - No White Border Glare)
+        stroke_d = bpy.data.curves.new(type='FONT', name=f"{base_name}_Stroke")
+        stroke_d.body = headline
+        if vfont_head:
+            stroke_d.font = vfont_head
+        stroke_d.align_x = 'CENTER'
+        stroke_d.align_y = 'CENTER'
+        stroke_d.size = 0.95
+        stroke_d.extrude = 0.05
+        stroke_d.bevel_depth = 0.032
+        
+        obj_stroke = bpy.data.objects.new(f"{base_name}_Stroke", stroke_d)
+        obj_stroke.parent = obj_head
+        obj_stroke.location = (0.0, 0.010, -0.003)
+        coll.objects.link(obj_stroke)
+        obj_stroke.data.materials.append(mat_purple)
+        
+        # 2. Subtitle 3D Curve (Agency FB)
+        sub_d = bpy.data.curves.new(type='FONT', name=f"{base_name}_SubText")
+        sub_d.body = subtitle
+        if vfont_sub:
+            sub_d.font = vfont_sub
+        sub_d.align_x = 'CENTER'
+        sub_d.align_y = 'CENTER'
+        sub_d.size = 0.38
+        sub_d.extrude = 0.03
+        sub_d.bevel_depth = 0.005
+        
+        obj_sub = bpy.data.objects.new(f"{base_name}_Sub", sub_d)
+        obj_sub.parent = obj_head
+        obj_sub.location = (0.0, 0.002, -0.65)
+        coll.objects.link(obj_sub)
+        obj_sub.data.materials.append(mat_gold)
+        
+        # Keyframe Animation (Kinetic Slam, Hold, and Exit)
+        if obj_head.animation_data:
+            obj_head.animation_data_clear()
+            
+        obj_head.scale = (0.0, 0.0, 0.0)
+        obj_head.keyframe_insert(data_path="scale", frame=1)
+        
+        # Kinetic overshoot slam
+        obj_head.scale = (1.22, 1.22, 1.22)
+        obj_head.keyframe_insert(data_path="scale", frame=10)
+        
+        # Settle
+        obj_head.scale = (1.0, 1.0, 1.0)
+        obj_head.keyframe_insert(data_path="scale", frame=16)
+        
+        # Subtle slow-zoom during hold
+        obj_head.scale = (1.06, 1.06, 1.06)
+        obj_head.keyframe_insert(data_path="scale", frame=total_frames - 8)
+        
+        # Snap sweep exit
+        obj_head.scale = (0.0, 0.0, 0.0)
+        obj_head.keyframe_insert(data_path="scale", frame=total_frames)
+        
+        context.scene.frame_start = 1
+        context.scene.frame_end = total_frames
+        context.scene.frame_set(1)
+        
+        self.report({'INFO'}, f"Generated {headline} stinger ({total_frames} frames) with {f_choice} typography!")
+        return {'FINISHED'}
 
 
 class WOLFPACK_OT_generate_shuffle(bpy.types.Operator):
@@ -971,6 +1298,26 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         layout = self.layout
         props = context.scene.wolfpack_shuffle
 
+        # Game-Day 3 Deterministic Outcome Variants Box
+        box_var = layout.box()
+        box_var.label(text="Game-Day Outcome Variants (3 Variants)", icon='FORCE_DRAG')
+        box_var.prop(props, "target_outcome", text="Outcome")
+
+        # Laurier Brand Typography & LED Shaders Box (Hailey's Directives)
+        box_font = layout.box()
+        box_font.label(text="Laurier Brand Typography (Hailey's Spec)", icon='FONT_DATA')
+        box_font.prop(props, "banner_font", text="Typography")
+        col_f = box_font.column(align=True)
+        col_f.label(text="• Radwave: Hype Headers & Stingers", icon='RIGHTARROW_THIN')
+        col_f.label(text="• Agency FB: Downs, Yards & Stats", icon='RIGHTARROW_THIN')
+        col_f.label(text="• Anti-Glare: Deep Purple (#20003B) & Gold (#FDB913)", icon='MATERIAL')
+
+        # Modular In-Game Videoboard Stingers & Bumpers Box
+        box_st = layout.box()
+        box_st.label(text="In-Game Modular Stingers", icon='DECORATE_ANIMATE')
+        box_st.prop(props, "stinger_type", text="Stinger Event")
+        box_st.operator("wolfpack.generate_stinger", text="Generate 3D Stinger", icon='PLAY')
+
         # Custom Model Selection Box
         box = layout.box()
         box.label(text="Assign Your 3D Models", icon='OBJECT_DATA')
@@ -1034,6 +1381,7 @@ classes = (
     WOLFPACK_OT_setup_demo,
     WOLFPACK_OT_link_selected,
     WOLFPACK_OT_import_model,
+    WOLFPACK_OT_generate_stinger,
     WOLFPACK_PT_sidebar_panel,
 )
 
@@ -1044,8 +1392,15 @@ def register():
 
 def unregister():
     for cls in reversed(classes):
-        bpy.utils.unregister_class(cls)
-    del bpy.types.Scene.wolfpack_shuffle
+        try:
+            bpy.utils.unregister_class(cls)
+        except Exception:
+            pass
+    if hasattr(bpy.types.Scene, "wolfpack_shuffle"):
+        try:
+            del bpy.types.Scene.wolfpack_shuffle
+        except Exception:
+            pass
 
 # Standalone execution support: when run directly in Blender's Scripting Editor
 if __name__ == "__main__":

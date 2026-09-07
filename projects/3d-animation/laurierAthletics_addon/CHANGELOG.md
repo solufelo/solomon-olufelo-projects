@@ -2,6 +2,25 @@
 
 All notable changes to the Laurier Football Shell Game Blender addon will be documented in this file.
 
+## [2.6.0] - 2026-09-07
+
+### ✨ Added
+- **Hailey's Brand Typography Integration**:
+  - Direct loader and support for **Radwave Display** (*Radwave Demo Regular*) for high-impact headlines and scoring stingers.
+  - Direct loader and support for **Agency FB Bold** (*AGENCYB.TTF* / *agencyfb_bold.ttf*) for downs, yardage markers, game clock, and statistics.
+- **Videoboard LED Science & Anti-Glare Hierarchy**:
+  - Two-tone varsity athletic lockup: Golden Hawks Metallic Gold (`#FDB913`) core face with Deep Darkness Purple (`#20003B`) backing stroke.
+  - Eliminated high-glare white borders that cause Automatic Power Limiting (APL) dimming on stadium LED boards.
+- **3 Game-Day Deterministic Outcome Variants**:
+  - Variant A: Slot 1 / Left Helmet Wins (`target_outcome = 'SLOT_1'`).
+  - Variant B: Slot 2 / Center Helmet Wins (`target_outcome = 'SLOT_2'`).
+  - Variant C: Slot 3 / Right Helmet Wins (`target_outcome = 'SLOT_3'`).
+  - Random Live Result mode for spontaneous live games.
+- **Modular In-Game Videoboard Stingers**:
+  - `TOUCHDOWN` (Radwave Display, Gold core + Deep Purple bevel, kinetic slam).
+  - `INTERCEPTION` (Radwave Display, siren alert strobe).
+  - `1ST DOWN`, `2ND DOWN`, `3RD & SHORT`, `3RD & LONG` (Agency FB Bold, broadcast down markers).
+
 ## [1.0.0] - 2024-12-19
 
 ### ✨ Added
