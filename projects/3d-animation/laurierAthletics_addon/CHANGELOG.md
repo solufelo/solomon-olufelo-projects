@@ -2,6 +2,41 @@
 
 All notable changes to the Laurier Football Shell Game Blender addon will be documented in this file.
 
+## [3.2.0] - 2026-09-07
+
+### 🎬 Timeline Sequencing, Volumetric Atmosphere & Stadium Slogans Suite
+- **Timeline Sequencing & Continuous Bumper Flow (Zero Keyframe Scrubbing)**:
+  - **Automated Sequence Offset**: Added `prepend_entry_bumper`, `bumper_lead_frames` (default 60), and `timeline_start_frame` (default 1) properties.
+  - **Zero-Collision Timeline Blocks**: The 3D "Home Show" Entry Bumper plays across frames 1–60 (with kinetic frame 10 boom slam and camera kickback) and wipes offscreen. Helmets and ball remain locked at base starting coordinates, and begin their intro reveal / swapping routine at frame 61+ without overlapping or colliding keyframes.
+  - **One-Click Show Baking**: Completely eliminates manual dragging and scrubbing of keyframes in Blender's Dope Sheet / Timeline.
+- **Artistic Lighting & Volumetric Atmosphere Moods**:
+  - **4 Iconic Lighting Presets**:
+    - `NIGHT_GAME_FLOODLIGHT`: Crisp 5800K halogen floodlight banks, high-angle Laurier Gold & Deep Purple rim kickers, midnight stadium sky.
+    - `GOLDEN_HOUR`: Low-angle 3200K sunburst, long cinematic turf shadows, warm golden cloud haze, and rich amber rim highlights.
+    - `CYBER_STADIUM_NEON`: Electric violet/magenta flood wash, laser gold rims, and high-contrast anamorphic lens dispersion for music video / streetwear hype aesthetic.
+    - `CHAMPIONSHIP_GOLD`: 24K championship gold spotlights, high specular glints on helmet shells, dark carbon cyc contrast.
+  - **True 3D Volumetric Light Shafts (`Stadium_Volumetric_Haze`)**:
+    - Procedural scattering volume cube ($36\text{m} \times 36\text{m} \times 15\text{m}$) using Blender's modern `ShaderNodeVolumePrincipled` (`anisotropy=0.60-0.72`, `density=0.005`).
+    - Creates visible, physical light beams and god rays sweeping from stadium floodlights across the field without cluttering foreground helmet visibility.
+- **Modular Slogans & Crowd Hype Suite**:
+  - Dedicated operator `wolfpack.generate_slogan` generating plug-and-play 3D animated stadium slogans:
+    - *"DEFEND THE NEST"* / *"UNIVERSITY STADIUM"*
+    - *"IT'S GREAT TO BE A"* / *"LAURIER GOLDEN HAWK"*
+    - *"FEAR THE GOLD"* / *"HAWKS ON THE ATTACK"*
+    - *"MAKE SOME NOISE!"* / *"GET ON YOUR FEET"*
+    - *"STAND UP & SHOUT"* / *"GOLDEN HAWK NATION"*
+    - *Custom Slogan* mode supporting user-defined headlines and subtitles.
+  - Features dual-layer Gold/Purple anti-glare typography (Radwave & Agency FB), elevated upper-third framing ($Z = 1.35\text{m}$), kinetic boom slam entrance, and camera punch.
+- **Pure Blender 1-Click Broadcast Render Pipeline (Leaving After Effects Behind)**:
+  - Dedicated operator `wolfpack.setup_broadcast_render` allowing complete motion graphics production and delivery directly inside Blender (bypassing After Effects file crash/corruption risks).
+  - Configures **1080p60**, **AgX High Contrast**, and **Cycles/EEVEE Motion Blur**.
+  - 1-Click Export Formats:
+    - **Apple ProRes 422 HQ (`.mov`)**: Broadcast standard for stadium switcher playback (Ross XPression / Daktronics).
+    - **Apple ProRes 4444 RGBA (`.mov`)**: Transparent background alpha channel for live camera overlays and videoboard graphic packages.
+    - **H.264 Lossless MP4 (`.mp4`)**: Perceptually lossless compressed preview for mobile and web review.
+- **Synchronized Broadcast Cue Sheet Updates**:
+  - Automatically records sequenced bumper frames, swap intervals, and reveal cues with SMPTE timecodes matching the exact timeline offset.
+
 ## [3.1.0] - 2026-09-07
 
 ### 🎨 Creative Director & Atmospheric Compositing Suite

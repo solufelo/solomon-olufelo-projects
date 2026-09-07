@@ -1,10 +1,10 @@
 bl_info = {
     "name": "Wolfpack Glory Helmet Shuffle",
     "author": "Solomon Olufelo / Wolfpack Glory",
-    "version": (3, 1, 0),
+    "version": (3, 2, 0),
     "blender": (4, 0, 0),
     "location": "View3D > Sidebar > Wolfpack Shuffle",
-    "description": "Modular broadcast motion graphics suite for stadium videoboards (5-beat cognitive pacing, Home Show entry bumper, After Effects cue sheets, 3 outcome variants, Field Goal suite, cinematic sky & compositor lens rig)",
+    "description": "Broadcast videoboard motion graphics suite (Timeline Sequencing, 4 Volumetric Atmosphere Moods, Modular Stadium Slogans, 1-Click ProRes/H.264 Render, 5-Beat Cognitive Pacing, 3 Game-Day Variants)",
     "category": "Animation",
 }
 
@@ -571,18 +571,71 @@ def setup_goalposts(coll = None) -> List[bpy.types.Object]:
     return created_objs
 
 
-def setup_cinematic_atmosphere(coll = None):
+def setup_cinematic_atmosphere(coll=None, mood='NIGHT_GAME_FLOODLIGHT', enable_volumetrics=True, haze_density=0.005):
     """
-    Builds a high-concept cinematic environment and optical compositing pipeline:
-    1. Atmospheric Sky Dome with layered storm clouds and sunset amber sunburst.
-    2. High-angle rim/kicker backlights to pop the 3D helmets off the clouds.
-    3. Procedural yardlines on Knight-Newbrough Field turf.
-    4. Modern Blender 5.2.1 LTS Compositor Node Graph (Fog Glow bloom, anamorphic lens dispersion).
+    Builds a high-concept cinematic environment, volumetric light shafts, and optical compositing pipeline:
+    1. Atmospheric Sky Dome with layered storm clouds and mood-specific color ramps.
+    2. Stadium floodlight key and high-angle rim/kicker backlights in Laurier brand colors.
+    3. True 3D Volumetric Light Shafts (Stadium_Volumetric_Haze) for authentic stadium light beams.
+    4. Procedural yardlines on Knight-Newbrough Field turf.
+    5. Modern Blender 5.2.1 LTS Compositor Node Graph (Fog Glow bloom, anamorphic lens dispersion).
     """
     scene = bpy.context.scene
     if coll is None:
         coll = bpy.data.collections.get("Wolfpack_Shuffle") or scene.collection
         
+    mood_configs = {
+        'NIGHT_GAME_FLOODLIGHT': {
+            'sky_stops': [(0.20, (0.04, 0.015, 0.10, 1.0)), (0.65, (0.95, 0.55, 0.10, 1.0)), (0.90, (0.02, 0.01, 0.05, 1.0))],
+            'sky_emit': 1.1,
+            'key_light': {'pos': (0.0, 5.0, 8.5), 'rot': (math.radians(35.0), 0.0, math.radians(180.0)), 'color': (0.95, 0.98, 1.0), 'energy': 3200.0, 'size': 55.0},
+            'rim_l': {'pos': (-6.0, 7.5, 5.0), 'rot': (math.radians(45.0), 0.0, math.radians(180.0)), 'color': (1.0, 0.85, 0.40), 'energy': 2600.0},
+            'rim_r': {'pos': (6.0, 7.5, 5.0), 'rot': (math.radians(45.0), 0.0, math.radians(180.0)), 'color': (0.55, 0.15, 0.95), 'energy': 2600.0},
+            'vol_color': (0.95, 0.97, 1.0),
+            'vol_aniso': 0.68,
+            'glare_thresh': 0.68,
+            'glare_size': 7,
+            'dispersion': 0.006,
+        },
+        'GOLDEN_HOUR': {
+            'sky_stops': [(0.20, (0.18, 0.03, 0.12, 1.0)), (0.60, (1.0, 0.60, 0.08, 1.0)), (0.90, (0.06, 0.02, 0.14, 1.0))],
+            'sky_emit': 1.5,
+            'key_light': {'pos': (-9.0, 7.0, 4.8), 'rot': (math.radians(40.0), math.radians(-25.0), math.radians(150.0)), 'color': (1.0, 0.72, 0.35), 'energy': 3800.0, 'size': 60.0},
+            'rim_l': {'pos': (-6.0, 7.5, 5.0), 'rot': (math.radians(45.0), 0.0, math.radians(180.0)), 'color': (1.0, 0.85, 0.25), 'energy': 3000.0},
+            'rim_r': {'pos': (6.0, 7.5, 5.0), 'rot': (math.radians(45.0), 0.0, math.radians(180.0)), 'color': (0.70, 0.25, 0.85), 'energy': 2000.0},
+            'vol_color': (1.0, 0.88, 0.75),
+            'vol_aniso': 0.72,
+            'glare_thresh': 0.55,
+            'glare_size': 8,
+            'dispersion': 0.008,
+        },
+        'CYBER_STADIUM_NEON': {
+            'sky_stops': [(0.20, (0.10, 0.00, 0.25, 1.0)), (0.65, (0.95, 0.05, 0.65, 1.0)), (0.90, (0.01, 0.00, 0.03, 1.0))],
+            'sky_emit': 1.8,
+            'key_light': {'pos': (0.0, 5.0, 8.5), 'rot': (math.radians(35.0), 0.0, math.radians(180.0)), 'color': (0.68, 0.12, 1.0), 'energy': 3400.0, 'size': 50.0},
+            'rim_l': {'pos': (-6.0, 7.5, 5.0), 'rot': (math.radians(45.0), 0.0, math.radians(180.0)), 'color': (1.0, 0.75, 0.05), 'energy': 3200.0},
+            'rim_r': {'pos': (6.0, 7.5, 5.0), 'rot': (math.radians(45.0), 0.0, math.radians(180.0)), 'color': (0.10, 0.85, 1.0), 'energy': 3000.0},
+            'vol_color': (0.85, 0.70, 1.0),
+            'vol_aniso': 0.60,
+            'glare_thresh': 0.48,
+            'glare_size': 9,
+            'dispersion': 0.014,
+        },
+        'CHAMPIONSHIP_GOLD': {
+            'sky_stops': [(0.20, (0.04, 0.03, 0.02, 1.0)), (0.65, (1.0, 0.82, 0.20, 1.0)), (0.90, (0.01, 0.01, 0.01, 1.0))],
+            'sky_emit': 1.4,
+            'key_light': {'pos': (0.0, 5.0, 8.5), 'rot': (math.radians(35.0), 0.0, math.radians(180.0)), 'color': (1.0, 0.86, 0.40), 'energy': 3800.0, 'size': 55.0},
+            'rim_l': {'pos': (-6.0, 7.5, 5.0), 'rot': (math.radians(45.0), 0.0, math.radians(180.0)), 'color': (1.0, 0.92, 0.60), 'energy': 3200.0},
+            'rim_r': {'pos': (6.0, 7.5, 5.0), 'rot': (math.radians(45.0), 0.0, math.radians(180.0)), 'color': (0.42, 0.08, 0.68), 'energy': 2400.0},
+            'vol_color': (1.0, 0.95, 0.80),
+            'vol_aniso': 0.70,
+            'glare_thresh': 0.60,
+            'glare_size': 7,
+            'dispersion': 0.005,
+        },
+    }
+    cfg = mood_configs.get(mood, mood_configs['NIGHT_GAME_FLOODLIGHT'])
+
     # 1. Procedural Sky Dome
     sky_obj = bpy.data.objects.get("Sky_Dome_Atmosphere")
     if not sky_obj:
@@ -591,82 +644,117 @@ def setup_cinematic_atmosphere(coll = None):
         sky_obj.name = "Sky_Dome_Atmosphere"
         if sky_obj.name not in coll.objects:
             coll.objects.link(sky_obj)
-        
-    # Invert face normals so inside is visible to camera
-    sky_obj.scale = (-1.0, 1.0, 1.0)
+        sky_obj.scale = (-1.0, 1.0, 1.0)
         
     mat_sky = bpy.data.materials.get("Mat_Atmosphere_Sky")
     if not mat_sky:
         mat_sky = bpy.data.materials.new(name="Mat_Atmosphere_Sky")
-        nodes = mat_sky.node_tree.nodes
-        links = mat_sky.node_tree.links
-        nodes.clear()
-        
-        out = nodes.new('ShaderNodeOutputMaterial')
-        emit = nodes.new('ShaderNodeEmission')
-        ramp = nodes.new('ShaderNodeValToRGB')
-        tex_noise = nodes.new('ShaderNodeTexNoise')
-        tex_coord = nodes.new('ShaderNodeTexCoord')
-        mapping = nodes.new('ShaderNodeMapping')
-        
-        ramp.color_ramp.elements[0].position = 0.25
-        ramp.color_ramp.elements[0].color = (0.06, 0.01, 0.12, 1.0) # Deep Purple Horizon
-        ramp.color_ramp.elements[1].position = 0.65
-        ramp.color_ramp.elements[1].color = (0.95, 0.55, 0.10, 1.0) # Golden Sunburst Cloud Edge
-        el_top = ramp.color_ramp.elements.new(0.90)
-        el_top.color = (0.08, 0.04, 0.18, 1.0) # Night Sky
-        
-        tex_noise.inputs['Scale'].default_value = 2.8
-        tex_noise.inputs['Detail'].default_value = 4.5
-        tex_noise.inputs['Roughness'].default_value = 0.65
-        
-        links.new(tex_coord.outputs['Generated'], mapping.inputs['Vector'])
-        links.new(mapping.outputs['Vector'], tex_noise.inputs['Vector'])
-        links.new(tex_noise.outputs['Fac'], ramp.inputs['Fac'])
-        links.new(ramp.outputs['Color'], emit.inputs['Color'])
-        emit.inputs['Strength'].default_value = 1.2
-        links.new(emit.outputs['Emission'], out.inputs['Surface'])
-        
+    nodes = mat_sky.node_tree.nodes
+    links = mat_sky.node_tree.links
+    nodes.clear()
+    
+    out = nodes.new('ShaderNodeOutputMaterial')
+    emit = nodes.new('ShaderNodeEmission')
+    ramp = nodes.new('ShaderNodeValToRGB')
+    tex_noise = nodes.new('ShaderNodeTexNoise')
+    tex_coord = nodes.new('ShaderNodeTexCoord')
+    mapping = nodes.new('ShaderNodeMapping')
+    
+    ramp.color_ramp.elements[0].position = cfg['sky_stops'][0][0]
+    ramp.color_ramp.elements[0].color = cfg['sky_stops'][0][1]
+    ramp.color_ramp.elements[1].position = cfg['sky_stops'][1][0]
+    ramp.color_ramp.elements[1].color = cfg['sky_stops'][1][1]
+    el_top = ramp.color_ramp.elements.new(cfg['sky_stops'][2][0])
+    el_top.color = cfg['sky_stops'][2][1]
+    
+    tex_noise.inputs['Scale'].default_value = 2.8
+    tex_noise.inputs['Detail'].default_value = 4.5
+    tex_noise.inputs['Roughness'].default_value = 0.65
+    
+    links.new(tex_coord.outputs['Generated'], mapping.inputs['Vector'])
+    links.new(mapping.outputs['Vector'], tex_noise.inputs['Vector'])
+    links.new(tex_noise.outputs['Fac'], ramp.inputs['Fac'])
+    links.new(ramp.outputs['Color'], emit.inputs['Color'])
+    emit.inputs['Strength'].default_value = cfg['sky_emit']
+    links.new(emit.outputs['Emission'], out.inputs['Surface'])
+    
     if mat_sky.name not in sky_obj.data.materials:
         sky_obj.data.materials.append(mat_sky)
-        
-    # 2. Dramatic Rim Kickers (Backlights behind helmets)
-    rim_lights = [
-        ("Atmosphere_Rim_L", (-6.0, 7.5, 5.0), (1.0, 0.85, 0.4, 1.0), 2200.0), # Amber Sun Flare
-        ("Atmosphere_Rim_R", (6.0, 7.5, 5.0), (0.55, 0.15, 0.95, 1.0), 2200.0), # Deep Purple Rim
+
+    # 2. Lighting: Key Floodlight + Rim Kickers
+    lights_to_setup = [
+        ("Atmosphere_Flood_Key", cfg['key_light']),
+        ("Atmosphere_Rim_L", cfg['rim_l']),
+        ("Atmosphere_Rim_R", cfg['rim_r']),
     ]
-    for r_name, r_pos, r_color, r_energy in rim_lights:
-        l_obj = bpy.data.objects.get(r_name)
+    for l_name, l_info in lights_to_setup:
+        l_obj = bpy.data.objects.get(l_name)
         if not l_obj:
-            l_data = bpy.data.lights.new(name=r_name, type='SPOT')
-            l_data.energy = r_energy
-            l_data.color = r_color[:3]
-            l_data.spot_size = math.radians(60.0)
-            l_data.spot_blend = 0.45
-            l_obj = bpy.data.objects.new(name=r_name, object_data=l_data)
-            l_obj.location = r_pos
-            l_obj.rotation_euler = (math.radians(45.0), 0.0, math.radians(180.0))
+            l_data = bpy.data.lights.new(name=l_name, type='SPOT')
+            l_obj = bpy.data.objects.new(name=l_name, object_data=l_data)
             coll.objects.link(l_obj)
+        l_data = l_obj.data
+        l_data.energy = l_info['energy']
+        l_data.color = l_info['color']
+        l_data.spot_size = math.radians(l_info.get('size', 60.0))
+        l_data.spot_blend = 0.45
+        l_obj.location = l_info['pos']
+        l_obj.rotation_euler = l_info['rot']
+
+    # 3. True 3D Volumetric Light Shafts (Stadium_Volumetric_Haze)
+    vol_obj = bpy.data.objects.get("Stadium_Volumetric_Haze")
+    if enable_volumetrics:
+        if not vol_obj:
+            bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0, 0, 7.5))
+            vol_obj = bpy.context.active_object
+            vol_obj.name = "Stadium_Volumetric_Haze"
+            vol_obj.scale = (36.0, 36.0, 15.0)
+            if vol_obj.name not in coll.objects:
+                coll.objects.link(vol_obj)
+            vol_obj.display_type = 'WIRE'
+            vol_obj.hide_select = True
             
-    # 3. Ground Stage Yardlines
+        mat_vol = bpy.data.materials.get("Mat_Stadium_Volumetric")
+        if not mat_vol:
+            mat_vol = bpy.data.materials.new(name="Mat_Stadium_Volumetric")
+        v_nodes = mat_vol.node_tree.nodes
+        v_links = mat_vol.node_tree.links
+        v_nodes.clear()
+        
+        v_out = v_nodes.new('ShaderNodeOutputMaterial')
+        v_princ = v_nodes.new('ShaderNodeVolumePrincipled')
+        v_princ.inputs['Density'].default_value = max(0.0005, haze_density)
+        v_princ.inputs['Anisotropy'].default_value = cfg['vol_aniso']
+        v_princ.inputs['Color'].default_value = (*cfg['vol_color'], 1.0)
+        v_links.new(v_princ.outputs['Volume'], v_out.inputs['Volume'])
+        
+        if mat_vol.name not in vol_obj.data.materials:
+            vol_obj.data.materials.append(mat_vol)
+        vol_obj.hide_viewport = False
+        vol_obj.hide_render = False
+    elif vol_obj:
+        vol_obj.hide_viewport = True
+        vol_obj.hide_render = True
+
+    # 4. Ground Stage Yardlines
     stage_obj = bpy.data.objects.get("Stadium_Turf_Pitch")
     if stage_obj:
         mat_turf = bpy.data.materials.get("Mat_Venue_FOOTBALL_TURF")
         if not mat_turf:
             mat_turf = bpy.data.materials.new(name="Mat_Venue_FOOTBALL_TURF")
         if mat_turf.node_tree:
-            nodes = mat_turf.node_tree.nodes
-            links = mat_turf.node_tree.links
-            nodes.clear()
+            nodes_t = mat_turf.node_tree.nodes
+            links_t = mat_turf.node_tree.links
+            nodes_t.clear()
             
-            out_s = nodes.new('ShaderNodeOutputMaterial')
-            bsdf_s = nodes.new('ShaderNodeBsdfPrincipled')
-            tc = nodes.new('ShaderNodeTexCoord')
-            sep = nodes.new('ShaderNodeSeparateXYZ')
-            m_scale = nodes.new('ShaderNodeMath')
-            m_fract = nodes.new('ShaderNodeMath')
-            r_lines = nodes.new('ShaderNodeValToRGB')
-            mix_c = nodes.new('ShaderNodeMix')
+            out_s = nodes_t.new('ShaderNodeOutputMaterial')
+            bsdf_s = nodes_t.new('ShaderNodeBsdfPrincipled')
+            tc = nodes_t.new('ShaderNodeTexCoord')
+            sep = nodes_t.new('ShaderNodeSeparateXYZ')
+            m_scale = nodes_t.new('ShaderNodeMath')
+            m_fract = nodes_t.new('ShaderNodeMath')
+            r_lines = nodes_t.new('ShaderNodeValToRGB')
+            mix_c = nodes_t.new('ShaderNodeMix')
             
             m_scale.operation = 'MULTIPLY'
             m_scale.inputs[1].default_value = 0.35
@@ -678,19 +766,19 @@ def setup_cinematic_atmosphere(coll = None):
             r_lines.color_ramp.elements[1].color = (1.0, 1.0, 1.0, 1.0)
             
             mix_c.data_type = 'RGBA'
-            mix_c.inputs[6].default_value = (0.035, 0.165, 0.055, 1.0) # Knight-Newbrough Turf
-            mix_c.inputs[7].default_value = (0.92, 0.92, 0.90, 1.0) # Chalk line
+            mix_c.inputs[6].default_value = (0.035, 0.165, 0.055, 1.0)
+            mix_c.inputs[7].default_value = (0.92, 0.92, 0.90, 1.0)
             
-            links.new(tc.outputs['Generated'], sep.inputs['Vector'])
-            links.new(sep.outputs['Y'], m_scale.inputs[0])
-            links.new(m_scale.outputs['Value'], m_fract.inputs[0])
-            links.new(m_fract.outputs['Value'], r_lines.inputs['Fac'])
-            links.new(r_lines.outputs['Color'], mix_c.inputs['Factor'])
-            links.new(mix_c.outputs[2], bsdf_s.inputs['Base Color'])
+            links_t.new(tc.outputs['Generated'], sep.inputs['Vector'])
+            links_t.new(sep.outputs['Y'], m_scale.inputs[0])
+            links_t.new(m_scale.outputs['Value'], m_fract.inputs[0])
+            links_t.new(m_fract.outputs['Value'], r_lines.inputs['Fac'])
+            links_t.new(r_lines.outputs['Color'], mix_c.inputs['Factor'])
+            links_t.new(mix_c.outputs[2], bsdf_s.inputs['Base Color'])
             bsdf_s.inputs['Roughness'].default_value = 0.42
-            links.new(bsdf_s.outputs['BSDF'], out_s.inputs['Surface'])
-            
-    # 4. Modern Blender 5.2.1 LTS Compositor Graph
+            links_t.new(bsdf_s.outputs['BSDF'], out_s.inputs['Surface'])
+
+    # 5. Modern Blender 5.2.1 LTS Compositor Graph
     try:
         tree = bpy.data.node_groups.get("Laurier_Cinematic_Compositor")
         if not tree:
@@ -707,16 +795,16 @@ def setup_cinematic_atmosphere(coll = None):
         glare = tree.nodes.new('CompositorNodeGlare')
         glare.location = (-150, 0)
         if 'Threshold' in glare.inputs:
-            glare.inputs['Threshold'].default_value = 0.68
+            glare.inputs['Threshold'].default_value = cfg['glare_thresh']
         if 'Size' in glare.inputs:
-            glare.inputs['Size'].default_value = 7
+            glare.inputs['Size'].default_value = cfg['glare_size']
             
         lens = tree.nodes.new('CompositorNodeLensdist')
         lens.location = (100, 0)
         if 'Distortion' in lens.inputs:
             lens.inputs['Distortion'].default_value = 0.012
         if 'Dispersion' in lens.inputs:
-            lens.inputs['Dispersion'].default_value = 0.006
+            lens.inputs['Dispersion'].default_value = cfg['dispersion']
             
         out_c = tree.nodes.new('NodeGroupOutput')
         out_c.location = (350, 0)
@@ -726,7 +814,6 @@ def setup_cinematic_atmosphere(coll = None):
         tree.links.new(lens.outputs['Image'], out_c.inputs['Image'])
     except Exception as e:
         print("[Wolfpack Glory] Compositor setup note:", e)
-
 
 # ============================================================================
 # LAURIER BRAND ASSETS: TYPOGRAPHY & LED CONTRAST MATERIALS
@@ -809,21 +896,24 @@ def get_laurier_materials() -> Tuple[bpy.types.Material, bpy.types.Material]:
     return mat_gold, mat_purple
 
 
-def cleanup_conflicting_text_graphics(current_mode='SHUFFLE'):
+def cleanup_conflicting_text_graphics(current_mode='SHUFFLE', keep_bumper=False):
     """
-    Prevents different graphic modes (Bumper vs Shuffle vs Stinger) from overlapping,
+    Prevents different graphic modes (Bumper vs Shuffle vs Stinger vs Slogan) from overlapping,
     ghosting, or sitting in front of the camera simultaneously.
     """
     to_remove = []
     for obj in bpy.data.objects:
         if current_mode == 'SHUFFLE':
-            if obj.name.startswith("Wolfpack_Bumper_") or obj.name.startswith("Stinger_"):
+            if (not keep_bumper and obj.name.startswith("Wolfpack_Bumper_")) or obj.name.startswith("Stinger_") or obj.name.startswith("Wolfpack_Slogan_"):
                 to_remove.append(obj)
         elif current_mode == 'BUMPER':
-            if obj.name.startswith("Wolfpack_Banner_") or obj.name.startswith("Wolfpack_Slot_Badge_") or obj.name.startswith("Stinger_"):
+            if obj.name.startswith("Wolfpack_Banner_") or obj.name.startswith("Wolfpack_Slot_Badge_") or obj.name.startswith("Stinger_") or obj.name.startswith("Wolfpack_Slogan_"):
                 to_remove.append(obj)
         elif current_mode == 'STINGER':
-            if obj.name.startswith("Wolfpack_Banner_") or obj.name.startswith("Wolfpack_Slot_Badge_") or obj.name.startswith("Wolfpack_Bumper_"):
+            if obj.name.startswith("Wolfpack_Banner_") or obj.name.startswith("Wolfpack_Slot_Badge_") or obj.name.startswith("Wolfpack_Bumper_") or obj.name.startswith("Wolfpack_Slogan_"):
+                to_remove.append(obj)
+        elif current_mode == 'SLOGAN':
+            if obj.name.startswith("Wolfpack_Banner_") or obj.name.startswith("Wolfpack_Slot_Badge_") or obj.name.startswith("Wolfpack_Bumper_") or obj.name.startswith("Stinger_"):
                 to_remove.append(obj)
                 
     for obj in to_remove:
@@ -1089,13 +1179,415 @@ def get_shuffle_objects(props):
     return objects, prize
 
 
+def create_and_animate_entry_bumper(coll, props, start_frame=1, duration=60, animate_camera=True):
+    """
+    Builds and animates the Home Show 3D Entry Bumper with dual-layer Gold/Purple bevel,
+    Radwave Display headline, Agency FB subtitle, and kinetic camera punch.
+    """
+    mat_gold, mat_purple = get_laurier_materials()
+    vfont_radwave = load_laurier_font('RADWAVE')
+    vfont_agency = load_laurier_font('AGENCYFB')
+    
+    # Clean previous bumper elements
+    for name in ["Wolfpack_Bumper_Title", "Wolfpack_Bumper_Sub", "Wolfpack_Bumper_Sponsor"]:
+        old = bpy.data.objects.get(name)
+        if old:
+            bpy.data.objects.remove(old, do_unlink=True)
+            
+    # 1. Main Title: Radwave Display (Dual-layer Gold + Deep Purple Stroke)
+    t_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Bumper_Title_Data")
+    t_data.body = props.entry_title
+    if vfont_radwave:
+        t_data.font = vfont_radwave
+    t_data.align_x = 'CENTER'
+    t_data.align_y = 'CENTER'
+    t_data.size = 0.85
+    t_data.extrude = 0.065
+    t_data.bevel_depth = 0.008
+    t_data.bevel_resolution = 4
+    
+    obj_title = bpy.data.objects.new("Wolfpack_Bumper_Title", t_data)
+    obj_title.location = (0.0, -3.2, 1.35)
+    obj_title.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+    coll.objects.link(obj_title)
+    obj_title.data.materials.append(mat_gold)
+    
+    # Backing stroke
+    s_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Bumper_Title_Stroke_Data")
+    s_data.body = props.entry_title
+    if vfont_radwave:
+        s_data.font = vfont_radwave
+    s_data.align_x = 'CENTER'
+    s_data.align_y = 'CENTER'
+    s_data.size = 0.85
+    s_data.extrude = 0.050
+    s_data.bevel_depth = 0.026
+    s_data.bevel_resolution = 4
+    
+    obj_stroke = bpy.data.objects.new("Wolfpack_Bumper_Title_Stroke", s_data)
+    obj_stroke.parent = obj_title
+    obj_stroke.location = (0.0, 0.022, -0.002)
+    coll.objects.link(obj_stroke)
+    obj_stroke.data.materials.append(mat_purple)
+    
+    # 2. Subtitle: Agency FB Bold
+    sub_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Bumper_Sub_Data")
+    sub_data.body = props.entry_subtitle
+    if vfont_agency:
+        sub_data.font = vfont_agency
+    sub_data.align_x = 'CENTER'
+    sub_data.align_y = 'CENTER'
+    sub_data.size = 0.38
+    sub_data.extrude = 0.035
+    sub_data.bevel_depth = 0.005
+    sub_data.bevel_resolution = 3
+    
+    obj_sub = bpy.data.objects.new("Wolfpack_Bumper_Sub", sub_data)
+    obj_sub.parent = obj_title
+    obj_sub.location = (0.0, -0.008, -0.58)
+    coll.objects.link(obj_sub)
+    obj_sub.data.materials.append(mat_gold)
+    
+    # 3. Sponsor Tag: Agency FB
+    sp_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Bumper_Sponsor_Data")
+    sp_data.body = props.entry_sponsor
+    if vfont_agency:
+        sp_data.font = vfont_agency
+    sp_data.align_x = 'CENTER'
+    sp_data.align_y = 'CENTER'
+    sp_data.size = 0.22
+    sp_data.extrude = 0.022
+    sp_data.bevel_depth = 0.004
+    sp_data.bevel_resolution = 3
+    
+    obj_sponsor = bpy.data.objects.new("Wolfpack_Bumper_Sponsor", sp_data)
+    obj_sponsor.parent = obj_title
+    obj_sponsor.location = (0.0, -0.008, -0.98)
+    coll.objects.link(obj_sponsor)
+    obj_sponsor.data.materials.append(mat_purple)
+    
+    # Kinetic Animation
+    dur = duration
+    f_start = start_frame
+    f_end = start_frame + dur - 1
+    f_boom = f_start + max(5, int(dur * 0.16))
+    f_settle = f_start + max(10, int(dur * 0.26))
+    f_drift = f_end - max(5, int(dur * 0.16))
+    
+    for anim_o in [obj_title, obj_sub, obj_sponsor]:
+        if anim_o.animation_data:
+            anim_o.animation_data_clear()
+            
+    # Title
+    obj_title.scale = (0.0, 0.0, 0.0)
+    obj_title.location = (0.0, -2.6, 2.3)
+    obj_title.rotation_euler = (math.radians(45.0), math.radians(-15.0), math.radians(28.0))
+    obj_title.keyframe_insert(data_path="scale", frame=f_start)
+    obj_title.keyframe_insert(data_path="location", frame=f_start)
+    obj_title.keyframe_insert(data_path="rotation_euler", frame=f_start)
+    
+    obj_title.scale = (1.25, 1.25, 1.25)
+    obj_title.location = (0.0, -3.2, 1.35)
+    obj_title.rotation_euler = (math.radians(68.0), math.radians(2.0), math.radians(-2.0))
+    obj_title.keyframe_insert(data_path="scale", frame=f_boom)
+    obj_title.keyframe_insert(data_path="location", frame=f_boom)
+    obj_title.keyframe_insert(data_path="rotation_euler", frame=f_boom)
+    
+    obj_title.scale = (1.0, 1.0, 1.0)
+    obj_title.location = (0.0, -3.2, 1.35)
+    obj_title.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+    obj_title.keyframe_insert(data_path="scale", frame=f_settle)
+    obj_title.keyframe_insert(data_path="location", frame=f_settle)
+    obj_title.keyframe_insert(data_path="rotation_euler", frame=f_settle)
+    
+    obj_title.scale = (1.06, 1.06, 1.06)
+    obj_title.location = (0.0, -3.2, 1.42)
+    obj_title.keyframe_insert(data_path="scale", frame=f_drift)
+    obj_title.keyframe_insert(data_path="location", frame=f_drift)
+    
+    obj_title.scale = (0.0, 0.0, 0.0)
+    obj_title.location = (7.5, -3.2, 1.8)
+    obj_title.rotation_euler = (math.radians(65.0), 0.0, math.radians(-35.0))
+    obj_title.keyframe_insert(data_path="scale", frame=f_end)
+    obj_title.keyframe_insert(data_path="location", frame=f_end)
+    obj_title.keyframe_insert(data_path="rotation_euler", frame=f_end)
+    
+    # Subtitle
+    obj_sub.scale = (0.0, 0.0, 0.0)
+    obj_sub.location = (0.0, -0.008, -0.85)
+    obj_sub.keyframe_insert(data_path="scale", frame=f_start)
+    obj_sub.keyframe_insert(data_path="location", frame=f_start)
+    obj_sub.keyframe_insert(data_path="scale", frame=f_start + 6)
+    obj_sub.keyframe_insert(data_path="location", frame=f_start + 6)
+    
+    obj_sub.scale = (1.18, 1.18, 1.18)
+    obj_sub.location = (0.0, -0.008, -0.54)
+    obj_sub.keyframe_insert(data_path="scale", frame=f_boom + 3)
+    obj_sub.keyframe_insert(data_path="location", frame=f_boom + 3)
+    
+    obj_sub.scale = (1.0, 1.0, 1.0)
+    obj_sub.location = (0.0, -0.008, -0.58)
+    obj_sub.keyframe_insert(data_path="scale", frame=f_settle + 2)
+    obj_sub.keyframe_insert(data_path="location", frame=f_settle + 2)
+    obj_sub.keyframe_insert(data_path="scale", frame=f_drift)
+    obj_sub.keyframe_insert(data_path="location", frame=f_drift)
+    
+    obj_sub.scale = (0.0, 0.0, 0.0)
+    obj_sub.keyframe_insert(data_path="scale", frame=f_end)
+    
+    # Sponsor
+    obj_sponsor.scale = (0.0, 0.0, 0.0)
+    obj_sponsor.keyframe_insert(data_path="scale", frame=f_start)
+    obj_sponsor.keyframe_insert(data_path="scale", frame=f_start + 11)
+    
+    obj_sponsor.scale = (1.15, 1.15, 1.15)
+    obj_sponsor.keyframe_insert(data_path="scale", frame=f_boom + 7)
+    
+    obj_sponsor.scale = (1.0, 1.0, 1.0)
+    obj_sponsor.keyframe_insert(data_path="scale", frame=f_settle + 5)
+    obj_sponsor.keyframe_insert(data_path="scale", frame=f_drift)
+    
+    obj_sponsor.scale = (0.0, 0.0, 0.0)
+    obj_sponsor.keyframe_insert(data_path="scale", frame=f_end)
+    
+    # Camera impact punch
+    if animate_camera:
+        cam_obj = bpy.data.objects.get("Shuffle_Camera")
+        if cam_obj:
+            if cam_obj.animation_data:
+                cam_obj.animation_data_clear()
+            base_cam_loc = (0.0, -8.0, 4.0)
+            cam_obj.location = base_cam_loc
+            cam_obj.keyframe_insert(data_path="location", frame=f_start)
+            cam_obj.keyframe_insert(data_path="location", frame=max(f_start, f_boom - 1))
+            
+            cam_obj.location = (0.0, -8.18, 4.06)
+            cam_obj.keyframe_insert(data_path="location", frame=f_boom)
+            
+            cam_obj.location = base_cam_loc
+            cam_obj.keyframe_insert(data_path="location", frame=f_boom + 4)
+            cam_obj.keyframe_insert(data_path="location", frame=f_end)
+            
+    return [obj_title, obj_stroke, obj_sub, obj_sponsor]
+
+
+def create_and_animate_slogan(coll, props, start_frame=1, duration=75, animate_camera=True):
+    """
+    Creates and animates a high-impact 3D stadium crowd hype catchphrase.
+    Dual-layer Gold + Deep Purple anti-glare typography with kinetic boom slam and camera kickback.
+    """
+    mat_gold, mat_purple = get_laurier_materials()
+    vfont_radwave = load_laurier_font('RADWAVE')
+    vfont_agency = load_laurier_font('AGENCYFB')
+    
+    slogan_catalog = {
+        'DEFEND_THE_NEST': ("DEFEND THE NEST", "UNIVERSITY STADIUM", "WILFRID LAURIER GOLDEN HAWKS", 'RADWAVE'),
+        'HAWK_PRIDE': ("IT'S GREAT TO BE A", "LAURIER GOLDEN HAWK", "PURPLE & GOLD PRIDE", 'AGENCYFB'),
+        'FEAR_THE_GOLD': ("FEAR THE GOLD", "HAWKS ON THE ATTACK", "STAND UP & SHOUT", 'RADWAVE'),
+        'MAKE_NOISE': ("MAKE SOME NOISE!", "GET ON YOUR FEET", "KEY 3RD DOWN DEFENSE", 'RADWAVE'),
+        'STAND_UP_SHOUT': ("STAND UP & SHOUT", "GOLDEN HAWK NATION", "KNIGHT-NEWBROUGH FIELD", 'RADWAVE'),
+        'CUSTOM': (props.custom_slogan_head, props.custom_slogan_sub, "WILFRID LAURIER ATHLETICS", props.banner_font),
+    }
+    
+    preset_key = getattr(props, "slogan_preset", 'DEFEND_THE_NEST')
+    headline, subtitle, tag, f_choice = slogan_catalog.get(
+        preset_key, slogan_catalog['DEFEND_THE_NEST']
+    )
+    
+    # Clean previous slogan elements
+    for name in ["Wolfpack_Slogan_Title", "Wolfpack_Slogan_Sub", "Wolfpack_Slogan_Tag"]:
+        old = bpy.data.objects.get(name)
+        if old:
+            bpy.data.objects.remove(old, do_unlink=True)
+            
+    vfont_head = vfont_radwave if f_choice == 'RADWAVE' else vfont_agency
+    
+    # 1. Main Title
+    t_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Slogan_Title_Data")
+    t_data.body = headline
+    if vfont_head:
+        t_data.font = vfont_head
+    t_data.align_x = 'CENTER'
+    t_data.align_y = 'CENTER'
+    t_data.size = 0.88
+    t_data.extrude = 0.065
+    t_data.bevel_depth = 0.008
+    t_data.bevel_resolution = 4
+    
+    obj_title = bpy.data.objects.new("Wolfpack_Slogan_Title", t_data)
+    obj_title.location = (0.0, -3.2, 1.35)
+    obj_title.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+    coll.objects.link(obj_title)
+    obj_title.data.materials.append(mat_gold)
+    
+    # Stroke backing
+    s_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Slogan_Title_Stroke_Data")
+    s_data.body = headline
+    if vfont_head:
+        s_data.font = vfont_head
+    s_data.align_x = 'CENTER'
+    s_data.align_y = 'CENTER'
+    s_data.size = 0.88
+    s_data.extrude = 0.050
+    s_data.bevel_depth = 0.026
+    s_data.bevel_resolution = 4
+    
+    obj_stroke = bpy.data.objects.new("Wolfpack_Slogan_Title_Stroke", s_data)
+    obj_stroke.parent = obj_title
+    obj_stroke.location = (0.0, 0.022, -0.002)
+    coll.objects.link(obj_stroke)
+    obj_stroke.data.materials.append(mat_purple)
+    
+    # 2. Subtitle
+    sub_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Slogan_Sub_Data")
+    sub_data.body = subtitle
+    if vfont_agency:
+        sub_data.font = vfont_agency
+    sub_data.align_x = 'CENTER'
+    sub_data.align_y = 'CENTER'
+    sub_data.size = 0.42
+    sub_data.extrude = 0.035
+    sub_data.bevel_depth = 0.005
+    sub_data.bevel_resolution = 3
+    
+    obj_sub = bpy.data.objects.new("Wolfpack_Slogan_Sub", sub_data)
+    obj_sub.parent = obj_title
+    obj_sub.location = (0.0, -0.008, -0.60)
+    coll.objects.link(obj_sub)
+    obj_sub.data.materials.append(mat_gold)
+    
+    # 3. Tag
+    tag_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Slogan_Tag_Data")
+    tag_data.body = tag
+    if vfont_agency:
+        tag_data.font = vfont_agency
+    tag_data.align_x = 'CENTER'
+    tag_data.align_y = 'CENTER'
+    tag_data.size = 0.22
+    tag_data.extrude = 0.022
+    tag_data.bevel_depth = 0.004
+    tag_data.bevel_resolution = 3
+    
+    obj_tag = bpy.data.objects.new("Wolfpack_Slogan_Tag", tag_data)
+    obj_tag.parent = obj_title
+    obj_tag.location = (0.0, -0.008, -1.00)
+    coll.objects.link(obj_tag)
+    obj_tag.data.materials.append(mat_purple)
+    
+    # Animation
+    dur = duration
+    f_start = start_frame
+    f_end = start_frame + dur - 1
+    f_boom = f_start + max(5, int(dur * 0.16))
+    f_settle = f_start + max(10, int(dur * 0.26))
+    f_drift = f_end - max(5, int(dur * 0.16))
+    
+    for o in [obj_title, obj_sub, obj_tag]:
+        if o.animation_data:
+            o.animation_data_clear()
+            
+    obj_title.scale = (0.0, 0.0, 0.0)
+    obj_title.location = (0.0, -2.6, 2.3)
+    obj_title.rotation_euler = (math.radians(45.0), math.radians(-15.0), math.radians(28.0))
+    obj_title.keyframe_insert(data_path="scale", frame=f_start)
+    obj_title.keyframe_insert(data_path="location", frame=f_start)
+    obj_title.keyframe_insert(data_path="rotation_euler", frame=f_start)
+    
+    obj_title.scale = (1.25, 1.25, 1.25)
+    obj_title.location = (0.0, -3.2, 1.35)
+    obj_title.rotation_euler = (math.radians(68.0), math.radians(2.0), math.radians(-2.0))
+    obj_title.keyframe_insert(data_path="scale", frame=f_boom)
+    obj_title.keyframe_insert(data_path="location", frame=f_boom)
+    obj_title.keyframe_insert(data_path="rotation_euler", frame=f_boom)
+    
+    obj_title.scale = (1.0, 1.0, 1.0)
+    obj_title.location = (0.0, -3.2, 1.35)
+    obj_title.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+    obj_title.keyframe_insert(data_path="scale", frame=f_settle)
+    obj_title.keyframe_insert(data_path="location", frame=f_settle)
+    obj_title.keyframe_insert(data_path="rotation_euler", frame=f_settle)
+    
+    obj_title.scale = (1.06, 1.06, 1.06)
+    obj_title.location = (0.0, -3.2, 1.42)
+    obj_title.keyframe_insert(data_path="scale", frame=f_drift)
+    obj_title.keyframe_insert(data_path="location", frame=f_drift)
+    
+    obj_title.scale = (0.0, 0.0, 0.0)
+    obj_title.location = (7.5, -3.2, 1.8)
+    obj_title.rotation_euler = (math.radians(65.0), 0.0, math.radians(-35.0))
+    obj_title.keyframe_insert(data_path="scale", frame=f_end)
+    obj_title.keyframe_insert(data_path="location", frame=f_end)
+    obj_title.keyframe_insert(data_path="rotation_euler", frame=f_end)
+    
+    # Subtitle
+    obj_sub.scale = (0.0, 0.0, 0.0)
+    obj_sub.location = (0.0, -0.008, -0.85)
+    obj_sub.keyframe_insert(data_path="scale", frame=f_start)
+    obj_sub.keyframe_insert(data_path="location", frame=f_start)
+    obj_sub.keyframe_insert(data_path="scale", frame=f_start + 6)
+    obj_sub.keyframe_insert(data_path="location", frame=f_start + 6)
+    
+    obj_sub.scale = (1.18, 1.18, 1.18)
+    obj_sub.location = (0.0, -0.008, -0.56)
+    obj_sub.keyframe_insert(data_path="scale", frame=f_boom + 3)
+    obj_sub.keyframe_insert(data_path="location", frame=f_boom + 3)
+    
+    obj_sub.scale = (1.0, 1.0, 1.0)
+    obj_sub.location = (0.0, -0.008, -0.60)
+    obj_sub.keyframe_insert(data_path="scale", frame=f_settle + 2)
+    obj_sub.keyframe_insert(data_path="location", frame=f_settle + 2)
+    obj_sub.keyframe_insert(data_path="scale", frame=f_drift)
+    obj_sub.keyframe_insert(data_path="location", frame=f_drift)
+    
+    obj_sub.scale = (0.0, 0.0, 0.0)
+    obj_sub.keyframe_insert(data_path="scale", frame=f_end)
+    
+    # Tag
+    obj_tag.scale = (0.0, 0.0, 0.0)
+    obj_tag.keyframe_insert(data_path="scale", frame=f_start)
+    obj_tag.keyframe_insert(data_path="scale", frame=f_start + 11)
+    
+    obj_tag.scale = (1.15, 1.15, 1.15)
+    obj_tag.keyframe_insert(data_path="scale", frame=f_boom + 7)
+    
+    obj_tag.scale = (1.0, 1.0, 1.0)
+    obj_tag.keyframe_insert(data_path="scale", frame=f_settle + 5)
+    obj_tag.keyframe_insert(data_path="scale", frame=f_drift)
+    
+    obj_tag.scale = (0.0, 0.0, 0.0)
+    obj_tag.keyframe_insert(data_path="scale", frame=f_end)
+    
+    if animate_camera:
+        cam_obj = bpy.data.objects.get("Shuffle_Camera")
+        if cam_obj:
+            if cam_obj.animation_data:
+                cam_obj.animation_data_clear()
+            base_cam_loc = (0.0, -8.0, 4.0)
+            cam_obj.location = base_cam_loc
+            cam_obj.keyframe_insert(data_path="location", frame=f_start)
+            cam_obj.keyframe_insert(data_path="location", frame=max(f_start, f_boom - 1))
+            
+            cam_obj.location = (0.0, -8.18, 4.06)
+            cam_obj.keyframe_insert(data_path="location", frame=f_boom)
+            
+            cam_obj.location = base_cam_loc
+            cam_obj.keyframe_insert(data_path="location", frame=f_boom + 4)
+            cam_obj.keyframe_insert(data_path="location", frame=f_end)
+            
+    return [obj_title, obj_stroke, obj_sub, obj_tag]
+
 def bake_shuffle_to_scene(props):
-    """Bakes collision-free keyframes into the scene."""
+    """Bakes collision-free keyframes into the scene with automatic timeline sequencing."""
     scene = bpy.context.scene
     scene.render.fps = props.fps
     
-    # Ensure no lingering bumper or stinger text blocks view
-    cleanup_conflicting_text_graphics('SHUFFLE')
+    # Timeline Sequencing: Prepend Home Show Bumper without colliding keyframes
+    t_start = getattr(props, "timeline_start_frame", 1)
+    lead_bumper = getattr(props, "bumper_lead_frames", 60) if getattr(props, "prepend_entry_bumper", True) else 0
+    s_offset = (t_start - 1) + lead_bumper
+    
+    # Ensure no lingering bumper or stinger text blocks view (keep bumper if prepended)
+    cleanup_conflicting_text_graphics('SHUFFLE', keep_bumper=getattr(props, "prepend_entry_bumper", True))
     
     # Check if we have objects or need to spawn stand-ins
     objects, fb_ctrl = get_shuffle_objects(props)
@@ -1106,6 +1598,12 @@ def bake_shuffle_to_scene(props):
     valid_objects = [obj for obj in objects if obj is not None]
     if len(valid_objects) < 2:
         raise ValueError("Please select or name at least 2 objects (Helmet 1, 2, 3) to shuffle!")
+        
+    coll = bpy.data.collections.get("Wolfpack_Shuffle") or scene.collection
+    
+    # Prepend Home Show Entry Bumper if enabled (Mutually Exclusive Time Block [t_start, s_offset])
+    if getattr(props, "prepend_entry_bumper", True) and lead_bumper > 0:
+        create_and_animate_entry_bumper(coll, props, start_frame=t_start, duration=lead_bumper, animate_camera=True)
     
     plan = ShufflePlan(
         num_items=3,
@@ -1128,6 +1626,10 @@ def bake_shuffle_to_scene(props):
         desired_slot = 2
 
     target_idx = props.reveal_target - 1 if not props.randomize_target else None
+    
+    # Swapping routine begins at s_offset + intro_offset + 10
+    start_swapping_frame = s_offset + intro_offset + 10
+    
     plan.generate_routine(
         num_swaps=props.num_swaps,
         swap_duration_frames=props.swap_duration,
@@ -1135,7 +1637,7 @@ def bake_shuffle_to_scene(props):
         target_item=target_idx,
         desired_outcome_slot=desired_slot,
         style=props.movement_style,
-        start_frame=intro_offset + 10,
+        start_frame=start_swapping_frame,
         suspense_duration=props.suspense_duration
     )
     
@@ -1147,8 +1649,28 @@ def bake_shuffle_to_scene(props):
     winning_item_id = plan.reveal_item_id
     winner_obj = objects[winning_item_id]
 
+    # Pre-roll rest keyframes during bumper lead-in (t_start to s_offset)
+    # This guarantees helmets remain resting at base slot coordinates while the bumper plays
+    init_evals = plan.evaluate_at_frame(s_offset + 1)
+    if s_offset > 0:
+        for item_id, obj in enumerate(objects):
+            if not obj:
+                continue
+            base_p, _ = init_evals[item_id]
+            obj.location = base_p.as_tuple()
+            obj.rotation_euler = (0.0, 0.0, 0.0)
+            obj.keyframe_insert(data_path="location", frame=t_start)
+            obj.keyframe_insert(data_path="rotation_euler", frame=t_start)
+            obj.keyframe_insert(data_path="location", frame=s_offset)
+            obj.keyframe_insert(data_path="rotation_euler", frame=s_offset)
+        if fb_ctrl:
+            winner_pos, _ = init_evals[winning_item_id]
+            fb_ctrl.location = (winner_pos.x, winner_pos.y, props.prize_z_offset)
+            fb_ctrl.keyframe_insert(data_path="location", frame=t_start)
+            fb_ctrl.keyframe_insert(data_path="location", frame=s_offset)
+
     # 1. Animate Helmets / Upper Items across the shuffle routine
-    for frame in range(intro_offset + 1, plan.total_frames + 1):
+    for frame in range(s_offset + intro_offset + 1, plan.total_frames + 1):
         evals = plan.evaluate_at_frame(frame)
         for item_id, obj in enumerate(objects):
             if not obj:
@@ -1161,33 +1683,29 @@ def bake_shuffle_to_scene(props):
 
     # 2. Animate Storyboard Intro Phase (Showcasing where the ball is hidden FIRST)
     if props.show_intro_reveal and winner_obj:
-        init_evals = plan.evaluate_at_frame(intro_offset + 1)
         for item_id, obj in enumerate(objects):
             if not obj:
                 continue
             base_p, _ = init_evals[item_id]
             if item_id == winning_item_id:
-                # Frame 1 to 10: rest
-                # Frame 10 to intro_offset - 10: lifted up displaying football
-                # Frame intro_offset - 10 to intro_offset: drops back down over ball
                 lift_h = props.reveal_height * 0.95
                 tilt_rad = math.radians(props.reveal_tilt * 0.8)
                 
-                # Frame 1: on ground
+                # Frame s_offset + 1: on ground
                 obj.location = base_p.as_tuple()
                 obj.rotation_euler = (0.0, 0.0, 0.0)
-                obj.keyframe_insert(data_path="location", frame=1)
-                obj.keyframe_insert(data_path="rotation_euler", frame=1)
+                obj.keyframe_insert(data_path="location", frame=s_offset + 1)
+                obj.keyframe_insert(data_path="rotation_euler", frame=s_offset + 1)
                 
-                # Frame 12: lifted
-                f_lift = max(2, int(intro_offset * 0.25))
+                # Frame lift:
+                f_lift = s_offset + max(2, int(intro_offset * 0.25))
                 obj.location = (base_p.x, base_p.y, base_p.z + lift_h)
                 obj.rotation_euler = (tilt_rad, 0.0, 0.0)
                 obj.keyframe_insert(data_path="location", frame=f_lift)
                 obj.keyframe_insert(data_path="rotation_euler", frame=f_lift)
                 
                 # Frame hold:
-                f_hold = int(intro_offset * 0.70)
+                f_hold = s_offset + int(intro_offset * 0.70)
                 obj.location = (base_p.x, base_p.y, base_p.z + lift_h)
                 obj.rotation_euler = (tilt_rad, 0.0, 0.0)
                 obj.keyframe_insert(data_path="location", frame=f_hold)
@@ -1196,41 +1714,34 @@ def bake_shuffle_to_scene(props):
                 # Frame drop down:
                 obj.location = base_p.as_tuple()
                 obj.rotation_euler = (0.0, 0.0, 0.0)
-                obj.keyframe_insert(data_path="location", frame=intro_offset)
-                obj.keyframe_insert(data_path="rotation_euler", frame=intro_offset)
+                obj.keyframe_insert(data_path="location", frame=s_offset + intro_offset)
+                obj.keyframe_insert(data_path="rotation_euler", frame=s_offset + intro_offset)
             else:
                 # Other helmets stay resting on ground
                 obj.location = base_p.as_tuple()
                 obj.rotation_euler = (0.0, 0.0, 0.0)
-                obj.keyframe_insert(data_path="location", frame=1)
-                obj.keyframe_insert(data_path="rotation_euler", frame=1)
-                obj.keyframe_insert(data_path="location", frame=intro_offset)
-                obj.keyframe_insert(data_path="rotation_euler", frame=intro_offset)
+                obj.keyframe_insert(data_path="location", frame=s_offset + 1)
+                obj.keyframe_insert(data_path="rotation_euler", frame=s_offset + 1)
+                obj.keyframe_insert(data_path="location", frame=s_offset + intro_offset)
+                obj.keyframe_insert(data_path="rotation_euler", frame=s_offset + intro_offset)
     elif not props.show_intro_reveal:
-        # Pre-roll rest keyframes
-        init_evals = plan.evaluate_at_frame(intro_offset + 1)
         for item_id, obj in enumerate(objects):
             if obj:
                 base_p, _ = init_evals[item_id]
                 obj.location = base_p.as_tuple()
                 obj.rotation_euler = (0.0, 0.0, 0.0)
-                obj.keyframe_insert(data_path="location", frame=1)
-                obj.keyframe_insert(data_path="rotation_euler", frame=1)
+                obj.keyframe_insert(data_path="location", frame=s_offset + 1)
+                obj.keyframe_insert(data_path="rotation_euler", frame=s_offset + 1)
 
     # 3. Animate Football / Prize following the winner helmet
     if fb_ctrl:
-        for frame in range(1, plan.total_frames + 1):
+        for frame in range(s_offset + 1, plan.total_frames + 1):
             evals = plan.evaluate_at_frame(frame)
             winner_pos, _ = evals[winning_item_id]
             fb_ctrl.location = (winner_pos.x, winner_pos.y, props.prize_z_offset)
             fb_ctrl.keyframe_insert(data_path="location", frame=frame)
 
     # 4. Animate Suspense Pause & Final Reveal (Lifting winning helmet & tilt)
-    # Storyboard structure:
-    #   Shuffle ends at: plan.shuffle_end_frame
-    #   Suspense pause:  plan.shuffle_end_frame -> plan.shuffle_end_frame + props.suspense_duration
-    #   Reveal banner:   pops in at plan.shuffle_end_frame + 12 (Asking "WHERE IS IT?")
-    #   Helmet reveal:   begins lifting at plan.total_frames - 35
     suspense_start = plan.shuffle_end_frame
     reveal_question_frame = suspense_start + 12
     reveal_lift_start = plan.total_frames - 35
@@ -1263,7 +1774,6 @@ def bake_shuffle_to_scene(props):
 
     # 5. Animated 3D Jumbotron Storyboard Text Banners (5-Beat Cognitive Hierarchy)
     if props.create_text_banner:
-        coll = bpy.data.collections.get("Wolfpack_Shuffle") or bpy.context.scene.collection
         winning_slot_idx = plan.item_slot[winning_item_id]
         winning_slot_number = winning_slot_idx + 1
         
@@ -1272,39 +1782,41 @@ def bake_shuffle_to_scene(props):
         banner_win = setup_phase_text_banner(coll, "Wolfpack_Banner_Winner", f"SLOT {winning_slot_number} WINS!", font_type=props.banner_font)
         
         # --- BEAT 2: INTRO BANNER ("WATCH CLOSELY!") ---
-        # Starts at scale 0 on frame 1, drops in with kinetic overshoot at frame 8,
-        # holds, then wipes out smoothly before the swapping frenzy begins!
         if banner_intro.animation_data:
             banner_intro.animation_data_clear()
             
-        intro_end = max(12, intro_offset - 4)
+        intro_end = s_offset + max(12, intro_offset - 4)
         
-        # Frame 1: Hidden in upper sky
+        # Hidden before s_offset
         banner_intro.scale = (0.0, 0.0, 0.0)
         banner_intro.location = (0.0, -2.6, 2.2)
         banner_intro.rotation_euler = (math.radians(45.0), math.radians(-10.0), math.radians(20.0))
-        banner_intro.keyframe_insert(data_path="scale", frame=1)
-        banner_intro.keyframe_insert(data_path="location", frame=1)
-        banner_intro.keyframe_insert(data_path="rotation_euler", frame=1)
+        banner_intro.keyframe_insert(data_path="scale", frame=t_start)
+        banner_intro.keyframe_insert(data_path="location", frame=t_start)
+        banner_intro.keyframe_insert(data_path="rotation_euler", frame=t_start)
+        if s_offset > t_start:
+            banner_intro.keyframe_insert(data_path="scale", frame=s_offset)
+            banner_intro.keyframe_insert(data_path="location", frame=s_offset)
+            banner_intro.keyframe_insert(data_path="rotation_euler", frame=s_offset)
         
-        # Frame 8: Kinetic Drop Slam Overshoot (1.20x)
+        # Frame s_offset + 8: Kinetic Drop Slam Overshoot (1.20x)
         banner_intro.scale = (1.20, 1.20, 1.20)
         banner_intro.location = (0.0, -3.2, 1.35)
         banner_intro.rotation_euler = (math.radians(68.0), math.radians(2.0), math.radians(-2.0))
-        banner_intro.keyframe_insert(data_path="scale", frame=8)
-        banner_intro.keyframe_insert(data_path="location", frame=8)
-        banner_intro.keyframe_insert(data_path="rotation_euler", frame=8)
+        banner_intro.keyframe_insert(data_path="scale", frame=s_offset + 8)
+        banner_intro.keyframe_insert(data_path="location", frame=s_offset + 8)
+        banner_intro.keyframe_insert(data_path="rotation_euler", frame=s_offset + 8)
         
-        # Frame 14: Settle to rest
+        # Frame s_offset + 14: Settle to rest
         banner_intro.scale = (1.0, 1.0, 1.0)
         banner_intro.location = (0.0, -3.2, 1.35)
         banner_intro.rotation_euler = (math.radians(65.0), 0.0, 0.0)
-        banner_intro.keyframe_insert(data_path="scale", frame=14)
-        banner_intro.keyframe_insert(data_path="location", frame=14)
-        banner_intro.keyframe_insert(data_path="rotation_euler", frame=14)
+        banner_intro.keyframe_insert(data_path="scale", frame=s_offset + 14)
+        banner_intro.keyframe_insert(data_path="location", frame=s_offset + 14)
+        banner_intro.keyframe_insert(data_path="rotation_euler", frame=s_offset + 14)
         
         # Hold
-        if intro_end > 18:
+        if intro_end > s_offset + 18:
             banner_intro.scale = (1.02, 1.02, 1.02)
             banner_intro.location = (0.0, -3.2, 1.38)
             banner_intro.keyframe_insert(data_path="scale", frame=intro_end - 4)
@@ -1321,25 +1833,24 @@ def bake_shuffle_to_scene(props):
         banner_intro.keyframe_insert(data_path="scale", frame=plan.total_frames)
 
         # --- BEAT 4: SUSPENSE BANNER ("WHERE IS IT?") ---
-        # Stays hidden through swapping frenzy. Slams in dynamically during suspense freeze!
         if banner_rev.animation_data:
             banner_rev.animation_data_clear()
             
         rev_start = reveal_question_frame
         rev_end = max(rev_start + 15, reveal_lift_start - 2)
         
-        # Hidden from 1 through rev_start - 6
+        # Hidden
         banner_rev.scale = (0.0, 0.0, 0.0)
         banner_rev.location = (0.0, -2.6, 2.2)
         banner_rev.rotation_euler = (math.radians(45.0), 0.0, math.radians(15.0))
-        banner_rev.keyframe_insert(data_path="scale", frame=1)
-        banner_rev.keyframe_insert(data_path="location", frame=1)
-        banner_rev.keyframe_insert(data_path="rotation_euler", frame=1)
-        banner_rev.keyframe_insert(data_path="scale", frame=max(1, rev_start - 6))
-        banner_rev.keyframe_insert(data_path="location", frame=max(1, rev_start - 6))
-        banner_rev.keyframe_insert(data_path="rotation_euler", frame=max(1, rev_start - 6))
+        banner_rev.keyframe_insert(data_path="scale", frame=t_start)
+        banner_rev.keyframe_insert(data_path="location", frame=t_start)
+        banner_rev.keyframe_insert(data_path="rotation_euler", frame=t_start)
+        banner_rev.keyframe_insert(data_path="scale", frame=max(t_start, rev_start - 6))
+        banner_rev.keyframe_insert(data_path="location", frame=max(t_start, rev_start - 6))
+        banner_rev.keyframe_insert(data_path="rotation_euler", frame=max(t_start, rev_start - 6))
         
-        # Frame rev_start: The Question Slam (1.25x Overshoot)
+        # Frame rev_start: Slam
         banner_rev.scale = (1.25, 1.25, 1.25)
         banner_rev.location = (0.0, -3.2, 1.35)
         banner_rev.rotation_euler = (math.radians(68.0), math.radians(1.0), math.radians(-1.0))
@@ -1361,7 +1872,7 @@ def bake_shuffle_to_scene(props):
         banner_rev.keyframe_insert(data_path="scale", frame=rev_end - 4)
         banner_rev.keyframe_insert(data_path="location", frame=rev_end - 4)
         
-        # Wipe exit to make way for winner
+        # Wipe exit
         banner_rev.scale = (0.0, 0.0, 0.0)
         banner_rev.location = (-6.0, -3.2, 1.6)
         banner_rev.rotation_euler = (math.radians(65.0), 0.0, math.radians(30.0))
@@ -1377,18 +1888,18 @@ def bake_shuffle_to_scene(props):
             
         win_start = reveal_lift_start
         
-        # Hidden from 1 to win_start - 4
+        # Hidden
         banner_win.scale = (0.0, 0.0, 0.0)
         banner_win.location = (0.0, -2.6, 2.3)
         banner_win.rotation_euler = (math.radians(50.0), math.radians(-10.0), math.radians(20.0))
-        banner_win.keyframe_insert(data_path="scale", frame=1)
-        banner_win.keyframe_insert(data_path="location", frame=1)
-        banner_win.keyframe_insert(data_path="rotation_euler", frame=1)
-        banner_win.keyframe_insert(data_path="scale", frame=max(1, win_start - 4))
-        banner_win.keyframe_insert(data_path="location", frame=max(1, win_start - 4))
-        banner_win.keyframe_insert(data_path="rotation_euler", frame=max(1, win_start - 4))
+        banner_win.keyframe_insert(data_path="scale", frame=t_start)
+        banner_win.keyframe_insert(data_path="location", frame=t_start)
+        banner_win.keyframe_insert(data_path="rotation_euler", frame=t_start)
+        banner_win.keyframe_insert(data_path="scale", frame=max(t_start, win_start - 4))
+        banner_win.keyframe_insert(data_path="location", frame=max(t_start, win_start - 4))
+        banner_win.keyframe_insert(data_path="rotation_euler", frame=max(t_start, win_start - 4))
         
-        # Massive gold boom slam impact (1.28x Overshoot)
+        # Slam
         banner_win.scale = (1.28, 1.28, 1.28)
         banner_win.location = (0.0, -3.2, 1.35)
         banner_win.rotation_euler = (math.radians(68.0), 0.0, 0.0)
@@ -1404,7 +1915,7 @@ def bake_shuffle_to_scene(props):
         banner_win.keyframe_insert(data_path="location", frame=win_start + 13)
         banner_win.keyframe_insert(data_path="rotation_euler", frame=win_start + 13)
         
-        # Hold to end with slow heroic drift
+        # Hold
         banner_win.scale = (1.05, 1.05, 1.05)
         banner_win.location = (0.0, -3.2, 1.40)
         banner_win.keyframe_insert(data_path="scale", frame=plan.total_frames)
@@ -1416,10 +1927,10 @@ def bake_shuffle_to_scene(props):
             if banner_shuf.animation_data:
                 banner_shuf.animation_data_clear()
             banner_shuf.scale = (0.0, 0.0, 0.0)
-            banner_shuf.keyframe_insert(data_path="scale", frame=1)
-            banner_shuf.keyframe_insert(data_path="scale", frame=intro_offset + 4)
+            banner_shuf.keyframe_insert(data_path="scale", frame=t_start)
+            banner_shuf.keyframe_insert(data_path="scale", frame=s_offset + intro_offset + 4)
             banner_shuf.scale = (1.0, 1.0, 1.0)
-            banner_shuf.keyframe_insert(data_path="scale", frame=intro_offset + 8)
+            banner_shuf.keyframe_insert(data_path="scale", frame=s_offset + intro_offset + 8)
             banner_shuf.keyframe_insert(data_path="scale", frame=suspense_start)
             banner_shuf.scale = (0.0, 0.0, 0.0)
             banner_shuf.keyframe_insert(data_path="scale", frame=suspense_start + 4)
@@ -1436,7 +1947,6 @@ def bake_shuffle_to_scene(props):
 
     # 6. Interactive Slot HUD Badges ([ 1 ], [ 2 ], [ 3 ]) — Staggered Domino Wave
     if props.show_slot_hud_numbers:
-        coll = bpy.data.collections.get("Wolfpack_Shuffle") or bpy.context.scene.collection
         vfont_agency = load_laurier_font('AGENCYFB')
         mat_gold, mat_purple = get_laurier_materials()
         winning_slot_idx = plan.item_slot[winning_item_id]
@@ -1476,25 +1986,21 @@ def bake_shuffle_to_scene(props):
             if b_obj.animation_data:
                 b_obj.animation_data_clear()
                 
-            # Staggered Domino Wave: Badge 1 at rev_start+5, Badge 2 at rev_start+10, Badge 3 at rev_start+15
             badge_stagger = s_idx * 5
             b_pop_start = rev_start + 5 + badge_stagger
             
-            # Hidden until its individual stagger time
             b_obj.scale = (0.0, 0.0, 0.0)
             b_obj.location = (target_badge_loc[0], target_badge_loc[1], 0.50)
-            b_obj.keyframe_insert(data_path="scale", frame=1)
-            b_obj.keyframe_insert(data_path="location", frame=1)
-            b_obj.keyframe_insert(data_path="scale", frame=max(1, b_pop_start - 2))
-            b_obj.keyframe_insert(data_path="location", frame=max(1, b_pop_start - 2))
+            b_obj.keyframe_insert(data_path="scale", frame=t_start)
+            b_obj.keyframe_insert(data_path="location", frame=t_start)
+            b_obj.keyframe_insert(data_path="scale", frame=max(t_start, b_pop_start - 2))
+            b_obj.keyframe_insert(data_path="location", frame=max(t_start, b_pop_start - 2))
             
-            # Snappy bounce overshoot
             b_obj.scale = (1.25, 1.25, 1.25)
             b_obj.location = (target_badge_loc[0], target_badge_loc[1], 1.02)
             b_obj.keyframe_insert(data_path="scale", frame=b_pop_start + 3)
             b_obj.keyframe_insert(data_path="location", frame=b_pop_start + 3)
             
-            # Settle to rest
             b_obj.scale = (1.0, 1.0, 1.0)
             b_obj.location = target_badge_loc
             b_obj.keyframe_insert(data_path="scale", frame=b_pop_start + 6)
@@ -1503,7 +2009,6 @@ def bake_shuffle_to_scene(props):
             b_obj.keyframe_insert(data_path="location", frame=reveal_lift_start - 2)
             
             if s_idx == winning_slot_idx:
-                # Winner badge pulses up to 1.45x and hovers
                 b_obj.scale = (1.45, 1.45, 1.45)
                 b_obj.location = (target_badge_loc[0], target_badge_loc[1], 1.08)
                 b_obj.keyframe_insert(data_path="scale", frame=reveal_lift_start + 6)
@@ -1511,7 +2016,6 @@ def bake_shuffle_to_scene(props):
                 b_obj.keyframe_insert(data_path="scale", frame=plan.total_frames)
                 b_obj.keyframe_insert(data_path="location", frame=plan.total_frames)
             else:
-                # Losing badges pop out smoothly
                 b_obj.scale = (0.0, 0.0, 0.0)
                 b_obj.location = (target_badge_loc[0], target_badge_loc[1], 0.50)
                 b_obj.keyframe_insert(data_path="scale", frame=reveal_lift_start + 3)
@@ -1532,15 +2036,10 @@ def bake_shuffle_to_scene(props):
     except Exception as e:
         print("[Wolfpack Glory] Cue sheet auto-export note:", e)
 
-    scene.frame_start = 1
+    scene.frame_start = t_start
     scene.frame_end = plan.total_frames
-    scene.frame_set(1)
+    scene.frame_set(t_start)
     return winning_item_id + 1, plan.total_frames
-
-
-# ============================================================================
-# BLENDER UI PROPERTIES, OPERATOR & PANEL
-# ============================================================================
 
 class WolfpackShuffleProperties(bpy.types.PropertyGroup):
     # Direct Custom Object Linking (Pick ANY object in scene)
@@ -1807,16 +2306,109 @@ class WolfpackShuffleProperties(bpy.types.PropertyGroup):
     )
 
 
+    # Timeline Sequencing (Prepend Home Show Bumper with Zero Keyframe Collisions)
+    prepend_entry_bumper: bpy.props.BoolProperty(
+        name="Prepend Home Show Bumper",
+        description="Automatically sequences the 3D entry bumper before the helmet shuffle so they play continuously with zero colliding keyframes",
+        default=True
+    )
+    bumper_lead_frames: bpy.props.IntProperty(
+        name="Bumper Lead Duration (Frames)",
+        description="Frames reserved for the Home Show Entry Bumper before helmets begin",
+        default=60,
+        min=20,
+        max=180
+    )
+    timeline_start_frame: bpy.props.IntProperty(
+        name="Timeline Start Frame",
+        description="Starting frame number on the scene timeline",
+        default=1,
+        min=1
+    )
+    
+    # Artistic Lighting & Atmospheric Mood
+    lighting_mood: bpy.props.EnumProperty(
+        name="Artistic Lighting Mood",
+        description="Atmospheric lighting and color grading mood preset",
+        items=[
+            ('NIGHT_GAME_FLOODLIGHT', "Varsity Night Game (5800K Halogen)", "Cool halogen floodlights, Laurier purple/gold rim kickers, midnight sky"),
+            ('GOLDEN_HOUR', "Golden Hour Sunset (Warm Sunburst)", "3200K low-angle sunburst, amber cloud haze, golden rim flares"),
+            ('CYBER_STADIUM_NEON', "Cyber Stadium Neon (Hype Purple)", "High-contrast electric violet/magenta wash, laser gold rims, hype album aesthetic"),
+            ('CHAMPIONSHIP_GOLD', "Championship Gold Showcase", "24K gold spotlights, specular glints, luxury dark cyc contrast"),
+        ],
+        default='NIGHT_GAME_FLOODLIGHT'
+    )
+    enable_volumetric_haze: bpy.props.BoolProperty(
+        name="Volumetric Light Shafts",
+        description="Real 3D atmospheric scattering volume creating visible light beams from stadium floodlights",
+        default=True
+    )
+    haze_density: bpy.props.FloatProperty(
+        name="Haze Density",
+        description="Atmospheric fog/haze density for light beam visibility",
+        default=0.005,
+        min=0.0005,
+        max=0.05,
+        step=0.1
+    )
+    
+    # Modular Slogans & Crowd Hype Suite
+    slogan_preset: bpy.props.EnumProperty(
+        name="Stadium Catchphrase",
+        description="Select iconic Golden Hawks stadium slogan to animate",
+        items=[
+            ('DEFEND_THE_NEST', "DEFEND THE NEST / University Stadium", "Defensive stand hype banner"),
+            ('HAWK_PRIDE', "IT'S GREAT TO BE A / LAURIER GOLDEN HAWK", "Iconic university anthem banner"),
+            ('FEAR_THE_GOLD', "FEAR THE GOLD / Hawks on the Attack", "Offensive momentum booster"),
+            ('MAKE_NOISE', "MAKE SOME NOISE! / Get on Your Feet", "Key 3rd down stadium noise maker"),
+            ('STAND_UP_SHOUT', "STAND UP & SHOUT / Golden Hawk Nation", "Full-stadium crowd rally stinger"),
+            ('CUSTOM', "Custom Slogan", "User-defined custom text headlines"),
+        ],
+        default='DEFEND_THE_NEST'
+    )
+    custom_slogan_head: bpy.props.StringProperty(
+        name="Custom Headline",
+        default="DEFEND THE NEST"
+    )
+    custom_slogan_sub: bpy.props.StringProperty(
+        name="Custom Subtitle",
+        default="UNIVERSITY STADIUM"
+    )
+    slogan_duration: bpy.props.IntProperty(
+        name="Slogan Duration (Frames)",
+        description="Duration of the slogan animation in frames",
+        default=75,
+        min=30,
+        max=240
+    )
+    
+    # 1-Click Broadcast Render Pipeline
+    render_export_preset: bpy.props.EnumProperty(
+        name="Broadcast Export Format",
+        description="Broadcast-ready videoboard video output format",
+        items=[
+            ('PRORES_422', "Apple ProRes 422 (.mov)", "Broadcast gold standard for stadium video switchers (Ross / Daktronics)"),
+            ('H264_LOSSLESS', "H.264 Lossless MP4 (.mp4)", "High Profile MP4 for instant stadium playback & web previews"),
+            ('PRORES_4444', "Apple ProRes 4444 RGBA (.mov)", "ProRes with Alpha/Transparency channel for live overlay"),
+        ],
+        default='PRORES_422'
+    )
+
+
 class WOLFPACK_OT_setup_atmosphere(bpy.types.Operator):
-    """Build procedural atmospheric sky dome, storm clouds, backlights, and modern Blender 5.2 compositor lens graph"""
+    """Build procedural atmospheric sky dome, volumetric light shafts, floodlights, and compositor lens rig"""
     bl_idname = "wolfpack.setup_atmosphere"
-    bl_label = "Build Cinematic Sky, Clouds & Lens Rig"
-    bl_description = "Creates dramatic twilight sky dome, clouds, rim lights, and sets up real-time compositor bloom & anamorphic dispersion"
+    bl_label = "Build Cinematic Sky, Volumetrics & Lens Rig"
+    bl_description = "Configures dramatic atmospheric sky dome, true 3D volumetric light shafts, and compositor bloom"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        setup_cinematic_atmosphere()
-        self.report({'INFO'}, "Cinematic atmosphere, clouds & compositor lens rig configured!")
+        props = context.scene.wolfpack_shuffle
+        mood = getattr(props, "lighting_mood", 'NIGHT_GAME_FLOODLIGHT')
+        vols = getattr(props, "enable_volumetric_haze", True)
+        dens = getattr(props, "haze_density", 0.005)
+        setup_cinematic_atmosphere(coll=None, mood=mood, enable_volumetrics=vols, haze_density=dens)
+        self.report({'INFO'}, f"Cinematic atmosphere ({mood}) & volumetric light shafts configured!")
         return {'FINISHED'}
 
 
@@ -2159,199 +2751,121 @@ class WOLFPACK_OT_generate_entry_bumper(bpy.types.Operator):
     def execute(self, context):
         props = context.scene.wolfpack_shuffle
         coll = bpy.data.collections.get("Wolfpack_Shuffle") or context.scene.collection
-        mat_gold, mat_purple = get_laurier_materials()
-        vfont_radwave = load_laurier_font('RADWAVE')
-        vfont_agency = load_laurier_font('AGENCYFB')
         
-        # Clean conflicting text from other modes (Shuffle/Stinger)
         cleanup_conflicting_text_graphics('BUMPER')
         
-        # Clean previous bumper elements
-        for name in ["Wolfpack_Bumper_Title", "Wolfpack_Bumper_Sub", "Wolfpack_Bumper_Sponsor"]:
-            old = bpy.data.objects.get(name)
-            if old:
-                bpy.data.objects.remove(old, do_unlink=True)
-                
-        # 1. Main Title: Radwave Display (Dual-layer Gold + Deep Purple Stroke)
-        t_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Bumper_Title_Data")
-        t_data.body = props.entry_title
-        if vfont_radwave:
-            t_data.font = vfont_radwave
-        t_data.align_x = 'CENTER'
-        t_data.align_y = 'CENTER'
-        t_data.size = 0.85
-        t_data.extrude = 0.065
-        t_data.bevel_depth = 0.008
-        t_data.bevel_resolution = 4
-        
-        # Elevated Z height (1.35m) so it majestically floats above helmets and never clips into turf
-        obj_title = bpy.data.objects.new("Wolfpack_Bumper_Title", t_data)
-        obj_title.location = (0.0, -3.2, 1.35)
-        obj_title.rotation_euler = (math.radians(65.0), 0.0, 0.0)
-        coll.objects.link(obj_title)
-        obj_title.data.materials.append(mat_gold)
-        
-        # Backing stroke (anti-glare deep purple bevel - offset cleanly to prevent z-fighting)
-        s_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Bumper_Title_Stroke_Data")
-        s_data.body = props.entry_title
-        if vfont_radwave:
-            s_data.font = vfont_radwave
-        s_data.align_x = 'CENTER'
-        s_data.align_y = 'CENTER'
-        s_data.size = 0.85
-        s_data.extrude = 0.050
-        s_data.bevel_depth = 0.026
-        s_data.bevel_resolution = 4
-        
-        obj_stroke = bpy.data.objects.new("Wolfpack_Bumper_Title_Stroke", s_data)
-        obj_stroke.parent = obj_title
-        obj_stroke.location = (0.0, 0.022, -0.002)
-        coll.objects.link(obj_stroke)
-        obj_stroke.data.materials.append(mat_purple)
-        
-        # 2. Subtitle: Agency FB Bold
-        sub_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Bumper_Sub_Data")
-        sub_data.body = props.entry_subtitle
-        if vfont_agency:
-            sub_data.font = vfont_agency
-        sub_data.align_x = 'CENTER'
-        sub_data.align_y = 'CENTER'
-        sub_data.size = 0.38
-        sub_data.extrude = 0.035
-        sub_data.bevel_depth = 0.005
-        sub_data.bevel_resolution = 3
-        
-        obj_sub = bpy.data.objects.new("Wolfpack_Bumper_Sub", sub_data)
-        obj_sub.parent = obj_title
-        obj_sub.location = (0.0, -0.008, -0.58)
-        coll.objects.link(obj_sub)
-        obj_sub.data.materials.append(mat_gold)
-        
-        # 3. Sponsor Tag: Agency FB
-        sp_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Bumper_Sponsor_Data")
-        sp_data.body = props.entry_sponsor
-        if vfont_agency:
-            sp_data.font = vfont_agency
-        sp_data.align_x = 'CENTER'
-        sp_data.align_y = 'CENTER'
-        sp_data.size = 0.22
-        sp_data.extrude = 0.022
-        sp_data.bevel_depth = 0.004
-        sp_data.bevel_resolution = 3
-        
-        obj_sponsor = bpy.data.objects.new("Wolfpack_Bumper_Sponsor", sp_data)
-        obj_sponsor.parent = obj_title
-        obj_sponsor.location = (0.0, -0.008, -0.98)
-        coll.objects.link(obj_sponsor)
-        obj_sponsor.data.materials.append(mat_purple)
-        
-        # Kinetic Staggered Spin & Boom Keyframing
+        t_start = getattr(props, "timeline_start_frame", 1)
         dur = props.entry_duration
-        for anim_o in [obj_title, obj_sub, obj_sponsor]:
-            if anim_o.animation_data:
-                anim_o.animation_data_clear()
-            
-        # --- TITLE: 3D SPIN & BOOM SLAM ---
-        # Frame 1: Angled spin in air
-        obj_title.scale = (0.0, 0.0, 0.0)
-        obj_title.location = (0.0, -2.6, 2.3)
-        obj_title.rotation_euler = (math.radians(45.0), math.radians(-15.0), math.radians(28.0))
-        obj_title.keyframe_insert(data_path="scale", frame=1)
-        obj_title.keyframe_insert(data_path="location", frame=1)
-        obj_title.keyframe_insert(data_path="rotation_euler", frame=1)
+        create_and_animate_entry_bumper(coll, props, start_frame=t_start, duration=dur, animate_camera=True)
         
-        # Frame 10: THE BOOM SLAM (Kinetic Overshoot)
-        obj_title.scale = (1.25, 1.25, 1.25)
-        obj_title.location = (0.0, -3.2, 1.35)
-        obj_title.rotation_euler = (math.radians(68.0), math.radians(2.0), math.radians(-2.0))
-        obj_title.keyframe_insert(data_path="scale", frame=10)
-        obj_title.keyframe_insert(data_path="location", frame=10)
-        obj_title.keyframe_insert(data_path="rotation_euler", frame=10)
+        context.scene.frame_start = t_start
+        context.scene.frame_end = t_start + dur
+        context.scene.frame_set(t_start)
         
-        # Frame 16: Rest Settle
-        obj_title.scale = (1.0, 1.0, 1.0)
-        obj_title.location = (0.0, -3.2, 1.35)
-        obj_title.rotation_euler = (math.radians(65.0), 0.0, 0.0)
-        obj_title.keyframe_insert(data_path="scale", frame=16)
-        obj_title.keyframe_insert(data_path="location", frame=16)
-        obj_title.keyframe_insert(data_path="rotation_euler", frame=16)
-        
-        # Frame dur - 10: Heroic drift
-        obj_title.scale = (1.06, 1.06, 1.06)
-        obj_title.location = (0.0, -3.2, 1.42)
-        obj_title.keyframe_insert(data_path="scale", frame=dur - 10)
-        obj_title.keyframe_insert(data_path="location", frame=dur - 10)
-        
-        # Frame dur: High-speed snap sweep exit
-        obj_title.scale = (0.0, 0.0, 0.0)
-        obj_title.location = (7.5, -3.2, 1.8)
-        obj_title.rotation_euler = (math.radians(65.0), 0.0, math.radians(-35.0))
-        obj_title.keyframe_insert(data_path="scale", frame=dur)
-        obj_title.keyframe_insert(data_path="location", frame=dur)
-        obj_title.keyframe_insert(data_path="rotation_euler", frame=dur)
-        
-        # --- SUBTITLE: STAGGERED SECONDARY WHIP ---
-        obj_sub.scale = (0.0, 0.0, 0.0)
-        obj_sub.location = (0.0, -0.008, -0.85)
-        obj_sub.keyframe_insert(data_path="scale", frame=1)
-        obj_sub.keyframe_insert(data_path="location", frame=1)
-        obj_sub.keyframe_insert(data_path="scale", frame=7)
-        obj_sub.keyframe_insert(data_path="location", frame=7)
-        
-        obj_sub.scale = (1.18, 1.18, 1.18)
-        obj_sub.location = (0.0, -0.008, -0.54)
-        obj_sub.keyframe_insert(data_path="scale", frame=13)
-        obj_sub.keyframe_insert(data_path="location", frame=13)
-        
-        obj_sub.scale = (1.0, 1.0, 1.0)
-        obj_sub.location = (0.0, -0.008, -0.58)
-        obj_sub.keyframe_insert(data_path="scale", frame=18)
-        obj_sub.keyframe_insert(data_path="location", frame=18)
-        obj_sub.keyframe_insert(data_path="scale", frame=dur - 10)
-        obj_sub.keyframe_insert(data_path="location", frame=dur - 10)
-        
-        obj_sub.scale = (0.0, 0.0, 0.0)
-        obj_sub.keyframe_insert(data_path="scale", frame=dur)
-        
-        # --- SPONSOR TAG: TERTIARY SNAP ---
-        obj_sponsor.scale = (0.0, 0.0, 0.0)
-        obj_sponsor.keyframe_insert(data_path="scale", frame=1)
-        obj_sponsor.keyframe_insert(data_path="scale", frame=12)
-        
-        obj_sponsor.scale = (1.15, 1.15, 1.15)
-        obj_sponsor.keyframe_insert(data_path="scale", frame=17)
-        
-        obj_sponsor.scale = (1.0, 1.0, 1.0)
-        obj_sponsor.keyframe_insert(data_path="scale", frame=21)
-        obj_sponsor.keyframe_insert(data_path="scale", frame=dur - 10)
-        
-        obj_sponsor.scale = (0.0, 0.0, 0.0)
-        obj_sponsor.keyframe_insert(data_path="scale", frame=dur)
+        self.report({'INFO'}, f"Home Show Entry Bumper generated ({dur} frames)!")
+        return {'FINISHED'}
 
-        # --- CAMERA IMPACT MICRO-SHAKE (BOOM PUNCH) ---
-        cam_obj = bpy.data.objects.get("Shuffle_Camera")
-        if cam_obj:
-            if cam_obj.animation_data:
-                cam_obj.animation_data_clear()
-            base_cam_loc = (0.0, -8.0, 4.0)
-            cam_obj.location = base_cam_loc
-            cam_obj.keyframe_insert(data_path="location", frame=1)
-            cam_obj.keyframe_insert(data_path="location", frame=9)
-            
-            # Frame 10: Bass punch kickback
-            cam_obj.location = (0.0, -8.18, 4.06)
-            cam_obj.keyframe_insert(data_path="location", frame=10)
-            
-            # Frame 14: Settle back to base position
-            cam_obj.location = base_cam_loc
-            cam_obj.keyframe_insert(data_path="location", frame=14)
-            cam_obj.keyframe_insert(data_path="location", frame=dur)
+
+class WOLFPACK_OT_generate_slogan(bpy.types.Operator):
+    """Generate modular 3D crowd hype stadium slogan with Radwave / Agency FB typography"""
+    bl_idname = "wolfpack.generate_slogan"
+    bl_label = "Generate 3D Stadium Slogan"
+    bl_description = "Creates animated Golden Hawks stadium catchphrases (DEFEND THE NEST, HAWK PRIDE, etc.) with kinetic boom slam"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        props = context.scene.wolfpack_shuffle
+        coll = bpy.data.collections.get("Wolfpack_Shuffle") or context.scene.collection
+        
+        cleanup_conflicting_text_graphics('SLOGAN')
+        
+        dur = getattr(props, "slogan_duration", 75)
+        create_and_animate_slogan(coll, props, start_frame=1, duration=dur, animate_camera=True)
         
         context.scene.frame_start = 1
         context.scene.frame_end = dur
         context.scene.frame_set(1)
         
-        self.report({'INFO'}, f"Home Show Entry Bumper generated ({dur} frames)!")
+        self.report({'INFO'}, f"Stadium Slogan generated ({dur} frames)!")
+        return {'FINISHED'}
+
+
+class WOLFPACK_OT_setup_broadcast_render(bpy.types.Operator):
+    """Configure 1-click broadcast videoboard render settings (1080p60, ProRes/H.264, AgX contrast, motion blur)"""
+    bl_idname = "wolfpack.setup_broadcast_render"
+    bl_label = "Configure 1-Click Broadcast Render"
+    bl_description = "Applies 1080p60 broadcast presets, ProRes/H.264 encoding, AgX color management, and motion blur"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        scene = context.scene
+        props = scene.wolfpack_shuffle
+        
+        # 1. Resolution & Framerate
+        scene.render.resolution_x = 1920
+        scene.render.resolution_y = 1080
+        scene.render.resolution_percentage = 100
+        scene.render.fps = 60
+        
+        # 2. Render Engine & Motion Blur
+        if hasattr(scene.eevee, "motion_blur"):
+            scene.eevee.motion_blur.enabled = True
+        elif hasattr(scene.render, "use_motion_blur"):
+            scene.render.use_motion_blur = True
+            
+        # 3. AgX Color Management & High Contrast
+        try:
+            scene.view_settings.view_transform = 'AgX'
+            scene.view_settings.look = 'High Contrast'
+        except Exception:
+            try:
+                scene.view_settings.view_transform = 'Filmic'
+                scene.view_settings.look = 'High Contrast'
+            except Exception:
+                pass
+                
+        # 4. Output Codec / Container
+        preset = getattr(props, "render_export_preset", 'PRORES_422')
+        if hasattr(scene.render.image_settings, 'media_type'):
+            scene.render.image_settings.media_type = 'VIDEO'
+        scene.render.image_settings.file_format = 'FFMPEG'
+        
+        out_dir = bpy.path.abspath("//render_output")
+        if not os.path.exists(out_dir):
+            try:
+                os.makedirs(out_dir, exist_ok=True)
+            except Exception:
+                out_dir = os.path.expanduser("~")
+                
+        if preset == 'PRORES_422':
+            scene.render.ffmpeg.format = 'QUICKTIME'
+            scene.render.ffmpeg.codec = 'PRORES'
+            if hasattr(scene.render.ffmpeg, 'ffmpeg_prores_profile'):
+                scene.render.ffmpeg.ffmpeg_prores_profile = '422_HQ'
+            scene.render.image_settings.color_mode = 'RGB'
+            scene.render.filepath = os.path.join(out_dir, "wolfpack_shuffle_prores422.mov")
+            fmt_desc = "Apple ProRes 422 HQ (.mov) at 1080p60"
+        elif preset == 'PRORES_4444':
+            scene.render.ffmpeg.format = 'QUICKTIME'
+            scene.render.ffmpeg.codec = 'PRORES'
+            if hasattr(scene.render.ffmpeg, 'ffmpeg_prores_profile'):
+                scene.render.ffmpeg.ffmpeg_prores_profile = '4444'
+            scene.render.image_settings.color_mode = 'RGBA'
+            scene.render.film_transparent = True
+            scene.render.filepath = os.path.join(out_dir, "wolfpack_shuffle_prores4444_alpha.mov")
+            fmt_desc = "Apple ProRes 4444 RGBA with Alpha Transparency (.mov) at 1080p60"
+        else: # H264_LOSSLESS
+            scene.render.ffmpeg.format = 'MPEG4'
+            scene.render.ffmpeg.codec = 'H264'
+            if hasattr(scene.render.ffmpeg, 'constant_rate_factor'):
+                scene.render.ffmpeg.constant_rate_factor = 'PERC_LOSSLESS'
+            if hasattr(scene.render.ffmpeg, 'ffmpeg_preset'):
+                scene.render.ffmpeg.ffmpeg_preset = 'GOOD'
+            scene.render.image_settings.color_mode = 'RGB'
+            scene.render.filepath = os.path.join(out_dir, "wolfpack_shuffle_h264.mp4")
+            fmt_desc = "H.264 Lossless MP4 (.mp4) at 1080p60"
+            
+        self.report({'INFO'}, f"Broadcast Render Configured: {fmt_desc}")
         return {'FINISHED'}
 
 
@@ -2415,39 +2929,61 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         layout = self.layout
         props = context.scene.wolfpack_shuffle
 
-        # 1. "Home Show" 3D Entry Screen Bumper
+        # 1. Timeline Sequencing & Bumper Flow (Zero Keyframe Scrubbing)
+        box_seq = layout.box()
+        box_seq.label(text="Timeline Sequencing & Bumper Flow", icon='TIME')
+        box_seq.prop(props, "prepend_entry_bumper", text="Prepend Home Show Bumper (Auto-Sequence)")
+        if props.prepend_entry_bumper:
+            box_seq.prop(props, "bumper_lead_frames", text="Bumper Lead (Frames)")
+        box_seq.prop(props, "timeline_start_frame", text="Timeline Start Frame")
+
+        # 2. "Home Show" 3D Entry Screen Bumper Standalone Controls
         box_bump = layout.box()
         box_bump.label(text="Home Show 3D Entry Bumper", icon='COMMUNITY')
         box_bump.prop(props, "entry_title", text="Title")
         box_bump.prop(props, "entry_subtitle", text="Subtitle")
         box_bump.prop(props, "entry_sponsor", text="Sponsor")
         box_bump.prop(props, "entry_duration", text="Duration")
-        box_bump.operator("wolfpack.generate_entry_bumper", text="Generate 3D Entry Bumper", icon='PLAY')
+        box_bump.operator("wolfpack.generate_entry_bumper", text="Generate Standalone 3D Bumper", icon='PLAY')
 
-        # 2. Game-Day 3 Deterministic Outcome Variants Box
+        # 3. Artistic Lighting & Volumetric Atmosphere
+        box_atmo = layout.box()
+        box_atmo.label(text="Artistic Lighting & Volumetric Atmosphere", icon='OUTLINER_OB_LIGHT')
+        box_atmo.prop(props, "lighting_mood", text="Lighting Mood")
+        box_atmo.prop(props, "enable_volumetric_haze", text="Volumetric Light Shafts")
+        if props.enable_volumetric_haze:
+            box_atmo.prop(props, "haze_density", text="Haze Density")
+        box_atmo.operator("wolfpack.setup_atmosphere", text="Build Sky, Volumetrics & Lens Rig", icon='LIGHT_SUN')
+        box_atmo.operator("wolfpack.setup_goalposts", text="Spawn 3D Uprights & Goalposts", icon='SNAP_GRID')
+
+        # 4. Modular Slogans & Crowd Hype Suite
+        box_slog = layout.box()
+        box_slog.label(text="Modular Slogans & Crowd Hype", icon='SPEAKER')
+        box_slog.prop(props, "slogan_preset", text="Catchphrase")
+        if props.slogan_preset == 'CUSTOM':
+            box_slog.prop(props, "custom_slogan_head", text="Headline")
+            box_slog.prop(props, "custom_slogan_sub", text="Subtitle")
+        box_slog.prop(props, "slogan_duration", text="Duration")
+        box_slog.operator("wolfpack.generate_slogan", text="Generate 3D Stadium Slogan", icon='PLAY')
+
+        # 5. Game-Day Deterministic Outcome Variants
         box_var = layout.box()
         box_var.label(text="Game-Day Outcome Variants (3 Variants)", icon='FORCE_DRAG')
         box_var.prop(props, "target_outcome", text="Outcome")
 
-        # 3. Cognitive Visual Pacing & HUD Badges
+        # 6. Cognitive Visual Pacing & HUD Badges
         box_cog = layout.box()
         box_cog.label(text="Cognitive Pacing & Visual Bandwidth", icon='VIS_SEL_11')
         box_cog.prop(props, "clean_screen_during_shuffle", text="Clean Screen (Zero Text During Swaps)")
         box_cog.prop(props, "show_slot_hud_numbers", text="Slot HUD Badges [ 1 ] [ 2 ] [ 3 ]")
 
-        # 4. Multi-Venue Staging Presets
+        # 7. Multi-Venue Staging Presets
         box_venue = layout.box()
         box_venue.label(text="Multi-Venue Staging", icon='SCENE_DATA')
         box_venue.prop(props, "venue_preset", text="Venue")
         box_venue.operator("wolfpack.setup_demo", text="Spawn / Update Venue Scene", icon='DUPLICATE')
 
-        # 5. Cinematic Compositor & Atmospheric Set Design
-        box_comp = layout.box()
-        box_comp.label(text="Cinematic Atmosphere & Lens Rig", icon='IMAGE_BACKGROUND')
-        box_comp.operator("wolfpack.setup_atmosphere", text="Build Atmospheric Sky & Compositor", icon='OUTLINER_OB_LIGHT')
-        box_comp.operator("wolfpack.setup_goalposts", text="Spawn 3D Uprights & Goalposts", icon='SNAP_GRID')
-
-        # 6. Laurier Brand Typography & LED Shaders Box (Hailey's Directives)
+        # 8. Laurier Brand Typography & LED Shaders
         box_font = layout.box()
         box_font.label(text="Laurier Brand Typography (Hailey's Spec)", icon='FONT_DATA')
         box_font.prop(props, "banner_font", text="Typography")
@@ -2456,13 +2992,13 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         col_f.label(text="• Agency FB: Downs, Yards & Stats", icon='RIGHTARROW_THIN')
         col_f.label(text="• Anti-Glare: Deep Purple (#20003B) & Gold (#FDB913)", icon='MATERIAL')
 
-        # 7. Modular In-Game Videoboard Stingers & Bumpers Box
+        # 9. Modular In-Game Videoboard Stingers & Bumpers Box
         box_st = layout.box()
         box_st.label(text="In-Game Modular Stingers", icon='DECORATE_ANIMATE')
         box_st.prop(props, "stinger_type", text="Stinger Event")
         box_st.operator("wolfpack.generate_stinger", text="Generate 3D Stinger", icon='PLAY')
 
-        # 8. Custom Model Selection Box
+        # 10. Custom Model Selection Box
         box = layout.box()
         box.label(text="Assign Your 3D Models", icon='OBJECT_DATA')
         box.prop(props, "custom_helmet_1", text="Shuffler 1 (Left)")
@@ -2474,7 +3010,7 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         row.operator("wolfpack.link_selected", text="Auto-Assign 3 Selected", icon='RESTRICT_SELECT_OFF')
         row.operator("wolfpack.import_model", text="Import Model File", icon='IMPORT')
 
-        # 9. Shuffle Timing & Collision Dynamics
+        # 11. Shuffle Timing & Collision Dynamics
         box_time = layout.box()
         box_time.label(text="Shuffle Timing & FPS", icon='TIME')
         box_time.prop(props, "num_swaps")
@@ -2490,7 +3026,7 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         box_phys.prop(props, "bank_angle")
         box_phys.prop(props, "movement_style")
 
-        # 10. Reveal & Suspense Settings
+        # 12. Reveal & Suspense Settings
         box_rev = layout.box()
         box_rev.label(text="Reveal & Suspense Settings", icon='HIDE_OFF')
         box_rev.prop(props, "randomize_target")
@@ -2501,7 +3037,7 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         box_rev.prop(props, "reveal_tilt")
         box_rev.prop(props, "prize_z_offset")
 
-        # 11. Storyboard Presentation Box
+        # 13. Storyboard Presentation Box
         box_story = layout.box()
         box_story.label(text="Storyboard & Game Presentation", icon='SCENE')
         box_story.prop(props, "show_intro_reveal", text="Show Ball First (Intro Lift)")
@@ -2513,14 +3049,19 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
             box_story.prop(props, "banner_shuffle_text", text="Shuffle Text")
             box_story.prop(props, "banner_reveal_text", text="Reveal Text")
 
-        # 12. After Effects & Audio Cue Sheet Bridge
+        # 14. 1-Click Broadcast Render Pipeline (Pure Blender, No AE Crash Risk)
+        box_rnd = layout.box()
+        box_rnd.label(text="1-Click Broadcast Render Pipeline", icon='RENDER_ANIMATION')
+        box_rnd.prop(props, "render_export_preset", text="Export Format")
+        box_rnd.operator("wolfpack.setup_broadcast_render", text="Configure 1-Click Render (1080p60)", icon='OUTPUT')
+
+        # 15. After Effects & Audio Cue Sheet Bridge
         box_cue = layout.box()
-        box_cue.label(text="After Effects & Audio Cue Sheet", icon='OUTPUT')
-        box_cue.operator("wolfpack.export_cue_sheet", text="Export AE Cue Sheet (.json & .csv)", icon='EXPORT')
+        box_cue.label(text="Broadcast Cue Sheet Export", icon='FILE_TEXT')
+        box_cue.operator("wolfpack.export_cue_sheet", text="Export Cue Sheet (.json & .csv)", icon='EXPORT')
 
         layout.separator()
         btn = layout.operator("wolfpack.generate_shuffle", text="Generate Wolfpack Shuffle Animation", icon='PLAY')
-
 
 classes = (
     WolfpackShuffleProperties,
@@ -2532,6 +3073,8 @@ classes = (
     WOLFPACK_OT_setup_goalposts,
     WOLFPACK_OT_generate_stinger,
     WOLFPACK_OT_generate_entry_bumper,
+    WOLFPACK_OT_generate_slogan,
+    WOLFPACK_OT_setup_broadcast_render,
     WOLFPACK_OT_export_cue_sheet,
     WOLFPACK_PT_sidebar_panel,
 )
