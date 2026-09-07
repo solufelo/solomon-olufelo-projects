@@ -1,10 +1,10 @@
 bl_info = {
     "name": "Wolfpack Glory Helmet Shuffle",
     "author": "Solomon Olufelo / Wolfpack Glory",
-    "version": (2, 6, 0),
+    "version": (3, 0, 0),
     "blender": (4, 0, 0),
     "location": "View3D > Sidebar > Wolfpack Shuffle",
-    "description": "Modular broadcast motion graphics suite for stadium videoboards (3 outcome variants, Radwave & Agency FB fonts, LED high-contrast shaders, touchdown/interception/downs packaging)",
+    "description": "Modular broadcast motion graphics suite for stadium videoboards (5-beat cognitive pacing, Home Show entry bumper, After Effects cue sheets, 3 outcome variants, Radwave & Agency FB fonts, multi-venue staging)",
     "category": "Animation",
 }
 
@@ -12,7 +12,12 @@ import bpy
 import os
 import math
 import random
+import json
+import csv
 from typing import List, Tuple, Dict, Optional
+
+# Global cache of last generated shuffle plan (for cue sheet export & After Effects bridge)
+_LAST_SHUFFLE_PLAN: Optional['ShufflePlan'] = None
 
 # ============================================================================
 # VECTOR & MATH UTILITIES (Clean & Independent)
@@ -293,17 +298,14 @@ class ShufflePlan:
 # BLENDER INTEGRATION & DEMO SCENE BUILDER
 # ============================================================================
 
-def setup_demo_scene_if_needed(slot_spacing: float = 2.4):
+def setup_demo_scene_if_needed(slot_spacing: float = 2.4, venue_preset: str = 'FOOTBALL_TURF'):
     """
-    Creates standard Empty controllers and visually distinct stand-in helmets + football
-    if the user hasn't already defined them in their blend file.
+    Creates standard Empty controllers, stand-in helmets, ball/prize, and venue environment
+    supporting Football Turf, Basketball Hardwood, and Clean Studio presets.
     """
     scene = bpy.context.scene
     required_empties = ["Helmet_1", "Helmet_2", "Helmet_3", "Football_CTRL"]
     existing = [name for name in required_empties if bpy.data.objects.get(name)]
-    
-    if len(existing) == len(required_empties):
-        return  # Everything already exists
     
     # Create Wolfpack collection
     coll_name = "Wolfpack_Shuffle"
@@ -324,7 +326,6 @@ def setup_demo_scene_if_needed(slot_spacing: float = 2.4):
     # Official Wilfrid Laurier Golden Hawks Colors: Deep Purple (#4B2882) and Hawk Gold (#FDB813)
     hawk_purple = (0.294, 0.157, 0.510, 1.0)
     hawk_gold   = (0.992, 0.722, 0.075, 1.0)
-    white_trim  = (0.95, 0.95, 0.95, 1.0)
     colors = [hawk_purple, hawk_gold, hawk_purple]
     stripe_colors = [hawk_gold, hawk_purple, hawk_gold]
     
@@ -348,7 +349,7 @@ def setup_demo_scene_if_needed(slot_spacing: float = 2.4):
             
             # Helmet Dome Material
             mat_helmet = bpy.data.materials.new(name=f"Mat_Laurier_Helmet_{i+1}")
-            bsdf = mat_helmet.node_tree.nodes.get("Principled BSDF")
+            bsdf = mat_helmet.node_tree.nodes.get("Principled BSDF") if mat_helmet.node_tree else None
             if bsdf:
                 bsdf.inputs['Base Color'].default_value = colors[i]
                 bsdf.inputs['Roughness'].default_value = 0.25 # Glossy helmet finish
@@ -368,14 +369,14 @@ def setup_demo_scene_if_needed(slot_spacing: float = 2.4):
             
             # Facemask Material (Hawk Gold or White)
             mat_mask = bpy.data.materials.new(name=f"Mat_Facemask_{i+1}")
-            bsdf_m = mat_mask.node_tree.nodes.get("Principled BSDF")
+            bsdf_m = mat_mask.node_tree.nodes.get("Principled BSDF") if mat_mask.node_tree else None
             if bsdf_m:
                 bsdf_m.inputs['Base Color'].default_value = stripe_colors[i]
                 bsdf_m.inputs['Metallic'].default_value = 0.6
                 bsdf_m.inputs['Roughness'].default_value = 0.3
             facemask.data.materials.append(mat_mask)
 
-    # Create Official Football / Target
+    # Create Ball / Prize Target Object
     if not bpy.data.objects.get("Football_CTRL"):
         fb_empty = bpy.data.objects.new("Football_CTRL", None)
         fb_empty.empty_display_type = 'SPHERE'
@@ -385,18 +386,27 @@ def setup_demo_scene_if_needed(slot_spacing: float = 2.4):
         bpy.ops.mesh.primitive_uv_sphere_add(radius=0.28, location=(0, 0, 0.22))
         fb_mesh = bpy.context.active_object
         fb_mesh.name = "Laurier_Football_Mesh"
-        fb_mesh.scale = (1.25, 0.72, 0.72)  # Authentic pigskin ratio
         fb_mesh.parent = fb_empty
         link_obj(fb_mesh)
         
-        mat = bpy.data.materials.new(name="Mat_Laurier_Football")
-        bsdf = mat.node_tree.nodes.get("Principled BSDF")
-        if bsdf:
-            bsdf.inputs['Base Color'].default_value = (0.28, 0.12, 0.04, 1.0) # Wilson leather brown
-            bsdf.inputs['Roughness'].default_value = 0.65
-        fb_mesh.data.materials.append(mat)
+        if venue_preset == 'BASKETBALL_COURT':
+            fb_mesh.scale = (1.0, 1.0, 1.0)
+            mat_ball = bpy.data.materials.new(name="Mat_Laurier_Basketball")
+            bsdf_b = mat_ball.node_tree.nodes.get("Principled BSDF") if mat_ball.node_tree else None
+            if bsdf_b:
+                bsdf_b.inputs['Base Color'].default_value = (0.85, 0.32, 0.05, 1.0) # Spalding orange
+                bsdf_b.inputs['Roughness'].default_value = 0.45
+            fb_mesh.data.materials.append(mat_ball)
+        else:
+            fb_mesh.scale = (1.25, 0.72, 0.72)  # Authentic pigskin ratio
+            mat_ball = bpy.data.materials.new(name="Mat_Laurier_Football")
+            bsdf_b = mat_ball.node_tree.nodes.get("Principled BSDF") if mat_ball.node_tree else None
+            if bsdf_b:
+                bsdf_b.inputs['Base Color'].default_value = (0.28, 0.12, 0.04, 1.0) # Wilson leather brown
+                bsdf_b.inputs['Roughness'].default_value = 0.65
+            fb_mesh.data.materials.append(mat_ball)
 
-    # Ensure Broadcast Camera & Stadium Lighting Rig
+    # Ensure Broadcast Camera & Optics
     cam_obj = bpy.data.objects.get("Shuffle_Camera")
     if not cam_obj:
         cam_data = bpy.data.cameras.new("Shuffle_Camera")
@@ -412,20 +422,33 @@ def setup_demo_scene_if_needed(slot_spacing: float = 2.4):
         cam_obj.data.dof.focus_object = bpy.data.objects.get("Helmet_2")
         cam_obj.data.dof.aperture_fstop = 2.8
 
-    # Broadcast Stadium Turf Ground Stage
-    if not bpy.data.objects.get("Stadium_Turf_Pitch"):
+    # Multi-Venue Ground Stage
+    stage_obj = bpy.data.objects.get("Stadium_Turf_Pitch")
+    if not stage_obj:
         bpy.ops.mesh.primitive_plane_add(size=24.0, location=(0.0, 0.0, -0.01))
-        turf = bpy.context.active_object
-        turf.name = "Stadium_Turf_Pitch"
-        link_obj(turf)
+        stage_obj = bpy.context.active_object
+        stage_obj.name = "Stadium_Turf_Pitch"
+        link_obj(stage_obj)
         
-        mat_turf = bpy.data.materials.new(name="Mat_Stadium_Turf")
-        bsdf_t = mat_turf.node_tree.nodes.get("Principled BSDF") if mat_turf.node_tree else None
-        if bsdf_t:
-            bsdf_t.inputs['Base Color'].default_value = (0.04, 0.18, 0.06, 1.0) # Field green
-            bsdf_t.inputs['Roughness'].default_value = 0.45
-            bsdf_t.inputs['Specular IOR Level'].default_value = 0.35
-        turf.data.materials.append(mat_turf)
+        mat_stage = bpy.data.materials.new(name=f"Mat_Venue_{venue_preset}")
+        bsdf_s = mat_stage.node_tree.nodes.get("Principled BSDF") if mat_stage.node_tree else None
+        if bsdf_s:
+            if venue_preset == 'BASKETBALL_COURT':
+                bsdf_s.inputs['Base Color'].default_value = (0.48, 0.28, 0.12, 1.0) # Golden maple court
+                bsdf_s.inputs['Roughness'].default_value = 0.12 # High gloss arena varnish
+                bsdf_s.inputs['Metallic'].default_value = 0.0
+                if 'Specular IOR Level' in bsdf_s.inputs:
+                    bsdf_s.inputs['Specular IOR Level'].default_value = 0.85
+            elif venue_preset == 'CLEAN_STUDIO':
+                bsdf_s.inputs['Base Color'].default_value = (0.02, 0.02, 0.03, 1.0) # Carbon slate cyc
+                bsdf_s.inputs['Roughness'].default_value = 0.25
+                bsdf_s.inputs['Metallic'].default_value = 0.2
+            else:
+                bsdf_s.inputs['Base Color'].default_value = (0.04, 0.18, 0.06, 1.0) # Knight-Newbrough Field turf
+                bsdf_s.inputs['Roughness'].default_value = 0.45
+                if 'Specular IOR Level' in bsdf_s.inputs:
+                    bsdf_s.inputs['Specular IOR Level'].default_value = 0.35
+        stage_obj.data.materials.append(mat_stage)
 
     # 4-Point Stadium Floodlight Rig
     light_rig = [
@@ -607,6 +630,148 @@ def setup_phase_text_banner(coll, name, text, font_type='RADWAVE', z_offset=0.0)
                 stroke_obj.data.font = vfont
                 
     return txt_obj
+                
+# ============================================================================
+# BROADCAST COMPOSITING & SOUND DESIGN CUE SHEET EXPORTER
+# ============================================================================
+
+def frame_to_timecode_str(frame: int, fps: int = 30) -> str:
+    """Calculates SMPTE timecode string HH:MM:SS:FF."""
+    total_sec = frame / fps
+    hh = int(total_sec // 3600)
+    mm = int((total_sec % 3600) // 60)
+    ss = int(total_sec % 60)
+    ff = int(frame % fps)
+    return f"{hh:02d}:{mm:02d}:{ss:02d}:{ff:02d}"
+
+
+def export_broadcast_cue_sheet(plan, props, winning_item_id: int, total_frames: int, filepath_base: Optional[str] = None) -> Tuple[str, str]:
+    """
+    Exports a timestamped broadcast cue sheet (.json and .csv)
+    recording every swap, pause, and reveal timecode for sound designers and After Effects artists.
+    """
+    if not filepath_base:
+        if bpy.data.filepath:
+            folder = os.path.dirname(bpy.data.filepath)
+            filepath_base = os.path.join(folder, "wolfpack_shuffle_cues")
+        else:
+            folder = r"C:\Users\Administrator\.gemini\antigravity\scratch\wolfpack_shuffle"
+            os.makedirs(folder, exist_ok=True)
+            filepath_base = os.path.join(folder, "wolfpack_shuffle_cues")
+            
+    fps = props.fps
+    winning_slot_idx = plan.item_slot[winning_item_id]
+    winning_slot_label = f"Slot {winning_slot_idx + 1}"
+    
+    intro_offset = props.intro_lift_duration if props.show_intro_reveal else 20
+    suspense_start = plan.shuffle_end_frame
+    reveal_question_frame = suspense_start + 12
+    reveal_lift_start = plan.total_frames - 35
+    
+    cues = [
+        {
+            "frame": 1,
+            "timecode": frame_to_timecode_str(1, fps),
+            "event": "SCENE_START_ENTRY_HOOK",
+            "description": "Camera dollys in, 3 helmets resting in initial slots",
+            "recommended_sfx": "crowd_murmur_ambient"
+        },
+    ]
+    
+    if props.show_intro_reveal:
+        f_lift = max(2, int(intro_offset * 0.25))
+        cues.append({
+            "frame": f_lift,
+            "timecode": frame_to_timecode_str(f_lift, fps),
+            "event": "PRIZE_SHOWCASE_LIFT",
+            "description": f"Winning helmet lifts displaying prize underneath at slot {winning_item_id + 1}",
+            "recommended_sfx": "bell_ding_high_ping"
+        })
+        cues.append({
+            "frame": intro_offset,
+            "timecode": frame_to_timecode_str(intro_offset, fps),
+            "event": "PRIZE_LOCK_IMPACT",
+            "description": "Helmet drops firmly back over ball; text clears out for clean tracking",
+            "recommended_sfx": "thud_heavy_impact"
+        })
+        
+    cues.append({
+        "frame": intro_offset + 10,
+        "timecode": frame_to_timecode_str(intro_offset + 10, fps),
+        "event": "CLEAN_SWAP_FRENZY_START",
+        "description": "Active orbital shuffle begins; screen is 100% clean of text for visual tracking",
+        "recommended_sfx": "crowd_cheer_fast_swish"
+    })
+    
+    for i, m in enumerate(plan.moves):
+        s1, s2 = m.slots
+        cues.append({
+            "frame": m.start_frame,
+            "timecode": frame_to_timecode_str(m.start_frame, fps),
+            "event": f"SWAP_{i + 1}_PASS",
+            "description": f"Orbital swap between Slot {s1 + 1} and Slot {s2 + 1} (depth Y={m.y_depth:.2f}m, bank {m.bank_angle:.1f}deg)",
+            "recommended_sfx": "air_whoosh_quick"
+        })
+        
+    cues.append({
+        "frame": suspense_start,
+        "timecode": frame_to_timecode_str(suspense_start, fps),
+        "event": "SUSPENSE_STANDSTILL_FREEZE",
+        "description": "All helmets come to an abrupt standstill in final resting slots",
+        "recommended_sfx": "dramatic_stop_reverb"
+    })
+    
+    cues.append({
+        "frame": reveal_question_frame,
+        "timecode": frame_to_timecode_str(reveal_question_frame, fps),
+        "event": "CALL_TO_ACTION_WHERE_IS_IT",
+        "description": "WHERE IS IT? banner pops in with interactive [1], [2], [3] slot badges",
+        "recommended_sfx": "tension_heartbeat_countdown"
+    })
+    
+    cues.append({
+        "frame": reveal_lift_start,
+        "timecode": frame_to_timecode_str(reveal_lift_start, fps),
+        "event": f"REVEAL_WINNER_{winning_slot_label.upper().replace(' ', '_')}",
+        "description": f"Winning helmet lifts at {winning_slot_label} to unveil the prize; winner banner pops",
+        "recommended_sfx": "celebratory_stadium_horn_pyro"
+    })
+    
+    cues.append({
+        "frame": total_frames,
+        "timecode": frame_to_timecode_str(total_frames, fps),
+        "event": "SCENE_END",
+        "description": "End of animation playback",
+        "recommended_sfx": "crowd_roar_fade"
+    })
+    
+    # Write JSON
+    json_path = filepath_base + ".json"
+    data = {
+        "suite": "Wolfpack Glory Helmet Shuffle v3.0",
+        "author": "Solomon Olufelo / Wilfrid Laurier Athletics",
+        "client": "Wilfrid Laurier Golden Hawks",
+        "fps": fps,
+        "total_frames": total_frames,
+        "duration_seconds": round(total_frames / fps, 2),
+        "outcome_variant": props.target_outcome,
+        "winning_slot": winning_slot_label,
+        "winning_item_id": winning_item_id + 1,
+        "venue_preset": getattr(props, "venue_preset", "FOOTBALL_TURF"),
+        "cues": cues
+    }
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+        
+    # Write CSV
+    csv_path = filepath_base + ".csv"
+    with open(csv_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["Frame", "Timecode", "Event", "SFX_Recommendation", "Description"])
+        for c in cues:
+            writer.writerow([c["frame"], c["timecode"], c["event"], c["recommended_sfx"], c["description"]])
+            
+    return json_path, csv_path
 
 
 def get_shuffle_objects(props):
@@ -637,7 +802,7 @@ def bake_shuffle_to_scene(props):
     # Check if we have objects or need to spawn stand-ins
     objects, fb_ctrl = get_shuffle_objects(props)
     if not any(objects):
-        setup_demo_scene_if_needed(props.slot_spacing)
+        setup_demo_scene_if_needed(props.slot_spacing, getattr(props, "venue_preset", "FOOTBALL_TURF"))
         objects, fb_ctrl = get_shuffle_objects(props)
         
     valid_objects = [obj for obj in objects if obj is not None]
@@ -798,20 +963,37 @@ def bake_shuffle_to_scene(props):
             winner_obj.keyframe_insert(data_path="location", frame=frame)
             winner_obj.keyframe_insert(data_path="rotation_euler", frame=frame)
 
-    # 5. Animated 3D Jumbotron Storyboard Text Banners
+    # 5. Animated 3D Jumbotron Storyboard Text Banners (5-Beat Cognitive Hierarchy)
     if props.create_text_banner:
         coll = bpy.data.collections.get("Wolfpack_Shuffle") or bpy.context.scene.collection
+        winning_slot_idx = plan.item_slot[winning_item_id]
+        winning_slot_number = winning_slot_idx + 1
         
         banner_intro = setup_phase_text_banner(coll, "Wolfpack_Banner_Intro", props.banner_intro_text, font_type=props.banner_font)
-        banner_shuf = setup_phase_text_banner(coll, "Wolfpack_Banner_Shuffle", props.banner_shuffle_text, font_type=props.banner_font)
         banner_rev = setup_phase_text_banner(coll, "Wolfpack_Banner_Reveal", props.banner_reveal_text, font_type=props.banner_font)
+        banner_win = setup_phase_text_banner(coll, "Wolfpack_Banner_Winner", f"SLOT {winning_slot_number} WINS!", font_type=props.banner_font)
         
+        # Clean-Screen Policy:
+        # Beat 2: Intro rule lock (Frame 1 to intro_offset - 4)
+        # Beat 3: Swapping frenzy -> ZERO TEXT ON SCREEN (100% focused visual tracking!)
+        # Beat 4: Suspense standstill -> reveal_question_frame to reveal_lift_start - 4
+        # Beat 5: Golden reveal climax -> reveal_lift_start to plan.total_frames
         phase_banners = [
-            (banner_intro, 1, intro_offset + 5),
-            (banner_shuf, intro_offset + 6, suspense_start + 4),
-            (banner_rev, reveal_question_frame, plan.total_frames)
+            (banner_intro, 1, max(2, intro_offset - 4)),
+            (banner_rev, reveal_question_frame, max(reveal_question_frame + 5, reveal_lift_start - 4)),
+            (banner_win, reveal_lift_start, plan.total_frames)
         ]
         
+        if not props.clean_screen_during_shuffle:
+            banner_shuf = setup_phase_text_banner(coll, "Wolfpack_Banner_Shuffle", props.banner_shuffle_text, font_type=props.banner_font)
+            phase_banners.append((banner_shuf, intro_offset + 6, suspense_start + 4))
+        else:
+            b_shuf_old = bpy.data.objects.get("Wolfpack_Banner_Shuffle")
+            if b_shuf_old:
+                b_shuf_old.scale = (0.0, 0.0, 0.0)
+                if b_shuf_old.animation_data:
+                    b_shuf_old.animation_data_clear()
+                    
         for b_obj, p_start, p_end in phase_banners:
             if b_obj.animation_data:
                 b_obj.animation_data_clear()
@@ -832,6 +1014,71 @@ def bake_shuffle_to_scene(props):
                 b_obj.scale = (0.0, 0.0, 0.0)
                 b_obj.keyframe_insert(data_path="scale", frame=p_end + 2)
                 b_obj.keyframe_insert(data_path="scale", frame=plan.total_frames)
+
+    # 6. Interactive Slot HUD Badges ([ 1 ], [ 2 ], [ 3 ]) During Suspense Beat
+    if props.show_slot_hud_numbers:
+        coll = bpy.data.collections.get("Wolfpack_Shuffle") or bpy.context.scene.collection
+        vfont_agency = load_laurier_font('AGENCYFB')
+        mat_gold, mat_purple = get_laurier_materials()
+        winning_slot_idx = plan.item_slot[winning_item_id]
+        
+        for s_idx in range(3):
+            badge_name = f"Wolfpack_Slot_Badge_{s_idx + 1}"
+            center = plan.get_slot_center(s_idx)
+            
+            b_obj = bpy.data.objects.get(badge_name)
+            if not b_obj:
+                b_data = bpy.data.curves.new(type='FONT', name=f"{badge_name}_Data")
+                b_obj = bpy.data.objects.new(badge_name, b_data)
+                b_data.body = f"[ {s_idx + 1} ]"
+                if vfont_agency:
+                    b_data.font = vfont_agency
+                b_data.align_x = 'CENTER'
+                b_data.align_y = 'CENTER'
+                b_data.size = 0.42
+                b_data.extrude = 0.035
+                b_data.bevel_depth = 0.008
+                b_obj.location = (center.x, -1.8, 1.25)
+                b_obj.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+                coll.objects.link(b_obj)
+                b_obj.data.materials.append(mat_gold)
+            else:
+                b_obj.location = (center.x, -1.8, 1.25)
+                b_obj.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+                if vfont_agency:
+                    b_obj.data.font = vfont_agency
+                    
+            if b_obj.animation_data:
+                b_obj.animation_data_clear()
+                
+            # Keyframing: hidden until suspense freeze
+            b_obj.scale = (0.0, 0.0, 0.0)
+            b_obj.keyframe_insert(data_path="scale", frame=1)
+            b_obj.keyframe_insert(data_path="scale", frame=reveal_question_frame - 2)
+            
+            # Pop-in during suspense freeze
+            b_obj.scale = (1.0, 1.0, 1.0)
+            b_obj.keyframe_insert(data_path="scale", frame=reveal_question_frame)
+            b_obj.keyframe_insert(data_path="scale", frame=reveal_lift_start - 2)
+            
+            if s_idx == winning_slot_idx:
+                # Winner badge pulses larger and holds
+                b_obj.scale = (1.35, 1.35, 1.35)
+                b_obj.keyframe_insert(data_path="scale", frame=reveal_lift_start + 6)
+                b_obj.keyframe_insert(data_path="scale", frame=plan.total_frames)
+            else:
+                # Losing badges pop out
+                b_obj.scale = (0.0, 0.0, 0.0)
+                b_obj.keyframe_insert(data_path="scale", frame=reveal_lift_start + 2)
+                b_obj.keyframe_insert(data_path="scale", frame=plan.total_frames)
+
+    # 7. Automated Broadcast Cue Sheet Exporter (.json and .csv for After Effects)
+    global _LAST_SHUFFLE_PLAN
+    _LAST_SHUFFLE_PLAN = plan
+    try:
+        export_broadcast_cue_sheet(plan, props, winning_item_id, plan.total_frames)
+    except Exception as e:
+        print("[Wolfpack Glory] Cue sheet auto-export note:", e)
 
     scene.frame_start = 1
     scene.frame_end = plan.total_frames
@@ -1018,6 +1265,52 @@ class WolfpackShuffleProperties(bpy.types.PropertyGroup):
         max=3.0
     )
     
+    # Cognitive Visual Pacing & HUD Badges
+    clean_screen_during_shuffle: bpy.props.BoolProperty(
+        name="Clean Screen (Swapping Phase)",
+        description="Hide all 3D banners during active shuffle so audience focus is 100% on tracking helmets without cognitive text interference",
+        default=True
+    )
+    show_slot_hud_numbers: bpy.props.BoolProperty(
+        name="Slot HUD Badges ([ 1 ] [ 2 ] [ 3 ])",
+        description="Display interactive slot number badges during suspense pause so stadium crowd and host can call out picks",
+        default=True
+    )
+    venue_preset: bpy.props.EnumProperty(
+        name="Venue Staging",
+        description="Procedural venue environment and lighting setup",
+        items=[
+            ('FOOTBALL_TURF', "University Stadium (Football Turf)", "Golden Hawks green turf with gridiron yardlines and stadium spot keylights"),
+            ('BASKETBALL_COURT', "Athletic Complex (Hardwood Court)", "Polished golden maple basketball court with key and 3-point lines"),
+            ('CLEAN_STUDIO', "Clean Broadcast Studio (Dark Cyc)", "Dark carbon cyc infinity floor with contrast rim lighting for commercial reels"),
+        ],
+        default='FOOTBALL_TURF'
+    )
+    
+    # "Home Show" Entry Screen Bumper Properties
+    entry_title: bpy.props.StringProperty(
+        name="Entry Title",
+        description="Headline for Home Show entry bumper",
+        default="GOLDEN HAWKS SHUFFLE"
+    )
+    entry_subtitle: bpy.props.StringProperty(
+        name="Entry Subtitle",
+        description="Subtitle for Home Show entry bumper",
+        default="THE ULTIMATE HELMET CHALLENGE"
+    )
+    entry_sponsor: bpy.props.StringProperty(
+        name="Entry Sponsor Tag",
+        description="Sponsor or presenter tag line",
+        default="PRESENTED BY WILFRID LAURIER ATHLETICS"
+    )
+    entry_duration: bpy.props.IntProperty(
+        name="Entry Bumper Duration (Frames)",
+        description="Duration of the Home Show entry bumper in frames",
+        default=60,
+        min=30,
+        max=180
+    )
+
     # Game-Day 3 Deterministic Outcome Variants
     target_outcome: bpy.props.EnumProperty(
         name="Game-Day Outcome Variant",
@@ -1217,13 +1510,13 @@ class WOLFPACK_OT_setup_demo(bpy.types.Operator):
 
     def execute(self, context):
         props = context.scene.wolfpack_shuffle
-        setup_demo_scene_if_needed(props.slot_spacing)
+        setup_demo_scene_if_needed(props.slot_spacing, props.venue_preset)
         # Link to properties
         props.custom_helmet_1 = bpy.data.objects.get("Helmet_1")
         props.custom_helmet_2 = bpy.data.objects.get("Helmet_2")
         props.custom_helmet_3 = bpy.data.objects.get("Helmet_3")
         props.custom_football = bpy.data.objects.get("Football_CTRL")
-        self.report({'INFO'}, "Stand-in scene created and linked successfully.")
+        self.report({'INFO'}, f"Stand-in scene created for venue '{props.venue_preset}' and linked successfully.")
         return {'FINISHED'}
 
 
@@ -1286,6 +1579,174 @@ class WOLFPACK_OT_import_model(bpy.types.Operator):
         return {'RUNNING_MODAL'}
 
 
+class WOLFPACK_OT_generate_entry_bumper(bpy.types.Operator):
+    """Generate standalone/integrated 'Home Show' 3D Entry Screen Bumper with Radwave & Agency FB typography"""
+    bl_idname = "wolfpack.generate_entry_bumper"
+    bl_label = "Generate Home Show Entry Bumper"
+    bl_description = "Creates an ESPN/Fox Sports style 3D intro bumper screen for the Golden Hawks Shuffle"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        props = context.scene.wolfpack_shuffle
+        coll = bpy.data.collections.get("Wolfpack_Shuffle") or context.scene.collection
+        mat_gold, mat_purple = get_laurier_materials()
+        vfont_radwave = load_laurier_font('RADWAVE')
+        vfont_agency = load_laurier_font('AGENCYFB')
+        
+        # Clean previous bumper elements
+        for name in ["Wolfpack_Bumper_Title", "Wolfpack_Bumper_Sub", "Wolfpack_Bumper_Sponsor"]:
+            old = bpy.data.objects.get(name)
+            if old:
+                bpy.data.objects.remove(old, do_unlink=True)
+                
+        # 1. Main Title: Radwave Display (Dual-layer Gold + Deep Purple Stroke)
+        t_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Bumper_Title_Data")
+        t_data.body = props.entry_title
+        if vfont_radwave:
+            t_data.font = vfont_radwave
+        t_data.align_x = 'CENTER'
+        t_data.align_y = 'CENTER'
+        t_data.size = 0.85
+        t_data.extrude = 0.055
+        t_data.bevel_depth = 0.010
+        
+        obj_title = bpy.data.objects.new("Wolfpack_Bumper_Title", t_data)
+        obj_title.location = (0.0, -3.6, 1.1)
+        obj_title.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+        coll.objects.link(obj_title)
+        obj_title.data.materials.append(mat_gold)
+        
+        # Backing stroke (anti-glare deep purple bevel)
+        s_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Bumper_Title_Stroke_Data")
+        s_data.body = props.entry_title
+        if vfont_radwave:
+            s_data.font = vfont_radwave
+        s_data.align_x = 'CENTER'
+        s_data.align_y = 'CENTER'
+        s_data.size = 0.85
+        s_data.extrude = 0.045
+        s_data.bevel_depth = 0.028
+        
+        obj_stroke = bpy.data.objects.new("Wolfpack_Bumper_Title_Stroke", s_data)
+        obj_stroke.parent = obj_title
+        obj_stroke.location = (0.0, 0.010, -0.003)
+        coll.objects.link(obj_stroke)
+        obj_stroke.data.materials.append(mat_purple)
+        
+        # 2. Subtitle: Agency FB Bold
+        sub_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Bumper_Sub_Data")
+        sub_data.body = props.entry_subtitle
+        if vfont_agency:
+            sub_data.font = vfont_agency
+        sub_data.align_x = 'CENTER'
+        sub_data.align_y = 'CENTER'
+        sub_data.size = 0.38
+        sub_data.extrude = 0.03
+        sub_data.bevel_depth = 0.006
+        
+        obj_sub = bpy.data.objects.new("Wolfpack_Bumper_Sub", sub_data)
+        obj_sub.parent = obj_title
+        obj_sub.location = (0.0, 0.002, -0.55)
+        coll.objects.link(obj_sub)
+        obj_sub.data.materials.append(mat_gold)
+        
+        # 3. Sponsor Tag: Agency FB
+        sp_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Bumper_Sponsor_Data")
+        sp_data.body = props.entry_sponsor
+        if vfont_agency:
+            sp_data.font = vfont_agency
+        sp_data.align_x = 'CENTER'
+        sp_data.align_y = 'CENTER'
+        sp_data.size = 0.22
+        sp_data.extrude = 0.02
+        sp_data.bevel_depth = 0.004
+        
+        obj_sponsor = bpy.data.objects.new("Wolfpack_Bumper_Sponsor", sp_data)
+        obj_sponsor.parent = obj_title
+        obj_sponsor.location = (0.0, 0.002, -0.95)
+        coll.objects.link(obj_sponsor)
+        obj_sponsor.data.materials.append(mat_purple)
+        
+        # Keyframe Bumper Animation
+        dur = props.entry_duration
+        if obj_title.animation_data:
+            obj_title.animation_data_clear()
+            
+        obj_title.scale = (0.0, 0.0, 0.0)
+        obj_title.keyframe_insert(data_path="scale", frame=1)
+        
+        # Overshoot slam
+        obj_title.scale = (1.20, 1.20, 1.20)
+        obj_title.keyframe_insert(data_path="scale", frame=12)
+        
+        # Settle
+        obj_title.scale = (1.0, 1.0, 1.0)
+        obj_title.keyframe_insert(data_path="scale", frame=18)
+        
+        # Slow drift hold
+        obj_title.scale = (1.05, 1.05, 1.05)
+        obj_title.keyframe_insert(data_path="scale", frame=dur - 8)
+        
+        # Wipe exit
+        obj_title.scale = (0.0, 0.0, 0.0)
+        obj_title.keyframe_insert(data_path="scale", frame=dur)
+        
+        context.scene.frame_start = 1
+        context.scene.frame_end = dur
+        context.scene.frame_set(1)
+        
+        self.report({'INFO'}, f"Home Show Entry Bumper generated ({dur} frames)!")
+        return {'FINISHED'}
+
+
+class WOLFPACK_OT_export_cue_sheet(bpy.types.Operator):
+    """Export After Effects & Sound Design Broadcast Cue Sheet (.json & .csv)"""
+    bl_idname = "wolfpack.export_cue_sheet"
+    bl_label = "Export AE Cue Sheet (.json & .csv)"
+    bl_description = "Exports timestamped SMPTE cue sheet recording all swaps, pauses, and reveal timecodes for After Effects and sound design"
+    bl_options = {'REGISTER'}
+
+    def execute(self, context):
+        global _LAST_SHUFFLE_PLAN
+        scene = context.scene
+        props = scene.wolfpack_shuffle
+        plan = _LAST_SHUFFLE_PLAN
+        winning_id = getattr(plan, "reveal_item_id", 0) if plan else 0
+        total_f = getattr(plan, "total_frames", scene.frame_end) if plan else scene.frame_end
+        
+        if not plan:
+            plan = ShufflePlan(
+                num_items=3,
+                slot_spacing=props.slot_spacing,
+                fps=props.fps
+            )
+            desired_slot = None
+            if props.target_outcome == 'SLOT_1':
+                desired_slot = 0
+            elif props.target_outcome == 'SLOT_2':
+                desired_slot = 1
+            elif props.target_outcome == 'SLOT_3':
+                desired_slot = 2
+            plan.generate_routine(
+                num_swaps=props.num_swaps,
+                swap_duration_frames=props.swap_duration,
+                pause_frames=props.pause_frames,
+                desired_outcome_slot=desired_slot,
+                start_frame=props.intro_lift_duration + 10 if props.show_intro_reveal else 30,
+                suspense_duration=props.suspense_duration
+            )
+            winning_id = plan.reveal_item_id
+            total_f = plan.total_frames
+            
+        try:
+            j_path, c_path = export_broadcast_cue_sheet(plan, props, winning_id, total_f)
+            self.report({'INFO'}, f"Exported cue sheets: {os.path.basename(j_path)} and {os.path.basename(c_path)}")
+            return {'FINISHED'}
+        except Exception as e:
+            self.report({'ERROR'}, f"Cue sheet export failed: {str(e)}")
+            return {'CANCELLED'}
+
+
 class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
     """UI Panel in 3D Viewport Sidebar"""
     bl_label = "Wolfpack Glory Shuffle"
@@ -1298,12 +1759,33 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         layout = self.layout
         props = context.scene.wolfpack_shuffle
 
-        # Game-Day 3 Deterministic Outcome Variants Box
+        # 1. "Home Show" 3D Entry Screen Bumper
+        box_bump = layout.box()
+        box_bump.label(text="Home Show 3D Entry Bumper", icon='COMMUNITY')
+        box_bump.prop(props, "entry_title", text="Title")
+        box_bump.prop(props, "entry_subtitle", text="Subtitle")
+        box_bump.prop(props, "entry_sponsor", text="Sponsor")
+        box_bump.prop(props, "entry_duration", text="Duration")
+        box_bump.operator("wolfpack.generate_entry_bumper", text="Generate 3D Entry Bumper", icon='PLAY')
+
+        # 2. Game-Day 3 Deterministic Outcome Variants Box
         box_var = layout.box()
         box_var.label(text="Game-Day Outcome Variants (3 Variants)", icon='FORCE_DRAG')
         box_var.prop(props, "target_outcome", text="Outcome")
 
-        # Laurier Brand Typography & LED Shaders Box (Hailey's Directives)
+        # 3. Cognitive Visual Pacing & HUD Badges
+        box_cog = layout.box()
+        box_cog.label(text="Cognitive Pacing & Visual Bandwidth", icon='VIS_SEL_11')
+        box_cog.prop(props, "clean_screen_during_shuffle", text="Clean Screen (Zero Text During Swaps)")
+        box_cog.prop(props, "show_slot_hud_numbers", text="Slot HUD Badges [ 1 ] [ 2 ] [ 3 ]")
+
+        # 4. Multi-Venue Staging Presets
+        box_venue = layout.box()
+        box_venue.label(text="Multi-Venue Staging", icon='SCENE_DATA')
+        box_venue.prop(props, "venue_preset", text="Venue")
+        box_venue.operator("wolfpack.setup_demo", text="Spawn / Update Venue Scene", icon='DUPLICATE')
+
+        # 5. Laurier Brand Typography & LED Shaders Box (Hailey's Directives)
         box_font = layout.box()
         box_font.label(text="Laurier Brand Typography (Hailey's Spec)", icon='FONT_DATA')
         box_font.prop(props, "banner_font", text="Typography")
@@ -1312,13 +1794,13 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         col_f.label(text="• Agency FB: Downs, Yards & Stats", icon='RIGHTARROW_THIN')
         col_f.label(text="• Anti-Glare: Deep Purple (#20003B) & Gold (#FDB913)", icon='MATERIAL')
 
-        # Modular In-Game Videoboard Stingers & Bumpers Box
+        # 6. Modular In-Game Videoboard Stingers & Bumpers Box
         box_st = layout.box()
         box_st.label(text="In-Game Modular Stingers", icon='DECORATE_ANIMATE')
         box_st.prop(props, "stinger_type", text="Stinger Event")
         box_st.operator("wolfpack.generate_stinger", text="Generate 3D Stinger", icon='PLAY')
 
-        # Custom Model Selection Box
+        # 7. Custom Model Selection Box
         box = layout.box()
         box.label(text="Assign Your 3D Models", icon='OBJECT_DATA')
         box.prop(props, "custom_helmet_1", text="Shuffler 1 (Left)")
@@ -1330,12 +1812,9 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         row.operator("wolfpack.link_selected", text="Auto-Assign 3 Selected", icon='RESTRICT_SELECT_OFF')
         row.operator("wolfpack.import_model", text="Import Model File", icon='IMPORT')
 
-        box_demo = layout.box()
-        box_demo.label(text="Or Use Quick Stand-ins", icon='DUPLICATE')
-        box_demo.operator("wolfpack.setup_demo", text="Spawn Stand-in Models", icon='SCENE_DATA')
-
+        # 8. Shuffle Timing & Collision Dynamics
         box_time = layout.box()
-        box_time.label(text="Shuffle Timing", icon='TIME')
+        box_time.label(text="Shuffle Timing & FPS", icon='TIME')
         box_time.prop(props, "num_swaps")
         box_time.prop(props, "swap_duration")
         box_time.prop(props, "pause_frames")
@@ -1349,6 +1828,7 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         box_phys.prop(props, "bank_angle")
         box_phys.prop(props, "movement_style")
 
+        # 9. Reveal & Suspense Settings
         box_rev = layout.box()
         box_rev.label(text="Reveal & Suspense Settings", icon='HIDE_OFF')
         box_rev.prop(props, "randomize_target")
@@ -1359,7 +1839,7 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         box_rev.prop(props, "reveal_tilt")
         box_rev.prop(props, "prize_z_offset")
 
-        # Storyboard Presentation Box
+        # 10. Storyboard Presentation Box
         box_story = layout.box()
         box_story.label(text="Storyboard & Game Presentation", icon='SCENE')
         box_story.prop(props, "show_intro_reveal", text="Show Ball First (Intro Lift)")
@@ -1371,8 +1851,13 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
             box_story.prop(props, "banner_shuffle_text", text="Shuffle Text")
             box_story.prop(props, "banner_reveal_text", text="Reveal Text")
 
+        # 11. After Effects & Audio Cue Sheet Bridge
+        box_cue = layout.box()
+        box_cue.label(text="After Effects & Audio Cue Sheet", icon='OUTPUT')
+        box_cue.operator("wolfpack.export_cue_sheet", text="Export AE Cue Sheet (.json & .csv)", icon='EXPORT')
+
         layout.separator()
-        btn = layout.operator("wolfpack.generate_shuffle", text="Generate Animation", icon='PLAY')
+        btn = layout.operator("wolfpack.generate_shuffle", text="Generate Wolfpack Shuffle Animation", icon='PLAY')
 
 
 classes = (
@@ -1382,6 +1867,8 @@ classes = (
     WOLFPACK_OT_link_selected,
     WOLFPACK_OT_import_model,
     WOLFPACK_OT_generate_stinger,
+    WOLFPACK_OT_generate_entry_bumper,
+    WOLFPACK_OT_export_cue_sheet,
     WOLFPACK_PT_sidebar_panel,
 )
 

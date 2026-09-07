@@ -1,0 +1,19 @@
+Frame,Timecode,Event,SFX_Recommendation,Description
+1,00:00:00:01,SCENE_START_ENTRY_HOOK,crowd_murmur_ambient,"Camera dollys in, 3 helmets resting in initial slots"
+11,00:00:00:11,PRIZE_SHOWCASE_LIFT,bell_ding_high_ping,Winning helmet lifts displaying prize underneath at slot 3
+45,00:00:01:15,PRIZE_LOCK_IMPACT,thud_heavy_impact,Helmet drops firmly back over ball; text clears out for clean tracking
+55,00:00:01:25,CLEAN_SWAP_FRENZY_START,crowd_cheer_fast_swish,Active orbital shuffle begins; screen is 100% clean of text for visual tracking
+55,00:00:01:25,SWAP_1_PASS,air_whoosh_quick,"Orbital swap between Slot 2 and Slot 3 (depth Y=1.35m, bank 12.0deg)"
+81,00:00:02:21,SWAP_2_PASS,air_whoosh_quick,"Orbital swap between Slot 1 and Slot 2 (depth Y=1.35m, bank 12.0deg)"
+107,00:00:03:17,SWAP_3_PASS,air_whoosh_quick,"Orbital swap between Slot 1 and Slot 3 (depth Y=1.82m, bank 12.0deg)"
+133,00:00:04:13,SWAP_4_PASS,air_whoosh_quick,"Orbital swap between Slot 1 and Slot 2 (depth Y=1.35m, bank 12.0deg)"
+159,00:00:05:09,SWAP_5_PASS,air_whoosh_quick,"Orbital swap between Slot 1 and Slot 3 (depth Y=1.82m, bank 12.0deg)"
+185,00:00:06:05,SWAP_6_PASS,air_whoosh_quick,"Orbital swap between Slot 1 and Slot 2 (depth Y=1.35m, bank 12.0deg)"
+211,00:00:07:01,SWAP_7_PASS,air_whoosh_quick,"Orbital swap between Slot 2 and Slot 3 (depth Y=1.35m, bank 12.0deg)"
+237,00:00:07:27,SWAP_8_PASS,air_whoosh_quick,"Orbital swap between Slot 1 and Slot 2 (depth Y=1.35m, bank 12.0deg)"
+263,00:00:08:23,SWAP_9_PASS,air_whoosh_quick,"Orbital swap between Slot 1 and Slot 3 (depth Y=1.82m, bank 12.0deg)"
+289,00:00:09:19,SWAP_10_PASS,air_whoosh_quick,"Orbital swap between Slot 1 and Slot 2 (depth Y=1.35m, bank 12.0deg)"
+311,00:00:10:11,SUSPENSE_STANDSTILL_FREEZE,dramatic_stop_reverb,All helmets come to an abrupt standstill in final resting slots
+323,00:00:10:23,CALL_TO_ACTION_WHERE_IS_IT,tension_heartbeat_countdown,"WHERE IS IT? banner pops in with interactive [1], [2], [3] slot badges"
+366,00:00:12:06,REVEAL_WINNER_SLOT_2,celebratory_stadium_horn_pyro,Winning helmet lifts at Slot 2 to unveil the prize; winner banner pops
+401,00:00:13:11,SCENE_END,crowd_roar_fade,End of animation playback

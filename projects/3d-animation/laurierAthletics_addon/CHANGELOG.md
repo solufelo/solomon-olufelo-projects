@@ -2,6 +2,29 @@
 
 All notable changes to the Laurier Football Shell Game Blender addon will be documented in this file.
 
+## [3.0.0] - 2026-09-07
+
+### 🚀 Major Release: Commercial Broadcast & Game-Day Suite
+- **5-Beat Cognitive Visual Pacing**:
+  - **Clean Screen During Swapping**: Completely eliminates on-screen text during active helmet movement, restoring 100% viewer tracking bandwidth.
+  - **Beat 1: "Home Show" Entry Bumper**: Kinetic 3D intro screen (`GOLDEN HAWKS SHUFFLE`) with sponsor tag.
+  - **Beat 2: Rule Lock & Showcase**: Winning helmet lifts to reveal the hidden ball (*"WATCH CLOSELY!"*), then firmly locks down.
+  - **Beat 3: Swapping Frenzy**: Clean, text-free orbital passes with collision-free $Y$-depth and $12^\circ$ centripetal banking.
+  - **Beat 4: Suspense Standstill**: Helmets lock into slots; *"WHERE IS IT?"* banner appears alongside interactive **Slot HUD Badges (`[ 1 ]`, `[ 2 ]`, `[ 3 ]`)**.
+  - **Beat 5: Golden Climax Reveal**: Winning helmet lifts with $25^\circ$ forward tilt; winning slot badge expands to $1.35\times$ scale (*"SLOT [X] WINS!"*).
+- **After Effects & Audio Broadcast Cue Sheet Exporter**:
+  - Dedicated operator `wolfpack.export_cue_sheet` generating timestamped `.json` and `.csv` files with SMPTE timecodes (`HH:MM:SS:FF`).
+  - Records exact frames for all swaps, depth clearance, suspense freeze, CTA question, and reveal impact with recommended sound design cues.
+- **Multi-Venue Staging Presets**:
+  - `FOOTBALL_TURF`: University Stadium Knight-Newbrough Field green turf with gridiron yardlines and stadium floodlights.
+  - `BASKETBALL_COURT`: Athletic Complex high-gloss golden maple hardwood court with basketball prize geometry.
+  - `CLEAN_STUDIO`: Dark carbon slate cyc infinity floor with contrast rim lighting for commercial portfolio reels.
+- **Interactive Slot HUD Badges**:
+  - 3D Agency FB number badges (`[ 1 ]`, `[ 2 ]`, `[ 3 ]`) pop in above slots during suspense freeze for clear videoboard calling.
+- **Blender 5.2.1 LTS Forward Compatibility**:
+  - Eliminated `Material.use_nodes` deprecation warnings for Blender 5.2 / 6.0 forward compatibility.
+  - Added global plan caching for instant After Effects bridge export.
+
 ## [2.6.0] - 2026-09-07
 
 ### ✨ Added

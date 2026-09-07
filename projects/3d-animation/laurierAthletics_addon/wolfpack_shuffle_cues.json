@@ -1,0 +1,140 @@
+{
+  "suite": "Wolfpack Glory Helmet Shuffle v3.0",
+  "author": "Solomon Olufelo / Wilfrid Laurier Athletics",
+  "client": "Wilfrid Laurier Golden Hawks",
+  "fps": 30,
+  "total_frames": 401,
+  "duration_seconds": 13.37,
+  "outcome_variant": "SLOT_2",
+  "winning_slot": "Slot 2",
+  "winning_item_id": 3,
+  "venue_preset": "FOOTBALL_TURF",
+  "cues": [
+    {
+      "frame": 1,
+      "timecode": "00:00:00:01",
+      "event": "SCENE_START_ENTRY_HOOK",
+      "description": "Camera dollys in, 3 helmets resting in initial slots",
+      "recommended_sfx": "crowd_murmur_ambient"
+    },
+    {
+      "frame": 11,
+      "timecode": "00:00:00:11",
+      "event": "PRIZE_SHOWCASE_LIFT",
+      "description": "Winning helmet lifts displaying prize underneath at slot 3",
+      "recommended_sfx": "bell_ding_high_ping"
+    },
+    {
+      "frame": 45,
+      "timecode": "00:00:01:15",
+      "event": "PRIZE_LOCK_IMPACT",
+      "description": "Helmet drops firmly back over ball; text clears out for clean tracking",
+      "recommended_sfx": "thud_heavy_impact"
+    },
+    {
+      "frame": 55,
+      "timecode": "00:00:01:25",
+      "event": "CLEAN_SWAP_FRENZY_START",
+      "description": "Active orbital shuffle begins; screen is 100% clean of text for visual tracking",
+      "recommended_sfx": "crowd_cheer_fast_swish"
+    },
+    {
+      "frame": 55,
+      "timecode": "00:00:01:25",
+      "event": "SWAP_1_PASS",
+      "description": "Orbital swap between Slot 2 and Slot 3 (depth Y=1.35m, bank 12.0deg)",
+      "recommended_sfx": "air_whoosh_quick"
+    },
+    {
+      "frame": 81,
+      "timecode": "00:00:02:21",
+      "event": "SWAP_2_PASS",
+      "description": "Orbital swap between Slot 1 and Slot 2 (depth Y=1.35m, bank 12.0deg)",
+      "recommended_sfx": "air_whoosh_quick"
+    },
+    {
+      "frame": 107,
+      "timecode": "00:00:03:17",
+      "event": "SWAP_3_PASS",
+      "description": "Orbital swap between Slot 1 and Slot 3 (depth Y=1.82m, bank 12.0deg)",
+      "recommended_sfx": "air_whoosh_quick"
+    },
+    {
+      "frame": 133,
+      "timecode": "00:00:04:13",
+      "event": "SWAP_4_PASS",
+      "description": "Orbital swap between Slot 1 and Slot 2 (depth Y=1.35m, bank 12.0deg)",
+      "recommended_sfx": "air_whoosh_quick"
+    },
+    {
+      "frame": 159,
+      "timecode": "00:00:05:09",
+      "event": "SWAP_5_PASS",
+      "description": "Orbital swap between Slot 1 and Slot 3 (depth Y=1.82m, bank 12.0deg)",
+      "recommended_sfx": "air_whoosh_quick"
+    },
+    {
+      "frame": 185,
+      "timecode": "00:00:06:05",
+      "event": "SWAP_6_PASS",
+      "description": "Orbital swap between Slot 1 and Slot 2 (depth Y=1.35m, bank 12.0deg)",
+      "recommended_sfx": "air_whoosh_quick"
+    },
+    {
+      "frame": 211,
+      "timecode": "00:00:07:01",
+      "event": "SWAP_7_PASS",
+      "description": "Orbital swap between Slot 2 and Slot 3 (depth Y=1.35m, bank 12.0deg)",
+      "recommended_sfx": "air_whoosh_quick"
+    },
+    {
+      "frame": 237,
+      "timecode": "00:00:07:27",
+      "event": "SWAP_8_PASS",
+      "description": "Orbital swap between Slot 1 and Slot 2 (depth Y=1.35m, bank 12.0deg)",
+      "recommended_sfx": "air_whoosh_quick"
+    },
+    {
+      "frame": 263,
+      "timecode": "00:00:08:23",
+      "event": "SWAP_9_PASS",
+      "description": "Orbital swap between Slot 1 and Slot 3 (depth Y=1.82m, bank 12.0deg)",
+      "recommended_sfx": "air_whoosh_quick"
+    },
+    {
+      "frame": 289,
+      "timecode": "00:00:09:19",
+      "event": "SWAP_10_PASS",
+      "description": "Orbital swap between Slot 1 and Slot 2 (depth Y=1.35m, bank 12.0deg)",
+      "recommended_sfx": "air_whoosh_quick"
+    },
+    {
+      "frame": 311,
+      "timecode": "00:00:10:11",
+      "event": "SUSPENSE_STANDSTILL_FREEZE",
+      "description": "All helmets come to an abrupt standstill in final resting slots",
+      "recommended_sfx": "dramatic_stop_reverb"
+    },
+    {
+      "frame": 323,
+      "timecode": "00:00:10:23",
+      "event": "CALL_TO_ACTION_WHERE_IS_IT",
+      "description": "WHERE IS IT? banner pops in with interactive [1], [2], [3] slot badges",
+      "recommended_sfx": "tension_heartbeat_countdown"
+    },
+    {
+      "frame": 366,
+      "timecode": "00:00:12:06",
+      "event": "REVEAL_WINNER_SLOT_2",
+      "description": "Winning helmet lifts at Slot 2 to unveil the prize; winner banner pops",
+      "recommended_sfx": "celebratory_stadium_horn_pyro"
+    },
+    {
+      "frame": 401,
+      "timecode": "00:00:13:11",
+      "event": "SCENE_END",
+      "description": "End of animation playback",
+      "recommended_sfx": "crowd_roar_fade"
+    }
+  ]
+}
