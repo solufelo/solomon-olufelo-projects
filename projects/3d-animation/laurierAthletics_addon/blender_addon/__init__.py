@@ -809,18 +809,47 @@ def get_laurier_materials() -> Tuple[bpy.types.Material, bpy.types.Material]:
     return mat_gold, mat_purple
 
 
+def cleanup_conflicting_text_graphics(current_mode='SHUFFLE'):
+    """
+    Prevents different graphic modes (Bumper vs Shuffle vs Stinger) from overlapping,
+    ghosting, or sitting in front of the camera simultaneously.
+    """
+    to_remove = []
+    for obj in bpy.data.objects:
+        if current_mode == 'SHUFFLE':
+            if obj.name.startswith("Wolfpack_Bumper_") or obj.name.startswith("Stinger_"):
+                to_remove.append(obj)
+        elif current_mode == 'BUMPER':
+            if obj.name.startswith("Wolfpack_Banner_") or obj.name.startswith("Wolfpack_Slot_Badge_") or obj.name.startswith("Stinger_"):
+                to_remove.append(obj)
+        elif current_mode == 'STINGER':
+            if obj.name.startswith("Wolfpack_Banner_") or obj.name.startswith("Wolfpack_Slot_Badge_") or obj.name.startswith("Wolfpack_Bumper_"):
+                to_remove.append(obj)
+                
+    for obj in to_remove:
+        try:
+            bpy.data.objects.remove(obj, do_unlink=True)
+        except Exception:
+            pass
+
+
 def setup_phase_text_banner(coll, name, text, font_type='RADWAVE', z_offset=0.0):
     """
     Creates a stylized 3D stadium text banner with dual-layer collegiate lockup:
     - Front face: Laurier Gold Core
-    - Backing bevel: Laurier Deep Purple Stroke (prevents LED clipping/APL dimming)
+    - Backing bevel: Laurier Deep Purple Stroke (offset cleanly to prevent z-fighting)
     - Applied typography: Hailey's Radwave / Agency FB
+    - Elevated Z-height (1.35m) so it floats in the upper-third stadium sky
+      and never blocks the helmets when zooming in!
     """
     mat_gold, mat_purple = get_laurier_materials()
     vfont = load_laurier_font(font_type)
     
     txt_obj = bpy.data.objects.get(name)
     stroke_obj = bpy.data.objects.get(f"{name}_Stroke")
+    
+    target_loc = (0.0, -3.2, 1.35 + z_offset)
+    target_rot = (math.radians(65.0), 0.0, 0.0)
     
     if not txt_obj:
         txt_data = bpy.data.curves.new(type='FONT', name=f"{name}_Data")
@@ -830,13 +859,13 @@ def setup_phase_text_banner(coll, name, text, font_type='RADWAVE', z_offset=0.0)
             txt_data.font = vfont
         txt_data.align_x = 'CENTER'
         txt_data.align_y = 'CENTER'
-        txt_data.size = 0.52
+        txt_data.size = 0.58
         txt_data.extrude = 0.045
         txt_data.bevel_depth = 0.008
+        txt_data.bevel_resolution = 4
         
-        # Position banner slightly in front of the items angled toward camera
-        txt_obj.location = (0.0, -3.8, -0.6 + z_offset)
-        txt_obj.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+        txt_obj.location = target_loc
+        txt_obj.rotation_euler = target_rot
         coll.objects.link(txt_obj)
         txt_obj.data.materials.append(mat_gold)
         
@@ -848,18 +877,27 @@ def setup_phase_text_banner(coll, name, text, font_type='RADWAVE', z_offset=0.0)
             stroke_data.font = vfont
         stroke_data.align_x = 'CENTER'
         stroke_data.align_y = 'CENTER'
-        stroke_data.size = 0.52
+        stroke_data.size = 0.58
         stroke_data.extrude = 0.040
         stroke_data.bevel_depth = 0.024
+        stroke_data.bevel_resolution = 4
         
         stroke_obj.parent = txt_obj
-        stroke_obj.location = (0.0, 0.008, -0.002)
+        # Offset cleanly Y=+0.022 behind gold face to strictly prevent z-fighting
+        stroke_obj.location = (0.0, 0.022, -0.002)
         coll.objects.link(stroke_obj)
         stroke_obj.data.materials.append(mat_purple)
     else:
+        txt_obj.location = target_loc
+        txt_obj.rotation_euler = target_rot
         txt_obj.data.body = text
         if vfont:
             txt_obj.data.font = vfont
+        txt_obj.data.size = 0.58
+        txt_obj.data.extrude = 0.045
+        txt_obj.data.bevel_depth = 0.008
+        txt_obj.data.bevel_resolution = 4
+        
         if not stroke_obj:
             stroke_data = bpy.data.curves.new(type='FONT', name=f"{name}_Stroke_Data")
             stroke_obj = bpy.data.objects.new(f"{name}_Stroke", stroke_data)
@@ -868,17 +906,23 @@ def setup_phase_text_banner(coll, name, text, font_type='RADWAVE', z_offset=0.0)
                 stroke_data.font = vfont
             stroke_data.align_x = 'CENTER'
             stroke_data.align_y = 'CENTER'
-            stroke_data.size = 0.52
+            stroke_data.size = 0.58
             stroke_data.extrude = 0.040
             stroke_data.bevel_depth = 0.024
+            stroke_data.bevel_resolution = 4
             stroke_obj.parent = txt_obj
-            stroke_obj.location = (0.0, 0.008, -0.002)
+            stroke_obj.location = (0.0, 0.022, -0.002)
             coll.objects.link(stroke_obj)
             stroke_obj.data.materials.append(mat_purple)
         else:
+            stroke_obj.location = (0.0, 0.022, -0.002)
             stroke_obj.data.body = text
             if vfont:
                 stroke_obj.data.font = vfont
+            stroke_obj.data.size = 0.58
+            stroke_obj.data.extrude = 0.040
+            stroke_obj.data.bevel_depth = 0.024
+            stroke_obj.data.bevel_resolution = 4
                 
     return txt_obj
                 
@@ -1049,6 +1093,9 @@ def bake_shuffle_to_scene(props):
     """Bakes collision-free keyframes into the scene."""
     scene = bpy.context.scene
     scene.render.fps = props.fps
+    
+    # Ensure no lingering bumper or stinger text blocks view
+    cleanup_conflicting_text_graphics('SHUFFLE')
     
     # Check if we have objects or need to spawn stand-ins
     objects, fb_ctrl = get_shuffle_objects(props)
@@ -1224,58 +1271,181 @@ def bake_shuffle_to_scene(props):
         banner_rev = setup_phase_text_banner(coll, "Wolfpack_Banner_Reveal", props.banner_reveal_text, font_type=props.banner_font)
         banner_win = setup_phase_text_banner(coll, "Wolfpack_Banner_Winner", f"SLOT {winning_slot_number} WINS!", font_type=props.banner_font)
         
-        # Clean-Screen Policy:
-        # Beat 2: Intro rule lock (Frame 1 to intro_offset - 4)
-        # Beat 3: Swapping frenzy -> ZERO TEXT ON SCREEN (100% focused visual tracking!)
-        # Beat 4: Suspense standstill -> reveal_question_frame to reveal_lift_start - 4
-        # Beat 5: Golden reveal climax -> reveal_lift_start to plan.total_frames
-        phase_banners = [
-            (banner_intro, 1, max(2, intro_offset - 4)),
-            (banner_rev, reveal_question_frame, max(reveal_question_frame + 5, reveal_lift_start - 4)),
-            (banner_win, reveal_lift_start, plan.total_frames)
-        ]
+        # --- BEAT 2: INTRO BANNER ("WATCH CLOSELY!") ---
+        # Starts at scale 0 on frame 1, drops in with kinetic overshoot at frame 8,
+        # holds, then wipes out smoothly before the swapping frenzy begins!
+        if banner_intro.animation_data:
+            banner_intro.animation_data_clear()
+            
+        intro_end = max(12, intro_offset - 4)
         
+        # Frame 1: Hidden in upper sky
+        banner_intro.scale = (0.0, 0.0, 0.0)
+        banner_intro.location = (0.0, -2.6, 2.2)
+        banner_intro.rotation_euler = (math.radians(45.0), math.radians(-10.0), math.radians(20.0))
+        banner_intro.keyframe_insert(data_path="scale", frame=1)
+        banner_intro.keyframe_insert(data_path="location", frame=1)
+        banner_intro.keyframe_insert(data_path="rotation_euler", frame=1)
+        
+        # Frame 8: Kinetic Drop Slam Overshoot (1.20x)
+        banner_intro.scale = (1.20, 1.20, 1.20)
+        banner_intro.location = (0.0, -3.2, 1.35)
+        banner_intro.rotation_euler = (math.radians(68.0), math.radians(2.0), math.radians(-2.0))
+        banner_intro.keyframe_insert(data_path="scale", frame=8)
+        banner_intro.keyframe_insert(data_path="location", frame=8)
+        banner_intro.keyframe_insert(data_path="rotation_euler", frame=8)
+        
+        # Frame 14: Settle to rest
+        banner_intro.scale = (1.0, 1.0, 1.0)
+        banner_intro.location = (0.0, -3.2, 1.35)
+        banner_intro.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+        banner_intro.keyframe_insert(data_path="scale", frame=14)
+        banner_intro.keyframe_insert(data_path="location", frame=14)
+        banner_intro.keyframe_insert(data_path="rotation_euler", frame=14)
+        
+        # Hold
+        if intro_end > 18:
+            banner_intro.scale = (1.02, 1.02, 1.02)
+            banner_intro.location = (0.0, -3.2, 1.38)
+            banner_intro.keyframe_insert(data_path="scale", frame=intro_end - 4)
+            banner_intro.keyframe_insert(data_path="location", frame=intro_end - 4)
+            
+        # Frame intro_end: High-speed snap wipe exit
+        banner_intro.scale = (0.0, 0.0, 0.0)
+        banner_intro.location = (6.0, -3.2, 1.6)
+        banner_intro.rotation_euler = (math.radians(65.0), 0.0, math.radians(-30.0))
+        banner_intro.keyframe_insert(data_path="scale", frame=intro_end)
+        banner_intro.keyframe_insert(data_path="location", frame=intro_end)
+        banner_intro.keyframe_insert(data_path="rotation_euler", frame=intro_end)
+        banner_intro.scale = (0.0, 0.0, 0.0)
+        banner_intro.keyframe_insert(data_path="scale", frame=plan.total_frames)
+
+        # --- BEAT 4: SUSPENSE BANNER ("WHERE IS IT?") ---
+        # Stays hidden through swapping frenzy. Slams in dynamically during suspense freeze!
+        if banner_rev.animation_data:
+            banner_rev.animation_data_clear()
+            
+        rev_start = reveal_question_frame
+        rev_end = max(rev_start + 15, reveal_lift_start - 2)
+        
+        # Hidden from 1 through rev_start - 6
+        banner_rev.scale = (0.0, 0.0, 0.0)
+        banner_rev.location = (0.0, -2.6, 2.2)
+        banner_rev.rotation_euler = (math.radians(45.0), 0.0, math.radians(15.0))
+        banner_rev.keyframe_insert(data_path="scale", frame=1)
+        banner_rev.keyframe_insert(data_path="location", frame=1)
+        banner_rev.keyframe_insert(data_path="rotation_euler", frame=1)
+        banner_rev.keyframe_insert(data_path="scale", frame=max(1, rev_start - 6))
+        banner_rev.keyframe_insert(data_path="location", frame=max(1, rev_start - 6))
+        banner_rev.keyframe_insert(data_path="rotation_euler", frame=max(1, rev_start - 6))
+        
+        # Frame rev_start: The Question Slam (1.25x Overshoot)
+        banner_rev.scale = (1.25, 1.25, 1.25)
+        banner_rev.location = (0.0, -3.2, 1.35)
+        banner_rev.rotation_euler = (math.radians(68.0), math.radians(1.0), math.radians(-1.0))
+        banner_rev.keyframe_insert(data_path="scale", frame=rev_start)
+        banner_rev.keyframe_insert(data_path="location", frame=rev_start)
+        banner_rev.keyframe_insert(data_path="rotation_euler", frame=rev_start)
+        
+        # Frame rev_start + 6: Settle
+        banner_rev.scale = (1.0, 1.0, 1.0)
+        banner_rev.location = (0.0, -3.2, 1.35)
+        banner_rev.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+        banner_rev.keyframe_insert(data_path="scale", frame=rev_start + 6)
+        banner_rev.keyframe_insert(data_path="location", frame=rev_start + 6)
+        banner_rev.keyframe_insert(data_path="rotation_euler", frame=rev_start + 6)
+        
+        # Hold
+        banner_rev.scale = (1.03, 1.03, 1.03)
+        banner_rev.location = (0.0, -3.2, 1.38)
+        banner_rev.keyframe_insert(data_path="scale", frame=rev_end - 4)
+        banner_rev.keyframe_insert(data_path="location", frame=rev_end - 4)
+        
+        # Wipe exit to make way for winner
+        banner_rev.scale = (0.0, 0.0, 0.0)
+        banner_rev.location = (-6.0, -3.2, 1.6)
+        banner_rev.rotation_euler = (math.radians(65.0), 0.0, math.radians(30.0))
+        banner_rev.keyframe_insert(data_path="scale", frame=rev_end)
+        banner_rev.keyframe_insert(data_path="location", frame=rev_end)
+        banner_rev.keyframe_insert(data_path="rotation_euler", frame=rev_end)
+        banner_rev.scale = (0.0, 0.0, 0.0)
+        banner_rev.keyframe_insert(data_path="scale", frame=plan.total_frames)
+
+        # --- BEAT 5: WINNER REVEAL BANNER ("SLOT [X] WINS!") ---
+        if banner_win.animation_data:
+            banner_win.animation_data_clear()
+            
+        win_start = reveal_lift_start
+        
+        # Hidden from 1 to win_start - 4
+        banner_win.scale = (0.0, 0.0, 0.0)
+        banner_win.location = (0.0, -2.6, 2.3)
+        banner_win.rotation_euler = (math.radians(50.0), math.radians(-10.0), math.radians(20.0))
+        banner_win.keyframe_insert(data_path="scale", frame=1)
+        banner_win.keyframe_insert(data_path="location", frame=1)
+        banner_win.keyframe_insert(data_path="rotation_euler", frame=1)
+        banner_win.keyframe_insert(data_path="scale", frame=max(1, win_start - 4))
+        banner_win.keyframe_insert(data_path="location", frame=max(1, win_start - 4))
+        banner_win.keyframe_insert(data_path="rotation_euler", frame=max(1, win_start - 4))
+        
+        # Massive gold boom slam impact (1.28x Overshoot)
+        banner_win.scale = (1.28, 1.28, 1.28)
+        banner_win.location = (0.0, -3.2, 1.35)
+        banner_win.rotation_euler = (math.radians(68.0), 0.0, 0.0)
+        banner_win.keyframe_insert(data_path="scale", frame=win_start + 7)
+        banner_win.keyframe_insert(data_path="location", frame=win_start + 7)
+        banner_win.keyframe_insert(data_path="rotation_euler", frame=win_start + 7)
+        
+        # Settle
+        banner_win.scale = (1.0, 1.0, 1.0)
+        banner_win.location = (0.0, -3.2, 1.35)
+        banner_win.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+        banner_win.keyframe_insert(data_path="scale", frame=win_start + 13)
+        banner_win.keyframe_insert(data_path="location", frame=win_start + 13)
+        banner_win.keyframe_insert(data_path="rotation_euler", frame=win_start + 13)
+        
+        # Hold to end with slow heroic drift
+        banner_win.scale = (1.05, 1.05, 1.05)
+        banner_win.location = (0.0, -3.2, 1.40)
+        banner_win.keyframe_insert(data_path="scale", frame=plan.total_frames)
+        banner_win.keyframe_insert(data_path="location", frame=plan.total_frames)
+        
+        # Shuffle Banner (if enabled)
         if not props.clean_screen_during_shuffle:
             banner_shuf = setup_phase_text_banner(coll, "Wolfpack_Banner_Shuffle", props.banner_shuffle_text, font_type=props.banner_font)
-            phase_banners.append((banner_shuf, intro_offset + 6, suspense_start + 4))
+            if banner_shuf.animation_data:
+                banner_shuf.animation_data_clear()
+            banner_shuf.scale = (0.0, 0.0, 0.0)
+            banner_shuf.keyframe_insert(data_path="scale", frame=1)
+            banner_shuf.keyframe_insert(data_path="scale", frame=intro_offset + 4)
+            banner_shuf.scale = (1.0, 1.0, 1.0)
+            banner_shuf.keyframe_insert(data_path="scale", frame=intro_offset + 8)
+            banner_shuf.keyframe_insert(data_path="scale", frame=suspense_start)
+            banner_shuf.scale = (0.0, 0.0, 0.0)
+            banner_shuf.keyframe_insert(data_path="scale", frame=suspense_start + 4)
+            banner_shuf.keyframe_insert(data_path="scale", frame=plan.total_frames)
         else:
             b_shuf_old = bpy.data.objects.get("Wolfpack_Banner_Shuffle")
             if b_shuf_old:
-                b_shuf_old.scale = (0.0, 0.0, 0.0)
-                if b_shuf_old.animation_data:
-                    b_shuf_old.animation_data_clear()
-                    
-        for b_obj, p_start, p_end in phase_banners:
-            if b_obj.animation_data:
-                b_obj.animation_data_clear()
-            
-            # Hidden before phase
-            if p_start > 1:
-                b_obj.scale = (0.0, 0.0, 0.0)
-                b_obj.keyframe_insert(data_path="scale", frame=1)
-                b_obj.keyframe_insert(data_path="scale", frame=p_start - 2)
-            
-            # Pop-in
-            b_obj.scale = (1.0, 1.0, 1.0)
-            b_obj.keyframe_insert(data_path="scale", frame=p_start)
-            b_obj.keyframe_insert(data_path="scale", frame=p_end)
-            
-            # Pop-out
-            if p_end < plan.total_frames:
-                b_obj.scale = (0.0, 0.0, 0.0)
-                b_obj.keyframe_insert(data_path="scale", frame=p_end + 2)
-                b_obj.keyframe_insert(data_path="scale", frame=plan.total_frames)
+                bpy.data.objects.remove(b_shuf_old, do_unlink=True)
+    else:
+        for b_name in ["Wolfpack_Banner_Intro", "Wolfpack_Banner_Reveal", "Wolfpack_Banner_Winner", "Wolfpack_Banner_Shuffle"]:
+            b_old = bpy.data.objects.get(b_name)
+            if b_old:
+                bpy.data.objects.remove(b_old, do_unlink=True)
 
-    # 6. Interactive Slot HUD Badges ([ 1 ], [ 2 ], [ 3 ]) During Suspense Beat
+    # 6. Interactive Slot HUD Badges ([ 1 ], [ 2 ], [ 3 ]) — Staggered Domino Wave
     if props.show_slot_hud_numbers:
         coll = bpy.data.collections.get("Wolfpack_Shuffle") or bpy.context.scene.collection
         vfont_agency = load_laurier_font('AGENCYFB')
         mat_gold, mat_purple = get_laurier_materials()
         winning_slot_idx = plan.item_slot[winning_item_id]
+        rev_start = reveal_question_frame
         
         for s_idx in range(3):
             badge_name = f"Wolfpack_Slot_Badge_{s_idx + 1}"
             center = plan.get_slot_center(s_idx)
+            target_badge_loc = (center.x, -1.2, 0.95)
             
             b_obj = bpy.data.objects.get(badge_name)
             if not b_obj:
@@ -1286,42 +1456,73 @@ def bake_shuffle_to_scene(props):
                     b_data.font = vfont_agency
                 b_data.align_x = 'CENTER'
                 b_data.align_y = 'CENTER'
-                b_data.size = 0.42
+                b_data.size = 0.45
                 b_data.extrude = 0.035
                 b_data.bevel_depth = 0.008
-                b_obj.location = (center.x, -1.8, 1.25)
-                b_obj.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+                b_data.bevel_resolution = 4
                 coll.objects.link(b_obj)
                 b_obj.data.materials.append(mat_gold)
             else:
-                b_obj.location = (center.x, -1.8, 1.25)
-                b_obj.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+                b_obj.data.body = f"[ {s_idx + 1} ]"
                 if vfont_agency:
                     b_obj.data.font = vfont_agency
-                    
+                b_obj.data.size = 0.45
+                b_obj.data.extrude = 0.035
+                b_obj.data.bevel_depth = 0.008
+                b_obj.data.bevel_resolution = 4
+                
+            b_obj.location = target_badge_loc
+            b_obj.rotation_euler = (math.radians(65.0), 0.0, 0.0)
             if b_obj.animation_data:
                 b_obj.animation_data_clear()
                 
-            # Keyframing: hidden until suspense freeze
-            b_obj.scale = (0.0, 0.0, 0.0)
-            b_obj.keyframe_insert(data_path="scale", frame=1)
-            b_obj.keyframe_insert(data_path="scale", frame=reveal_question_frame - 2)
+            # Staggered Domino Wave: Badge 1 at rev_start+5, Badge 2 at rev_start+10, Badge 3 at rev_start+15
+            badge_stagger = s_idx * 5
+            b_pop_start = rev_start + 5 + badge_stagger
             
-            # Pop-in during suspense freeze
+            # Hidden until its individual stagger time
+            b_obj.scale = (0.0, 0.0, 0.0)
+            b_obj.location = (target_badge_loc[0], target_badge_loc[1], 0.50)
+            b_obj.keyframe_insert(data_path="scale", frame=1)
+            b_obj.keyframe_insert(data_path="location", frame=1)
+            b_obj.keyframe_insert(data_path="scale", frame=max(1, b_pop_start - 2))
+            b_obj.keyframe_insert(data_path="location", frame=max(1, b_pop_start - 2))
+            
+            # Snappy bounce overshoot
+            b_obj.scale = (1.25, 1.25, 1.25)
+            b_obj.location = (target_badge_loc[0], target_badge_loc[1], 1.02)
+            b_obj.keyframe_insert(data_path="scale", frame=b_pop_start + 3)
+            b_obj.keyframe_insert(data_path="location", frame=b_pop_start + 3)
+            
+            # Settle to rest
             b_obj.scale = (1.0, 1.0, 1.0)
-            b_obj.keyframe_insert(data_path="scale", frame=reveal_question_frame)
+            b_obj.location = target_badge_loc
+            b_obj.keyframe_insert(data_path="scale", frame=b_pop_start + 6)
+            b_obj.keyframe_insert(data_path="location", frame=b_pop_start + 6)
             b_obj.keyframe_insert(data_path="scale", frame=reveal_lift_start - 2)
+            b_obj.keyframe_insert(data_path="location", frame=reveal_lift_start - 2)
             
             if s_idx == winning_slot_idx:
-                # Winner badge pulses larger and holds
-                b_obj.scale = (1.35, 1.35, 1.35)
+                # Winner badge pulses up to 1.45x and hovers
+                b_obj.scale = (1.45, 1.45, 1.45)
+                b_obj.location = (target_badge_loc[0], target_badge_loc[1], 1.08)
                 b_obj.keyframe_insert(data_path="scale", frame=reveal_lift_start + 6)
+                b_obj.keyframe_insert(data_path="location", frame=reveal_lift_start + 6)
                 b_obj.keyframe_insert(data_path="scale", frame=plan.total_frames)
+                b_obj.keyframe_insert(data_path="location", frame=plan.total_frames)
             else:
-                # Losing badges pop out
+                # Losing badges pop out smoothly
                 b_obj.scale = (0.0, 0.0, 0.0)
-                b_obj.keyframe_insert(data_path="scale", frame=reveal_lift_start + 2)
+                b_obj.location = (target_badge_loc[0], target_badge_loc[1], 0.50)
+                b_obj.keyframe_insert(data_path="scale", frame=reveal_lift_start + 3)
+                b_obj.keyframe_insert(data_path="location", frame=reveal_lift_start + 3)
                 b_obj.keyframe_insert(data_path="scale", frame=plan.total_frames)
+                b_obj.keyframe_insert(data_path="location", frame=plan.total_frames)
+    else:
+        for s_idx in range(3):
+            badge_old = bpy.data.objects.get(f"Wolfpack_Slot_Badge_{s_idx + 1}")
+            if badge_old:
+                bpy.data.objects.remove(badge_old, do_unlink=True)
 
     # 7. Automated Broadcast Cue Sheet Exporter (.json and .csv for After Effects)
     global _LAST_SHUFFLE_PLAN
@@ -1643,6 +1844,9 @@ class WOLFPACK_OT_generate_stinger(bpy.types.Operator):
         props = context.scene.wolfpack_shuffle
         st_type = props.stinger_type
         
+        # Clean conflicting text from other modes (Bumper/Shuffle)
+        cleanup_conflicting_text_graphics('STINGER')
+        
         # If Field Goal stinger, ensure 3D goalposts are spawned
         if st_type.startswith('FIELD_GOAL') and not bpy.data.objects.get("Goalpost_Base"):
             setup_goalposts()
@@ -1958,6 +2162,9 @@ class WOLFPACK_OT_generate_entry_bumper(bpy.types.Operator):
         mat_gold, mat_purple = get_laurier_materials()
         vfont_radwave = load_laurier_font('RADWAVE')
         vfont_agency = load_laurier_font('AGENCYFB')
+        
+        # Clean conflicting text from other modes (Shuffle/Stinger)
+        cleanup_conflicting_text_graphics('BUMPER')
         
         # Clean previous bumper elements
         for name in ["Wolfpack_Bumper_Title", "Wolfpack_Bumper_Sub", "Wolfpack_Bumper_Sponsor"]:
