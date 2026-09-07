@@ -1698,16 +1698,18 @@ class WOLFPACK_OT_generate_stinger(bpy.types.Operator):
         txt_d.align_x = 'CENTER'
         txt_d.align_y = 'CENTER'
         txt_d.size = 0.95
-        txt_d.extrude = 0.06
-        txt_d.bevel_depth = 0.012
+        txt_d.extrude = 0.065
+        txt_d.bevel_depth = 0.008
+        txt_d.bevel_resolution = 4
         
+        # Elevated Z height (1.35m) so it majestically floats above helmets and never clips into turf
         obj_head = bpy.data.objects.new(base_name, txt_d)
-        obj_head.location = (0.0, -3.6, 0.45)
+        obj_head.location = (0.0, -3.2, 1.35)
         obj_head.rotation_euler = (math.radians(65.0), 0.0, 0.0)
         coll.objects.link(obj_head)
         obj_head.data.materials.append(mat_gold)
         
-        # Headline Backing Stroke (Deep Purple Bevel - No White Border Glare)
+        # Headline Backing Stroke (Deep Purple Bevel - No White Border Glare, zero z-fighting)
         stroke_d = bpy.data.curves.new(type='FONT', name=f"{base_name}_Stroke")
         stroke_d.body = headline
         if vfont_head:
@@ -1715,12 +1717,14 @@ class WOLFPACK_OT_generate_stinger(bpy.types.Operator):
         stroke_d.align_x = 'CENTER'
         stroke_d.align_y = 'CENTER'
         stroke_d.size = 0.95
-        stroke_d.extrude = 0.05
-        stroke_d.bevel_depth = 0.032
+        stroke_d.extrude = 0.050
+        stroke_d.bevel_depth = 0.026
+        stroke_d.bevel_resolution = 4
         
+        # Pushed cleanly behind gold face (Y=+0.022) to strictly eliminate z-fighting / polygon flicker
         obj_stroke = bpy.data.objects.new(f"{base_name}_Stroke", stroke_d)
         obj_stroke.parent = obj_head
-        obj_stroke.location = (0.0, 0.010, -0.003)
+        obj_stroke.location = (0.0, 0.022, -0.002)
         coll.objects.link(obj_stroke)
         obj_stroke.data.materials.append(mat_purple)
         
@@ -1732,43 +1736,118 @@ class WOLFPACK_OT_generate_stinger(bpy.types.Operator):
         sub_d.align_x = 'CENTER'
         sub_d.align_y = 'CENTER'
         sub_d.size = 0.38
-        sub_d.extrude = 0.03
+        sub_d.extrude = 0.035
         sub_d.bevel_depth = 0.005
+        sub_d.bevel_resolution = 3
         
         obj_sub = bpy.data.objects.new(f"{base_name}_Sub", sub_d)
         obj_sub.parent = obj_head
-        obj_sub.location = (0.0, 0.002, -0.65)
+        obj_sub.location = (0.0, -0.008, -0.62)
         coll.objects.link(obj_sub)
         obj_sub.data.materials.append(mat_gold)
         
-        # Keyframe Animation (Kinetic Slam, Hold, and Exit)
+        # Keyframe Animation (Kinetic 3D Spin, BOOM Impact Slam, Settle, Drift & Sweep Exit)
         if obj_head.animation_data:
             obj_head.animation_data_clear()
+        if obj_sub.animation_data:
+            obj_sub.animation_data_clear()
             
+        # --- HEADLINE: SPIN & BOOM ENTRANCE ---
+        # Frame 1: Dynamic 3D angled spin in air
         obj_head.scale = (0.0, 0.0, 0.0)
+        obj_head.location = (0.0, -2.6, 2.3)
+        obj_head.rotation_euler = (math.radians(45.0), math.radians(-15.0), math.radians(28.0))
         obj_head.keyframe_insert(data_path="scale", frame=1)
+        obj_head.keyframe_insert(data_path="location", frame=1)
+        obj_head.keyframe_insert(data_path="rotation_euler", frame=1)
         
-        # Kinetic overshoot slam
-        obj_head.scale = (1.22, 1.22, 1.22)
+        # Frame 10: THE BOOM SLAM (Kinetic 1.25x Overshoot)
+        obj_head.scale = (1.25, 1.25, 1.25)
+        obj_head.location = (0.0, -3.2, 1.35)
+        obj_head.rotation_euler = (math.radians(68.0), math.radians(2.0), math.radians(-2.0))
         obj_head.keyframe_insert(data_path="scale", frame=10)
+        obj_head.keyframe_insert(data_path="location", frame=10)
+        obj_head.keyframe_insert(data_path="rotation_euler", frame=10)
         
-        # Settle
+        # Frame 16: Rest Settle
         obj_head.scale = (1.0, 1.0, 1.0)
+        obj_head.location = (0.0, -3.2, 1.35)
+        obj_head.rotation_euler = (math.radians(65.0), 0.0, 0.0)
         obj_head.keyframe_insert(data_path="scale", frame=16)
+        obj_head.keyframe_insert(data_path="location", frame=16)
+        obj_head.keyframe_insert(data_path="rotation_euler", frame=16)
         
-        # Subtle slow-zoom during hold
+        # Frame (total_frames - 10): Heroic floating drift hold
         obj_head.scale = (1.06, 1.06, 1.06)
-        obj_head.keyframe_insert(data_path="scale", frame=total_frames - 8)
+        obj_head.location = (0.0, -3.2, 1.42)
+        obj_head.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+        obj_head.keyframe_insert(data_path="scale", frame=total_frames - 10)
+        obj_head.keyframe_insert(data_path="location", frame=total_frames - 10)
+        obj_head.keyframe_insert(data_path="rotation_euler", frame=total_frames - 10)
         
-        # Snap sweep exit
+        # Frame total_frames: High-speed snap sweep exit
         obj_head.scale = (0.0, 0.0, 0.0)
+        obj_head.location = (7.5, -3.2, 1.8)
+        obj_head.rotation_euler = (math.radians(65.0), 0.0, math.radians(-35.0))
         obj_head.keyframe_insert(data_path="scale", frame=total_frames)
+        obj_head.keyframe_insert(data_path="location", frame=total_frames)
+        obj_head.keyframe_insert(data_path="rotation_euler", frame=total_frames)
         
+        # --- SUBTITLE: STAGGERED SECONDARY WHIP ---
+        # Frame 1 to 7: Hidden
+        obj_sub.scale = (0.0, 0.0, 0.0)
+        obj_sub.location = (0.0, -0.008, -0.90)
+        obj_sub.keyframe_insert(data_path="scale", frame=1)
+        obj_sub.keyframe_insert(data_path="location", frame=1)
+        obj_sub.keyframe_insert(data_path="scale", frame=7)
+        obj_sub.keyframe_insert(data_path="location", frame=7)
+        
+        # Frame 13: Subtitle whips in from bottom with overshoot
+        obj_sub.scale = (1.18, 1.18, 1.18)
+        obj_sub.location = (0.0, -0.008, -0.58)
+        obj_sub.keyframe_insert(data_path="scale", frame=13)
+        obj_sub.keyframe_insert(data_path="location", frame=13)
+        
+        # Frame 18: Settle
+        obj_sub.scale = (1.0, 1.0, 1.0)
+        obj_sub.location = (0.0, -0.008, -0.62)
+        obj_sub.keyframe_insert(data_path="scale", frame=18)
+        obj_sub.keyframe_insert(data_path="location", frame=18)
+        
+        # Frame (total_frames - 10): Hold
+        obj_sub.scale = (1.0, 1.0, 1.0)
+        obj_sub.location = (0.0, -0.008, -0.62)
+        obj_sub.keyframe_insert(data_path="scale", frame=total_frames - 10)
+        obj_sub.keyframe_insert(data_path="location", frame=total_frames - 10)
+        
+        # Frame total_frames: Exit
+        obj_sub.scale = (0.0, 0.0, 0.0)
+        obj_sub.keyframe_insert(data_path="scale", frame=total_frames)
+
+        # --- CAMERA IMPACT MICRO-SHAKE (BOOM PUNCH) ---
+        cam_obj = bpy.data.objects.get("Shuffle_Camera")
+        if cam_obj:
+            if cam_obj.animation_data:
+                cam_obj.animation_data_clear()
+            base_cam_loc = (0.0, -8.0, 4.0)
+            cam_obj.location = base_cam_loc
+            cam_obj.keyframe_insert(data_path="location", frame=1)
+            cam_obj.keyframe_insert(data_path="location", frame=9)
+            
+            # Frame 10: Bass punch kickback
+            cam_obj.location = (0.0, -8.18, 4.06)
+            cam_obj.keyframe_insert(data_path="location", frame=10)
+            
+            # Frame 14: Settle back to base position
+            cam_obj.location = base_cam_loc
+            cam_obj.keyframe_insert(data_path="location", frame=14)
+            cam_obj.keyframe_insert(data_path="location", frame=total_frames)
+
         context.scene.frame_start = 1
         context.scene.frame_end = total_frames
         context.scene.frame_set(1)
         
-        self.report({'INFO'}, f"Generated {headline} stinger ({total_frames} frames) with {f_choice} typography!")
+        self.report({'INFO'}, f"Generated {headline} stinger ({total_frames} frames) with {f_choice} spin-boom animation!")
         return {'FINISHED'}
 
 
@@ -1894,16 +1973,18 @@ class WOLFPACK_OT_generate_entry_bumper(bpy.types.Operator):
         t_data.align_x = 'CENTER'
         t_data.align_y = 'CENTER'
         t_data.size = 0.85
-        t_data.extrude = 0.055
-        t_data.bevel_depth = 0.010
+        t_data.extrude = 0.065
+        t_data.bevel_depth = 0.008
+        t_data.bevel_resolution = 4
         
+        # Elevated Z height (1.35m) so it majestically floats above helmets and never clips into turf
         obj_title = bpy.data.objects.new("Wolfpack_Bumper_Title", t_data)
-        obj_title.location = (0.0, -3.6, 1.1)
+        obj_title.location = (0.0, -3.2, 1.35)
         obj_title.rotation_euler = (math.radians(65.0), 0.0, 0.0)
         coll.objects.link(obj_title)
         obj_title.data.materials.append(mat_gold)
         
-        # Backing stroke (anti-glare deep purple bevel)
+        # Backing stroke (anti-glare deep purple bevel - offset cleanly to prevent z-fighting)
         s_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Bumper_Title_Stroke_Data")
         s_data.body = props.entry_title
         if vfont_radwave:
@@ -1911,12 +1992,13 @@ class WOLFPACK_OT_generate_entry_bumper(bpy.types.Operator):
         s_data.align_x = 'CENTER'
         s_data.align_y = 'CENTER'
         s_data.size = 0.85
-        s_data.extrude = 0.045
-        s_data.bevel_depth = 0.028
+        s_data.extrude = 0.050
+        s_data.bevel_depth = 0.026
+        s_data.bevel_resolution = 4
         
         obj_stroke = bpy.data.objects.new("Wolfpack_Bumper_Title_Stroke", s_data)
         obj_stroke.parent = obj_title
-        obj_stroke.location = (0.0, 0.010, -0.003)
+        obj_stroke.location = (0.0, 0.022, -0.002)
         coll.objects.link(obj_stroke)
         obj_stroke.data.materials.append(mat_purple)
         
@@ -1928,12 +2010,13 @@ class WOLFPACK_OT_generate_entry_bumper(bpy.types.Operator):
         sub_data.align_x = 'CENTER'
         sub_data.align_y = 'CENTER'
         sub_data.size = 0.38
-        sub_data.extrude = 0.03
-        sub_data.bevel_depth = 0.006
+        sub_data.extrude = 0.035
+        sub_data.bevel_depth = 0.005
+        sub_data.bevel_resolution = 3
         
         obj_sub = bpy.data.objects.new("Wolfpack_Bumper_Sub", sub_data)
         obj_sub.parent = obj_title
-        obj_sub.location = (0.0, 0.002, -0.55)
+        obj_sub.location = (0.0, -0.008, -0.58)
         coll.objects.link(obj_sub)
         obj_sub.data.materials.append(mat_gold)
         
@@ -1945,38 +2028,117 @@ class WOLFPACK_OT_generate_entry_bumper(bpy.types.Operator):
         sp_data.align_x = 'CENTER'
         sp_data.align_y = 'CENTER'
         sp_data.size = 0.22
-        sp_data.extrude = 0.02
+        sp_data.extrude = 0.022
         sp_data.bevel_depth = 0.004
+        sp_data.bevel_resolution = 3
         
         obj_sponsor = bpy.data.objects.new("Wolfpack_Bumper_Sponsor", sp_data)
         obj_sponsor.parent = obj_title
-        obj_sponsor.location = (0.0, 0.002, -0.95)
+        obj_sponsor.location = (0.0, -0.008, -0.98)
         coll.objects.link(obj_sponsor)
         obj_sponsor.data.materials.append(mat_purple)
         
-        # Keyframe Bumper Animation
+        # Kinetic Staggered Spin & Boom Keyframing
         dur = props.entry_duration
-        if obj_title.animation_data:
-            obj_title.animation_data_clear()
+        for anim_o in [obj_title, obj_sub, obj_sponsor]:
+            if anim_o.animation_data:
+                anim_o.animation_data_clear()
             
+        # --- TITLE: 3D SPIN & BOOM SLAM ---
+        # Frame 1: Angled spin in air
         obj_title.scale = (0.0, 0.0, 0.0)
+        obj_title.location = (0.0, -2.6, 2.3)
+        obj_title.rotation_euler = (math.radians(45.0), math.radians(-15.0), math.radians(28.0))
         obj_title.keyframe_insert(data_path="scale", frame=1)
+        obj_title.keyframe_insert(data_path="location", frame=1)
+        obj_title.keyframe_insert(data_path="rotation_euler", frame=1)
         
-        # Overshoot slam
-        obj_title.scale = (1.20, 1.20, 1.20)
-        obj_title.keyframe_insert(data_path="scale", frame=12)
+        # Frame 10: THE BOOM SLAM (Kinetic Overshoot)
+        obj_title.scale = (1.25, 1.25, 1.25)
+        obj_title.location = (0.0, -3.2, 1.35)
+        obj_title.rotation_euler = (math.radians(68.0), math.radians(2.0), math.radians(-2.0))
+        obj_title.keyframe_insert(data_path="scale", frame=10)
+        obj_title.keyframe_insert(data_path="location", frame=10)
+        obj_title.keyframe_insert(data_path="rotation_euler", frame=10)
         
-        # Settle
+        # Frame 16: Rest Settle
         obj_title.scale = (1.0, 1.0, 1.0)
-        obj_title.keyframe_insert(data_path="scale", frame=18)
+        obj_title.location = (0.0, -3.2, 1.35)
+        obj_title.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+        obj_title.keyframe_insert(data_path="scale", frame=16)
+        obj_title.keyframe_insert(data_path="location", frame=16)
+        obj_title.keyframe_insert(data_path="rotation_euler", frame=16)
         
-        # Slow drift hold
-        obj_title.scale = (1.05, 1.05, 1.05)
-        obj_title.keyframe_insert(data_path="scale", frame=dur - 8)
+        # Frame dur - 10: Heroic drift
+        obj_title.scale = (1.06, 1.06, 1.06)
+        obj_title.location = (0.0, -3.2, 1.42)
+        obj_title.keyframe_insert(data_path="scale", frame=dur - 10)
+        obj_title.keyframe_insert(data_path="location", frame=dur - 10)
         
-        # Wipe exit
+        # Frame dur: High-speed snap sweep exit
         obj_title.scale = (0.0, 0.0, 0.0)
+        obj_title.location = (7.5, -3.2, 1.8)
+        obj_title.rotation_euler = (math.radians(65.0), 0.0, math.radians(-35.0))
         obj_title.keyframe_insert(data_path="scale", frame=dur)
+        obj_title.keyframe_insert(data_path="location", frame=dur)
+        obj_title.keyframe_insert(data_path="rotation_euler", frame=dur)
+        
+        # --- SUBTITLE: STAGGERED SECONDARY WHIP ---
+        obj_sub.scale = (0.0, 0.0, 0.0)
+        obj_sub.location = (0.0, -0.008, -0.85)
+        obj_sub.keyframe_insert(data_path="scale", frame=1)
+        obj_sub.keyframe_insert(data_path="location", frame=1)
+        obj_sub.keyframe_insert(data_path="scale", frame=7)
+        obj_sub.keyframe_insert(data_path="location", frame=7)
+        
+        obj_sub.scale = (1.18, 1.18, 1.18)
+        obj_sub.location = (0.0, -0.008, -0.54)
+        obj_sub.keyframe_insert(data_path="scale", frame=13)
+        obj_sub.keyframe_insert(data_path="location", frame=13)
+        
+        obj_sub.scale = (1.0, 1.0, 1.0)
+        obj_sub.location = (0.0, -0.008, -0.58)
+        obj_sub.keyframe_insert(data_path="scale", frame=18)
+        obj_sub.keyframe_insert(data_path="location", frame=18)
+        obj_sub.keyframe_insert(data_path="scale", frame=dur - 10)
+        obj_sub.keyframe_insert(data_path="location", frame=dur - 10)
+        
+        obj_sub.scale = (0.0, 0.0, 0.0)
+        obj_sub.keyframe_insert(data_path="scale", frame=dur)
+        
+        # --- SPONSOR TAG: TERTIARY SNAP ---
+        obj_sponsor.scale = (0.0, 0.0, 0.0)
+        obj_sponsor.keyframe_insert(data_path="scale", frame=1)
+        obj_sponsor.keyframe_insert(data_path="scale", frame=12)
+        
+        obj_sponsor.scale = (1.15, 1.15, 1.15)
+        obj_sponsor.keyframe_insert(data_path="scale", frame=17)
+        
+        obj_sponsor.scale = (1.0, 1.0, 1.0)
+        obj_sponsor.keyframe_insert(data_path="scale", frame=21)
+        obj_sponsor.keyframe_insert(data_path="scale", frame=dur - 10)
+        
+        obj_sponsor.scale = (0.0, 0.0, 0.0)
+        obj_sponsor.keyframe_insert(data_path="scale", frame=dur)
+
+        # --- CAMERA IMPACT MICRO-SHAKE (BOOM PUNCH) ---
+        cam_obj = bpy.data.objects.get("Shuffle_Camera")
+        if cam_obj:
+            if cam_obj.animation_data:
+                cam_obj.animation_data_clear()
+            base_cam_loc = (0.0, -8.0, 4.0)
+            cam_obj.location = base_cam_loc
+            cam_obj.keyframe_insert(data_path="location", frame=1)
+            cam_obj.keyframe_insert(data_path="location", frame=9)
+            
+            # Frame 10: Bass punch kickback
+            cam_obj.location = (0.0, -8.18, 4.06)
+            cam_obj.keyframe_insert(data_path="location", frame=10)
+            
+            # Frame 14: Settle back to base position
+            cam_obj.location = base_cam_loc
+            cam_obj.keyframe_insert(data_path="location", frame=14)
+            cam_obj.keyframe_insert(data_path="location", frame=dur)
         
         context.scene.frame_start = 1
         context.scene.frame_end = dur

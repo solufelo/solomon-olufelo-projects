@@ -5,6 +5,16 @@ All notable changes to the Laurier Football Shell Game Blender addon will be doc
 ## [3.1.0] - 2026-09-07
 
 ### 🎨 Creative Director & Atmospheric Compositing Suite
+- **Kinetic Spin-Boom Motion Engine ("Spin Boom Modifiers Ready Go")**:
+  - **Dynamic 3D Angled Spin-In**: Initial keyframe at frame 1 with 3D tilt $(45^\circ, -15^\circ, 28^\circ)$ at scale 0, whipping dynamically onto the board.
+  - **Bass Impact Slam ("Boom")**: Massive kinetic slam impact at frame 10 with $1.25\times$ scale overshoot and recoil bounce settling at frame 16.
+  - **Camera Impact Punch / Micro-Shake**: Synchronized camera punch kickback on `Shuffle_Camera` to $(0, -8.18\text{m}, 4.06\text{m})$ on frame 10 settling at frame 14, physicalizing stadium sub-bass.
+  - **Staggered Secondary Typography Whip**: Subtitles lag by 6 frames, whipping up from beneath the headline at $1.18\times$ overshoot (frames 7-18).
+  - **Heroic Floating Drift & High-Speed Sweep Exit**: Subtle upward drift through hold ($1.0 \to 1.06\times$, $Z \to 1.42\text{m}$) followed by a $-35^\circ$ snap sweep offscreen at frame duration.
+  - Full support across all stingers (`TOUCHDOWN`, `FIELD_GOAL_GOOD`, `INTERCEPTION`, `1ST_DOWN`, etc.) and the "Home Show" Entry Bumper.
+- **Zero-Glitch Geometry & Collision-Free Guarantees**:
+  - **Elevated Vertical Ground Clearance**: Relocated stinger headlines to $Z = 1.35\text{m}$ ($Y = -3.2\text{m}$), placing all typography in the majestic upper third of the camera view, eliminating any ground or helmet collision.
+  - **Z-Fighting & Flicker Elimination**: Repositioned backing stroke to local $Y = +0.022\text{m}$ behind gold face with 4-step bevel resolution, strictly eliminating coplanar face intersection and rendering noise.
 - **Cinematic Atmosphere & Sky Dome**:
   - Procedural $45\text{m}$ dramatic sky dome (`Sky_Dome_Atmosphere`) with sunset amber sunburst horizon gradient and dynamic noise storm clouds.
   - High-angle rim/kicker spotlights (`Atmosphere_Rim_L` and `Atmosphere_Rim_R` at $2200\text{W}$) providing edge separation to pop 3D elements off the cloudy backdrop.
