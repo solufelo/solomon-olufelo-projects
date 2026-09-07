@@ -1,10 +1,10 @@
 bl_info = {
     "name": "Wolfpack Glory Helmet Shuffle",
     "author": "Solomon Olufelo / Wolfpack Glory",
-    "version": (2, 0, 0),
+    "version": (2, 5, 0),
     "blender": (4, 0, 0),
     "location": "View3D > Sidebar > Wolfpack Shuffle",
-    "description": "Collision-free parametric helmet shuffle generator for jumbotron promos",
+    "description": "Broadcast-grade collision-free helmet shuffle generator for jumbotron promos & Behance motion graphics",
     "category": "Animation",
 }
 
@@ -48,7 +48,7 @@ class Vector3:
 
 class MoveStep:
     """Represents a discrete swap or carousel move in the shuffle."""
-    def __init__(self, move_type: str, slots: List[int], start_frame: int, end_frame: int, y_depth: float, bounce_height: float, style: str = 'SMOOTH'):
+    def __init__(self, move_type: str, slots: List[int], start_frame: int, end_frame: int, y_depth: float, bounce_height: float, style: str = 'SMOOTH', bank_angle: float = 14.0):
         self.move_type = move_type      # 'PAIR_SWAP' or 'CAROUSEL'
         self.slots = slots              # Slot indices participating
         self.start_frame = start_frame
@@ -56,6 +56,7 @@ class MoveStep:
         self.y_depth = y_depth
         self.bounce_height = bounce_height
         self.style = style
+        self.bank_angle = bank_angle
 
 
 def ease_smoothstep(t: float) -> float:
@@ -88,13 +89,15 @@ class ShufflePlan:
         slot_spacing: float = 2.4,
         y_depth_base: float = 1.35,
         bounce_height: float = 0.25,
-        fps: int = 30
+        fps: int = 30,
+        bank_angle: float = 14.0
     ):
         self.num_items = num_items
         self.slot_spacing = slot_spacing
         self.y_depth_base = y_depth_base
         self.bounce_height = bounce_height
         self.fps = fps
+        self.bank_angle = bank_angle
         
         # Center of mass is pinned strictly at X = 0, Y = 0, Z = 0
         offset = (num_items - 1) * slot_spacing / 2.0
@@ -121,7 +124,8 @@ class ShufflePlan:
         pause_frames: int = 4,
         target_item: Optional[int] = None,
         style: str = 'SMOOTH',
-        start_frame: int = 30
+        start_frame: int = 30,
+        suspense_duration: int = 30
     ):
         self.moves.clear()
         self.slot_occupant = list(range(self.num_items))
@@ -153,7 +157,8 @@ class ShufflePlan:
                 end_frame=current_frame + swap_duration_frames,
                 y_depth=y_depth,
                 bounce_height=self.bounce_height,
-                style=style
+                style=style,
+                bank_angle=self.bank_angle
             )
             self.moves.append(move)
             current_frame = move.end_frame + pause_frames
@@ -164,7 +169,8 @@ class ShufflePlan:
             self.item_slot[occ2] = s1
         
         self.reveal_item_id = self.ball_holder_item_id
-        self.total_frames = current_frame + 50  # Outro / reveal buffer
+        self.shuffle_end_frame = current_frame - pause_frames
+        self.total_frames = current_frame + suspense_duration + 50  # Suspense beat + reveal lift & tilt buffer
 
     def evaluate_at_frame(self, frame: int) -> Dict[int, Tuple[Vector3, Vector3]]:
         slot_occ = list(range(self.num_items))
@@ -213,20 +219,21 @@ class ShufflePlan:
         theta = t_eval * math.pi
         sign = 1.0 if p1.x < p2.x else -1.0
         
-        # Orbit paths with guaranteed passing depth
+        # Orbit paths with guaranteed passing depth and centripetal banking around motion vector
+        bank_rad = math.radians(current_move.bank_angle)
         pos_it1 = Vector3(
             x=x_mid - sign * x_radius * math.cos(theta),
             y=+current_move.y_depth * math.sin(theta),
             z=p1.z + vertical_offset
         )
-        bank_it1 = math.radians(-14.0) * math.sin(theta) * sign
+        bank_it1 = -bank_rad * math.sin(theta) * sign
         
         pos_it2 = Vector3(
             x=x_mid + sign * x_radius * math.cos(theta),
             y=-current_move.y_depth * math.sin(theta),
             z=p2.z + vertical_offset
         )
-        bank_it2 = math.radians(14.0) * math.sin(theta) * sign
+        bank_it2 = +bank_rad * math.sin(theta) * sign
         
         results[it1] = (pos_it1, Vector3(0.0, bank_it1, 0.0))
         results[it2] = (pos_it2, Vector3(0.0, bank_it2, 0.0))
@@ -345,13 +352,13 @@ def setup_demo_scene_if_needed(slot_spacing: float = 2.4):
     if not bpy.data.objects.get("Football_CTRL"):
         fb_empty = bpy.data.objects.new("Football_CTRL", None)
         fb_empty.empty_display_type = 'SPHERE'
-        fb_empty.empty_display_size = 0.4
+        fb_empty.empty_display_size = 0.35
         coll.objects.link(fb_empty)
         
-        bpy.ops.mesh.primitive_uv_sphere_add(radius=0.35, location=(0, 0, 0.35))
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=0.28, location=(0, 0, 0.22))
         fb_mesh = bpy.context.active_object
         fb_mesh.name = "Laurier_Football_Mesh"
-        fb_mesh.scale = (1.35, 0.75, 0.75)  # Authentic pigskin ratio
+        fb_mesh.scale = (1.25, 0.72, 0.72)  # Authentic pigskin ratio
         fb_mesh.parent = fb_empty
         link_obj(fb_mesh)
         
@@ -448,7 +455,8 @@ def bake_shuffle_to_scene(props):
         slot_spacing=props.slot_spacing,
         y_depth_base=props.y_depth,
         bounce_height=props.bounce_height,
-        fps=props.fps
+        fps=props.fps,
+        bank_angle=props.bank_angle
     )
     
     # Storyboard Intro: if enabled, reserve frames at beginning for showing where ball is hidden
@@ -461,7 +469,8 @@ def bake_shuffle_to_scene(props):
         pause_frames=props.pause_frames,
         target_item=target_idx,
         style=props.movement_style,
-        start_frame=intro_offset + 10
+        start_frame=intro_offset + 10,
+        suspense_duration=props.suspense_duration
     )
     
     # Clear existing animation data on target objects
@@ -547,18 +556,35 @@ def bake_shuffle_to_scene(props):
         for frame in range(1, plan.total_frames + 1):
             evals = plan.evaluate_at_frame(frame)
             winner_pos, _ = evals[winning_item_id]
-            fb_ctrl.location = (winner_pos.x, winner_pos.y, 0.0)
+            fb_ctrl.location = (winner_pos.x, winner_pos.y, props.prize_z_offset)
             fb_ctrl.keyframe_insert(data_path="location", frame=frame)
 
-    # 4. Animate Final Reveal (Lifting winning helmet & tilt)
-    reveal_start = plan.total_frames - 35
-    reveal_end = plan.total_frames
+    # 4. Animate Suspense Pause & Final Reveal (Lifting winning helmet & tilt)
+    # Storyboard structure:
+    #   Shuffle ends at: plan.shuffle_end_frame
+    #   Suspense pause:  plan.shuffle_end_frame -> plan.shuffle_end_frame + props.suspense_duration
+    #   Reveal banner:   pops in at plan.shuffle_end_frame + 12 (Asking "WHERE IS IT?")
+    #   Helmet reveal:   begins lifting at plan.total_frames - 35
+    suspense_start = plan.shuffle_end_frame
+    reveal_question_frame = suspense_start + 12
+    reveal_lift_start = plan.total_frames - 35
+    reveal_lift_end = plan.total_frames
     
     if winner_obj:
-        evals_reveal = plan.evaluate_at_frame(reveal_start)
+        evals_reveal = plan.evaluate_at_frame(reveal_lift_start)
         base_pos, _ = evals_reveal[winning_item_id]
-        for frame in range(reveal_start, reveal_end + 1):
-            t = (frame - reveal_start) / max(1, (reveal_end - reveal_start))
+        
+        # Ensure helmet stays grounded during suspense pause
+        winner_obj.location = base_pos.as_tuple()
+        winner_obj.rotation_euler = (0.0, 0.0, 0.0)
+        winner_obj.keyframe_insert(data_path="location", frame=suspense_start)
+        winner_obj.keyframe_insert(data_path="rotation_euler", frame=suspense_start)
+        winner_obj.keyframe_insert(data_path="location", frame=reveal_lift_start)
+        winner_obj.keyframe_insert(data_path="rotation_euler", frame=reveal_lift_start)
+        
+        # Dramatic smooth lift + forward tilt to unveil football
+        for frame in range(reveal_lift_start, reveal_lift_end + 1):
+            t = (frame - reveal_lift_start) / max(1, (reveal_lift_end - reveal_lift_start))
             ease_lift = ease_smoothstep(t)
             
             lift_z = base_pos.z + props.reveal_height * ease_lift
@@ -579,8 +605,8 @@ def bake_shuffle_to_scene(props):
         
         phase_banners = [
             (banner_intro, 1, intro_offset + 5),
-            (banner_shuf, intro_offset + 6, reveal_start - 5),
-            (banner_rev, reveal_start - 4, plan.total_frames)
+            (banner_shuf, intro_offset + 6, suspense_start + 4),
+            (banner_rev, reveal_question_frame, plan.total_frames)
         ]
         
         for b_obj, p_start, p_end in phase_banners:
@@ -684,9 +710,33 @@ class WolfpackShuffleProperties(bpy.types.PropertyGroup):
     bounce_height: bpy.props.FloatProperty(
         name="Vertical Bounce",
         description="Subtle Z-axis lift while sliding",
-        default=0.25,
+        default=0.15,
         min=0.0,
         max=1.5,
+        step=5
+    )
+    bank_angle: bpy.props.FloatProperty(
+        name="Centripetal Bank Angle",
+        description="Dynamic tilt along movement vector during high-speed sweeps",
+        default=12.0,
+        min=0.0,
+        max=45.0,
+        step=1
+    )
+    prize_z_offset: bpy.props.FloatProperty(
+        name="Prize Z Offset",
+        description="Vertical height offset for the hidden football/prize to ensure it stays completely inside helmet during moves",
+        default=0.0,
+        min=-0.5,
+        max=0.5,
+        step=1
+    )
+    suspense_duration: bpy.props.IntProperty(
+        name="Suspense Pause (Frames)",
+        description="Dramatic pause between final shuffle swap and 'WHERE IS IT?' reveal banner",
+        default=36,
+        min=10,
+        max=150,
         step=5
     )
     reveal_height: bpy.props.FloatProperty(
@@ -896,19 +946,22 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         box_time.prop(props, "fps")
 
         box_phys = layout.box()
-        box_phys.label(text="Collision & Spacing Mechanics", icon='PHYSICS')
+        box_phys.label(text="Collision & Dynamics Mechanics", icon='PHYSICS')
         box_phys.prop(props, "slot_spacing")
         box_phys.prop(props, "y_depth")
         box_phys.prop(props, "bounce_height")
+        box_phys.prop(props, "bank_angle")
         box_phys.prop(props, "movement_style")
 
         box_rev = layout.box()
-        box_rev.label(text="Reveal Settings", icon='HIDE_OFF')
+        box_rev.label(text="Reveal & Suspense Settings", icon='HIDE_OFF')
         box_rev.prop(props, "randomize_target")
         if not props.randomize_target:
             box_rev.prop(props, "reveal_target")
+        box_rev.prop(props, "suspense_duration")
         box_rev.prop(props, "reveal_height")
         box_rev.prop(props, "reveal_tilt")
+        box_rev.prop(props, "prize_z_offset")
 
         # Storyboard Presentation Box
         box_story = layout.box()
