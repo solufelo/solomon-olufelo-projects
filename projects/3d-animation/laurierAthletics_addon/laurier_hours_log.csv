@@ -1,0 +1,2 @@
+Date,StartTime,EndTime,BreakHours,TotalHours,Category,Description,Status
+2026-09-07,09:30,17:00,0.5,7.0,Athletics Videoboard Dev,"Developed and tested modular 3D in-game videoboard assets and broadcast motion graphics in Blender 5.2. Integrated Radwave/Agency FB typography, calibrated LED anti-glare shaders, engineered kinetic spin-boom stinger animations, and generated After Effects SMPTE cue sheets.",Logged
