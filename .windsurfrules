@@ -1,0 +1,18 @@
+# Solomon Olufelo - Windsurf AI Assistant Rules
+# Version: 2.1.0
+
+## Core Context & Single Source of Truth
+1. Consult `VAULT_INDEX.md` and `PROJECT_STATUS.md` at repository root for current sprint state, version, and employment guidelines.
+2. Active Sprint: **Laurier Athletics Videoboard & Wolfpack Shuffle 3D Suite (v3.4.0)** in `projects/3d-animation/laurierAthletics_addon/`.
+3. Employment Guidelines: WLU Video Assistant (`ST1086-01` / `H00209`) at $19.03/hr, 40h/week cap approved by supervisor Hailey Tripodi.
+4. Academic Guidelines: Fall 2026 classes start Thursday, Sept 10, 2026.
+
+## 3D Motion Graphics & Blender Standards
+- Target: Blender 5.2.1 LTS on Windows.
+- Typography Architecture: Broadcast Sandwich Layout (`THE ULTIMATE CHALLENGE` kicker, `GOLDEN HAWKS SHUFFLE` hero, `PRESENTED BY WILFRID LAURIER ATHLETICS` sponsor) with 61.74° camera-normal pitch alignment.
+- Exits: Symmetrical centered exits (`BURST_FORWARD`, `CENTER_IMPLODE`, `DROP_DOWN`, `LIFT_UP`), strictly locking `X = 0.0` and `rot_z = 0.0°`.
+- Materials & Lighting: Laurier Gold `#FDB913` (0.22 emission), Laurier Deep Purple `#20003B` (bevel stroke), zero pure white borders (APL protection).
+
+## Tooling & Verification
+- Test all Blender scripts with: `& "C:\Program Files\Blender Foundation\Blender 5.2\blender.exe" -b --python <script.py>`
+- Always maintain bidirectional markdown links (`[[VAULT_INDEX.md]]`).

@@ -2,6 +2,40 @@
 
 All notable changes to the Laurier Football Shell Game Blender addon will be documented in this file.
 
+## [3.4.0] - 2026-09-08
+
+### 🥪 Broadcast Sandwich Layout & Camera Normal Pitch Alignment
+- **Broadcast Sandwich Typography System**:
+  - Completely solved perspective camera text overlap and visual clutter in non-orthographic views.
+  - Positioned `"THE ULTIMATE CHALLENGE"` as top eyebrow kicker at local `+Y = +0.58m`, scale `0.46`.
+  - Centered `"GOLDEN HAWKS SHUFFLE"` as hero text at local `Y = 0.00m`, scale `0.68`.
+  - Positioned `"PRESENTED BY WILFRID LAURIER ATHLETICS"` as bottom sponsor anchor at local `-Y = -0.58m`, scale `0.38`.
+- **Camera-Normal Pitch Alignment (61.74°)**:
+  - Rotated the base text plane by `61.74°` around the local X-axis to squarely face the `Shuffle_Camera` sightline vector (`Z = 4.0m, Y = -8.0m`).
+  - Completely eliminated trapezoidal foreshortening and visual compression between typography tiers.
+  - Guaranteed `0.26+` screen-height vertical air gaps across all lenses and focal lengths.
+- **Multi-Location Zip Deployment**:
+  - Automated deployment of `laurier_wolfpack_shuffle_v3.4.0.zip` across repo, Desktop, and Downloads folders.
+  - Auto-activated in Blender 5.2.1 LTS preferences (`userpref.blend`).
+
+## [3.3.0] - 2026-09-08
+
+### 🎯 Balanced Centered Text Exits & 5-Stage Modular UI Tabs
+- **Symmetrical Centered Text Exits**:
+  - Replaced awkward rightward tilt/drift (`-35°` snap sweep) with 4 broadcast-grade centered exit styles:
+    - `BURST_FORWARD`: Hero text expands toward camera lens while dissolving smoothly.
+    - `CENTER_IMPLODE`: Kinetic inward scale collapse to zero.
+    - `DROP_DOWN`: Gravity-driven drop straight down through the pitch.
+    - `LIFT_UP`: Skyward ascent off the top of the stadium frame.
+  - Strictly locked horizontal translation (`X = 0.0`) and rotation (`rot_z = 0.0°`) across all exit keyframes.
+- **Modular 5-Stage UI Panel Architecture**:
+  - Reorganized the 2,300+ line addon into 5 clean, logical workflow tabs in the Blender N-Panel:
+    1. `All Sections`: Full master panel access.
+    2. `1. Presentation`: Bumper setup, Title text, Slogans, Scoreboard stingers.
+    3. `2. Arena & Lights`: Turf, Floodlights, Volumetric haze, Sky dome.
+    4. `3. Shuffle & Game`: Helmet empties, Swapping speed, Hat trick randomization.
+    5. `4. Render & Sync`: 1-click ProRes 422 QuickTime and H.264 MP4 export, SMPTE cue sheets.
+
 ## [3.2.0] - 2026-09-07
 
 ### 🎬 Timeline Sequencing, Volumetric Atmosphere & Stadium Slogans Suite

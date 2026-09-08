@@ -6,6 +6,9 @@ Welcome to my portfolio repository. Here you'll find a collection of professiona
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/solomonolufelo/)
 [![Portfolio](https://img.shields.io/badge/Portfolio-View%20Work-purple?style=flat-square&logo=google-chrome)](https://www.captainsolo.ca/)
 [![Email](https://img.shields.io/badge/Email-Contact%20Me-red?style=flat-square&logo=gmail)](mailto:solomonolufelo@Outlook.com)
+[![Vault Status](https://img.shields.io/badge/AI%20Vault%20Hub-Active%20v3.4.0-gold?style=flat-square&logo=obsidian)](VAULT_INDEX.md)
+
+> 🧭 **AI Assistants & Navigators**: For live project status, active sprints, timesheet logs, and interlinked documentation across the entire portfolio, refer directly to the **[Master Vault Index (VAULT_INDEX.md)](VAULT_INDEX.md)** and **[Tactical Project Status (PROJECT_STATUS.md)](PROJECT_STATUS.md)**.
 
 ---
 
@@ -47,17 +50,18 @@ I specialize in building **production-ready applications** that solve real user 
     *   **Integrated Productivity:** Combines Pomodoro timers with task management.
 *   **Status:** Active Development | **Focus:** Accessibility (WCAG 2.1 AA) & Mobile-First Design.
 
-### 2. [Laurier Football Shell Game](projects/3d-animation/laurierAthletics)
-**Professional Blender Add-on**
-*A production-ready 3D animation tool built for high-performance workflow automation.*
+### 2. [Laurier Athletics Videoboard & Wolfpack Shuffle 3D Suite (v3.4.0)](projects/3d-animation/laurierAthletics_addon)
+**Professional Broadcast Motion Graphics & Blender Automation Suite**
+*A production-grade 3D broadcast graphics system engineered for Wilfrid Laurier University Athletics (University Stadium).*
 
-*   **Core Tech:** Python, Blender API.
+*   **Core Tech:** Python 3.11, Blender 5.2.1 LTS API, Apple ProRes 422 QuickTime, AgX Color Science.
 *   **Key Features:**
-    *   **Smart Animation Algorithms:** Uses sine wave functions for natural, non-linear movement.
-    *   **Auto-Scaling System:** Automatically detects object dimensions to adjust animation parameters.
-    *   **Bulletproof Error Handling:** Robust validation ensures stability in complex scenes.
-    *   **World-Class UI/UX:** Custom Blender panels designed for professional animators.
-*   **Impact:** Streamlines the creation of 3D assets for athletic presentations.
+    *   **Broadcast Sandwich Layout:** Pitch-aligned (61.74°) 3-tier typography system (`THE ULTIMATE CHALLENGE` kicker, `GOLDEN HAWKS SHUFFLE` hero, `PRESENTED BY WILFRID LAURIER ATHLETICS` sponsor) with zero camera overlap.
+    *   **Symmetrical Centered Exits:** 4 broadcast-grade centered exit animations (`BURST_FORWARD`, `CENTER_IMPLODE`, `DROP_DOWN`, `LIFT_UP`) with locked zero-tilt trajectories.
+    *   **Modular 5-Stage UI:** Streamlined N-Panel tabs (`Presentation`, `Arena & Lights`, `Shuffle & Game`, `Render & Sync`).
+    *   **Volumetric Atmosphere Moods:** 4 stadium lighting presets with physical light cone scattering and anti-glare LED diode protection.
+    *   **1-Click Stadium Render Pipeline:** Pure Blender export to Apple ProRes 422 QuickTime for Daktronics/Click Effects stadium systems and H.264 MP4.
+*   **Status:** **Active Production Sprint** | **Employment**: WLU Video Assistant (`ST1086-01` / $19.03/hr) | **[Timesheet Log](projects/3d-animation/laurierAthletics_addon/LAURIER_TIMESHEET_LOG.md)**.
 
 ### 3. [CAPTAIN-FUNDS](projects/web-development/CAPTAIN-FUNDS-MERN)
 **Enterprise-Grade Fundraising Platform**
@@ -94,7 +98,7 @@ I specialize in building **production-ready applications** that solve real user 
 - **[Awwwards-Portfolio](projects/web-development/Awwwards-Portfolio)** - Creative developer portfolio.
 
 ### 🎬 3D & Animation
-- **[Laurier Shell Game](projects/3d-animation/laurierAthletics)** - Python-based Blender automation.
+- **[Laurier Athletics Videoboard & Wolfpack Shuffle Suite (v3.4.0)](projects/3d-animation/laurierAthletics_addon)** - Broadcast motion graphics & Blender automation.
 - **[Documentary3D](#)** - 3D storytelling project.
 - **[3D_Portfolio](#)** - Interactive 3D web showcase.
 

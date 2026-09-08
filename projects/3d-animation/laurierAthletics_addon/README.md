@@ -1,251 +1,89 @@
-# 🏈 Laurier Football Shell Game - Blender Addon
+# 🏈 Laurier Athletics Videoboard & Wolfpack Shuffle 3D Suite (v3.4.0)
 
-A professional Blender 4.5+ addon for creating stunning 3D shell game shuffle animations for Laurier Football promos. Features smooth helmet movements, dramatic reveals, and cinematic camera work with an intuitive user interface.
+> **Master Vault Hub**: [[../../VAULT_INDEX.md|Root Vault Index]] | [[PROJECT_STATUS.md|Active Status]]  
+> **Timesheet & LORIS Log**: [[LAURIER_TIMESHEET_LOG.md|LAURIER_TIMESHEET_LOG.md]]  
+> **Production Blueprint & Behance Case Study**: [[PRODUCTION_SET_DESIGN_BLUEPRINT.md|Set Design Blueprint]]  
+> **Changelog**: [[CHANGELOG.md|Release History]]  
+> **Latest Release Archive**: `laurier_wolfpack_shuffle_v3.4.0.zip`
 
-## ✨ Features
-
-- **🎛️ Intuitive UI Panel** - Easy-to-use controls in Blender's 3D Viewport sidebar
-- **⚡ Preset Configurations** - Quick setup with professional presets
-- **🎬 Cinematic Quality** - Smooth sine-wave movements with realistic bounce
-- **📹 Camera Integration** - Automatic camera sway for dynamic shots
-- **🎲 Smart Randomization** - Randomize football location for variety
-- **⚙️ Full Customization** - Fine-tune every aspect of the animation
-- **🎯 Scene Validation** - Built-in error checking and helpful feedback
-
-## 📦 Installation
-
-### Method 1: Install from Zip File (Recommended)
-1. Download `laurier_football_shell_game_v1.0.0.zip`
-2. Open Blender 4.5+
-3. Go to `Edit > Preferences > Add-ons`
-4. Click `Install...` and select the zip file
-5. Enable "Laurier Football Shell Game" in the add-on list
-6. The addon will appear in the 3D Viewport sidebar under "Laurier Football"
-
-### Method 2: Install from Folder
-1. Download the `blender_addon` folder
-2. Open Blender 4.5+
-3. Go to `Edit > Preferences > Add-ons`
-4. Click `Install...` and select the `blender_addon` folder
-5. Enable "Laurier Football Shell Game" in the add-on list
-6. The addon will appear in the 3D Viewport sidebar under "Laurier Football"
-
-### Method 3: Manual Installation
-1. Copy the `blender_addon` folder to your Blender add-ons directory:
-   - **Windows**: `%APPDATA%\Blender Foundation\Blender\4.5\scripts\addons\`
-   - **macOS**: `~/Library/Application Support/Blender Foundation/Blender/4.5/scripts/addons/`
-   - **Linux**: `~/.config/blender/4.5/scripts/addons/`
-2. Restart Blender
-3. Enable the addon in `Edit > Preferences > Add-ons`
-
-## 🚀 Quick Start
-
-### 1. Scene Setup
-Before using the addon, set up your Blender scene:
-
-```
-Required Objects:
-├── Empty_1 (for left helmet)
-├── Empty_2 (for center helmet)  
-├── Empty_3 (for right helmet)
-└── Football_CTRL (for football)
-
-Setup Steps:
-1. Import your helmet and football models
-2. Create the four empty objects listed above
-3. Parent each helmet to its corresponding empty
-4. Parent the football to Football_CTRL
-5. Position the empties side-by-side
-6. Set up camera and lighting
-```
-
-### 2. Using the Addon
-1. Open the 3D Viewport
-2. Press `N` to open the sidebar (or go to `View > Sidebar`)
-3. Click the "Laurier Football" tab
-4. Choose a preset or customize settings
-5. Click "Create Shell Game Animation"
-6. Preview your animation!
-
-## 🎛️ User Interface
-
-### Main Panel
-The addon creates a dedicated panel in the 3D Viewport sidebar with:
-
-- **🏈 Header** - Addon branding and version info
-- **📋 Preset Selection** - Choose from 6 professional presets
-- **⚙️ Custom Controls** - Fine-tune settings when "Custom" is selected
-- **▶️ Create Button** - Generate the animation
-- **📊 Info Display** - Show current settings and frame count
-
-### Available Presets
-
-| Preset | Duration | Best For | Characteristics |
-|--------|----------|----------|-----------------|
-| **Quick & Snappy** | 5s | Fast content | High speed, tight movements |
-| **Dramatic & Slow** | 12s | Cinematic | Slow, dramatic movements |
-| **Social Media** | 3s | Instagram/TikTok | High energy, quick cuts |
-| **Broadcast Quality** | 8s | TV/Web | Balanced, professional |
-| **Minimal & Clean** | 6s | Subtle effects | Clean, minimal movement |
-| **High Energy** | 4s | Exciting content | Fast, bouncy movements |
-
-## ⚙️ Custom Settings
-
-When "Custom" preset is selected, you can adjust:
-
-### Animation Settings
-- **Duration** - Total animation length (1-30 seconds)
-- **FPS** - Frame rate (12-60 fps)
-- **Shuffle Speed** - Movement speed (0.5-10.0)
-- **Shuffle Cycles** - Number of shuffle patterns (1-20)
-
-### Movement Settings
-- **Shuffle Amplitude** - Horizontal movement range (0.1-10.0)
-- **Vertical Bounce** - Bounce height (0.0-2.0)
-- **Spacing Buffer** - Distance between helmets (0.5-5.0)
-
-### Reveal Settings
-- **Reveal Target** - Which helmet hides football (1, 2, or 3)
-- **Reveal Duration** - How long reveal takes (0.5-5.0s)
-- **Reveal Height** - How high helmet lifts (0.1-3.0)
-
-### Effects
-- **Camera Sway** - Add subtle camera movement
-- **Sway Amount** - Intensity of camera movement (0.0-1.0)
-- **Ease Out** - Slow down before reveal
-- **Ease Duration** - How long ease-out lasts (0.1-3.0s)
-- **Randomize Target** - Randomly choose football location
-
-## 🎬 Workflow
-
-### 1. Pre-Production
-```
-Scene Preparation:
-├── Import helmet and football models
-├── Create required empty objects
-├── Set up parenting relationships
-├── Position objects appropriately
-├── Configure lighting setup
-└── Set camera framing
-```
-
-### 2. Animation Creation
-```
-Using the Addon:
-├── Open 3D Viewport sidebar
-├── Navigate to "Laurier Football" tab
-├── Choose preset or customize settings
-├── Click "Create Shell Game Animation"
-├── Preview in viewport
-└── Adjust settings if needed
-```
-
-### 3. Post-Production
-```
-Rendering & Compositing:
-├── Set render output directory
-├── Configure render settings
-├── Render PNG sequence with alpha
-├── Import into After Effects
-├── Add motion blur and color grading
-├── Add titles and graphics
-└── Export final video
-```
-
-## 🛠️ Technical Details
-
-### Requirements
-- **Blender 4.5+** (tested on 4.5.0)
-- **Python 3.10+** (included with Blender)
-- **Scene Setup** - Proper object naming and parenting
-
-### Architecture
-The addon is built with:
-- **Property Groups** - Store settings in scene data
-- **Operator Classes** - Handle animation creation
-- **Panel Classes** - Create user interface
-- **Animation Engine** - Core animation logic
-
-### Performance
-- **Optimized** - Efficient keyframe generation
-- **Memory Safe** - Proper cleanup and error handling
-- **Scalable** - Works with complex scenes
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**"Required object not found"**
-- Ensure empty objects exist with exact names
-- Check that objects are not hidden or in different collections
-- Verify parenting relationships are correct
-
-**Animation not working**
-- Check that helmets are properly parented to empties
-- Ensure football is parented to Football_CTRL
-- Verify scene has proper lighting and camera
-
-**Poor performance**
-- Reduce animation duration for testing
-- Lower FPS for faster preview
-- Simplify scene geometry if needed
-
-**UI Panel not visible**
-- Ensure addon is enabled in Preferences
-- Check that sidebar is open (press N)
-- Look for "Laurier Football" tab in sidebar
-
-### Getting Help
-1. Check the setup requirements in the UI panel
-2. Verify all required objects exist in your scene
-3. Try different presets to isolate issues
-4. Check Blender's console for error messages
-
-## 📁 File Structure
-
-```
-laurierAthletics_addon/
-├── blender_addon/
-│   └── __init__.py          # Main addon file
-├── README.md                # This documentation
-├── INSTALLATION.md          # Detailed installation guide
-└── examples/
-    ├── sample_scene.blend   # Example scene setup
-    └── presets_demo.blend   # Preset demonstrations
-```
-
-## 🔮 Future Updates
-
-### Version 1.1 (Planned)
-- **Particle Effects** - Dust clouds on impacts
-- **Sound Integration** - Audio cues and timing
-- **Multiple Cameras** - Automatic camera switching
-- **Export Options** - Direct video export
-
-### Version 1.2 (Planned)
-- **Advanced Easing** - More motion curve options
-- **Batch Processing** - Multiple animation variants
-- **Template System** - Save/load custom presets
-- **Real-time Preview** - Live animation preview
-
-## 👨‍💻 Author & Support
-
-**Solomon Olufelo**  
-Student ID: 210729170  
-Email: oluf9170@mylaurier.ca  
-SASP Program - Laurier University
-
-### Support
-- 📧 Email: oluf9170@mylaurier.ca
-- 🐛 Issues: Report bugs via email
-- 💡 Features: Request new features via email
-
-## 📝 License
-
-This addon is created for Laurier Athletics promotional use. All rights reserved.
+A professional broadcast-grade 3D motion graphics suite and Blender 5.2+ addon engineered for Wilfrid Laurier University Athletics (Laurier Golden Hawks / Wolfpack Glory). Automates stadium jumbotron animations, helmet shell game shuffles, scoring stingers, and sponsor integrations for live collegiate football productions at University Stadium.
 
 ---
 
-**Ready to create professional football animations? 🏈✨**
+## ✨ What's New in v3.4.0 (Broadcast Production Release)
 
-Install the addon and start creating stunning Laurier Football promos with just a few clicks!
+### 🥪 1. Broadcast Sandwich Layout (Camera Overlap Fixed)
+* **Problem**: In standard perspective camera views, titles, kickers, and sponsor tags collapsed onto the same visual plane, creating messy polygon collisions and illegible text overlaps.
+* **Solution**: Three-tiered vertical stratum pitched directly along the camera sightline vector (`61.74°`):
+  * **Top Eyebrow Kicker**: `"THE ULTIMATE CHALLENGE"` (`+Y = +0.58m`, scale `0.46`).
+  * **Center Hero**: `"GOLDEN HAWKS SHUFFLE"` (`Y = 0.00m`, scale `0.68`).
+  * **Bottom Sponsor**: `"PRESENTED BY WILFRID LAURIER ATHLETICS"` (`-Y = -0.58m`, scale `0.38`).
+* **Result**: Clean `0.26+` screen-height air gaps with zero overlap across all focal lengths.
+
+### 🎯 2. Symmetrical Centered Text Exits
+* Replaced asymmetric rightward drift with 4 broadcast-grade centered exit animations:
+  * `BURST_FORWARD`: Hero text surges dynamically toward camera with smooth dissolve.
+  * `CENTER_IMPLODE`: Kinetic inward scale collapse to zero.
+  * `DROP_DOWN`: Heavy gravitational drop through turf plane.
+  * `LIFT_UP`: Majestic skyward ascent off the top frame.
+* Strictly locked horizontal translation (`X = 0.0`) and rotation (`rot_z = 0.0°`).
+
+### 🎛️ 3. Modular 5-Stage UI Panel Architecture
+Reorganized the 2,357-line production script into 5 intuitive workflow tabs in the Blender N-Panel:
+1. `All Sections`: Complete master console.
+2. `1. Presentation`: Entry bumpers, 3D titles, stadium slogans, and scoring stingers.
+3. `2. Arena & Lights`: Turf shader, floodlights, volumetric scattering, and sky dome.
+4. `3. Shuffle & Game`: Helmet rigging, continuous non-linear orbital math, and game logic.
+5. `4. Render & Sync`: 1-click Apple ProRes 422 / H.264 exports and SMPTE cue sheet generation.
+
+### 💡 4. Volumetric Lighting & Atmospheric Moods
+* **4 Curated Mood Presets**:
+  * `Night Game Volumetric`: Crisp 5800K halogen floodlight banks, high-angle Gold & Deep Purple rim kickers.
+  * `Golden Sunset`: Warm 3200K low-angle sunburst with long turf shadows.
+  * `Halftime Blackout`: Cyber violet/magenta flood wash with laser gold rims.
+  * `Clean Studio`: Neutral, balanced commercial presentation.
+* **Procedural Volumetric Scattering**: $36\text{m} \times 36\text{m} \times 15\text{m}$ Principled Volume domain delivering visible stadium floodlight beams and god rays.
+
+### 🚀 5. Pure Blender 1-Click Broadcast Render Pipeline
+* Directly render broadcast deliverables without risking After Effects crashes or corruption:
+  * **Apple ProRes 422 QuickTime (`.mov`)**: Ready for direct playback on Daktronics / Click Effects / Ross XPression stadium control systems.
+  * **Apple ProRes 4444 RGBA (`.mov`)**: Transparent alpha channel for live camera overlays.
+  * **H.264 Lossless MP4 (`.mp4`)**: Web and mobile review copies.
+
+---
+
+## 📦 Installation & Setup
+
+### Method 1: Automatic Pre-Installation (Installed in Environment)
+The addon is already pre-installed and activated in Blender 5.2.1 LTS user preferences:
+```
+%APPDATA%\Blender Foundation\Blender\5.2\scripts\addons\wolfpack_shuffle\
+```
+
+### Method 2: Install from Zip File
+1. Locate `laurier_wolfpack_shuffle_v3.4.0.zip` (available in this repository folder, or on Desktop/Downloads).
+2. Open Blender 5.2+.
+3. Open `Edit > Preferences > Add-ons`.
+4. Click the arrow in the top right > `Install from Disk...`.
+5. Select `laurier_wolfpack_shuffle_v3.4.0.zip`.
+6. Enable the checkbox for **"Laurier Athletics - Wolfpack Shuffle 3D Suite"**.
+7. Press `N` in the 3D Viewport to open the sidebar and navigate to the **Laurier Football** tab.
+
+---
+
+## 🧪 Automated Testing & Validation
+
+Run the headless verification suite to confirm all 18 production checks pass:
+```powershell
+& "C:\Program Files\Blender Foundation\Blender 5.2\blender.exe" -b --python "projects\3d-animation\laurierAthletics_addon\test_addon.py"
+```
+
+---
+
+## ⏱️ Employment & Timesheet Reference
+* **Student Video Assistant**: Solomon Olufelo (`ST1086-01`, Position `H00209`)
+* **Department**: Athletics and Recreation, Wilfrid Laurier University
+* **Supervisor**: Hailey Tripodi (`Tripodi, Hailey R.`)
+* **Hourly Wage**: **CA$19.030000 / hour**
+* **Work Cap**: **40.00 hours/week maximum** (Authorized by Hailey Tripodi)
+* **Full Hours Audit & LORIS Breakdown**: [[LAURIER_TIMESHEET_LOG.md|LAURIER_TIMESHEET_LOG.md]]

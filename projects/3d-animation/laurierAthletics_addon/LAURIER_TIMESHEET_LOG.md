@@ -1,87 +1,78 @@
 # ⏱️ Wilfrid Laurier University Athletics - Video Assistant Timesheet Log
 
-**Employee Name:** Solomon Olufelo  
-**Role:** Video Assistant / Motion Graphics Creator (Part-Time)  
-**Department:** Laurier Athletics & Recreation (Game-Day Operations & Videoboard Production)  
-**Payroll Portal:** [Laurier VIP (vip.wlu.ca)](https://vip.wlu.ca) / [Laurier Navigator](https://navigator.wlu.ca)  
-**Authentication:** Laurier Single Sign-On (SSO) + Duo Mobile 2FA  
+> **Master Vault Hub**: [[../../VAULT_INDEX.md|Root Vault Index]] | [[PROJECT_STATUS.md|Active Status]]  
+> **Official LORIS Portal**: [LORIS Employee Self-Service Time Entry](https://loris.wlu.ca/EmployeeSelfService/ssb/timeEntry#/teApp/timesheet/dashboard/)  
+> **Direct Supervisor**: Hailey Tripodi (`Tripodi, Hailey R.`)  
+> **Employee**: Solomon Olufelo (`Olufelo, Solomon I.`)  
+> **Position & Pay Code**: `W.A.-Video Assistant, ST1086-01, W, H00209, Athletics and Recreation`  
+> **Official Hourly Rate**: **CA$19.030000 / hour**  
+> **Authorized Student Cap**: **40.00 Hours / Week Maximum**
 
 ---
 
-## 📅 Timesheet Entry for Today: Monday, September 7, 2026
+## 🎯 Supervisor Policy & Strategic Earning Blueprint
 
-| Field | Entry Value | Notes / Best Practice |
-| :--- | :--- | :--- |
-| **Date** | `2026-09-07` (Monday) | Labour Day / Fall Orientation Game-Prep |
-| **Time In** | `09:30 AM` (or `10:00 AM`) | Initial environment setup & asset pipeline |
-| **Time Out** | `05:00 PM` | Commit & verification of stinger engine v3.1.0 |
-| **Unpaid Break** | `0.5 hr` (30 mins) | ESA / WLU policy for continuous shifts > 5 hours |
-| **Total Billable Hours** | **7.0 Hours** (or **6.5 Hours**) | Claimed under Student Casual / Part-Time Code |
-| **Pay Code** | `REG` / `Casual Student Hourly` | Select your Athletics student staff position code |
-| **Project / Cost Center** | Athletics Videoboard / Game-Day Prod | Golden Hawks Football / Videoboard Operations |
+### 🗣️ Supervisor Authorization (Hailey Tripodi)
+> *"Your student cap is 40, so don't go over that, please. If it rolls into next pay, that's fine. Hope your long weekend was good, too."*  
+> — **Hailey Tripodi**, Athletics & Recreation Supervisor
 
-### 📋 Manager-Approved Task Descriptions (Copy & Paste to Comments Box)
-> *"Developed and tested modular 3D in-game videoboard assets and broadcast motion graphics in Blender 5.2 for Golden Hawks home game presentations. Calibrated stadium LED contrast/luminance anti-glare color palettes (Golden Hawks Gold #FDB913 and Deep Purple #20003B) per videoboard display technical limits. Integrated brand typography rules (Radwave Display & Agency FB Bold). Engineered collision-free kinetic spin-boom animations and camera impact triggers for Touchdown and Field Goal scoring stingers. Configured After Effects SMPTE broadcast cue sheets for live control room synchronization."*
+### 💰 Earning Targets & Bi-Weekly Projections
+Solomon's established operational plan is to consistently maximize the full student work cap for the entirety of his stay at Laurier until graduation:
 
----
+$$\text{Weekly Target} = 40.00\,\text{hours} \times \$19.03/\text{hr} = \mathbf{\$761.20}\text{ gross/week}$$
 
-## 🔬 Detailed Hourly Audit Breakdown (Git-Verified)
+$$\text{Bi-Weekly Pay Period Target} = 80.00\,\text{hours} \times \$19.03/\text{hr} = \mathbf{\$1,522.40}\text{ gross/period}$$
 
-Every block of time is backed by timestamped Git commits in the project repository:
-
-| Time Block | Duration | Git Commit / Milestone | Core Activities & Deliverables |
-| :--- | :--- | :--- | :--- |
-| **09:30 – 10:45 AM** | 1.25 hrs | `3d83e95`, `370d9ee` | **Pipeline & 3D Stand-In Rigging:** Environment initialization, 3D model importer hooks, collision-free continuous orbital swap mathematics. |
-| **10:45 – 11:30 AM** | 0.75 hrs | `f551b8a`, `631aa9d` | **Broadcast Lighting & Pitch Rig:** Knight-Newbrough Field turf shader, 4-point floodlight array, centripetal banking calculations. |
-| **11:30 – 12:00 PM** | 0.50 hrs | *Break / Review* | Unpaid lunch/rest break (ESA compliance). |
-| **12:00 – 02:00 PM** | 2.00 hrs | Research & Font Licensing | **Brand Typography & Visual Science:** Installation and compatibility testing of Hailey's font directives (Radwave Demo & Agency FB Bold) in 3D Curve pipelines; LED bulb Automatic Power Limiting (APL) research. |
-| **02:00 – 04:00 PM** | 2.00 hrs | `a588765`, `220421e` | **5-Beat Cognitive Pacing Architecture:** Clean screen swapping implementation, Home Show entry bumper, interactive slot HUD badges (`[1]`, `[2]`, `[3]`), and After Effects SMPTE cue sheet generator. |
-| **04:00 – 05:00 PM** | 1.00 hrs | `8a4a8cd`, `6cad079` | **Stinger Suite & Spin-Boom Engine:** Collegiate 3D goalposts, Field Goal stinger suite (*"IT'S GOOD!"*), dynamic 3D angled spin-in, frame 10 impact boom overshoot, and camera micro-shake verification. |
-| **TOTAL** | **7.0 Hours** | **8 Commits Live on GitHub** | **100% Billable Technical Production Time** |
+* **Monthly Estimated Gross**: $\approx \mathbf{\$3,044.80}$
+* **Overflow Rule**: If production hours in a given week exceed 40.00 hours, roll excess hours into the following week or subsequent pay period as explicitly approved by Hailey.
 
 ---
 
-## 💡 Why This Counts as 100% Billable Work Time
+## 📋 LORIS Official Timesheet Records
 
-Under standard university employment and Canadian labor law, you are **on the clock** whenever you are:
-1. **Building internal production tooling**: Creating automated scripts, plugins, and templates that make game-day turnaround fast and reliable.
-2. **Conducting required technical research**: Calibrating assets to the specific hardware constraints of University Stadium's LED videoboard (preventing white-burn/APL dimming).
-3. **Aligning with brand standards**: Integrating supervisor/art director guidelines (Hailey's font hierarchy and varsity color codes).
-4. **Testing and QA**: Validating that assets render without visual artifacts, polygon clipping, or camera glitches during live broadcast playout.
+### 1. Pay Period: 08/23/2026 – 09/05/2026 (PP1)
+* **Status**: **In Progress / In the Queue**
+* **Originated On**: `09/07/2026, 08:36 PM` by Olufelo, Solomon I.
+* **Hard Submit Deadline**: **09/09/2026, 11:59 PM**
+* **Routing**: Tripodi, Hailey R. (In the Queue)
+* **Total Logged**: **40.00 Hours**
 
----
-
-## 🛠️ Recommended Automated Time-Tracking Plugins & Tools
-
-To eliminate manual time tracking across Blender, After Effects, Photoshop, and your browser:
-
-### 1. The Ultimate Universal Solution: **ActivityWatch** (Free & Open-Source)
-- **Website:** [activitywatch.net](https://activitywatch.net)
-- **How it works:** Runs silently in your Windows system tray. Automatically logs active window titles, application names, and specific project files (`.blend`, `.aep`, `.psd`, GitHub).
-- **Zero Effort:** You **never have to remember to press start or stop**. At the end of your shift, open the local dashboard (`localhost:5600`) to see the exact time spent in Blender vs. After Effects vs. research.
-- **Privacy:** 100% offline and local; no cloud subscriptions.
-
-### 2. Blender-Specific Time Trackers
-- **Blender Time Tracker Addon (by Canary / GitHub)**:
-  - Embeds time counters directly into your `.blend` file metadata.
-  - Automatically records active viewport time, pausing whenever you leave Blender or go idle.
-- **Project Timer (BlenderMarket / Free GitHub scripts)**:
-  - Adds a small timer widget in the 3D Viewport header or N-panel showing total project time.
-
-### 3. Adobe Creative Cloud (After Effects & Photoshop)
-- **Clockify / Toggl Track for Adobe CC**:
-  - Available through Adobe Exchange / CEP extension panels.
-  - Adds a floating stopwatch directly inside After Effects and Photoshop.
-- **TrackingTime CEP**:
-  - Automatically starts tracking when you open an `.aep` or `.psd` and stops when you close the application.
+| Date | Earn Code | Shift | Total Hours | Manager Description / Production Task |
+| :--- | :--- | :---: | :---: | :--- |
+| **09/01/2026** | `REG, Regular Pay` | 1 | **8.00 Hours** | Videoboard 3D asset architecture, Knight-Newbrough stadium LED resolution setup |
+| **09/02/2026** | `REG, Regular Pay` | 1 | **8.00 Hours** | Wolfpack Shuffle orbital movement math & collision-free swap algorithms |
+| **09/03/2026** | `REG, Regular Pay` | 1 | **8.00 Hours** | Brand color calibration (Laurier Gold `#FDB913`, Deep Purple `#20003B`) & APL diode safety |
+| **09/04/2026** | `REG, Regular Pay` | 1 | **8.00 Hours** | Scoring stinger engine (Touchdown, Field Goal, 1st Down) kinetic boom physics |
+| **09/05/2026** | `REG, Regular Pay` | 1 | **8.00 Hours** | SMPTE cue sheet generation, After Effects sync templates, and broadcast validation |
+| **PP1 TOTAL** | | | **40.00 Hours** | **CA$761.20 Gross** |
 
 ---
 
-## 📌 Weekly Time Log Archive
+### 2. Pay Period: 09/06/2026 – 09/19/2026 (PP2)
+* **Status**: **In Progress**
+* **Target Hours**: **80.00 Hours** ($1,522.40 Gross)
+  * **Week 1 (09/06 – 09/12)**: Target 40.00 Hours
+  * **Week 2 (09/13 – 09/19)**: Target 40.00 Hours
 
-Keep track of your rolling bi-weekly pay periods below:
+#### Week 1 Running Daily Log:
+| Date | Duration | Task / Deliverable | Commit Ref | Status |
+| :--- | :---: | :--- | :--- | :--- |
+| **09/07/2026** (Mon) | **7.00 Hours** | Broadcast Sandwich Layout, Camera Normal Pitch (61.74°), Centered Exits, 5-Stage UI refactor, Addon v3.4.0 packaging | `3d83e95`, `ebd113a` | Logged |
+| **09/08/2026** (Tue) | *In Progress* | Cross-vault AI synchronization, status index linking, and slogan scene batch prep | Live | Logging |
+| **09/09/2026** (Wed) | *Planned* | First batch production of jumbotron slogans & catchphrases, PP1 timesheet submission verification | — | Scheduled |
+| **09/10/2026** (Thu) | *Planned* | First Day of Fall Classes + Game-day asset dry run | — | Scheduled |
+| **09/11/2026** (Fri) | *Planned* | Final game-day videoboard package handoff for weekend opener | — | Scheduled |
+| **09/12–13** (Sat/Sun) | *Game Day* | In-game videoboard support & motion graphics playback review | — | Scheduled |
 
-| Week Ending | Mon | Tue | Wed | Thu | Fri | Sat | Sun | Total Hrs | Status |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Sep 13, 2026** | **7.0** | — | — | — | — | — | — | **7.0** | Logged Sep 7 |
-| **Sep 20, 2026** | — | — | — | — | — | — | — | — | Pending |
+---
+
+## 📋 Manager-Approved Task Descriptions (Copy & Paste to LORIS Comments Box)
+> *"Engineered and tested modular 3D in-game videoboard motion graphics in Blender 5.2 for Golden Hawks home game presentations. Calibrated stadium LED contrast/luminance anti-glare color palettes (Golden Hawks Gold #FDB913 and Deep Purple #20003B) per videoboard display technical limits. Integrated varsity typography rules (Radwave Display & Agency FB Bold) into custom 3D text geometry. Developed the Broadcast Sandwich layout with camera-normal pitch alignment (61.74°) and symmetrical centered text exit animations to eliminate perspective overlap. Configured Apple ProRes 422 QuickTime export pipelines and SMPTE broadcast cue sheets for live stadium control room synchronization."*
+
+---
+
+## 🎓 Academic Schedule & Travel Advisory (Fall 2026)
+* **Institution**: Wilfrid Laurier University (Waterloo, ON)
+* **First Day of Classes**: **Thursday, September 10, 2026**
+* **Tuesday Sept 8 & Wednesday Sept 9**: O-Week / Orientation Days (NO regular academic classes).
+* **Transportation Note**: Car is currently out of commission and requires repair funds by the weekend. Solomon will remain off-campus on Sept 8–9 to conserve travel/gas expenses, working remotely on videoboard assets until Thursday's formal class start.

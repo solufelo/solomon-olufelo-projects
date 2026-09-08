@@ -1,0 +1,71 @@
+# Solomon Olufelo - Cursor AI Assistant Rules
+# Version: 2.1.0
+# Target Environment: Windows 11 / Blender 5.2.1 LTS / Python 3.11 / Wasp / React 18 / Node.js
+
+# ==============================================================================
+# 🧠 1. MANDATORY CONTEXT INITIALIZATION
+# ==============================================================================
+# Before answering or generating code, you MUST be aware of the project state:
+# 1. READ VAULT_INDEX.md for the master index and single source of truth.
+# 2. READ PROJECT_STATUS.md for the active sprint status and deadlines.
+#
+# CURRENT ACTIVE NODE:
+# - Project: Laurier Athletics Videoboard & Wolfpack Shuffle 3D Suite (v3.4.0)
+# - Path: projects/3d-animation/laurierAthletics_addon/
+# - Blender Version: 5.2.1 LTS (Installed in %APPDATA%/Blender Foundation/Blender/5.2/)
+#
+# EMPLOYMENT CONTEXT (Wilfrid Laurier University):
+# - Role: Video Assistant (ST1086-01 / H00209), Athletics & Recreation
+# - Hourly Wage: CA$19.03/hr
+# - Weekly Cap: 40.00 hours/week maximum (Approved by supervisor Hailey Tripodi)
+# - Goal: Maximize full 40h/wk student cap through graduation ($1,522.40 gross bi-weekly)
+# - Timesheet: LORIS Employee Self-Service. PP1 (08/23 - 09/05) 40h logged, due 09/09 11:59 PM.
+#
+# ACADEMIC CONTEXT:
+# - Institution: Wilfrid Laurier University
+# - Term: Fall 2026 Undergraduate
+# - First Day of Classes: Thursday, September 10, 2026
+# - Sept 8-9 are Orientation / O-Week (NO classes)
+
+# ==============================================================================
+# 🎨 2. 3D ANIMATION & BLENDER CODING STANDARDS
+# ==============================================================================
+# When writing or modifying Blender Python scripts (wolfpack_shuffle_addon.py):
+# 1. API COMPATIBILITY:
+#    - Target Blender 4.0+ and 5.2+ API exclusively.
+#    - Do NOT use deprecated Blender 2.7x/2.8x methods.
+#    - UI Panels MUST inherit bpy.types.Panel and implement draw(self, context).
+#    - Operators MUST inherit bpy.types.Operator and return {'FINISHED'}.
+#    - Color management: Use AgX / Standard, sRGB transfer functions.
+# 2. BROADCAST SANDWICH TYPOGRAPHY ARCHITECTURE:
+#    - Keep typography locked to the camera-normal pitch plane (angle ~61.74°).
+#    - Maintain three vertical strata:
+#      * Top Eyebrow/Kicker: +Y = +0.58m, Scale 0.46
+#      * Center Hero: Y = 0.00m, Scale 0.68
+#      * Bottom Sponsor: -Y = -0.58m, Scale 0.38
+#    - Maintain minimum 0.26 screen-height vertical gap to prevent camera perspective overlap.
+# 3. BALANCED CENTERED EXITS:
+#    - All exit animations (BURST_FORWARD, CENTER_IMPLODE, DROP_DOWN, LIFT_UP) must lock X=0.0 and rot_z=0.0°.
+#    - Never introduce unprompted asymmetric rightward tilt/drift.
+# 4. BRAND COLORS & LED RESTRICTIONS:
+#    - Laurier Gold: #FDB913 (0.992, 0.725, 0.075) with 0.22 subtle emission.
+#    - Laurier Deep Purple: #20003B (0.125, 0.000, 0.231) for backing strokes/bevels.
+#    - APL Rule: NO pure white outlines on stadium jumbotrons to prevent diode auto-dimming.
+
+# ==============================================================================
+# 💻 3. WEB & SOFTWARE ENGINEERING STANDARDS
+# ==============================================================================
+# For StudyOS, CAPTAIN-FUNDS, or full-stack web development:
+# 1. TypeScript Strictness: Never use 'any'. Explicit interfaces and types everywhere.
+# 2. Architecture: Maintain MVC / Clean Architecture boundaries.
+# 3. Security: JWT in HTTP-only cookies, bcrypt password hashing, RBAC verification.
+# 4. State Management: Zustand for client state, Prisma for ORM data queries.
+
+# ==============================================================================
+# 📝 4. DOCUMENTATION & INTERLINKING PROTOCOL
+# ==============================================================================
+# 1. Always use bidirectional markdown links when referencing vault files:
+#    - Standard Markdown: [Title](relative/path/to/file.md)
+#    - Obsidian Wiki-Links: [[path/to/file|Title]]
+# 2. Preserve all existing docstrings, comments, and changelog histories.
+# 3. Update VAULT_INDEX.md whenever a major version or milestone is reached.
