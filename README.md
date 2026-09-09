@@ -51,17 +51,19 @@ I specialize in building **production-ready applications** that solve real user 
     *   **Integrated Productivity:** Combines Pomodoro timers with task management.
 *   **Status:** Active Development | **Focus:** Accessibility (WCAG 2.1 AA) & Mobile-First Design.
 
-### 2. [Laurier Athletics & Rockstar Spec 3D Suite (v3.5.0)](projects/3d-animation/laurierAthletics_addon)
+### 2. [Laurier Athletics: Golden Hawks Helmet Shuffle 3D Suite (v3.5.0)](projects/3d-animation/laurierAthletics_addon)
 **AAA Broadcast & Studio Motion Graphics Suite (Rockstar Games Tools Spec)**
 *A production-grade 3D graphics system and pipeline tool engineered for Wilfrid Laurier University Athletics, upgraded to AAA studio technical standards.*
+
+![Golden Hawks Helmet Shuffle](projects/3d-animation/laurierAthletics_addon/assets/golden_hawks_branding_hero.jpg)
 
 *   **Core Tech:** Python 3.11, Blender 5.2.1 LTS API, Apple ProRes 422 QuickTime, Unit Quaternions, AgX Color Science.
 *   **Key Features:**
     *   **AAA Game Engine Track Exporter:** Serializes per-frame unit quaternions $[w, x, y, z]$, velocity vectors, and discrete event markers into runtime JSON tracks (`wolfpack_anim_tracks.json`) for Rockstar RAGE and Unreal runtimes.
-    *   **Real-Time Telemetry Profiler:** Microsecond diagnostic HUD reporting bake duration (114.48 ms), keyframe throughput (29,168 keys/s), and memory delta (+0.16 MB, 0 leaks).
+    *   **Real-Time Telemetry Profiler:** Microsecond diagnostic HUD reporting bake duration (101.96 ms), keyframe throughput (31,776 keys/s), and memory delta (+0.15 MB, 0 leaks).
     *   **3D Motion Trajectory Arcs:** Glowing viewport splines with color-coded velocity arcs for Technical Artists.
     *   **Headless Batch Runner (`pipeline_batch_runner.py`):** Standalone CLI batch runner for automated server build pipelines (sub-420ms execution).
-    *   **Broadcast Sandwich Layout:** Pitch-aligned (61.74°) 3-tier typography system with zero perspective camera overlap and centered exits.
+    *   **Broadcast Sandwich Layout:** Pitch-aligned (61.56°) 3-tier typography system with zero perspective camera overlap and centered exits.
 *   **Status:** **Active Production Sprint** | **Employment**: WLU Video Assistant (`ST1086-01` / $19.03/hr) | **[Timesheet Log](projects/3d-animation/laurierAthletics_addon/LAURIER_TIMESHEET_LOG.md)** | **[Rockstar Portfolio Blueprint](projects/3d-animation/laurierAthletics_addon/ROCKSTAR_GAMES_PORTFOLIO_BLUEPRINT.md)**.
 
 ### 3. [CAPTAIN-FUNDS](projects/web-development/CAPTAIN-FUNDS-MERN)

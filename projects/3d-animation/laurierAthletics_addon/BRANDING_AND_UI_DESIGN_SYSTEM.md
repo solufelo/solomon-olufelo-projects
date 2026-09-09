@@ -9,7 +9,7 @@
 
 ## 🌟 Visual Identity Showcase
 
-![Golden Hawks Helmet Shuffle Hero Branding](wolfpack_branding_hero_1788921403525.jpg)
+![Golden Hawks Helmet Shuffle Hero Branding](assets/golden_hawks_branding_hero.jpg)
 
 ---
 

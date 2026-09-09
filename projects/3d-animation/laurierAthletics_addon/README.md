@@ -1,15 +1,17 @@
-# 🏈 Laurier Athletics Videoboard & Wolfpack Shuffle 3D Suite (v3.5.0)
+# 🦅 Laurier Athletics: Golden Hawks Helmet Shuffle 3D Suite (v3.5.0)
 ### 🎸 AAA Broadcast & Studio Motion Graphics Suite (Rockstar Games Tools Spec)
+
+![Golden Hawks Helmet Shuffle Official Branding](assets/golden_hawks_branding_hero.jpg)
 
 > **Master Vault Hub**: [[../../VAULT_INDEX.md|Root Vault Index]] | [[../../THE_SUPER_BOWL_4_PILLAR_SYSTEM.md|The Super Bowl 4-Pillar System]]  
 > **Rockstar Games Blueprint & 20s LinkedIn Plan**: [[ROCKSTAR_GAMES_PORTFOLIO_BLUEPRINT.md|Rockstar Portfolio Blueprint]]  
 > **Headless Batch Runner**: [[pipeline_batch_runner.py|pipeline_batch_runner.py]]  
 > **Timesheet & LORIS Log**: [[LAURIER_TIMESHEET_LOG.md|LAURIER_TIMESHEET_LOG.md]]  
 > **Production Blueprint & Behance Deck**: [[PRODUCTION_SET_DESIGN_BLUEPRINT.md|Set Design Blueprint]]  
-> **Changelog**: [[CHANGELOG.md|Release History]]  
-> **Latest Release Archive**: `laurier_wolfpack_shuffle_v3.5.0.zip`
+> **Brand & UI/UX Design System**: [[BRANDING_AND_UI_DESIGN_SYSTEM.md|Design System Guide]]  
+> **Latest Release Archive**: `laurier_golden_hawks_shuffle_v3.5.0.zip` (alias: `laurier_wolfpack_shuffle_v3.5.0.zip`)
 
-A production-grade 3D broadcast motion graphics suite and Blender 5.2+ addon engineered for Wilfrid Laurier University Athletics (Laurier Golden Hawks / Wolfpack Glory), upgraded to **AAA Game Studio Tooling Standards (Rockstar Games Spec)**. Features real-time telemetry profiling, runtime game engine animation track serialization (quaternions & velocity vectors), viewport 3D motion trajectory splines, headless CLI batch automation, and 1-click Apple ProRes 422 stadium rendering.
+A production-grade 3D broadcast motion graphics suite and Blender 5.2+ addon engineered for Wilfrid Laurier University Athletics (Laurier Golden Hawks), upgraded to **AAA Game Studio Tooling Standards (Rockstar Games Spec)**. Features real-time telemetry profiling, runtime game engine animation track serialization (quaternions & velocity vectors), viewport 3D motion trajectory splines, headless CLI batch automation, and 1-click Apple ProRes 422 stadium rendering.
 
 ---
 
