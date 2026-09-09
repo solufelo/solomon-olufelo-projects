@@ -11,7 +11,7 @@
 * **Current Version**: `v3.5.0` (AAA Studio Production Release)
 * **Date**: September 8, 2026
 * **Blender Target**: Blender 5.2.1 LTS
-* **Addon Module**: `golden_hawks_shuffle` (alias: `wolfpack_shuffle`)
+* **Addon Module**: `golden_hawks_shuffle` (alias: `golden_hawks_shuffle`)
 * **Source Path**: `projects/3d-animation/laurierAthletics_addon/blender_addon/__init__.py`
 * **Release Archive**: `projects/3d-animation/laurierAthletics_addon/laurier_golden_hawks_shuffle_v3.5.0.zip`
 
@@ -20,7 +20,7 @@
 ## 🚀 Key Technical Features in v3.5.0 (Rockstar Spec)
 
 ### 🎸 1. AAA Game Engine Animation Track Exporter
-* **Operator**: `wolfpack.export_game_engine_anim` $\to$ `wolfpack_anim_tracks.json`
+* **Operator**: `golden_hawks.export_game_engine_anim` $\to$ `golden_hawks_anim_tracks.json`
 * **Specification**:
   * Unit Quaternions $[w, x, y, z]$ and Euler angles per frame for rotation.
   * Instantaneous velocity vectors $[\dot{x}, \dot{y}, \dot{z}]$ and speed ($m/s$) calculated via numerical differentiation.
@@ -35,10 +35,10 @@
   * Throughput: **29,168 keys/second**
   * Peak Memory Delta: **+0.163 MB** (via Python `tracemalloc`)
   * Leak Detection: **0 Leaks / Deterministic Execution**
-* **Operator**: `wolfpack.export_telemetry` $\to$ `wolfpack_telemetry_benchmark.json` for studio CI/CD audits.
+* **Operator**: `golden_hawks.export_telemetry` $\to$ `golden_hawks_telemetry_benchmark.json` for studio CI/CD audits.
 
 ### 🌈 3. 3D Motion Trajectory Arcs in Viewport
-* **Operator**: `wolfpack.toggle_motion_trajectories`
+* **Operator**: `golden_hawks.toggle_motion_trajectories`
 * **Features**:
   * Samples shuffler transform matrices and draws glowing 3D poly splines in the viewport.
   * Custom emission materials: Gold (Helmet 1), Laurier Purple (Helmet 2), Neon Cyan (Helmet 3).
@@ -57,7 +57,7 @@
 * **Centered Exits**: `BURST_FORWARD`, `CENTER_IMPLODE`, `DROP_DOWN`, `LIFT_UP` strictly locked to $X = 0.0$ and $\text{rot}_z = 0.0^\circ$.
 
 ### 🎥 6. Reverse-Engineered Multi-Stage Camera Dolly (`helmetshuffleDESIRED.blend`)
-* **Operator**: Integrated natively into `wolfpack.bake_shuffle` and `wolfpack.bake_animation_only`.
+* **Operator**: Integrated natively into `golden_hawks.bake_shuffle` and `golden_hawks.bake_animation_only`.
 * **7-Point Bezier Optical Curve** (Fixed $65^\circ$ Broadcast Pitch, $\Delta Z / |\Delta Y| \approx 0.47$–$0.51$):
   * **Frame 1**: Wide establishing shot `(0.0, -33.07m, 15.69m)`
   * **Frames 20–58**: Mid boom push-in `(0.0, -21.38m, 10.24m)` held during explosive title rush
@@ -66,19 +66,19 @@
   * **Frame 360**: Pull-back `(0.0, -13.04m, 6.35m)` for slot badges and climax winner lift
 
 ### 🎲 7. Three Bespoke Handcrafted Shuffle Variants (Slots 1, 2, 3)
-* **Variant A (`wolfpack.bake_variant_a`)**:
+* **Variant A (`golden_hawks.bake_variant_a`)**:
   * *Choreography*: 6 swaps, rapid whip easing, outside switchback arcs.
   * *Deterministic Winner*: **Slot 1 (Left, $X = -2.4\text{m}$)**.
-* **Variant B (`wolfpack.bake_variant_b`)**:
+* **Variant B (`golden_hawks.bake_variant_b`)**:
   * *Choreography*: 7 swaps, smooth sinusoidal easing, intertwining figure-8 arcs.
   * *Deterministic Winner*: **Slot 2 (Center, $X = 0.0\text{m}$)**.
-* **Variant C (`wolfpack.bake_variant_c`)**:
+* **Variant C (`golden_hawks.bake_variant_c`)**:
   * *Choreography*: 8 swaps, bouncy easing ($0.32\text{m}$ vertical hop), pinwheel carousel arcs.
   * *Deterministic Winner*: **Slot 3 (Right, $X = +2.4\text{m}$)**.
 
 ### 🧩 8. Modular Multi-File Production Pipeline
-* **Lightweight Animation Core**: Operator `wolfpack.bake_animation_only` keyframes shufflers, ball, and camera dolly in an empty scene or existing animation file without re-spawning turf, floodlights, or stadium assets.
-* **External Environment Linking**: Operator `wolfpack.link_environment` links external master venue collections (`Stadium_Turf_Pitch`, lighting towers) from `laurier_university_stadium_master.blend` on demand, keeping viewport playback pinned at a fluid 60 FPS.
+* **Lightweight Animation Core**: Operator `golden_hawks.bake_animation_only` keyframes shufflers, ball, and camera dolly in an empty scene or existing animation file without re-spawning turf, floodlights, or stadium assets.
+* **External Environment Linking**: Operator `golden_hawks.link_environment` links external master venue collections (`Stadium_Turf_Pitch`, lighting towers) from `laurier_university_stadium_master.blend` on demand, keeping viewport playback pinned at a fluid 60 FPS.
 
 ---
 

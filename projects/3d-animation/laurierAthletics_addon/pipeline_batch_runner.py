@@ -1,6 +1,6 @@
 """
-Laurier Athletics & Rockstar Games Spec - Headless Studio Pipeline Batch Runner
-================================================================================
+Laurier Golden Hawks & Rockstar Games Spec - Headless Studio Pipeline Batch Runner
+===================================================================================
 Author: Solomon Olufelo (Tools & Pipeline Developer)
 Version: 3.5.0 (AAA Studio Spec)
 
@@ -32,7 +32,7 @@ def parse_arguments():
     else:
         args_to_parse = []
 
-    parser = argparse.ArgumentParser(description="Wolfpack Glory Studio Pipeline Batch Runner")
+    parser = argparse.ArgumentParser(description="Golden Hawks Helmet Shuffle Studio Pipeline Batch Runner")
     parser.add_argument("--swaps", type=int, default=4, help="Number of shell swaps (default: 4)")
     parser.add_argument("--preset", type=str, default="NIGHT_GAME_FLOODLIGHT", choices=["NIGHT_GAME_FLOODLIGHT", "GOLDEN_HOUR", "CYBER_STADIUM_NEON", "CHAMPIONSHIP_GOLD"], help="Lighting mood preset")
     parser.add_argument("--outcome", type=str, default="SLOT_1", choices=["RANDOM", "SLOT_1", "SLOT_2", "SLOT_3"], help="Target winning slot")
@@ -46,28 +46,38 @@ def parse_arguments():
 
 def run_pipeline(args):
     print("=" * 70)
-    print("  WOLFPACK GLORY AAA STUDIO PIPELINE RUNNER (ROCKSTAR GAMES SPEC)")
+    print("  GOLDEN HAWKS HELMET SHUFFLE AAA STUDIO PIPELINE RUNNER")
+    print("  Wilfrid Laurier Athletics Production & Rockstar Games Tools Spec")
     print("  Version: 3.5.0 | Headless Batch Automation")
     print("=" * 70)
 
     # 1. Enable Addon if needed
-    addon_module = "wolfpack_shuffle"
-    if addon_module not in bpy.context.preferences.addons:
+    for mod in ["golden_hawks_shuffle", "golden_hawks_shuffle"]:
+        if mod in bpy.context.preferences.addons:
+            break
         try:
-            bpy.ops.preferences.addon_enable(module=addon_module)
-            print(f"[PIPELINE] Enabled addon: {addon_module}")
+            bpy.ops.preferences.addon_enable(module=mod)
+            print(f"[PIPELINE] Enabled addon: {mod}")
+            break
         except Exception:
-            # Fallback to local import if addon not installed in preferences
-            import importlib.util
-            script_path = os.path.join(os.path.dirname(__file__), "blender_addon", "__init__.py")
-            spec = importlib.util.spec_from_file_location("wolfpack_shuffle", script_path)
+            pass
+    else:
+        # Fallback to local import if addon not installed in preferences
+        import importlib.util
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        repo_dir = os.path.dirname(script_dir)
+        addon_init = os.path.join(repo_dir, "blender_addon", "__init__.py")
+        if not os.path.isfile(addon_init):
+            addon_init = os.path.join(script_dir, "blender_addon", "__init__.py")
+        if os.path.isfile(addon_init):
+            spec = importlib.util.spec_from_file_location("golden_hawks_shuffle", addon_init)
             mod = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(mod)
             mod.register()
-            print(f"[PIPELINE] Registered addon from: {script_path}")
+            print(f"[PIPELINE] Registered addon from: {addon_init}")
 
     scene = bpy.context.scene
-    props = scene.wolfpack_shuffle
+    props = getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "golden_hawks_shuffle", None)
 
     # 2. Configure Scene Parameters
     props.num_swaps = args.swaps
@@ -86,11 +96,11 @@ def run_pipeline(args):
     # 3. Setup Venue Staging
     print("[PIPELINE] Initializing 3D Venue & Turf Grid...")
     t0 = time.perf_counter()
-    bpy.ops.wolfpack.setup_demo()
+    bpy.ops.golden_hawks.setup_demo()
 
     # 4. Generate Animation Routine & Profile
     print("[PIPELINE] Baking Kinematic Shuffle Routine & Telemetry Profiling...")
-    res = bpy.ops.wolfpack.generate_shuffle()
+    res = bpy.ops.golden_hawks.generate_shuffle()
     if 'FINISHED' not in res:
         print("[ERROR] Animation bake failed!")
         sys.exit(1)
@@ -110,9 +120,11 @@ def run_pipeline(args):
     # 5. Export Game Engine Animation Tracks
     if args.export_tracks:
         print("[PIPELINE] Exporting AAA Game Engine Animation Tracks (Quaternions, Velocities, Events)...")
-        res_exp = bpy.ops.wolfpack.export_game_engine_anim()
+        res_exp = bpy.ops.golden_hawks.export_game_engine_anim()
         if 'FINISHED' in res_exp:
-            track_file = os.path.join(args.output_dir, "wolfpack_anim_tracks.json")
+            track_file = os.path.join(args.output_dir, "golden_hawks_anim_tracks.json")
+            if not os.path.isfile(track_file):
+                track_file = os.path.join(args.output_dir, "golden_hawks_anim_tracks.json")
             if os.path.isfile(track_file):
                 size_kb = os.path.getsize(track_file) / 1024.0
                 print(f"  -> SUCCESS: Exported {track_file} ({size_kb:.1f} KB)")
@@ -120,9 +132,11 @@ def run_pipeline(args):
     # 6. Export Telemetry Benchmark
     if args.benchmark:
         print("[PIPELINE] Exporting Studio Benchmark Telemetry Report...")
-        res_bench = bpy.ops.wolfpack.export_telemetry()
+        res_bench = bpy.ops.golden_hawks.export_telemetry()
         if 'FINISHED' in res_bench:
-            bench_file = os.path.join(args.output_dir, "wolfpack_telemetry_benchmark.json")
+            bench_file = os.path.join(args.output_dir, "golden_hawks_telemetry_benchmark.json")
+            if not os.path.isfile(bench_file):
+                bench_file = os.path.join(args.output_dir, "golden_hawks_telemetry_benchmark.json")
             if os.path.isfile(bench_file):
                 print(f"  -> SUCCESS: Exported {bench_file}")
 

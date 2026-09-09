@@ -1,9 +1,9 @@
-# Laurier Golden Hawks / Wolfpack Glory Jumbotron Shuffle
+# Laurier Golden Hawks / Golden Hawks Helmet Shuffle Jumbotron Shuffle
 ## Production Blueprint, Set Design & Behance Case Study Master Plan
 
 > **Project Goal**: Transform the Wilfrid Laurier University in-game helmet shuffle into an ESPN/Fox Sports-grade motion graphics case study for your graduation art/design portfolio and Behance showcase.
 > **Date**: September 7, 2026  
-> **Client / Identity**: Wilfrid Laurier Athletics (Laurier Golden Hawks / Wolfpack Glory)  
+> **Client / Identity**: Wilfrid Laurier Athletics (Laurier Golden Hawks / Golden Hawks Helmet Shuffle)  
 > **Format**: 16:9 4K Stadium Broadcast Video + Vertical Reel/TikTok Cut + Behance Process Deck  
 
 ---

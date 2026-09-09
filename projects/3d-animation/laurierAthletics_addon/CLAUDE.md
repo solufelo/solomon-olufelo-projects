@@ -12,7 +12,7 @@
 & "C:\Program Files\Blender Foundation\Blender 5.2\blender.exe" -b --python "test_addon.py"
 
 # Quick syntax check
-& "C:\Program Files\Blender Foundation\Blender 5.2\5.2\python\bin\python.exe" -m py_compile blender_addon/wolfpack_shuffle_addon.py
+& "C:\Program Files\Blender Foundation\Blender 5.2\5.2\python\bin\python.exe" -m py_compile blender_addon/golden_hawks_shuffle_addon.py
 ```
 
 ## Production Constraints

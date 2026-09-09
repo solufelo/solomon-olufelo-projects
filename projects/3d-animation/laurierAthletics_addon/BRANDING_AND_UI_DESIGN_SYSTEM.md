@@ -96,8 +96,8 @@ The Blender interface in **v3.5.0** applies core human factors engineering and F
 - Instantly triggers a complete, distinct choreography without manual setup or parameter tweaking.
 
 ### 6. Modular Multi-File Production Pipeline Dock
-- **Bake Animation Only (`wolfpack.bake_animation_only`)**: Keyframes shufflers, hidden ball, and camera dolly in `animation_core.blend` without spawning stadium geometry or light rigs.
-- **Link Environment (`wolfpack.link_environment`)**: External master collection link (`Stadium_Turf_Pitch`, lighting towers) from `laurier_university_stadium_master.blend` directly into `master_composite.blend`.
+- **Bake Animation Only (`golden_hawks.bake_animation_only`)**: Keyframes shufflers, hidden ball, and camera dolly in `animation_core.blend` without spawning stadium geometry or light rigs.
+- **Link Environment (`golden_hawks.link_environment`)**: External master collection link (`Stadium_Turf_Pitch`, lighting towers) from `laurier_university_stadium_master.blend` directly into `master_composite.blend`.
 - **Result**: Zero studio reinitialization overhead; animator maintains 60 FPS in lightweight workfiles.
 
 ---

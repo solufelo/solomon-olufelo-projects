@@ -5,15 +5,15 @@ All notable changes to the Laurier Football Shell Game Blender addon will be doc
 ## [3.5.0] - 2026-09-08
 
 ### 🎸 Rockstar Games Tools Engineering Suite & Telemetry Profiler
-- **AAA Game Engine Animation Track Exporter (`wolfpack.export_game_engine_anim`)**:
-  - Exports standardized runtime animation tracks (`wolfpack_anim_tracks.json`) compatible with Rockstar RAGE, Unreal, and glTF runtimes.
+- **AAA Game Engine Animation Track Exporter (`golden_hawks.export_game_engine_anim`)**:
+  - Exports standardized runtime animation tracks (`golden_hawks_anim_tracks.json`) compatible with Rockstar RAGE, Unreal, and glTF runtimes.
   - Extracts per-frame Unit Quaternions $[w, x, y, z]$, Euler angles, instantaneous velocity vectors $[\dot{x}, \dot{y}, \dot{z}]$, speed ($m/s$), and normalized timestamps $[0.0 \to 1.0]$.
   - Coordinates exported in both Blender native ($Z$-up) and Game Engine swizzled standard ($Y$-up: $X, Z, -Y$).
   - Discrete event markers embedded along timeline (`"BUMPER_SEQUENCE_START"`, `"BUMPER_KINETIC_BOOM_SLAM"`, `"ORBITAL_SHUFFLE_SWAP_BEGIN"`, `"SUSPENSE_FREEZE"`, `"WINNING_HELMET_CLIMAX_LIFT"`).
 - **Real-Time Technical Artist Telemetry Profiler (`tracemalloc` + microsecond benchmarking)**:
   - Real-time diagnostic HUD in the Blender N-Panel reporting execution duration in milliseconds ($<120\,\text{ms}$), keyframe throughput ($>25,000\,\text{keys/s}$), and memory delta ($<0.2\,\text{MB}$).
-  - Built-in studio benchmark export operator (`wolfpack.export_telemetry` $\to$ `wolfpack_telemetry_benchmark.json`) for CI/CD audit trails.
-- **3D Motion Trajectory Splines & Velocity Visualizer (`wolfpack.toggle_motion_trajectories`)**:
+  - Built-in studio benchmark export operator (`golden_hawks.export_telemetry` $\to$ `golden_hawks_telemetry_benchmark.json`) for CI/CD audit trails.
+- **3D Motion Trajectory Splines & Velocity Visualizer (`golden_hawks.toggle_motion_trajectories`)**:
   - Automatically generates glowing 3D trajectory curves in the viewport representing the orbital paths of all shufflers across the timeline.
   - Color-coded emission materials: Gold (Helmet 1), Laurier Purple (Helmet 2), Neon Cyan (Helmet 3).
   - Allows Technical Artists to visually inspect centripetal banking, apex arcs, and spatial clearances before rendering.
@@ -35,7 +35,7 @@ All notable changes to the Laurier Football Shell Game Blender addon will be doc
   - Completely eliminated trapezoidal foreshortening and visual compression between typography tiers.
   - Guaranteed `0.26+` screen-height vertical air gaps across all lenses and focal lengths.
 - **Multi-Location Zip Deployment**:
-  - Automated deployment of `laurier_wolfpack_shuffle_v3.4.0.zip` across repo, Desktop, and Downloads folders.
+  - Automated deployment of `laurier_golden_hawks_shuffle_v3.4.0.zip` across repo, Desktop, and Downloads folders.
   - Auto-activated in Blender 5.2.1 LTS preferences (`userpref.blend`).
 
 ## [3.3.0] - 2026-09-08
@@ -73,7 +73,7 @@ All notable changes to the Laurier Football Shell Game Blender addon will be doc
     - Procedural scattering volume cube ($36\text{m} \times 36\text{m} \times 15\text{m}$) using Blender's modern `ShaderNodeVolumePrincipled` (`anisotropy=0.60-0.72`, `density=0.005`).
     - Creates visible, physical light beams and god rays sweeping from stadium floodlights across the field without cluttering foreground helmet visibility.
 - **Modular Slogans & Crowd Hype Suite**:
-  - Dedicated operator `wolfpack.generate_slogan` generating plug-and-play 3D animated stadium slogans:
+  - Dedicated operator `golden_hawks.generate_slogan` generating plug-and-play 3D animated stadium slogans:
     - *"DEFEND THE NEST"* / *"UNIVERSITY STADIUM"*
     - *"IT'S GREAT TO BE A"* / *"LAURIER GOLDEN HAWK"*
     - *"FEAR THE GOLD"* / *"HAWKS ON THE ATTACK"*
@@ -82,7 +82,7 @@ All notable changes to the Laurier Football Shell Game Blender addon will be doc
     - *Custom Slogan* mode supporting user-defined headlines and subtitles.
   - Features dual-layer Gold/Purple anti-glare typography (Radwave & Agency FB), elevated upper-third framing ($Z = 1.35\text{m}$), kinetic boom slam entrance, and camera punch.
 - **Pure Blender 1-Click Broadcast Render Pipeline (Leaving After Effects Behind)**:
-  - Dedicated operator `wolfpack.setup_broadcast_render` allowing complete motion graphics production and delivery directly inside Blender (bypassing After Effects file crash/corruption risks).
+  - Dedicated operator `golden_hawks.setup_broadcast_render` allowing complete motion graphics production and delivery directly inside Blender (bypassing After Effects file crash/corruption risks).
   - Configures **1080p60**, **AgX High Contrast**, and **Cycles/EEVEE Motion Blur**.
   - 1-Click Export Formats:
     - **Apple ProRes 422 HQ (`.mov`)**: Broadcast standard for stadium switcher playback (Ross XPression / Daktronics).
@@ -109,11 +109,11 @@ All notable changes to the Laurier Football Shell Game Blender addon will be doc
   - High-angle rim/kicker spotlights (`Atmosphere_Rim_L` and `Atmosphere_Rim_R` at $2200\text{W}$) providing edge separation to pop 3D elements off the cloudy backdrop.
   - Procedural painted white/gold chalk yardlines on Knight-Newbrough Field turf.
 - **Blender 5.2.1 LTS Compositor Graph**:
-  - Dedicated 1-click operator `wolfpack.setup_atmosphere` configuring a modern `CompositorNodeTree` (`Laurier_Cinematic_Compositor`):
+  - Dedicated 1-click operator `golden_hawks.setup_atmosphere` configuring a modern `CompositorNodeTree` (`Laurier_Cinematic_Compositor`):
     - Real-time **Fog Glow Bloom** on metallic gold surfaces and stadium floodlights.
     - **Anamorphic Lens Distortion & Dispersion** ($0.006$ chromatic fringe) delivering an analog 35mm / Arri sports documentary look.
 - **Procedural 3D Collegiate Upright Goalposts**:
-  - Dedicated operator `wolfpack.setup_goalposts` spawning authentic NCAA/U SPORTS collegiate goalposts in the background ($Y = +11.5\text{m}$) with gooseneck base, crossbar, vertical uprights, and fluttering Laurier purple wind streamers.
+  - Dedicated operator `golden_hawks.setup_goalposts` spawning authentic NCAA/U SPORTS collegiate goalposts in the background ($Y = +11.5\text{m}$) with gooseneck base, crossbar, vertical uprights, and fluttering Laurier purple wind streamers.
 - **Field Goal Modular Stinger Suite**:
   - `FIELD_GOAL_GOOD`: *"IT'S GOOD!"* in **Radwave Display** with *"3 POINTS // GOLDEN HAWKS"* in **Agency FB Bold** and explosive scoring slam.
   - `FIELD_GOAL_ATTEMPT`: *"FIELD GOAL"* with *"45 YARDS // 4TH DOWN"* countdown tension.
@@ -133,7 +133,7 @@ All notable changes to the Laurier Football Shell Game Blender addon will be doc
   - **Beat 4: Suspense Standstill**: Helmets lock into slots; *"WHERE IS IT?"* banner appears alongside interactive **Slot HUD Badges (`[ 1 ]`, `[ 2 ]`, `[ 3 ]`)**.
   - **Beat 5: Golden Climax Reveal**: Winning helmet lifts with $25^\circ$ forward tilt; winning slot badge expands to $1.35\times$ scale (*"SLOT [X] WINS!"*).
 - **After Effects & Audio Broadcast Cue Sheet Exporter**:
-  - Dedicated operator `wolfpack.export_cue_sheet` generating timestamped `.json` and `.csv` files with SMPTE timecodes (`HH:MM:SS:FF`).
+  - Dedicated operator `golden_hawks.export_cue_sheet` generating timestamped `.json` and `.csv` files with SMPTE timecodes (`HH:MM:SS:FF`).
   - Records exact frames for all swaps, depth clearance, suspense freeze, CTA question, and reveal impact with recommended sound design cues.
 - **Multi-Venue Staging Presets**:
   - `FOOTBALL_TURF`: University Stadium Knight-Newbrough Field green turf with gridiron yardlines and stadium floodlights.

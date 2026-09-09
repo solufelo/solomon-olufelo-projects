@@ -9,7 +9,7 @@
 > **Timesheet & LORIS Log**: [[LAURIER_TIMESHEET_LOG.md|LAURIER_TIMESHEET_LOG.md]]  
 > **Production Blueprint & Behance Deck**: [[PRODUCTION_SET_DESIGN_BLUEPRINT.md|Set Design Blueprint]]  
 > **Brand & UI/UX Design System**: [[BRANDING_AND_UI_DESIGN_SYSTEM.md|Design System Guide]]  
-> **Latest Release Archive**: `laurier_golden_hawks_shuffle_v3.5.0.zip` (alias: `laurier_wolfpack_shuffle_v3.5.0.zip`)
+> **Latest Release Archive**: `laurier_golden_hawks_shuffle_v3.5.0.zip` (alias: `laurier_golden_hawks_shuffle_v3.5.0.zip`)
 
 A production-grade 3D broadcast motion graphics suite and Blender 5.2+ addon engineered for Wilfrid Laurier University Athletics (Laurier Golden Hawks), upgraded to **AAA Game Studio Tooling Standards (Rockstar Games Spec)**. Features real-time telemetry profiling, runtime game engine animation track serialization (quaternions & velocity vectors), viewport 3D motion trajectory splines, headless CLI batch automation, and 1-click Apple ProRes 422 stadium rendering.
 
@@ -19,7 +19,7 @@ A production-grade 3D broadcast motion graphics suite and Blender 5.2+ addon eng
 
 ### 🎸 1. AAA Game Engine Animation Track Exporter
 * **Problem**: DCC animations are typically trapped inside `.blend` files, requiring manual re-keyframing for interactive game engine minigames or living-world stadiums.
-* **Solution**: One-click exporter (`wolfpack.export_game_engine_anim` $\to$ `wolfpack_anim_tracks.json`) extracting:
+* **Solution**: One-click exporter (`golden_hawks.export_game_engine_anim` $\to$ `golden_hawks_anim_tracks.json`) extracting:
   * **Unit Quaternions** $[w, x, y, z]$ and Euler angles per frame for rotation.
   * **Instantaneous Velocity Vectors** $[\dot{x}, \dot{y}, \dot{z}]$ and speed ($m/s$) calculated via central differences.
   * **Dual Coordinate Systems**: Blender native ($Z$-up) and Game Engine swizzled ($Y$-up: $X, Z, -Y$).
@@ -32,11 +32,11 @@ A production-grade 3D broadcast motion graphics suite and Blender 5.2+ addon eng
   * **Execution Duration**: **114.48 ms** for full 5-swap routine bake.
   * **Throughput**: **29,168 keyframes/second** (3,339 discrete keys).
   * **Peak Memory Overhead**: **+0.163 MB** (zero leaks, deterministic execution).
-  * **Studio Audit Report**: Operator `wolfpack.export_telemetry` exports `wolfpack_telemetry_benchmark.json` for CI/CD regression testing.
+  * **Studio Audit Report**: Operator `golden_hawks.export_telemetry` exports `golden_hawks_telemetry_benchmark.json` for CI/CD regression testing.
 
 ### 🌈 3. 3D Motion Trajectory Arcs in Viewport
 * **Problem**: Technical artists and animators need immediate visual confirmation of swap arc curvature, centripetal banking heights, and object clearance without scrubbing.
-* **Solution**: One-click generator (`wolfpack.toggle_motion_trajectories`):
+* **Solution**: One-click generator (`golden_hawks.toggle_motion_trajectories`):
   * Draws glowing 3D poly-spline tubes in the viewport tracking each helmet empty.
   * Color-coded emission shaders: Gold (Helmet 1), Laurier Purple (Helmet 2), Neon Cyan (Helmet 3).
   * Real-time spatial clearance and collision-free path inspection.
@@ -63,14 +63,14 @@ A production-grade 3D broadcast motion graphics suite and Blender 5.2+ addon eng
 
 ### 🎲 7. Three Bespoke Handcrafted Shuffle Variants (A, B, C)
 * Direct 1-click execution for three completely distinct game-day choreography outcomes:
-  * **Variant A (`wolfpack.bake_variant_a`)**: 6 swaps, rapid whip easing, outside switchback trajectories, deterministically ending on **Slot 1 (Left, $X = -2.4\text{m}$)**.
-  * **Variant B (`wolfpack.bake_variant_b`)**: 7 swaps, smooth sinusoidal easing, intertwining figure-8 trajectories, deterministically ending on **Slot 2 (Center, $X = 0.0\text{m}$)**.
-  * **Variant C (`wolfpack.bake_variant_c`)**: 8 swaps, bouncy easing ($0.32\text{m}$ hop), pinwheel carousel trajectories, deterministically ending on **Slot 3 (Right, $X = +2.4\text{m}$)**.
+  * **Variant A (`golden_hawks.bake_variant_a`)**: 6 swaps, rapid whip easing, outside switchback trajectories, deterministically ending on **Slot 1 (Left, $X = -2.4\text{m}$)**.
+  * **Variant B (`golden_hawks.bake_variant_b`)**: 7 swaps, smooth sinusoidal easing, intertwining figure-8 trajectories, deterministically ending on **Slot 2 (Center, $X = 0.0\text{m}$)**.
+  * **Variant C (`golden_hawks.bake_variant_c`)**: 8 swaps, bouncy easing ($0.32\text{m}$ hop), pinwheel carousel trajectories, deterministically ending on **Slot 3 (Right, $X = +2.4\text{m}$)**.
 
 ### 🧩 8. Modular Multi-File Production Pipeline
 * **Decoupled Animation Workflow**: Keep viewport playback pinned at 60 FPS by separating animation keyframes from dense stadium geometry and lighting meshes:
-  * **Bake Animation Only (`wolfpack.bake_animation_only`)**: Bakes the entire shuffle choreography and camera dolly in `animation_core.blend` without spawning stadium turf, sky domes, or lighting rigs.
-  * **Link Environment (`wolfpack.link_environment`)**: One-click external collection linking from `laurier_university_stadium_master.blend` into `master_composite.blend` at render time.
+  * **Bake Animation Only (`golden_hawks.bake_animation_only`)**: Bakes the entire shuffle choreography and camera dolly in `animation_core.blend` without spawning stadium turf, sky domes, or lighting rigs.
+  * **Link Environment (`golden_hawks.link_environment`)**: One-click external collection linking from `laurier_university_stadium_master.blend` into `master_composite.blend` at render time.
 
 ---
 

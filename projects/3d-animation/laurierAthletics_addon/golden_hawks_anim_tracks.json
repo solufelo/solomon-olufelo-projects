@@ -1,6 +1,6 @@
 {
   "$schema": "https://rockstar-pipeline.studio/schemas/anim-track-v1.json",
-  "generator": "Wolfpack Glory Studio Tools v3.5.0 (Rockstar Games Spec)",
+  "generator": "Golden Hawks Helmet Shuffle Studio Tools v3.5.0 (Rockstar Games Spec)",
   "target_engine": "RAGE_JSON",
   "metadata": {
     "fps": 30,

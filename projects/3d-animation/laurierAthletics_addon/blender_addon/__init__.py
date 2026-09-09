@@ -451,7 +451,7 @@ def setup_demo_scene_if_needed(slot_spacing: float = 2.4, venue_preset: str = 'F
     existing = [name for name in required_empties if bpy.data.objects.get(name)]
     
     # Create Wolfpack collection
-    coll_name = "Wolfpack_Shuffle"
+    coll_name = "Golden_Hawks_Shuffle"
     if coll_name in bpy.data.collections:
         coll = bpy.data.collections[coll_name]
     else:
@@ -629,7 +629,7 @@ def setup_goalposts(coll = None) -> List[bpy.types.Object]:
     - Laurier purple wind streamers fluttering at upright tips
     """
     if coll is None:
-        coll = bpy.data.collections.get("Wolfpack_Shuffle") or bpy.context.scene.collection
+        coll = bpy.data.collections.get("Golden_Hawks_Shuffle") or bpy.context.scene.collection
         
     created_objs = []
     
@@ -725,7 +725,7 @@ def setup_cinematic_atmosphere(coll=None, mood='NIGHT_GAME_FLOODLIGHT', enable_v
     """
     scene = bpy.context.scene
     if coll is None:
-        coll = bpy.data.collections.get("Wolfpack_Shuffle") or scene.collection
+        coll = bpy.data.collections.get("Golden_Hawks_Shuffle") or scene.collection
         
     mood_configs = {
         'NIGHT_GAME_FLOODLIGHT': {
@@ -956,7 +956,7 @@ def setup_cinematic_atmosphere(coll=None, mood='NIGHT_GAME_FLOODLIGHT', enable_v
         tree.links.new(glare.outputs['Image'], lens.inputs['Image'])
         tree.links.new(lens.outputs['Image'], out_c.inputs['Image'])
     except Exception as e:
-        print("[Wolfpack Glory] Compositor setup note:", e)
+        print("[Golden Hawks Athletics] Compositor setup note:", e)
 
 # ============================================================================
 # LAURIER BRAND ASSETS: TYPOGRAPHY & LED CONTRAST MATERIALS
@@ -1047,16 +1047,16 @@ def cleanup_conflicting_text_graphics(current_mode='SHUFFLE', keep_bumper=False)
     to_remove = []
     for obj in bpy.data.objects:
         if current_mode == 'SHUFFLE':
-            if (not keep_bumper and obj.name.startswith("Wolfpack_Bumper_")) or obj.name.startswith("Stinger_") or obj.name.startswith("Wolfpack_Slogan_"):
+            if (not keep_bumper and obj.name.startswith("Golden_Hawks_Bumper_")) or obj.name.startswith("Stinger_") or obj.name.startswith("Golden_Hawks_Slogan_"):
                 to_remove.append(obj)
         elif current_mode == 'BUMPER':
-            if obj.name.startswith("Wolfpack_Banner_") or obj.name.startswith("Wolfpack_Slot_Badge_") or obj.name.startswith("Stinger_") or obj.name.startswith("Wolfpack_Slogan_"):
+            if obj.name.startswith("Golden_Hawks_Banner_") or obj.name.startswith("Golden_Hawks_Slot_Badge_") or obj.name.startswith("Stinger_") or obj.name.startswith("Golden_Hawks_Slogan_"):
                 to_remove.append(obj)
         elif current_mode == 'STINGER':
-            if obj.name.startswith("Wolfpack_Banner_") or obj.name.startswith("Wolfpack_Slot_Badge_") or obj.name.startswith("Wolfpack_Bumper_") or obj.name.startswith("Wolfpack_Slogan_"):
+            if obj.name.startswith("Golden_Hawks_Banner_") or obj.name.startswith("Golden_Hawks_Slot_Badge_") or obj.name.startswith("Golden_Hawks_Bumper_") or obj.name.startswith("Golden_Hawks_Slogan_"):
                 to_remove.append(obj)
         elif current_mode == 'SLOGAN':
-            if obj.name.startswith("Wolfpack_Banner_") or obj.name.startswith("Wolfpack_Slot_Badge_") or obj.name.startswith("Wolfpack_Bumper_") or obj.name.startswith("Stinger_"):
+            if obj.name.startswith("Golden_Hawks_Banner_") or obj.name.startswith("Golden_Hawks_Slot_Badge_") or obj.name.startswith("Golden_Hawks_Bumper_") or obj.name.startswith("Stinger_"):
                 to_remove.append(obj)
                 
     for obj in to_remove:
@@ -1181,11 +1181,11 @@ def export_broadcast_cue_sheet(plan, props, winning_item_id: int, total_frames: 
     if not filepath_base:
         if bpy.data.filepath:
             folder = os.path.dirname(bpy.data.filepath)
-            filepath_base = os.path.join(folder, "wolfpack_shuffle_cues")
+            filepath_base = os.path.join(folder, "golden_hawks_shuffle_cues")
         else:
-            folder = r"C:\Users\Administrator\.gemini\antigravity\scratch\wolfpack_shuffle"
+            folder = r"C:\Users\Administrator\.gemini\antigravity\scratch\golden-hawks-helmet-shuffle"
             os.makedirs(folder, exist_ok=True)
-            filepath_base = os.path.join(folder, "wolfpack_shuffle_cues")
+            filepath_base = os.path.join(folder, "golden_hawks_shuffle_cues")
             
     fps = props.fps
     winning_slot_idx = plan.item_slot[winning_item_id]
@@ -1276,7 +1276,7 @@ def export_broadcast_cue_sheet(plan, props, winning_item_id: int, total_frames: 
     # Write JSON
     json_path = filepath_base + ".json"
     data = {
-        "suite": "Wolfpack Glory Helmet Shuffle v3.0",
+        "suite": "Golden Hawks Helmet Shuffle v3.5.0",
         "author": "Solomon Olufelo / Wilfrid Laurier Athletics",
         "client": "Wilfrid Laurier Golden Hawks",
         "fps": fps,
@@ -1396,7 +1396,7 @@ def create_and_animate_entry_bumper(coll, props, start_frame=1, duration=60, ani
     vfont_agency = load_laurier_font('AGENCYFB')
     
     # Clean previous bumper elements
-    for name in ["Wolfpack_Bumper_Title", "Wolfpack_Bumper_Sub", "Wolfpack_Bumper_Sponsor"]:
+    for name in ["Golden_Hawks_Bumper_Title", "Golden_Hawks_Bumper_Sub", "Golden_Hawks_Bumper_Sponsor"]:
         old = bpy.data.objects.get(name)
         if old:
             bpy.data.objects.remove(old, do_unlink=True)
@@ -1417,7 +1417,7 @@ def create_and_animate_entry_bumper(coll, props, start_frame=1, duration=60, ani
     layout_mode = getattr(props, "bumper_layout_mode", 'SANDWICH')
 
     # 1. Main Title: Radwave Display (Dual-layer Gold + Deep Purple Stroke)
-    t_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Bumper_Title_Data")
+    t_data = bpy.data.curves.new(type='FONT', name="Golden_Hawks_Bumper_Title_Data")
     t_data.body = props.entry_title
     if vfont_radwave:
         t_data.font = vfont_radwave
@@ -1428,14 +1428,14 @@ def create_and_animate_entry_bumper(coll, props, start_frame=1, duration=60, ani
     t_data.bevel_depth = 0.007
     t_data.bevel_resolution = 4
     
-    obj_title = bpy.data.objects.new("Wolfpack_Bumper_Title", t_data)
+    obj_title = bpy.data.objects.new("Golden_Hawks_Bumper_Title", t_data)
     obj_title.location = target_pos
     obj_title.rotation_euler = (cam_pitch, 0.0, 0.0)
     coll.objects.link(obj_title)
     obj_title.data.materials.append(mat_gold)
     
     # Backing stroke
-    s_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Bumper_Title_Stroke_Data")
+    s_data = bpy.data.curves.new(type='FONT', name="Golden_Hawks_Bumper_Title_Stroke_Data")
     s_data.body = props.entry_title
     if vfont_radwave:
         s_data.font = vfont_radwave
@@ -1446,7 +1446,7 @@ def create_and_animate_entry_bumper(coll, props, start_frame=1, duration=60, ani
     s_data.bevel_depth = 0.022
     s_data.bevel_resolution = 4
     
-    obj_stroke = bpy.data.objects.new("Wolfpack_Bumper_Title_Stroke", s_data)
+    obj_stroke = bpy.data.objects.new("Golden_Hawks_Bumper_Title_Stroke", s_data)
     obj_stroke.parent = obj_title
     obj_stroke.location = (0.0, 0.0, -0.018)
     coll.objects.link(obj_stroke)
@@ -1456,7 +1456,7 @@ def create_and_animate_entry_bumper(coll, props, start_frame=1, duration=60, ani
     # In SANDWICH mode: placed OVER TOP (+Y) as dramatic Eyebrow Kicker!
     # In STACKED mode: placed directly underneath (-Y * 0.85).
     sub_y_rest = spacing if layout_mode == 'SANDWICH' else -spacing * 0.85
-    sub_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Bumper_Sub_Data")
+    sub_data = bpy.data.curves.new(type='FONT', name="Golden_Hawks_Bumper_Sub_Data")
     sub_data.body = props.entry_subtitle
     if vfont_agency:
         sub_data.font = vfont_agency
@@ -1467,7 +1467,7 @@ def create_and_animate_entry_bumper(coll, props, start_frame=1, duration=60, ani
     sub_data.bevel_depth = 0.004
     sub_data.bevel_resolution = 3
     
-    obj_sub = bpy.data.objects.new("Wolfpack_Bumper_Sub", sub_data)
+    obj_sub = bpy.data.objects.new("Golden_Hawks_Bumper_Sub", sub_data)
     obj_sub.parent = obj_title
     obj_sub.location = (0.0, sub_y_rest, 0.012)
     coll.objects.link(obj_sub)
@@ -1475,7 +1475,7 @@ def create_and_animate_entry_bumper(coll, props, start_frame=1, duration=60, ani
     
     # 3. Sponsor Tag: Agency FB (Always placed on bottom -Y with clear air gap)
     spon_y_rest = -spacing if layout_mode == 'SANDWICH' else -spacing * 1.55
-    sp_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Bumper_Sponsor_Data")
+    sp_data = bpy.data.curves.new(type='FONT', name="Golden_Hawks_Bumper_Sponsor_Data")
     sp_data.body = props.entry_sponsor
     if vfont_agency:
         sp_data.font = vfont_agency
@@ -1486,7 +1486,7 @@ def create_and_animate_entry_bumper(coll, props, start_frame=1, duration=60, ani
     sp_data.bevel_depth = 0.003
     sp_data.bevel_resolution = 3
     
-    obj_sponsor = bpy.data.objects.new("Wolfpack_Bumper_Sponsor", sp_data)
+    obj_sponsor = bpy.data.objects.new("Golden_Hawks_Bumper_Sponsor", sp_data)
     obj_sponsor.parent = obj_title
     obj_sponsor.location = (0.0, spon_y_rest, 0.012)
     coll.objects.link(obj_sponsor)
@@ -1624,7 +1624,7 @@ def create_and_animate_slogan(coll, props, start_frame=1, duration=75, animate_c
         preset_key, slogan_catalog['DEFEND_THE_NEST']
     )
     
-    for name in ["Wolfpack_Slogan_Title", "Wolfpack_Slogan_Sub", "Wolfpack_Slogan_Tag"]:
+    for name in ["Golden_Hawks_Slogan_Title", "Golden_Hawks_Slogan_Sub", "Golden_Hawks_Slogan_Tag"]:
         old = bpy.data.objects.get(name)
         if old:
             bpy.data.objects.remove(old, do_unlink=True)
@@ -1643,7 +1643,7 @@ def create_and_animate_slogan(coll, props, start_frame=1, duration=75, animate_c
     spacing = getattr(props, "bumper_text_spacing", 0.58)
 
     # 1. Headline
-    t_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Slogan_Title_Data")
+    t_data = bpy.data.curves.new(type='FONT', name="Golden_Hawks_Slogan_Title_Data")
     t_data.body = headline
     if vfont_radwave:
         t_data.font = vfont_radwave
@@ -1654,14 +1654,14 @@ def create_and_animate_slogan(coll, props, start_frame=1, duration=75, animate_c
     t_data.bevel_depth = 0.007
     t_data.bevel_resolution = 4
     
-    obj_title = bpy.data.objects.new("Wolfpack_Slogan_Title", t_data)
+    obj_title = bpy.data.objects.new("Golden_Hawks_Slogan_Title", t_data)
     obj_title.location = target_pos
     obj_title.rotation_euler = (cam_pitch, 0.0, 0.0)
     coll.objects.link(obj_title)
     obj_title.data.materials.append(mat_gold)
     
     # 2. Subtitle (Local -Y with comfortable air gap)
-    sub_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Slogan_Sub_Data")
+    sub_data = bpy.data.curves.new(type='FONT', name="Golden_Hawks_Slogan_Sub_Data")
     sub_data.body = subtitle
     if vfont_agency:
         sub_data.font = vfont_agency
@@ -1672,14 +1672,14 @@ def create_and_animate_slogan(coll, props, start_frame=1, duration=75, animate_c
     sub_data.bevel_depth = 0.004
     sub_data.bevel_resolution = 3
     
-    obj_sub = bpy.data.objects.new("Wolfpack_Slogan_Sub", sub_data)
+    obj_sub = bpy.data.objects.new("Golden_Hawks_Slogan_Sub", sub_data)
     obj_sub.parent = obj_title
     obj_sub.location = (0.0, -spacing * 0.85, 0.012)
     coll.objects.link(obj_sub)
     obj_sub.data.materials.append(mat_gold)
     
     # 3. Tag (Local -Y further down)
-    tag_data = bpy.data.curves.new(type='FONT', name="Wolfpack_Slogan_Tag_Data")
+    tag_data = bpy.data.curves.new(type='FONT', name="Golden_Hawks_Slogan_Tag_Data")
     tag_data.body = tag
     if vfont_agency:
         tag_data.font = vfont_agency
@@ -1690,7 +1690,7 @@ def create_and_animate_slogan(coll, props, start_frame=1, duration=75, animate_c
     tag_data.bevel_depth = 0.003
     tag_data.bevel_resolution = 3
     
-    obj_tag = bpy.data.objects.new("Wolfpack_Slogan_Tag", tag_data)
+    obj_tag = bpy.data.objects.new("Golden_Hawks_Slogan_Tag", tag_data)
     obj_tag.parent = obj_title
     obj_tag.location = (0.0, -spacing * 1.55, 0.012)
     coll.objects.link(obj_tag)
@@ -1889,7 +1889,7 @@ def bake_shuffle_to_scene(props):
     if len(valid_objects) < 2:
         raise ValueError("Please select or name at least 2 objects (Helmet 1, 2, 3) to shuffle!")
         
-    coll = bpy.data.collections.get("Wolfpack_Shuffle") or scene.collection
+    coll = bpy.data.collections.get("Golden_Hawks_Shuffle") or scene.collection
     
     # Prepend Home Show Entry Bumper if enabled (Mutually Exclusive Time Block [t_start, s_offset])
     if getattr(props, "prepend_entry_bumper", True) and lead_bumper > 0:
@@ -2103,9 +2103,9 @@ def bake_shuffle_to_scene(props):
         winning_slot_idx = plan.item_slot[winning_item_id]
         winning_slot_number = winning_slot_idx + 1
         
-        banner_intro = setup_phase_text_banner(coll, "Wolfpack_Banner_Intro", props.banner_intro_text, font_type=props.banner_font)
-        banner_rev = setup_phase_text_banner(coll, "Wolfpack_Banner_Reveal", props.banner_reveal_text, font_type=props.banner_font)
-        banner_win = setup_phase_text_banner(coll, "Wolfpack_Banner_Winner", f"SLOT {winning_slot_number} WINS!", font_type=props.banner_font)
+        banner_intro = setup_phase_text_banner(coll, "Golden_Hawks_Banner_Intro", props.banner_intro_text, font_type=props.banner_font)
+        banner_rev = setup_phase_text_banner(coll, "Golden_Hawks_Banner_Reveal", props.banner_reveal_text, font_type=props.banner_font)
+        banner_win = setup_phase_text_banner(coll, "Golden_Hawks_Banner_Winner", f"SLOT {winning_slot_number} WINS!", font_type=props.banner_font)
         
         # --- BEAT 2: INTRO BANNER ("WATCH CLOSELY!") ---
         if banner_intro.animation_data:
@@ -2249,7 +2249,7 @@ def bake_shuffle_to_scene(props):
         
         # Shuffle Banner (if enabled)
         if not props.clean_screen_during_shuffle:
-            banner_shuf = setup_phase_text_banner(coll, "Wolfpack_Banner_Shuffle", props.banner_shuffle_text, font_type=props.banner_font)
+            banner_shuf = setup_phase_text_banner(coll, "Golden_Hawks_Banner_Shuffle", props.banner_shuffle_text, font_type=props.banner_font)
             if banner_shuf.animation_data:
                 banner_shuf.animation_data_clear()
             banner_shuf.scale = (0.0, 0.0, 0.0)
@@ -2262,11 +2262,11 @@ def bake_shuffle_to_scene(props):
             banner_shuf.keyframe_insert(data_path="scale", frame=suspense_start + 4)
             banner_shuf.keyframe_insert(data_path="scale", frame=plan.total_frames)
         else:
-            b_shuf_old = bpy.data.objects.get("Wolfpack_Banner_Shuffle")
+            b_shuf_old = bpy.data.objects.get("Golden_Hawks_Banner_Shuffle")
             if b_shuf_old:
                 bpy.data.objects.remove(b_shuf_old, do_unlink=True)
     else:
-        for b_name in ["Wolfpack_Banner_Intro", "Wolfpack_Banner_Reveal", "Wolfpack_Banner_Winner", "Wolfpack_Banner_Shuffle"]:
+        for b_name in ["Golden_Hawks_Banner_Intro", "Golden_Hawks_Banner_Reveal", "Golden_Hawks_Banner_Winner", "Golden_Hawks_Banner_Shuffle"]:
             b_old = bpy.data.objects.get(b_name)
             if b_old:
                 bpy.data.objects.remove(b_old, do_unlink=True)
@@ -2279,7 +2279,7 @@ def bake_shuffle_to_scene(props):
         rev_start = reveal_question_frame
         
         for s_idx in range(3):
-            badge_name = f"Wolfpack_Slot_Badge_{s_idx + 1}"
+            badge_name = f"Golden_Hawks_Slot_Badge_{s_idx + 1}"
             center = plan.get_slot_center(s_idx)
             target_badge_loc = (center.x, -1.2, 0.95)
             
@@ -2350,7 +2350,7 @@ def bake_shuffle_to_scene(props):
                 b_obj.keyframe_insert(data_path="location", frame=plan.total_frames)
     else:
         for s_idx in range(3):
-            badge_old = bpy.data.objects.get(f"Wolfpack_Slot_Badge_{s_idx + 1}")
+            badge_old = bpy.data.objects.get(f"Golden_Hawks_Slot_Badge_{s_idx + 1}")
             if badge_old:
                 bpy.data.objects.remove(badge_old, do_unlink=True)
 
@@ -2360,7 +2360,7 @@ def bake_shuffle_to_scene(props):
     try:
         export_broadcast_cue_sheet(plan, props, winning_item_id, plan.total_frames)
     except Exception as e:
-        print("[Wolfpack Glory] Cue sheet auto-export note:", e)
+        print("[Golden Hawks Athletics] Cue sheet auto-export note:", e)
 
     scene.frame_start = t_start
     scene.frame_end = plan.total_frames
@@ -2384,11 +2384,11 @@ def bake_shuffle_to_scene(props):
         try:
             generate_3d_motion_trajectories(scene, valid_objects, plan.total_frames)
         except Exception as e:
-            print(f"[Wolfpack Studio] Trajectory arc generation notice: {e}")
+            print(f"[Golden Hawks Studio] Trajectory arc generation notice: {e}")
 
     return winning_item_id + 1, plan.total_frames
 
-class WolfpackShuffleProperties(bpy.types.PropertyGroup):
+class GoldenHawksShuffleProperties(bpy.types.PropertyGroup):
     # Entry Bumper Typography Layout & Air Gap Framing
     bumper_layout_mode: bpy.props.EnumProperty(
         name="Bumper Text Layout",
@@ -2834,15 +2834,15 @@ class WolfpackShuffleProperties(bpy.types.PropertyGroup):
     )
 
 
-class WOLFPACK_OT_setup_atmosphere(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_setup_atmosphere(bpy.types.Operator):
     """Build procedural atmospheric sky dome, volumetric light shafts, floodlights, and compositor lens rig"""
-    bl_idname = "wolfpack.setup_atmosphere"
+    bl_idname = "golden_hawks.setup_atmosphere"
     bl_label = "Build Cinematic Sky, Volumetrics & Lens Rig"
     bl_description = "Configures dramatic atmospheric sky dome, true 3D volumetric light shafts, and compositor bloom"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = context.scene.wolfpack_shuffle
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
         mood = getattr(props, "lighting_mood", 'NIGHT_GAME_FLOODLIGHT')
         vols = getattr(props, "enable_volumetric_haze", True)
         dens = getattr(props, "haze_density", 0.005)
@@ -2851,9 +2851,9 @@ class WOLFPACK_OT_setup_atmosphere(bpy.types.Operator):
         return {'FINISHED'}
 
 
-class WOLFPACK_OT_setup_goalposts(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_setup_goalposts(bpy.types.Operator):
     """Spawn 3D collegiate upright goalposts with golden yellow coating and wind streamers"""
-    bl_idname = "wolfpack.setup_goalposts"
+    bl_idname = "golden_hawks.setup_goalposts"
     bl_label = "Spawn 3D Uprights & Goalposts"
     bl_description = "Creates authentic NCAA/U SPORTS collegiate goalposts in the background"
     bl_options = {'REGISTER', 'UNDO'}
@@ -2864,15 +2864,15 @@ class WOLFPACK_OT_setup_goalposts(bpy.types.Operator):
         return {'FINISHED'}
 
 
-class WOLFPACK_OT_generate_stinger(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_generate_stinger(bpy.types.Operator):
     """Generate modular 3D in-game videoboard stinger with Hailey's typography (Radwave / Agency FB) and LED anti-glare shaders"""
-    bl_idname = "wolfpack.generate_stinger"
+    bl_idname = "golden_hawks.generate_stinger"
     bl_label = "Generate 3D Stinger"
     bl_description = "Generates an animated ESPN-style 3D stinger for the selected game-day event"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = context.scene.wolfpack_shuffle
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
         st_type = props.stinger_type
         
         # Clean conflicting text from other modes (Bumper/Shuffle)
@@ -2904,7 +2904,7 @@ class WOLFPACK_OT_generate_stinger(bpy.types.Operator):
         
         headline, subtitle, total_frames = stinger_data.get(st_type, ("GOLDEN HAWKS", "WILFRID LAURIER", 60))
         
-        coll_name = "Wolfpack_Stingers"
+        coll_name = "Golden_Hawks_Stingers"
         coll = bpy.data.collections.get(coll_name)
         if not coll:
             coll = bpy.data.collections.new(coll_name)
@@ -3078,31 +3078,31 @@ class WOLFPACK_OT_generate_stinger(bpy.types.Operator):
         return {'FINISHED'}
 
 
-class WOLFPACK_OT_generate_shuffle(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_generate_shuffle(bpy.types.Operator):
     """Generate collision-free helmet shuffle animation"""
-    bl_idname = "wolfpack.generate_shuffle"
-    bl_label = "Generate Wolfpack Shuffle"
+    bl_idname = "golden_hawks.generate_shuffle"
+    bl_label = "Generate Golden Hawks Shuffle"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = context.scene.wolfpack_shuffle
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
         try:
             winner, frames = bake_shuffle_to_scene(props)
-            self.report({'INFO'}, f"Wolfpack Shuffle Generated! Ball under Helmet {winner} ({frames} frames)")
+            self.report({'INFO'}, f"Golden Hawks Shuffle Generated! Ball under Helmet {winner} ({frames} frames)")
             return {'FINISHED'}
         except Exception as e:
             self.report({'ERROR'}, f"Generation failed: {str(e)}")
             return {'CANCELLED'}
 
 
-class WOLFPACK_OT_setup_demo(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_setup_demo(bpy.types.Operator):
     """Spawn 3 demo helmets, football, and camera"""
-    bl_idname = "wolfpack.setup_demo"
+    bl_idname = "golden_hawks.setup_demo"
     bl_label = "Setup Stand-in Helmets & Ball"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = context.scene.wolfpack_shuffle
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
         setup_demo_scene_if_needed(props.slot_spacing, props.venue_preset)
         # Link to properties
         props.custom_helmet_1 = bpy.data.objects.get("Helmet_1")
@@ -3113,15 +3113,15 @@ class WOLFPACK_OT_setup_demo(bpy.types.Operator):
         return {'FINISHED'}
 
 
-class WOLFPACK_OT_link_selected(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_link_selected(bpy.types.Operator):
     """Link currently selected 3 objects as Helmets 1, 2, 3 ordered from left to right"""
-    bl_idname = "wolfpack.link_selected"
+    bl_idname = "golden_hawks.link_selected"
     bl_label = "Auto-Link Selected (Left to Right)"
     bl_description = "Select your 3 models and click this to automatically assign them by their X position"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = context.scene.wolfpack_shuffle
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
         selected = list(context.selected_objects)
         if len(selected) < 3:
             self.report({'WARNING'}, "Please select at least 3 objects in the 3D viewport!")
@@ -3137,9 +3137,9 @@ class WOLFPACK_OT_link_selected(bpy.types.Operator):
         return {'FINISHED'}
 
 
-class WOLFPACK_OT_import_model(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_import_model(bpy.types.Operator):
     """Import a custom 3D model file (.obj, .fbx, .glb, .gltf)"""
-    bl_idname = "wolfpack.import_model"
+    bl_idname = "golden_hawks.import_model"
     bl_label = "Import 3D Model File"
     bl_description = "Open file dialog to import an OBJ, FBX, or GLTF model"
     
@@ -3172,16 +3172,16 @@ class WOLFPACK_OT_import_model(bpy.types.Operator):
         return {'RUNNING_MODAL'}
 
 
-class WOLFPACK_OT_generate_entry_bumper(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_generate_entry_bumper(bpy.types.Operator):
     """Generate standalone/integrated 'Home Show' 3D Entry Screen Bumper with Radwave & Agency FB typography"""
-    bl_idname = "wolfpack.generate_entry_bumper"
+    bl_idname = "golden_hawks.generate_entry_bumper"
     bl_label = "Generate Home Show Entry Bumper"
     bl_description = "Creates an ESPN/Fox Sports style 3D intro bumper screen for the Golden Hawks Shuffle"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = context.scene.wolfpack_shuffle
-        coll = bpy.data.collections.get("Wolfpack_Shuffle") or context.scene.collection
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
+        coll = bpy.data.collections.get("Golden_Hawks_Shuffle") or context.scene.collection
         
         cleanup_conflicting_text_graphics('BUMPER')
         
@@ -3197,16 +3197,16 @@ class WOLFPACK_OT_generate_entry_bumper(bpy.types.Operator):
         return {'FINISHED'}
 
 
-class WOLFPACK_OT_generate_slogan(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_generate_slogan(bpy.types.Operator):
     """Generate modular 3D crowd hype stadium slogan with Radwave / Agency FB typography"""
-    bl_idname = "wolfpack.generate_slogan"
+    bl_idname = "golden_hawks.generate_slogan"
     bl_label = "Generate 3D Stadium Slogan"
     bl_description = "Creates animated Golden Hawks stadium catchphrases (DEFEND THE NEST, HAWK PRIDE, etc.) with kinetic boom slam"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = context.scene.wolfpack_shuffle
-        coll = bpy.data.collections.get("Wolfpack_Shuffle") or context.scene.collection
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
+        coll = bpy.data.collections.get("Golden_Hawks_Shuffle") or context.scene.collection
         
         cleanup_conflicting_text_graphics('SLOGAN')
         
@@ -3221,16 +3221,16 @@ class WOLFPACK_OT_generate_slogan(bpy.types.Operator):
         return {'FINISHED'}
 
 
-class WOLFPACK_OT_setup_broadcast_render(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_setup_broadcast_render(bpy.types.Operator):
     """Configure 1-click broadcast videoboard render settings (1080p60, ProRes/H.264, AgX contrast, motion blur)"""
-    bl_idname = "wolfpack.setup_broadcast_render"
+    bl_idname = "golden_hawks.setup_broadcast_render"
     bl_label = "Configure 1-Click Broadcast Render"
     bl_description = "Applies 1080p60 broadcast presets, ProRes/H.264 encoding, AgX color management, and motion blur"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
         scene = context.scene
-        props = scene.wolfpack_shuffle
+        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "golden_hawks_shuffle", None))
         
         # 1. Resolution & Framerate
         scene.render.resolution_x = 1920
@@ -3274,7 +3274,7 @@ class WOLFPACK_OT_setup_broadcast_render(bpy.types.Operator):
             if hasattr(scene.render.ffmpeg, 'ffmpeg_prores_profile'):
                 scene.render.ffmpeg.ffmpeg_prores_profile = '422_HQ'
             scene.render.image_settings.color_mode = 'RGB'
-            scene.render.filepath = os.path.join(out_dir, "wolfpack_shuffle_prores422.mov")
+            scene.render.filepath = os.path.join(out_dir, "golden_hawks_shuffle_prores422.mov")
             fmt_desc = "Apple ProRes 422 HQ (.mov) at 1080p60"
         elif preset == 'PRORES_4444':
             scene.render.ffmpeg.format = 'QUICKTIME'
@@ -3283,7 +3283,7 @@ class WOLFPACK_OT_setup_broadcast_render(bpy.types.Operator):
                 scene.render.ffmpeg.ffmpeg_prores_profile = '4444'
             scene.render.image_settings.color_mode = 'RGBA'
             scene.render.film_transparent = True
-            scene.render.filepath = os.path.join(out_dir, "wolfpack_shuffle_prores4444_alpha.mov")
+            scene.render.filepath = os.path.join(out_dir, "golden_hawks_shuffle_prores4444_alpha.mov")
             fmt_desc = "Apple ProRes 4444 RGBA with Alpha Transparency (.mov) at 1080p60"
         else: # H264_LOSSLESS
             scene.render.ffmpeg.format = 'MPEG4'
@@ -3293,16 +3293,16 @@ class WOLFPACK_OT_setup_broadcast_render(bpy.types.Operator):
             if hasattr(scene.render.ffmpeg, 'ffmpeg_preset'):
                 scene.render.ffmpeg.ffmpeg_preset = 'GOOD'
             scene.render.image_settings.color_mode = 'RGB'
-            scene.render.filepath = os.path.join(out_dir, "wolfpack_shuffle_h264.mp4")
+            scene.render.filepath = os.path.join(out_dir, "golden_hawks_shuffle_h264.mp4")
             fmt_desc = "H.264 Lossless MP4 (.mp4) at 1080p60"
             
         self.report({'INFO'}, f"Broadcast Render Configured: {fmt_desc}")
         return {'FINISHED'}
 
 
-class WOLFPACK_OT_export_cue_sheet(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_export_cue_sheet(bpy.types.Operator):
     """Export After Effects & Sound Design Broadcast Cue Sheet (.json & .csv)"""
-    bl_idname = "wolfpack.export_cue_sheet"
+    bl_idname = "golden_hawks.export_cue_sheet"
     bl_label = "Export AE Cue Sheet (.json & .csv)"
     bl_description = "Exports timestamped SMPTE cue sheet recording all swaps, pauses, and reveal timecodes for After Effects and sound design"
     bl_options = {'REGISTER'}
@@ -3310,7 +3310,7 @@ class WOLFPACK_OT_export_cue_sheet(bpy.types.Operator):
     def execute(self, context):
         global _LAST_SHUFFLE_PLAN
         scene = context.scene
-        props = scene.wolfpack_shuffle
+        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "golden_hawks_shuffle", None))
         plan = _LAST_SHUFFLE_PLAN
         winning_id = getattr(plan, "reveal_item_id", 0) if plan else 0
         total_f = getattr(plan, "total_frames", scene.frame_end) if plan else scene.frame_end
@@ -3356,8 +3356,8 @@ class WOLFPACK_OT_export_cue_sheet(bpy.types.Operator):
 def generate_3d_motion_trajectories(scene, objects, total_frames):
     """Generates glowing 3D trajectory spline curves in the viewport for Technical Artists.
     Allows animators to visually inspect swap curves, centripetal banking, and clearances."""
-    coll = bpy.data.collections.get("Wolfpack_Shuffle") or scene.collection
-    traj_obj_name = "Wolfpack_Motion_Trajectories"
+    coll = bpy.data.collections.get("Golden_Hawks_Shuffle") or scene.collection
+    traj_obj_name = "Golden_Hawks_Motion_Trajectories"
     
     # Remove existing trajectory curve if present
     existing = bpy.data.objects.get(traj_obj_name)
@@ -3380,7 +3380,7 @@ def generate_3d_motion_trajectories(scene, objects, total_frames):
         if not obj or idx >= len(colors):
             continue
             
-        mat_name = f"Wolfpack_Traj_Mat_{idx+1}"
+        mat_name = f"Golden_Hawks_Traj_Mat_{idx+1}"
         mat = bpy.data.materials.get(mat_name)
         if not mat:
             mat = bpy.data.materials.new(name=mat_name)
@@ -3435,7 +3435,7 @@ def export_game_engine_animation_tracks(scene, props):
     # Track dictionary
     track_data = {
         "$schema": "https://rockstar-pipeline.studio/schemas/anim-track-v1.json",
-        "generator": "Wolfpack Glory Studio Tools v3.5.0 (Rockstar Games Spec)",
+        "generator": "Golden Hawks Studio Tools v3.5.0 (Rockstar Games Spec)",
         "target_engine": props.game_engine_target,
         "metadata": {
             "fps": fps,
@@ -3534,26 +3534,26 @@ def export_game_engine_animation_tracks(scene, props):
     written_paths = []
     for d in output_dirs:
         try:
-            target = os.path.join(d, "wolfpack_anim_tracks.json")
+            target = os.path.join(d, "golden_hawks_anim_tracks.json")
             with open(target, "w", encoding="utf-8") as f:
                 json.dump(track_data, f, indent=2)
             written_paths.append(target)
         except Exception:
             pass
             
-    return written_paths[0] if written_paths else "wolfpack_anim_tracks.json", track_data
+    return written_paths[0] if written_paths else "golden_hawks_anim_tracks.json", track_data
 
 
-class WOLFPACK_OT_toggle_motion_trajectories(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_toggle_motion_trajectories(bpy.types.Operator):
     """Generate or update 3D Motion Trajectory Arcs in the Viewport for Technical Artists"""
-    bl_idname = "wolfpack.toggle_motion_trajectories"
+    bl_idname = "golden_hawks.toggle_motion_trajectories"
     bl_label = "Generate 3D Motion Arcs (Viewport)"
     bl_description = "Bakes glowing 3D trajectory spline curves for each shuffler to inspect swap clearances and velocity arcs"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
         scene = context.scene
-        props = scene.wolfpack_shuffle
+        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "golden_hawks_shuffle", None))
         objects, fb_ctrl = get_shuffle_objects(props)
         valid_objects = [obj for obj in objects if obj is not None]
         
@@ -3570,16 +3570,16 @@ class WOLFPACK_OT_toggle_motion_trajectories(bpy.types.Operator):
             return {'CANCELLED'}
 
 
-class WOLFPACK_OT_export_game_engine_anim(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_export_game_engine_anim(bpy.types.Operator):
     """Export AAA Game Engine Animation Tracks (Quaternions, Velocities, Events)"""
-    bl_idname = "wolfpack.export_game_engine_anim"
+    bl_idname = "golden_hawks.export_game_engine_anim"
     bl_label = "Export Game Engine Tracks (.json)"
     bl_description = "Exports per-frame Quaternions, Euler angles, velocity vectors, and event markers for Rockstar RAGE / Unreal / glTF runtimes"
     bl_options = {'REGISTER'}
 
     def execute(self, context):
         scene = context.scene
-        props = scene.wolfpack_shuffle
+        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "golden_hawks_shuffle", None))
         try:
             target_path, data = export_game_engine_animation_tracks(scene, props)
             actor_count = len(data.get("actors", {}))
@@ -3590,19 +3590,19 @@ class WOLFPACK_OT_export_game_engine_anim(bpy.types.Operator):
             return {'CANCELLED'}
 
 
-class WOLFPACK_OT_export_telemetry(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_export_telemetry(bpy.types.Operator):
     """Export Studio Benchmark & Profiler Telemetry Report (.json)"""
-    bl_idname = "wolfpack.export_telemetry"
+    bl_idname = "golden_hawks.export_telemetry"
     bl_label = "Export Telemetry Benchmark (.json)"
     bl_description = "Exports execution time, memory overhead, and keyframe throughput benchmark for studio CI/CD audits"
     bl_options = {'REGISTER'}
 
     def execute(self, context):
         scene = context.scene
-        props = scene.wolfpack_shuffle
+        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "golden_hawks_shuffle", None))
         
         benchmark_data = {
-            "studio": "Wolfpack Glory / Rockstar Spec Studio Tools",
+            "studio": "Golden Hawks Athletics / Rockstar Spec Studio Tools",
             "version": "3.5.0",
             "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "system_metrics": {
@@ -3617,7 +3617,7 @@ class WOLFPACK_OT_export_telemetry(bpy.types.Operator):
             "status": "PASS (0 Leaks / Deterministic Execution)"
         }
         
-        out_path = os.path.join(os.getcwd(), "wolfpack_telemetry_benchmark.json")
+        out_path = os.path.join(os.getcwd(), "golden_hawks_telemetry_benchmark.json")
         try:
             with open(out_path, "w", encoding="utf-8") as f:
                 json.dump(benchmark_data, f, indent=2)
@@ -3629,24 +3629,24 @@ class WOLFPACK_OT_export_telemetry(bpy.types.Operator):
 
 
 
-class WOLFPACK_OT_one_click_gameday_setup(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_one_click_gameday_setup(bpy.types.Operator):
     """1-Click Complete Game-Day Production Setup (Venue + Lights + Bumper + Shuffle + Trajectories + ProRes)"""
-    bl_idname = "wolfpack.one_click_gameday_setup"
+    bl_idname = "golden_hawks.one_click_gameday_setup"
     bl_label = "⚡ 1-Click Complete Game-Day Show Setup"
     bl_description = "Instantly sets up turf pitch, volumetric stadium lighting, 3D shufflers, bakes the entire bumper & shuffle routine, draws 3D motion arcs, and configures ProRes 422 export"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
         scene = context.scene
-        props = scene.wolfpack_shuffle
+        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "golden_hawks_shuffle", None))
         
         # 1. Setup Venue Pitch & Stand-ins
-        bpy.ops.wolfpack.setup_demo()
+        bpy.ops.golden_hawks.setup_demo()
         
         # 2. Setup Volumetric Atmosphere
         props.lighting_mood = 'NIGHT_GAME_FLOODLIGHT'
         props.enable_volumetric_haze = True
-        bpy.ops.wolfpack.setup_atmosphere()
+        bpy.ops.golden_hawks.setup_atmosphere()
         
         # 3. Ensure Bumper & Routine are configured
         props.prepend_entry_bumper = True
@@ -3657,29 +3657,29 @@ class WOLFPACK_OT_one_click_gameday_setup(bpy.types.Operator):
         props.show_motion_trajectories = True
         
         # 4. Bake the routine & telemetry
-        bpy.ops.wolfpack.generate_shuffle()
+        bpy.ops.golden_hawks.generate_shuffle()
         
         # 5. Configure Apple ProRes 422 Broadcast Output
         props.render_export_preset = 'PRORES_422'
-        bpy.ops.wolfpack.setup_broadcast_render()
+        bpy.ops.golden_hawks.setup_broadcast_render()
         
         # 6. Export Game Engine Tracks and Cue Sheets
-        bpy.ops.wolfpack.export_game_engine_anim()
-        bpy.ops.wolfpack.export_cue_sheet()
+        bpy.ops.golden_hawks.export_game_engine_anim()
+        bpy.ops.golden_hawks.export_cue_sheet()
         
         self.report({'INFO'}, f"⚡ Game-Day Show Initialized: 4K Broadcast Ready in {props.last_bake_ms:.1f}ms!")
         return {'FINISHED'}
 
 
-class WOLFPACK_OT_bake_animation_only(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_bake_animation_only(bpy.types.Operator):
     """Bake shuffle keyframes into the current scene without spawning venue turf, goalposts, or lights"""
-    bl_idname = "wolfpack.bake_animation_only"
+    bl_idname = "golden_hawks.bake_animation_only"
     bl_label = "Bake Animation Only (Active .blend)"
     bl_description = "Bakes the 3D shuffle keyframes and multi-stage broadcast camera dolly into the current scene without touching or recreating environment geometry"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = context.scene.wolfpack_shuffle
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
         objects, fb_ctrl = get_shuffle_objects(props)
         if not any(objects):
             for i in range(3):
@@ -3719,9 +3719,9 @@ class WOLFPACK_OT_bake_animation_only(bpy.types.Operator):
             return {'CANCELLED'}
 
 
-class WOLFPACK_OT_link_environment(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_link_environment(bpy.types.Operator):
     """Link stadium environment collection from master library .blend file"""
-    bl_idname = "wolfpack.link_environment"
+    bl_idname = "golden_hawks.link_environment"
     bl_label = "Link Stadium Environment (.blend)"
     bl_description = "Links Stadium_Environment or Stadium_Turf collection from external master library blend file"
     bl_options = {'REGISTER', 'UNDO'}
@@ -3758,58 +3758,58 @@ class WOLFPACK_OT_link_environment(bpy.types.Operator):
             return {'CANCELLED'}
 
 
-class WOLFPACK_OT_bake_variant_a(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_bake_variant_a(bpy.types.Operator):
     """1-Click Bake Variant A: Left Helmet Wins (Slot 1) with Outside Switchback"""
-    bl_idname = "wolfpack.bake_variant_a"
+    bl_idname = "golden_hawks.bake_variant_a"
     bl_label = "🅰️ Variant A (Left Wins)"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = context.scene.wolfpack_shuffle
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
         props.target_outcome = 'SLOT_1'
-        bpy.ops.wolfpack.generate_shuffle()
+        bpy.ops.golden_hawks.generate_shuffle()
         self.report({'INFO'}, "Variant A (Slot 1 / Left Wins) Baked!")
         return {'FINISHED'}
 
 
-class WOLFPACK_OT_bake_variant_b(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_bake_variant_b(bpy.types.Operator):
     """1-Click Bake Variant B: Center Helmet Wins (Slot 2) with Intertwining Figure-8"""
-    bl_idname = "wolfpack.bake_variant_b"
+    bl_idname = "golden_hawks.bake_variant_b"
     bl_label = "🅱️ Variant B (Center Wins)"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = context.scene.wolfpack_shuffle
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
         props.target_outcome = 'SLOT_2'
-        bpy.ops.wolfpack.generate_shuffle()
+        bpy.ops.golden_hawks.generate_shuffle()
         self.report({'INFO'}, "Variant B (Slot 2 / Center Wins) Baked!")
         return {'FINISHED'}
 
 
-class WOLFPACK_OT_bake_variant_c(bpy.types.Operator):
+class GOLDEN_HAWKS_OT_bake_variant_c(bpy.types.Operator):
     """1-Click Bake Variant C: Right Helmet Wins (Slot 3) with Pinwheel Carousel"""
-    bl_idname = "wolfpack.bake_variant_c"
+    bl_idname = "golden_hawks.bake_variant_c"
     bl_label = "🅲 Variant C (Right Wins)"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = context.scene.wolfpack_shuffle
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
         props.target_outcome = 'SLOT_3'
-        bpy.ops.wolfpack.generate_shuffle()
+        bpy.ops.golden_hawks.generate_shuffle()
         self.report({'INFO'}, "Variant C (Slot 3 / Right Wins) Baked!")
         return {'FINISHED'}
 
-class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
+class GOLDEN_HAWKS_PT_sidebar_panel(bpy.types.Panel):
     """Optimaxxed UI Panel in 3D Viewport Sidebar"""
     bl_label = "Golden Hawks Helmet Shuffle ⚡ Game-Day Suite"
-    bl_idname = "WOLFPACK_PT_sidebar_panel"
+    bl_idname = "GOLDEN_HAWKS_PT_sidebar_panel"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
     bl_category = "Golden Hawks"
 
     def draw(self, context):
         layout = self.layout
-        props = context.scene.wolfpack_shuffle
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
 
         # ====================================================================
         # BRANDING & STUDIO HEADER RIBBON
@@ -3836,14 +3836,14 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         layout.separator(factor=0.3)
         col_hero = layout.column(align=True)
         col_hero.scale_y = 1.45
-        col_hero.operator("wolfpack.one_click_gameday_setup", text="⚡ 1-Click Full Game-Day Show", icon='AUTO')
-        col_hero.operator("wolfpack.generate_shuffle", text="Bake Golden Hawks Shuffle Animation", icon='PLAY')
+        col_hero.operator("golden_hawks.one_click_gameday_setup", text="⚡ 1-Click Full Game-Day Show", icon='AUTO')
+        col_hero.operator("golden_hawks.generate_shuffle", text="Bake Golden Hawks Shuffle Animation", icon='PLAY')
         
         # 3 Direct Bespoke Variant Buttons
         row_var = layout.row(align=True)
-        row_var.operator("wolfpack.bake_variant_a", text="🅰️ Variant A (Left)", icon='TRIA_LEFT')
-        row_var.operator("wolfpack.bake_variant_b", text="🅱️ Variant B (Center)", icon='RADIOBUT_ON')
-        row_var.operator("wolfpack.bake_variant_c", text="🅲 Variant C (Right)", icon='TRIA_RIGHT')
+        row_var.operator("golden_hawks.bake_variant_a", text="🅰️ Variant A (Left)", icon='TRIA_LEFT')
+        row_var.operator("golden_hawks.bake_variant_b", text="🅱️ Variant B (Center)", icon='RADIOBUT_ON')
+        row_var.operator("golden_hawks.bake_variant_c", text="🅲 Variant C (Right)", icon='TRIA_RIGHT')
 
         # ====================================================================
         # WORKFLOW STAGES NAVIGATION TABS
@@ -3889,7 +3889,7 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
             row_m.prop(props, "entry_duration", text="Duration")
             row_m.prop(props, "text_exit_style", text="Exit Style")
             
-            box_bump.operator("wolfpack.generate_entry_bumper", text="Generate Standalone 3D Bumper", icon='RENDER_ANIMATION')
+            box_bump.operator("golden_hawks.generate_entry_bumper", text="Generate Standalone 3D Bumper", icon='RENDER_ANIMATION')
 
             # Modular Stadium Catchphrases
             box_slog = box_stage1.box()
@@ -3903,14 +3903,14 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
                 row_c.prop(props, "custom_slogan_head", text="Headline")
                 row_c.prop(props, "custom_slogan_sub", text="Subtitle")
                 
-            box_slog.operator("wolfpack.generate_slogan", text="Generate 3D Stadium Slogan", icon='PLAY')
+            box_slog.operator("golden_hawks.generate_slogan", text="Generate 3D Stadium Slogan", icon='PLAY')
 
             # In-Game Scoring Stingers
             box_st = box_stage1.box()
             box_st.label(text="In-Game Scoring Stingers", icon='DECORATE_ANIMATE')
             row_st = box_st.row(align=True)
             row_st.prop(props, "stinger_type", text="Event")
-            row_st.operator("wolfpack.generate_stinger", text="Generate 3D Stinger", icon='PLAY')
+            row_st.operator("golden_hawks.generate_stinger", text="Generate 3D Stinger", icon='PLAY')
 
         # ====================================================================
         # STAGE 2: ARENA & LIGHTING
@@ -3929,9 +3929,9 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
                 col_haz.prop(props, "haze_density", text="Haze Density")
                 
             row_lgt = box_stage2.row(align=True)
-            row_lgt.operator("wolfpack.setup_atmosphere", text="Build Volumetric Lights", icon='LIGHT_SUN')
-            row_lgt.operator("wolfpack.setup_goalposts", text="Spawn 3D Goalposts", icon='SNAP_GRID')
-            box_stage2.operator("wolfpack.setup_demo", text="Spawn / Reset Full Venue Scene", icon='DUPLICATE')
+            row_lgt.operator("golden_hawks.setup_atmosphere", text="Build Volumetric Lights", icon='LIGHT_SUN')
+            row_lgt.operator("golden_hawks.setup_goalposts", text="Spawn 3D Goalposts", icon='SNAP_GRID')
+            box_stage2.operator("golden_hawks.setup_demo", text="Spawn / Reset Full Venue Scene", icon='DUPLICATE')
 
             # Brand Typography Specs
             box_font = box_stage2.box()
@@ -3963,8 +3963,8 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
             row_m2.prop(props, "custom_football", text="Hidden Prize")
             
             row_btn = box_var.row(align=True)
-            row_btn.operator("wolfpack.link_selected", text="Auto-Assign 3 Selected", icon='RESTRICT_SELECT_OFF')
-            row_btn.operator("wolfpack.import_model", text="Import Model File", icon='IMPORT')
+            row_btn.operator("golden_hawks.link_selected", text="Auto-Assign 3 Selected", icon='RESTRICT_SELECT_OFF')
+            row_btn.operator("golden_hawks.import_model", text="Import Model File", icon='IMPORT')
 
             # Cognitive Pacing
             box_cog = box_stage3.box()
@@ -3976,8 +3976,8 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
             box_pipe = box_stage3.box()
             box_pipe.label(text="Modular Pipeline (Multi-Blend Linking)", icon='LINKED')
             row_pipe = box_pipe.row(align=True)
-            row_pipe.operator("wolfpack.bake_animation_only", text="Bake Animation Only (Active .blend)", icon='ACTION')
-            row_pipe.operator("wolfpack.link_environment", text="Link Stadium Environment", icon='FILE_BLEND')
+            row_pipe.operator("golden_hawks.bake_animation_only", text="Bake Animation Only (Active .blend)", icon='ACTION')
+            row_pipe.operator("golden_hawks.link_environment", text="Link Stadium Environment", icon='FILE_BLEND')
 
             # Shuffle Dynamics (Compact Two-Column Grid)
             box_dyn = box_stage3.box()
@@ -4019,11 +4019,11 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
             
             row_rnd = box_stage4.row(align=True)
             row_rnd.prop(props, "render_export_preset", text="Preset")
-            box_stage4.operator("wolfpack.setup_broadcast_render", text="Configure 1-Click Render (1080p60)", icon='OUTPUT')
+            box_stage4.operator("golden_hawks.setup_broadcast_render", text="Configure 1-Click Render (1080p60)", icon='OUTPUT')
 
             box_cue = box_stage4.box()
             box_cue.label(text="Broadcast Cue Sheet Export", icon='FILE_TEXT')
-            box_cue.operator("wolfpack.export_cue_sheet", text="Export Cue Sheet (.json & .csv)", icon='EXPORT')
+            box_cue.operator("golden_hawks.export_cue_sheet", text="Export Cue Sheet (.json & .csv)", icon='EXPORT')
 
         # ====================================================================
         # STAGE 5: STUDIO & TOOLS (ROCKSTAR GAMES SPEC)
@@ -4046,52 +4046,109 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
             
             row_status = box_prof.row(align=True)
             row_status.label(text="🛡️ Status: 0 Leaks | Deterministic Execution", icon='CHECKMARK')
-            box_prof.operator("wolfpack.export_telemetry", text="Export Benchmark Report (.json)", icon='EXPORT')
+            box_prof.operator("golden_hawks.export_telemetry", text="Export Benchmark Report (.json)", icon='EXPORT')
 
             # 3D Motion Trajectory Arcs
             box_traj = box_stage5.box()
             box_traj.label(text="Technical Artist 3D Motion Arcs", icon='CURVE_DATA')
             box_traj.prop(props, "show_motion_trajectories", text="Auto-Update Viewport Trajectories")
-            box_traj.operator("wolfpack.toggle_motion_trajectories", text="Bake / Refresh 3D Motion Arcs", icon='ANIM_DATA')
+            box_traj.operator("golden_hawks.toggle_motion_trajectories", text="Bake / Refresh 3D Motion Arcs", icon='ANIM_DATA')
 
             # AAA Game Engine Runtime Exporter
             box_eng = box_stage5.box()
             box_eng.label(text="Game Engine Runtime Track Exporter", icon='SCENE')
             box_eng.prop(props, "game_engine_target", text="Target Schema")
-            box_eng.operator("wolfpack.export_game_engine_anim", text="Export Game Engine Tracks (.json)", icon='SCRIPT')
+            box_eng.operator("golden_hawks.export_game_engine_anim", text="Export Game Engine Tracks (.json)", icon='SCRIPT')
 
+
+# Backward compatibility aliases for legacy operator calls
+_LEGACY_OPERATOR_CLASSES = []
+
+def _create_legacy_operator(target_id, legacy_id):
+    parts = target_id.split(".")
+    grp, act = parts[0], parts[1]
+    legacy_parts = legacy_id.split(".")
+    
+    class LegacyOp(bpy.types.Operator):
+        bl_idname = legacy_id
+        bl_label = f"Legacy {legacy_id}"
+        bl_options = {'INTERNAL'}
+        def execute(self, context):
+            target_fn = getattr(getattr(bpy.ops, grp), act)
+            return target_fn()
+            
+    LegacyOp.__name__ = f"LEGACY_OT_{legacy_parts[0]}_{legacy_parts[1]}"
+    return LegacyOp
+
+_LEGACY_MAP = [
+    ("golden_hawks.setup_atmosphere", "golden_hawks.setup_atmosphere"),
+    ("golden_hawks.setup_goalposts", "golden_hawks.setup_goalposts"),
+    ("golden_hawks.generate_stinger", "golden_hawks.generate_stinger"),
+    ("golden_hawks.generate_shuffle", "golden_hawks.generate_shuffle"),
+    ("golden_hawks.generate_shuffle", "golden_hawks.bake_shuffle"),
+    ("golden_hawks.generate_shuffle", "golden_hawks.bake_shuffle"),
+    ("golden_hawks.setup_demo", "golden_hawks.setup_demo"),
+    ("golden_hawks.link_selected", "wolfpack.link_selected"),
+    ("golden_hawks.import_model", "wolfpack.import_model"),
+    ("golden_hawks.generate_entry_bumper", "golden_hawks.generate_entry_bumper"),
+    ("golden_hawks.generate_slogan", "golden_hawks.generate_slogan"),
+    ("golden_hawks.setup_broadcast_render", "golden_hawks.setup_broadcast_render"),
+    ("golden_hawks.export_cue_sheet", "golden_hawks.export_cue_sheet"),
+    ("golden_hawks.toggle_motion_trajectories", "golden_hawks.toggle_motion_trajectories"),
+    ("golden_hawks.export_game_engine_anim", "golden_hawks.export_game_engine_anim"),
+    ("golden_hawks.export_telemetry", "golden_hawks.export_telemetry"),
+    ("golden_hawks.one_click_gameday_setup", "golden_hawks.one_click_gameday_setup"),
+    ("golden_hawks.bake_animation_only", "golden_hawks.bake_animation_only"),
+    ("golden_hawks.link_environment", "golden_hawks.link_environment"),
+    ("golden_hawks.bake_variant_a", "golden_hawks.bake_variant_a"),
+    ("golden_hawks.bake_variant_b", "golden_hawks.bake_variant_b"),
+    ("golden_hawks.bake_variant_c", "golden_hawks.bake_variant_c"),
+]
+
+for tgt, leg in _LEGACY_MAP:
+    try:
+        _LEGACY_OPERATOR_CLASSES.append(_create_legacy_operator(tgt, leg))
+    except Exception:
+        pass
 
 classes = (
-    WolfpackShuffleProperties,
-    WOLFPACK_OT_one_click_gameday_setup,
-    WOLFPACK_OT_generate_shuffle,
-    WOLFPACK_OT_setup_demo,
-    WOLFPACK_OT_link_selected,
-    WOLFPACK_OT_import_model,
-    WOLFPACK_OT_setup_atmosphere,
-    WOLFPACK_OT_setup_goalposts,
-    WOLFPACK_OT_generate_stinger,
-    WOLFPACK_OT_generate_entry_bumper,
-    WOLFPACK_OT_generate_slogan,
-    WOLFPACK_OT_setup_broadcast_render,
-    WOLFPACK_OT_export_cue_sheet,
-    WOLFPACK_OT_toggle_motion_trajectories,
-    WOLFPACK_OT_export_game_engine_anim,
-    WOLFPACK_OT_export_telemetry,
-    WOLFPACK_OT_bake_animation_only,
-    WOLFPACK_OT_link_environment,
-    WOLFPACK_OT_bake_variant_a,
-    WOLFPACK_OT_bake_variant_b,
-    WOLFPACK_OT_bake_variant_c,
-    WOLFPACK_PT_sidebar_panel,
+    GoldenHawksShuffleProperties,
+    GOLDEN_HAWKS_OT_one_click_gameday_setup,
+    GOLDEN_HAWKS_OT_generate_shuffle,
+    GOLDEN_HAWKS_OT_setup_demo,
+    GOLDEN_HAWKS_OT_link_selected,
+    GOLDEN_HAWKS_OT_import_model,
+    GOLDEN_HAWKS_OT_setup_atmosphere,
+    GOLDEN_HAWKS_OT_setup_goalposts,
+    GOLDEN_HAWKS_OT_generate_stinger,
+    GOLDEN_HAWKS_OT_generate_entry_bumper,
+    GOLDEN_HAWKS_OT_generate_slogan,
+    GOLDEN_HAWKS_OT_setup_broadcast_render,
+    GOLDEN_HAWKS_OT_export_cue_sheet,
+    GOLDEN_HAWKS_OT_toggle_motion_trajectories,
+    GOLDEN_HAWKS_OT_export_game_engine_anim,
+    GOLDEN_HAWKS_OT_export_telemetry,
+    GOLDEN_HAWKS_OT_bake_animation_only,
+    GOLDEN_HAWKS_OT_link_environment,
+    GOLDEN_HAWKS_OT_bake_variant_a,
+    GOLDEN_HAWKS_OT_bake_variant_b,
+    GOLDEN_HAWKS_OT_bake_variant_c,
+    GOLDEN_HAWKS_PT_sidebar_panel,
+    *_LEGACY_OPERATOR_CLASSES,
 )
+
+# Compatibility alias
+WolfpackShuffleProperties = GoldenHawksShuffleProperties
 
 def register():
     for cls in classes:
-        bpy.utils.register_class(cls)
-    bpy.types.Scene.wolfpack_shuffle = bpy.props.PointerProperty(type=WolfpackShuffleProperties)
-    bpy.types.Scene.golden_hawks_shuffle = bpy.props.PointerProperty(type=WolfpackShuffleProperties)
-    bpy.types.Scene.wolfpack_props = bpy.props.PointerProperty(type=WolfpackShuffleProperties)
+        try:
+            bpy.utils.register_class(cls)
+        except Exception as e:
+            pass
+    bpy.types.Scene.golden_hawks_shuffle = bpy.props.PointerProperty(type=GoldenHawksShuffleProperties)
+    bpy.types.Scene.golden_hawks_shuffle = bpy.props.PointerProperty(type=GoldenHawksShuffleProperties)
+    bpy.types.Scene.wolfpack_props = bpy.props.PointerProperty(type=GoldenHawksShuffleProperties)
 
 def unregister():
     for cls in reversed(classes):
@@ -4099,11 +4156,12 @@ def unregister():
             bpy.utils.unregister_class(cls)
         except Exception:
             pass
-    if hasattr(bpy.types.Scene, "wolfpack_shuffle"):
-        try:
-            del bpy.types.Scene.wolfpack_shuffle
-        except Exception:
-            pass
+    for prop in ["golden_hawks_shuffle", "golden_hawks_shuffle", "wolfpack_props"]:
+        if hasattr(bpy.types.Scene, prop):
+            try:
+                delattr(bpy.types.Scene, prop)
+            except Exception:
+                pass
 
 # Standalone execution support: when run directly in Blender's Scripting Editor
 if __name__ == "__main__":
