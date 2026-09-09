@@ -1,278 +1,123 @@
 """
-Test Script for Laurier Football Shell Game Addon
-=================================================
-
-This script validates the addon installation and tests core functionality.
-Run this in Blender's scripting workspace to verify everything is working.
+Laurier Athletics & Rockstar Games Spec - Comprehensive Addon Test Suite
+========================================================================
+Author: Solomon Olufelo (Tools & Pipeline Developer)
+Version: 3.5.0 (AAA Studio Spec)
 
 Usage:
-1. Open Blender Scripting workspace
-2. Load this test script
-3. Run the script (Alt+P)
-4. Check console output for results
-
-Author: Solomon Olufelo
-Created: 2024
+  blender.exe -b --python test_addon.py
 """
 
 import bpy
 import sys
-import traceback
+import os
+import json
+import time
 
-def test_addon_registration():
-    """Test if the addon is properly registered."""
-    print("🧪 Testing addon registration...")
-    
-    try:
-        # Check if addon is enabled
-        addon_name = "Laurier Football Shell Game"
-        addon_module = "laurier_football_shell_game"
-        
-        if addon_module in bpy.context.preferences.addons:
-            print("✅ Addon is registered and enabled")
-            return True
-        else:
-            print("❌ Addon is not registered or enabled")
-            return False
-    except Exception as e:
-        print(f"❌ Error checking addon registration: {e}")
-        return False
+def run_suite():
+    print("=" * 70)
+    print("  WOLFPACK GLORY v3.5.0 (ROCKSTAR GAMES SPEC) AUTOMATED TEST SUITE")
+    print("=" * 70)
 
-def test_operator_exists():
-    """Test if the main operator exists."""
-    print("🧪 Testing operator existence...")
-    
-    try:
-        operator_id = "laurier.create_shell_game"
-        if hasattr(bpy.ops, 'laurier'):
-            if hasattr(bpy.ops.laurier, 'create_shell_game'):
-                print("✅ Main operator exists")
-                return True
-        print("❌ Main operator not found")
-        return False
-    except Exception as e:
-        print(f"❌ Error checking operator: {e}")
-        return False
-
-def test_property_group():
-    """Test if property group is accessible."""
-    print("🧪 Testing property group...")
-    
-    try:
-        scene = bpy.context.scene
-        if hasattr(scene, 'laurier_shell_game'):
-            props = scene.laurier_shell_game
-            # Test accessing some properties
-            duration = props.duration_sec
-            fps = props.fps
-            print("✅ Property group accessible")
-            return True
-        else:
-            print("❌ Property group not found in scene")
-            return False
-    except Exception as e:
-        print(f"❌ Error checking property group: {e}")
-        return False
-
-def test_ui_panel():
-    """Test if UI panel can be found."""
-    print("🧪 Testing UI panel...")
-    
-    try:
-        # Check if panel class exists
-        panel_classes = [cls for cls in bpy.types.Panel.__subclasses__() 
-                        if 'laurier' in cls.bl_idname.lower()]
-        
-        if panel_classes:
-            print("✅ UI panel classes found")
-            return True
-        else:
-            print("❌ UI panel classes not found")
-            return False
-    except Exception as e:
-        print(f"❌ Error checking UI panel: {e}")
-        return False
-
-def create_test_scene():
-    """Create a minimal test scene with required objects."""
-    print("🧪 Creating test scene...")
-    
-    try:
-        # Clear existing mesh objects
-        bpy.ops.object.select_all(action='SELECT')
-        bpy.ops.object.delete(use_global=False, confirm=False)
-        
-        # Create required empty objects
-        empties = []
-        for i in range(1, 4):
-            bpy.ops.object.empty_add(type='PLAIN_AXES', location=(i-2, 0, 0))
-            empty = bpy.context.active_object
-            empty.name = f"Empty_{i}"
-            empties.append(empty)
-        
-        # Create football control empty
-        bpy.ops.object.empty_add(type='PLAIN_AXES', location=(0, 0, 0))
-        football_ctrl = bpy.context.active_object
-        football_ctrl.name = "Football_CTRL"
-        
-        # Create simple helmet objects (cubes for testing)
-        helmets = []
-        for i, empty in enumerate(empties):
-            bpy.ops.mesh.primitive_cube_add(size=1, location=empty.location)
-            helmet = bpy.context.active_object
-            helmet.name = f"Helmet_{i+1}"
-            helmet.scale = (1.2, 0.8, 0.6)  # Make it helmet-like
-            helmets.append(helmet)
-        
-        # Create football object
-        bpy.ops.mesh.primitive_uv_sphere_add(radius=0.3, location=football_ctrl.location)
-        football = bpy.context.active_object
-        football.name = "Football"
-        
-        # Set up parenting relationships
-        for i, (helmet, empty) in enumerate(zip(helmets, empties)):
-            helmet.parent = empty
-            helmet.parent_type = 'OBJECT'
-        
-        football.parent = football_ctrl
-        football.parent_type = 'OBJECT'
-        
-        print("✅ Test scene created successfully")
-        print(f"   Created {len(empties)} helmet empties")
-        print(f"   Created {len(helmets)} helmet objects")
-        print(f"   Created football and control empty")
-        print(f"   Set up parenting relationships")
-        
-        return True
-        
-    except Exception as e:
-        print(f"❌ Error creating test scene: {e}")
-        traceback.print_exc()
-        return False
-
-def test_animation_creation():
-    """Test creating a short animation."""
-    print("🧪 Testing animation creation...")
-    
-    try:
-        # Get scene properties
-        scene = bpy.context.scene
-        if not hasattr(scene, 'laurier_shell_game'):
-            print("❌ Property group not available")
-            return False
-        
-        props = scene.laurier_shell_game
-        
-        # Set up for quick test
-        props.duration_sec = 2.0  # Short test
-        props.fps = 12  # Low FPS for speed
-        props.preset = 'QUICK_SNAPPY'
-        
-        # Try to run the operator
-        result = bpy.ops.laurier.create_shell_game()
-        
-        if 'FINISHED' in result:
-            print("✅ Animation creation successful")
-            return True
-        else:
-            print(f"❌ Animation creation failed: {result}")
-            return False
-            
-    except Exception as e:
-        print(f"❌ Error during animation creation: {e}")
-        traceback.print_exc()
-        return False
-
-def test_presets():
-    """Test preset configurations."""
-    print("🧪 Testing preset configurations...")
-    
-    try:
-        scene = bpy.context.scene
-        props = scene.laurier_shell_game
-        
-        presets = ['QUICK_SNAPPY', 'DRAMATIC_SLOW', 'SOCIAL_MEDIA', 
-                  'BROADCAST_QUALITY', 'MINIMAL_CLEAN', 'HIGH_ENERGY']
-        
-        for preset in presets:
-            props.preset = preset
-            # Just test that preset can be set (actual application happens in operator)
-            if props.preset == preset:
-                print(f"✅ Preset '{preset}' can be set")
-            else:
-                print(f"❌ Preset '{preset}' failed to set")
-                return False
-        
-        return True
-        
-    except Exception as e:
-        print(f"❌ Error testing presets: {e}")
-        return False
-
-def run_all_tests():
-    """Run all tests and provide summary."""
-    print("🏈 Laurier Football Shell Game Addon - Test Suite")
-    print("=" * 60)
-    
-    tests = [
-        ("Addon Registration", test_addon_registration),
-        ("Operator Existence", test_operator_exists),
-        ("Property Group", test_property_group),
-        ("UI Panel", test_ui_panel),
-        ("Test Scene Creation", create_test_scene),
-        ("Preset Configurations", test_presets),
-        ("Animation Creation", test_animation_creation),
-    ]
-    
-    results = []
-    
-    for test_name, test_func in tests:
-        print(f"\n📋 {test_name}")
-        print("-" * 40)
+    # 1. Addon Registration Check
+    print("[TEST 1] Addon Registration & Manifest Verification...")
+    addon_name = "wolfpack_shuffle"
+    if addon_name not in bpy.context.preferences.addons:
         try:
-            result = test_func()
-            results.append((test_name, result))
+            bpy.ops.preferences.addon_enable(module=addon_name)
+            print("  -> PASS: Addon registered and enabled from Blender preferences.")
         except Exception as e:
-            print(f"❌ Test crashed: {e}")
-            results.append((test_name, False))
-    
-    # Summary
-    print("\n" + "=" * 60)
-    print("📊 TEST SUMMARY")
-    print("=" * 60)
-    
-    passed = 0
-    total = len(results)
-    
-    for test_name, result in results:
-        status = "✅ PASS" if result else "❌ FAIL"
-        print(f"{status} - {test_name}")
-        if result:
-            passed += 1
-    
-    print(f"\n🎯 Results: {passed}/{total} tests passed")
-    
-    if passed == total:
-        print("🎉 All tests passed! Addon is working correctly.")
-        print("\nNext steps:")
-        print("1. Open 3D Viewport sidebar (press N)")
-        print("2. Look for 'Laurier Football' tab")
-        print("3. Start creating animations!")
+            print(f"  -> FAIL: Could not enable addon: {e}")
+            return False
     else:
-        print("⚠️  Some tests failed. Check the errors above.")
-        print("\nTroubleshooting:")
-        print("1. Ensure addon is properly installed and enabled")
-        print("2. Check Blender version (4.5+ required)")
-        print("3. Restart Blender and try again")
-        print("4. Check console for detailed error messages")
+        print("  -> PASS: Addon is already active in preferences.")
 
-def main():
-    """Main test function."""
-    try:
-        run_all_tests()
-    except Exception as e:
-        print(f"❌ Test suite crashed: {e}")
-        traceback.print_exc()
+    scene = bpy.context.scene
+    props = getattr(scene, "wolfpack_shuffle", None)
+    if not props:
+        print("  -> FAIL: Scene.wolfpack_shuffle property group missing!")
+        return False
+
+    # 2. Verify Properties
+    print("[TEST 2] Verifying Rockstar Studio Properties & UI Stages...")
+    expected_props = [
+        "last_bake_ms", "last_bake_keys", "last_bake_speed", "last_memory_mb",
+        "show_motion_trajectories", "game_engine_target", "ui_tab",
+        "bumper_layout_mode", "text_exit_style"
+    ]
+    for p in expected_props:
+        assert hasattr(props, p), f"Missing property: {p}"
+    print(f"  -> PASS: All {len(expected_props)} studio properties verified.")
+
+    # 3. Setup Venue
+    print("[TEST 3] Running wolfpack.setup_demo...")
+    res_demo = bpy.ops.wolfpack.setup_demo()
+    assert 'FINISHED' in res_demo, "setup_demo failed"
+    print("  -> PASS: Venue scene spawned successfully.")
+
+    # 4. Generate Shuffle with Telemetry Profiler
+    print("[TEST 4] Running wolfpack.generate_shuffle with Real-Time Profiler...")
+    props.num_swaps = 4
+    props.prepend_entry_bumper = True
+    props.bumper_lead_frames = 60
+    props.show_motion_trajectories = True
+    
+    t0 = time.perf_counter()
+    res_shuf = bpy.ops.wolfpack.generate_shuffle()
+    assert 'FINISHED' in res_shuf, "generate_shuffle failed"
+    
+    print(f"  -> Telemetry Bake Duration: {props.last_bake_ms:.2f} ms")
+    print(f"  -> Telemetry Keyframe Channels: {props.last_bake_keys} keys")
+    print(f"  -> Telemetry Throughput: {props.last_bake_speed:.0f} keys/second")
+    print(f"  -> Telemetry Memory Peak: +{props.last_memory_mb:.3f} MB")
+    assert props.last_bake_ms > 0.0, "Telemetry execution time was 0"
+    print("  -> PASS: Real-time telemetry profiling verified.")
+
+    # 5. 3D Motion Trajectory Arcs
+    print("[TEST 5] Verifying 3D Motion Trajectory Arcs in Viewport...")
+    traj_obj = bpy.data.objects.get("Wolfpack_Motion_Trajectories")
+    assert traj_obj is not None, "Missing Wolfpack_Motion_Trajectories object"
+    assert len(traj_obj.data.splines) >= 3, f"Expected >= 3 splines, got {len(traj_obj.data.splines)}"
+    assert len(traj_obj.data.materials) >= 3, f"Expected >= 3 materials, got {len(traj_obj.data.materials)}"
+    print(f"  -> PASS: 3D Motion Arcs verified ({len(traj_obj.data.splines)} splines, {len(traj_obj.data.materials)} materials).")
+
+    # 6. Game Engine Animation Track Exporter
+    print("[TEST 6] Testing wolfpack.export_game_engine_anim...")
+    res_anim = bpy.ops.wolfpack.export_game_engine_anim()
+    assert 'FINISHED' in res_anim, "export_game_engine_anim failed"
+    
+    track_file = os.path.join(os.getcwd(), "wolfpack_anim_tracks.json")
+    assert os.path.isfile(track_file), f"Track file not found: {track_file}"
+    with open(track_file, "r", encoding="utf-8") as f:
+        track_data = json.load(f)
+    assert "actors" in track_data, "Missing actors"
+    assert len(track_data["actors"]) >= 3, "Expected >= 3 actors"
+    actor_one = list(track_data["actors"].values())[0]
+    sample = actor_one["samples"][0]
+    assert "quaternion_wxyz" in sample, "Missing quaternions"
+    assert "velocity_vector" in sample, "Missing velocities"
+    assert "position_game_engine" in sample, "Missing game engine Y-up"
+    print(f"  -> PASS: AAA Game Engine Animation Track verified ({len(track_data['actors'])} actors, {track_data['metadata']['total_frames']} frames).")
+
+    # 7. Telemetry Benchmark Export
+    print("[TEST 7] Testing wolfpack.export_telemetry...")
+    res_bench = bpy.ops.wolfpack.export_telemetry()
+    assert 'FINISHED' in res_bench, "export_telemetry failed"
+    bench_file = os.path.join(os.getcwd(), "wolfpack_telemetry_benchmark.json")
+    assert os.path.isfile(bench_file), f"Benchmark file not found: {bench_file}"
+    print("  -> PASS: Benchmark report verified.")
+
+    # 8. Broadcast Cue Sheet Export
+    print("[TEST 8] Testing wolfpack.export_cue_sheet...")
+    res_cue = bpy.ops.wolfpack.export_cue_sheet()
+    assert 'FINISHED' in res_cue, "export_cue_sheet failed"
+    print("  -> PASS: SMPTE Cue Sheet export verified.")
+
+    print("=" * 70)
+    print("  ALL 8 TESTS PASSED (100% SUCCESS) - ROCKSTAR GAMES READY")
+    print("=" * 70)
+    return True
 
 if __name__ == "__main__":
-    main()
+    if not run_suite():
+        sys.exit(1)

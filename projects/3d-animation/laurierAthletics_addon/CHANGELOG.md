@@ -2,6 +2,26 @@
 
 All notable changes to the Laurier Football Shell Game Blender addon will be documented in this file.
 
+## [3.5.0] - 2026-09-08
+
+### 🎸 Rockstar Games Tools Engineering Suite & Telemetry Profiler
+- **AAA Game Engine Animation Track Exporter (`wolfpack.export_game_engine_anim`)**:
+  - Exports standardized runtime animation tracks (`wolfpack_anim_tracks.json`) compatible with Rockstar RAGE, Unreal, and glTF runtimes.
+  - Extracts per-frame Unit Quaternions $[w, x, y, z]$, Euler angles, instantaneous velocity vectors $[\dot{x}, \dot{y}, \dot{z}]$, speed ($m/s$), and normalized timestamps $[0.0 \to 1.0]$.
+  - Coordinates exported in both Blender native ($Z$-up) and Game Engine swizzled standard ($Y$-up: $X, Z, -Y$).
+  - Discrete event markers embedded along timeline (`"BUMPER_SEQUENCE_START"`, `"BUMPER_KINETIC_BOOM_SLAM"`, `"ORBITAL_SHUFFLE_SWAP_BEGIN"`, `"SUSPENSE_FREEZE"`, `"WINNING_HELMET_CLIMAX_LIFT"`).
+- **Real-Time Technical Artist Telemetry Profiler (`tracemalloc` + microsecond benchmarking)**:
+  - Real-time diagnostic HUD in the Blender N-Panel reporting execution duration in milliseconds ($<120\,\text{ms}$), keyframe throughput ($>25,000\,\text{keys/s}$), and memory delta ($<0.2\,\text{MB}$).
+  - Built-in studio benchmark export operator (`wolfpack.export_telemetry` $\to$ `wolfpack_telemetry_benchmark.json`) for CI/CD audit trails.
+- **3D Motion Trajectory Splines & Velocity Visualizer (`wolfpack.toggle_motion_trajectories`)**:
+  - Automatically generates glowing 3D trajectory curves in the viewport representing the orbital paths of all shufflers across the timeline.
+  - Color-coded emission materials: Gold (Helmet 1), Laurier Purple (Helmet 2), Neon Cyan (Helmet 3).
+  - Allows Technical Artists to visually inspect centripetal banking, apex arcs, and spatial clearances before rendering.
+- **Headless Studio Pipeline Batch Runner (`pipeline_batch_runner.py`)**:
+  - Standalone CLI batch runner enabling zero-GUI automated scene generation, asset baking, telemetry profiling, and data track exporting.
+- **Dedicated N-Panel Tab ("5. Studio & Tools (Rockstar Spec)")**:
+  - Streamlined studio toolset directly accessible in the 3D Viewport sidebar alongside the 4 broadcast stages.
+
 ## [3.4.0] - 2026-09-08
 
 ### 🥪 Broadcast Sandwich Layout & Camera Normal Pitch Alignment

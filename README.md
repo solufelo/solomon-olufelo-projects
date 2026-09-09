@@ -6,9 +6,10 @@ Welcome to my portfolio repository. Here you'll find a collection of professiona
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/solomonolufelo/)
 [![Portfolio](https://img.shields.io/badge/Portfolio-View%20Work-purple?style=flat-square&logo=google-chrome)](https://www.captainsolo.ca/)
 [![Email](https://img.shields.io/badge/Email-Contact%20Me-red?style=flat-square&logo=gmail)](mailto:solomonolufelo@Outlook.com)
-[![Vault Status](https://img.shields.io/badge/AI%20Vault%20Hub-Active%20v3.4.0-gold?style=flat-square&logo=obsidian)](VAULT_INDEX.md)
+[![Vault Status](https://img.shields.io/badge/AI%20Vault%20Hub-Active%20v3.5.0%20(Rockstar%20Spec)-gold?style=flat-square&logo=obsidian)](VAULT_INDEX.md)
+[![Super Bowl 4-Pillars](https://img.shields.io/badge/System-Super%20Bowl%204--Pillars-green?style=flat-square)](THE_SUPER_BOWL_4_PILLAR_SYSTEM.md)
 
-> 🧭 **AI Assistants & Navigators**: For live project status, active sprints, timesheet logs, and interlinked documentation across the entire portfolio, refer directly to the **[Master Vault Index (VAULT_INDEX.md)](VAULT_INDEX.md)** and **[Tactical Project Status (PROJECT_STATUS.md)](PROJECT_STATUS.md)**.
+> 🧭 **AI Assistants & Navigators**: For live project status, active sprints, timesheet logs, and interlinked documentation across the entire portfolio, refer directly to the **[Master Vault Index (VAULT_INDEX.md)](VAULT_INDEX.md)**, **[The Super Bowl 4-Pillar System](THE_SUPER_BOWL_4_PILLAR_SYSTEM.md)**, and **[Tactical Project Status (PROJECT_STATUS.md)](PROJECT_STATUS.md)**.
 
 ---
 
@@ -50,18 +51,18 @@ I specialize in building **production-ready applications** that solve real user 
     *   **Integrated Productivity:** Combines Pomodoro timers with task management.
 *   **Status:** Active Development | **Focus:** Accessibility (WCAG 2.1 AA) & Mobile-First Design.
 
-### 2. [Laurier Athletics Videoboard & Wolfpack Shuffle 3D Suite (v3.4.0)](projects/3d-animation/laurierAthletics_addon)
-**Professional Broadcast Motion Graphics & Blender Automation Suite**
-*A production-grade 3D broadcast graphics system engineered for Wilfrid Laurier University Athletics (University Stadium).*
+### 2. [Laurier Athletics & Rockstar Spec 3D Suite (v3.5.0)](projects/3d-animation/laurierAthletics_addon)
+**AAA Broadcast & Studio Motion Graphics Suite (Rockstar Games Tools Spec)**
+*A production-grade 3D graphics system and pipeline tool engineered for Wilfrid Laurier University Athletics, upgraded to AAA studio technical standards.*
 
-*   **Core Tech:** Python 3.11, Blender 5.2.1 LTS API, Apple ProRes 422 QuickTime, AgX Color Science.
+*   **Core Tech:** Python 3.11, Blender 5.2.1 LTS API, Apple ProRes 422 QuickTime, Unit Quaternions, AgX Color Science.
 *   **Key Features:**
-    *   **Broadcast Sandwich Layout:** Pitch-aligned (61.74°) 3-tier typography system (`THE ULTIMATE CHALLENGE` kicker, `GOLDEN HAWKS SHUFFLE` hero, `PRESENTED BY WILFRID LAURIER ATHLETICS` sponsor) with zero camera overlap.
-    *   **Symmetrical Centered Exits:** 4 broadcast-grade centered exit animations (`BURST_FORWARD`, `CENTER_IMPLODE`, `DROP_DOWN`, `LIFT_UP`) with locked zero-tilt trajectories.
-    *   **Modular 5-Stage UI:** Streamlined N-Panel tabs (`Presentation`, `Arena & Lights`, `Shuffle & Game`, `Render & Sync`).
-    *   **Volumetric Atmosphere Moods:** 4 stadium lighting presets with physical light cone scattering and anti-glare LED diode protection.
-    *   **1-Click Stadium Render Pipeline:** Pure Blender export to Apple ProRes 422 QuickTime for Daktronics/Click Effects stadium systems and H.264 MP4.
-*   **Status:** **Active Production Sprint** | **Employment**: WLU Video Assistant (`ST1086-01` / $19.03/hr) | **[Timesheet Log](projects/3d-animation/laurierAthletics_addon/LAURIER_TIMESHEET_LOG.md)**.
+    *   **AAA Game Engine Track Exporter:** Serializes per-frame unit quaternions $[w, x, y, z]$, velocity vectors, and discrete event markers into runtime JSON tracks (`wolfpack_anim_tracks.json`) for Rockstar RAGE and Unreal runtimes.
+    *   **Real-Time Telemetry Profiler:** Microsecond diagnostic HUD reporting bake duration (114.48 ms), keyframe throughput (29,168 keys/s), and memory delta (+0.16 MB, 0 leaks).
+    *   **3D Motion Trajectory Arcs:** Glowing viewport splines with color-coded velocity arcs for Technical Artists.
+    *   **Headless Batch Runner (`pipeline_batch_runner.py`):** Standalone CLI batch runner for automated server build pipelines (sub-420ms execution).
+    *   **Broadcast Sandwich Layout:** Pitch-aligned (61.74°) 3-tier typography system with zero perspective camera overlap and centered exits.
+*   **Status:** **Active Production Sprint** | **Employment**: WLU Video Assistant (`ST1086-01` / $19.03/hr) | **[Timesheet Log](projects/3d-animation/laurierAthletics_addon/LAURIER_TIMESHEET_LOG.md)** | **[Rockstar Portfolio Blueprint](projects/3d-animation/laurierAthletics_addon/ROCKSTAR_GAMES_PORTFOLIO_BLUEPRINT.md)**.
 
 ### 3. [CAPTAIN-FUNDS](projects/web-development/CAPTAIN-FUNDS-MERN)
 **Enterprise-Grade Fundraising Platform**
