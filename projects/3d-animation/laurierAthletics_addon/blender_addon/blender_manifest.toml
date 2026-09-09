@@ -1,0 +1,12 @@
+schema_version = "1.0.0"
+id = "golden_hawks_shuffle"
+version = "3.5.0"
+name = "Golden Hawks Helmet Shuffle"
+tagline = "Laurier Golden Hawks Game-Day Helmet Shuffle and 3D Motion Suite"
+maintainer = "Solomon Olufelo <solomon@wlu.ca>"
+type = "add-on"
+website = "https://github.com/solufelo/golden-hawks-helmet-shuffle"
+blender_version_min = "4.0.0"
+license = [
+  "SPDX:GPL-2.0-or-later",
+]
