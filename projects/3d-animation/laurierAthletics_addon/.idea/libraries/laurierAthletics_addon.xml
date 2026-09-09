@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="laurierAthletics_addon">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/laurier_wolfpack_shuffle_v2.5.0.zip!/" />
+      <root url="jar://$PROJECT_DIR$/laurier_wolfpack_shuffle_v3.1.0.zip!/" />
+      <root url="jar://$PROJECT_DIR$/laurier_wolfpack_shuffle_v3.4.0.zip!/" />
+      <root url="jar://$PROJECT_DIR$/laurier_wolfpack_shuffle_v3.0.0.zip!/" />
+      <root url="jar://$PROJECT_DIR$/laurier_wolfpack_shuffle_v3.5.0.zip!/" />
+      <root url="jar://$PROJECT_DIR$/laurier_wolfpack_shuffle_v2.6.0.zip!/" />
+      <root url="jar://$PROJECT_DIR$/laurier_wolfpack_shuffle_v3.2.0.zip!/" />
+      <root url="jar://$PROJECT_DIR$/laurier_wolfpack_shuffle_v3.3.0.zip!/" />
+      <root url="jar://$PROJECT_DIR$/laurier_football_shell_game_v1.0.0.zip!/" />
+      <root url="jar://$PROJECT_DIR$/laurier_golden_hawks_shuffle_v3.5.0.zip!/" />
+      <root url="jar://$PROJECT_DIR$/laurier_wolfpack_shuffle_v2.4.0.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

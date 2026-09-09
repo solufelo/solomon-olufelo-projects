@@ -3137,6 +3137,107 @@ class GOLDEN_HAWKS_OT_link_selected(bpy.types.Operator):
         return {'FINISHED'}
 
 
+
+class GOLDEN_HAWKS_OT_pair_real_assets(bpy.types.Operator):
+    """Auto-detect and pair Laurier SpeedFlex helmets and official Wilson football to the shuffle engine"""
+    bl_idname = "golden_hawks.pair_real_assets"
+    bl_label = "⚡ Pair & Link Laurier Assets"
+    bl_description = "Automatically detects Laurier SpeedFlex helmets and football in scene, clears dummy stand-in meshes, sets broadcast spacing, and bakes animation"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        scene = context.scene
+        props = getattr(scene, 'golden_hawks_shuffle', None) or getattr(scene, 'wolfpack_shuffle', None)
+
+        # 1. Clean up placeholder dummy meshes
+        dummy_names = [
+            "Laurier_HelmetShell_1", "Facemask_1",
+            "Laurier_HelmetShell_2", "Facemask_2",
+            "Laurier_HelmetShell_3", "Facemask_3",
+            "Laurier_Football_Mesh"
+        ]
+        for name in dummy_names:
+            obj = bpy.data.objects.get(name)
+            if obj:
+                bpy.data.objects.remove(obj, do_unlink=True)
+
+        # 2. Identify real helmet candidates
+        helmet_candidates = []
+        for o in scene.objects:
+            if ("SpeedFlex" in o.name or "Helmet_Purple" in o.name or "Helmet_White" in o.name) and o.type in {'EMPTY', 'MESH'}:
+                if not o.name.startswith("Laurier_HelmetShell") and not o.name.startswith("Facemask") and o.name not in {"Helmet_1", "Helmet_2", "Helmet_3"}:
+                    if o.parent is None or o.parent.name in {"Helmet_1", "Helmet_2", "Helmet_3"}:
+                        helmet_candidates.append(o)
+
+        if len(context.selected_objects) >= 3:
+            helmet_candidates = list(context.selected_objects)[:3]
+
+        # 3. Ensure shuffle empties exist
+        shuf_coll = bpy.data.collections.get("Golden_Hawks_Shuffle")
+        if not shuf_coll:
+            shuf_coll = bpy.data.collections.new("Golden_Hawks_Shuffle")
+            scene.collection.children.link(shuf_coll)
+
+        h_empties = []
+        for i in range(3):
+            h_name = f"Helmet_{i+1}"
+            emp = bpy.data.objects.get(h_name)
+            if not emp:
+                emp = bpy.data.objects.new(h_name, None)
+                emp.empty_display_type = 'ARROWS'
+                emp.empty_display_size = 0.6
+                shuf_coll.objects.link(emp)
+            h_empties.append(emp)
+
+        fb_ctrl = bpy.data.objects.get("Football_CTRL")
+        if not fb_ctrl:
+            fb_ctrl = bpy.data.objects.new("Football_CTRL", None)
+            fb_ctrl.empty_display_type = 'SPHERE'
+            fb_ctrl.empty_display_size = 0.35
+            shuf_coll.objects.link(fb_ctrl)
+
+        # 4. Bind helmets
+        if len(helmet_candidates) >= 3:
+            sorted_helmets = sorted(helmet_candidates[:3], key=lambda o: o.matrix_world.translation.x)
+            for i, h_model in enumerate(sorted_helmets):
+                h_model.parent = h_empties[i]
+                h_model.location = (0.0, 0.0, 0.0)
+                h_model.rotation_euler = (0.0, 0.0, 0.0)
+                h_model.scale = (1.0, 1.0, 1.0)
+                if h_model.name not in shuf_coll.objects:
+                    shuf_coll.objects.link(h_model)
+
+        # 5. Find and bind football
+        real_football = None
+        for o in scene.objects:
+            if "Football" in o.name and o.type == 'MESH' and "Mesh" not in o.name:
+                real_football = o
+                break
+
+        if real_football:
+            real_football.parent = fb_ctrl
+            real_football.location = (0.0, 0.0, 0.55)
+            real_football.rotation_euler = (math.radians(90.0), 0.0, 0.0)
+            if real_football.dimensions.x < 1.0:
+                real_football.scale = (6.8, 6.8, 6.8)
+            if real_football.name not in shuf_coll.objects:
+                shuf_coll.objects.link(real_football)
+
+        # 6. Set gameday broadcast parameters
+        props.slot_spacing = 3.6
+        props.reveal_height = 2.8
+        props.reveal_tilt = 28.0
+        props.custom_helmet_1 = h_empties[0]
+        props.custom_helmet_2 = h_empties[1]
+        props.custom_helmet_3 = h_empties[2]
+        props.custom_football = fb_ctrl
+
+        # 7. Re-bake shuffle
+        bpy.ops.golden_hawks.bake_shuffle()
+        self.report({'INFO'}, "⚡ Laurier SpeedFlex models & Wilson football paired and baked successfully!")
+        return {'FINISHED'}
+
+
 class GOLDEN_HAWKS_OT_import_model(bpy.types.Operator):
     """Import a custom 3D model file (.obj, .fbx, .glb, .gltf)"""
     bl_idname = "golden_hawks.import_model"
@@ -3963,6 +4064,7 @@ class GOLDEN_HAWKS_PT_sidebar_panel(bpy.types.Panel):
             row_m2.prop(props, "custom_football", text="Hidden Prize")
             
             row_btn = box_var.row(align=True)
+            row_btn.operator("golden_hawks.pair_real_assets", text="⚡ Pair Laurier Assets", icon='AUTOMERGE')
             row_btn.operator("golden_hawks.link_selected", text="Auto-Assign 3 Selected", icon='RESTRICT_SELECT_OFF')
             row_btn.operator("golden_hawks.import_model", text="Import Model File", icon='IMPORT')
 
@@ -4213,6 +4315,7 @@ classes = (
     GOLDEN_HAWKS_OT_bake_shuffle_alias,
     GOLDEN_HAWKS_OT_setup_demo,
     GOLDEN_HAWKS_OT_link_selected,
+    GOLDEN_HAWKS_OT_pair_real_assets,
     GOLDEN_HAWKS_OT_import_model,
     GOLDEN_HAWKS_OT_setup_atmosphere,
     GOLDEN_HAWKS_OT_setup_goalposts,
