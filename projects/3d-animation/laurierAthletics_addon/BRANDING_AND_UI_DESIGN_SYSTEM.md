@@ -88,6 +88,18 @@ The Blender interface in **v3.5.0** applies core human factors engineering and F
   - Status: `🛡️ 0 Leaks | Deterministic Execution`
 - Instant one-click export buttons for Game Engine JSON tracks and Telemetry CI/CD benchmarks.
 
+### 5. The 3-Variant Quick-Action Trio (Stage 3 & All Sections)
+- Arranged horizontally in an intuitive 3-button segmented selector row:
+  - `🅰️ Slot 1 (Left)`: Rapid whip swaps, outside switchback, deterministically landing on Left Slot.
+  - `🅱️ Slot 2 (Center)`: Sinusoidal intertwining figure-8, deterministically landing on Center Slot.
+  - `🅲 Slot 3 (Right)`: Bouncy hop ($0.32\text{m}$), pinwheel carousel, deterministically landing on Right Slot.
+- Instantly triggers a complete, distinct choreography without manual setup or parameter tweaking.
+
+### 6. Modular Multi-File Production Pipeline Dock
+- **Bake Animation Only (`wolfpack.bake_animation_only`)**: Keyframes shufflers, hidden ball, and camera dolly in `animation_core.blend` without spawning stadium geometry or light rigs.
+- **Link Environment (`wolfpack.link_environment`)**: External master collection link (`Stadium_Turf_Pitch`, lighting towers) from `laurier_university_stadium_master.blend` directly into `master_composite.blend`.
+- **Result**: Zero studio reinitialization overhead; animator maintains 60 FPS in lightweight workfiles.
+
 ---
 
 ## 📱 Social Media & Portfolio Presentation Assets

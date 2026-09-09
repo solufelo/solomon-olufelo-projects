@@ -206,6 +206,147 @@ class ShufflePlan:
         self.shuffle_end_frame = current_frame - pause_frames
         self.total_frames = current_frame + suspense_duration + 50  # Suspense beat + reveal lift & tilt buffer
 
+    def generate_variant_a_routine(
+        self,
+        swap_duration_frames: int = 20,
+        pause_frames: int = 4,
+        start_frame: int = 100,
+        suspense_duration: int = 30
+    ):
+        """
+        Variant A (Slot 1 / Left Wins) - 'The Outside Switchback'
+        Choreography: 6 high-speed orbital swaps with whip easing.
+        Ball starts under Helmet 1 (Slot 0).
+        Swap sequence: (0, 1) -> (1, 2) -> (0, 2) -> (0, 1) -> (1, 2) -> (0, 2)
+        Guarantees Helmet 1 finishes cleanly in Slot 0 (Left, X = -2.4m).
+        """
+        self.moves.clear()
+        self.slot_occupant = list(range(self.num_items))
+        self.item_slot = list(range(self.num_items))
+        self.ball_holder_item_id = 0  # Starts under Helmet 1
+        
+        sequence = [(0, 1), (1, 2), (0, 2), (0, 1), (1, 2), (0, 2)]
+        current_frame = start_frame
+        
+        for s1, s2 in sequence:
+            dist_factor = abs(s1 - s2)
+            y_depth = self.y_depth_base * (1.0 + (dist_factor - 1) * 0.35)
+            move = MoveStep(
+                move_type='PAIR_SWAP',
+                slots=[s1, s2],
+                start_frame=current_frame,
+                end_frame=current_frame + swap_duration_frames,
+                y_depth=y_depth,
+                bounce_height=self.bounce_height,
+                style='WHIP',
+                bank_angle=18.0
+            )
+            self.moves.append(move)
+            current_frame = move.end_frame + pause_frames
+            
+            occ1, occ2 = self.slot_occupant[s1], self.slot_occupant[s2]
+            self.slot_occupant[s1], self.slot_occupant[s2] = occ2, occ1
+            self.item_slot[occ1] = s2
+            self.item_slot[occ2] = s1
+
+        self.reveal_item_id = self.ball_holder_item_id
+        self.shuffle_end_frame = current_frame - pause_frames
+        self.total_frames = current_frame + suspense_duration + 50
+
+    def generate_variant_b_routine(
+        self,
+        swap_duration_frames: int = 24,
+        pause_frames: int = 2,
+        start_frame: int = 100,
+        suspense_duration: int = 30
+    ):
+        """
+        Variant B (Slot 2 / Center Wins) - 'The Intertwining Figure-8'
+        Choreography: 7 fluid sinusoidal swaps with smooth centripetal banking.
+        Ball starts under Helmet 2 (Slot 1).
+        Swap sequence: (0, 1) -> (1, 2) -> (0, 1) -> (1, 2) -> (0, 1) -> (0, 2) -> (0, 1)
+        Guarantees Helmet 2 finishes cleanly in Slot 1 (Center, X = 0.0m).
+        """
+        self.moves.clear()
+        self.slot_occupant = list(range(self.num_items))
+        self.item_slot = list(range(self.num_items))
+        self.ball_holder_item_id = 1  # Starts under Helmet 2
+        
+        sequence = [(0, 1), (1, 2), (0, 1), (1, 2), (0, 1), (0, 2), (0, 1)]
+        current_frame = start_frame
+        
+        for s1, s2 in sequence:
+            dist_factor = abs(s1 - s2)
+            y_depth = self.y_depth_base * (1.0 + (dist_factor - 1) * 0.35)
+            move = MoveStep(
+                move_type='PAIR_SWAP',
+                slots=[s1, s2],
+                start_frame=current_frame,
+                end_frame=current_frame + swap_duration_frames,
+                y_depth=y_depth,
+                bounce_height=self.bounce_height,
+                style='SMOOTH',
+                bank_angle=14.0
+            )
+            self.moves.append(move)
+            current_frame = move.end_frame + pause_frames
+            
+            occ1, occ2 = self.slot_occupant[s1], self.slot_occupant[s2]
+            self.slot_occupant[s1], self.slot_occupant[s2] = occ2, occ1
+            self.item_slot[occ1] = s2
+            self.item_slot[occ2] = s1
+
+        self.reveal_item_id = self.ball_holder_item_id
+        self.shuffle_end_frame = current_frame - pause_frames
+        self.total_frames = current_frame + suspense_duration + 50
+
+    def generate_variant_c_routine(
+        self,
+        swap_duration_frames: int = 18,
+        pause_frames: int = 3,
+        start_frame: int = 100,
+        suspense_duration: int = 30
+    ):
+        """
+        Variant C (Slot 3 / Right Wins) - 'The Pinwheel Carousel'
+        Choreography: 8 rapid centripetal swaps with bouncy accent.
+        Ball starts under Helmet 3 (Slot 2).
+        Swap sequence: (1, 2) -> (0, 1) -> (0, 2) -> (1, 2) -> (0, 1) -> (1, 2) -> (0, 1) -> (1, 2)
+        Guarantees Helmet 3 finishes cleanly in Slot 2 (Right, X = +2.4m).
+        """
+        self.moves.clear()
+        self.slot_occupant = list(range(self.num_items))
+        self.item_slot = list(range(self.num_items))
+        self.ball_holder_item_id = 2  # Starts under Helmet 3
+        
+        sequence = [(1, 2), (0, 1), (0, 2), (1, 2), (0, 1), (1, 2), (0, 1), (1, 2)]
+        current_frame = start_frame
+        
+        for s1, s2 in sequence:
+            dist_factor = abs(s1 - s2)
+            y_depth = self.y_depth_base * (1.0 + (dist_factor - 1) * 0.35)
+            move = MoveStep(
+                move_type='PAIR_SWAP',
+                slots=[s1, s2],
+                start_frame=current_frame,
+                end_frame=current_frame + swap_duration_frames,
+                y_depth=y_depth,
+                bounce_height=0.32,
+                style='BOUNCY',
+                bank_angle=16.0
+            )
+            self.moves.append(move)
+            current_frame = move.end_frame + pause_frames
+            
+            occ1, occ2 = self.slot_occupant[s1], self.slot_occupant[s2]
+            self.slot_occupant[s1], self.slot_occupant[s2] = occ2, occ1
+            self.item_slot[occ1] = s2
+            self.item_slot[occ2] = s1
+
+        self.reveal_item_id = self.ball_holder_item_id
+        self.shuffle_end_frame = current_frame - pause_frames
+        self.total_frames = current_frame + suspense_duration + 50
+
     def evaluate_at_frame(self, frame: int) -> Dict[int, Tuple[Vector3, Vector3]]:
         slot_occ = list(range(self.num_items))
         item_to_slot = list(range(self.num_items))
@@ -1646,6 +1787,83 @@ def create_and_animate_slogan(coll, props, start_frame=1, duration=75, animate_c
     
     return [obj_title, obj_sub, obj_tag]
 
+def animate_broadcast_camera_dolly(cam_obj, t_start=1, lead_bumper=60, intro_offset=30, start_swapping=100, shuffle_end=280, total_frames=435):
+    """
+    Animates the exact 7-beat multi-stage broadcast camera dolly sequence reverse-engineered
+    from helmetshuffleDESIRED.blend. Seamlessly frames wide establishing, push-in boom,
+    intimate action tracking during swaps, and climax pull-back.
+    """
+    if not cam_obj:
+        return
+    if cam_obj.animation_data:
+        cam_obj.animation_data_clear()
+        
+    cam_data = cam_obj.data
+    if cam_data:
+        cam_data.lens = 50.0
+        cam_data.clip_start = 0.1
+        cam_data.clip_end = 1000.0
+        cam_data.sensor_width = 36.0
+        if hasattr(cam_data, "dof"):
+            cam_data.dof.use_dof = True
+            cam_data.dof.focus_object = bpy.data.objects.get("Helmet_2")
+            cam_data.dof.aperture_fstop = 2.8
+
+    cam_obj.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+    cam_obj.keyframe_insert(data_path="rotation_euler", frame=t_start)
+    cam_obj.keyframe_insert(data_path="rotation_euler", frame=total_frames)
+
+    # 7 Exact Camera Keyframe Coordinates:
+    # 1. Wide Establishing
+    f1 = t_start
+    cam_obj.location = (0.0, -33.0665, 15.6887)
+    cam_obj.keyframe_insert(data_path="location", frame=f1)
+
+    # 2. Bumper Boom Push-in
+    f2 = t_start + max(12, int(lead_bumper * 0.33))
+    cam_obj.location = (0.0, -21.3806, 10.2395)
+    cam_obj.keyframe_insert(data_path="location", frame=f2)
+
+    # 3. Bumper Hold & Fly-Past
+    f3 = t_start + max(15, lead_bumper - 2)
+    cam_obj.location = (0.0, -21.3806, 10.2395)
+    cam_obj.keyframe_insert(data_path="location", frame=f3)
+
+    # 4. Ball Reveal Push-in
+    f4 = t_start + lead_bumper + max(10, int(intro_offset * 0.8))
+    cam_obj.location = (0.0, -13.9302, 6.7653)
+    cam_obj.keyframe_insert(data_path="location", frame=f4)
+
+    # 5. Swap Action Close Framing
+    f5 = start_swapping
+    cam_obj.location = (0.0, -9.6075, 4.9374)
+    cam_obj.keyframe_insert(data_path="location", frame=f5)
+
+    # 6. Swap Action Hold
+    f6 = max(f5 + 20, int((start_swapping + shuffle_end) / 2.0))
+    cam_obj.location = (0.0, -9.6075, 4.9374)
+    cam_obj.keyframe_insert(data_path="location", frame=f6)
+
+    # 7. Climax Pull-Back for Badges & Reveal
+    f7 = max(f6 + 20, shuffle_end + 15)
+    cam_obj.location = (0.0, -13.0418, 6.3510)
+    cam_obj.keyframe_insert(data_path="location", frame=f7)
+    cam_obj.keyframe_insert(data_path="location", frame=total_frames)
+
+    # Set Bezier interpolation
+    if cam_obj.animation_data and cam_obj.animation_data.action:
+        act = cam_obj.animation_data.action
+        fcurves = []
+        if hasattr(act, "fcurves"):
+            fcurves = act.fcurves
+        elif hasattr(act, "layers") and len(act.layers) > 0:
+            strip = act.layers[0].strips[0]
+            if hasattr(strip, "channelbags") and len(strip.channelbags) > 0:
+                fcurves = strip.channelbags[0].fcurves
+        for fc in fcurves:
+            for kp in fc.keyframe_points:
+                kp.interpolation = 'BEZIER'
+
 def bake_shuffle_to_scene(props):
     """Bakes collision-free keyframes into the scene with automatic timeline sequencing and studio telemetry profiling."""
     scene = bpy.context.scene
@@ -1702,16 +1920,52 @@ def bake_shuffle_to_scene(props):
     # Swapping routine begins at s_offset + intro_offset + 10
     start_swapping_frame = s_offset + intro_offset + 10
     
-    plan.generate_routine(
-        num_swaps=props.num_swaps,
-        swap_duration_frames=props.swap_duration,
-        pause_frames=props.pause_frames,
-        target_item=target_idx,
-        desired_outcome_slot=desired_slot,
-        style=props.movement_style,
-        start_frame=start_swapping_frame,
-        suspense_duration=props.suspense_duration
-    )
+    # Dispatch to bespoke handcrafted variants or parameterized routine
+    if props.target_outcome in {'SLOT_1', 'VARIANT_A'}:
+        plan.generate_variant_a_routine(
+            swap_duration_frames=props.swap_duration,
+            pause_frames=props.pause_frames,
+            start_frame=start_swapping_frame,
+            suspense_duration=props.suspense_duration
+        )
+    elif props.target_outcome in {'SLOT_2', 'VARIANT_B'}:
+        plan.generate_variant_b_routine(
+            swap_duration_frames=props.swap_duration,
+            pause_frames=props.pause_frames,
+            start_frame=start_swapping_frame,
+            suspense_duration=props.suspense_duration
+        )
+    elif props.target_outcome in {'SLOT_3', 'VARIANT_C'}:
+        plan.generate_variant_c_routine(
+            swap_duration_frames=props.swap_duration,
+            pause_frames=props.pause_frames,
+            start_frame=start_swapping_frame,
+            suspense_duration=props.suspense_duration
+        )
+    else:
+        plan.generate_routine(
+            num_swaps=props.num_swaps,
+            swap_duration_frames=props.swap_duration,
+            pause_frames=props.pause_frames,
+            target_item=target_idx,
+            desired_outcome_slot=None,
+            style=props.movement_style,
+            start_frame=start_swapping_frame,
+            suspense_duration=props.suspense_duration
+        )
+
+    # Animate multi-stage broadcast camera dolly
+    cam_obj = scene.camera or bpy.data.objects.get("Shuffle_Camera")
+    if cam_obj:
+        animate_broadcast_camera_dolly(
+            cam_obj,
+            t_start=t_start,
+            lead_bumper=lead_bumper,
+            intro_offset=intro_offset,
+            start_swapping=start_swapping_frame,
+            shuffle_end=plan.shuffle_end_frame,
+            total_frames=plan.total_frames
+        )
     
     # Clear existing animation data on target objects
     for obj in valid_objects + ([fb_ctrl] if fb_ctrl else []):
@@ -1973,7 +2227,7 @@ def bake_shuffle_to_scene(props):
         
         # Slam
         banner_win.scale = (1.28, 1.28, 1.28)
-        banner_win.location = (0.0, -3.2, 1.35)
+        banner_win.location = (0.0, -3.2, 0.80)
         banner_win.rotation_euler = (math.radians(68.0), 0.0, 0.0)
         banner_win.keyframe_insert(data_path="scale", frame=win_start + 7)
         banner_win.keyframe_insert(data_path="location", frame=win_start + 7)
@@ -1981,7 +2235,7 @@ def bake_shuffle_to_scene(props):
         
         # Settle
         banner_win.scale = (1.0, 1.0, 1.0)
-        banner_win.location = (0.0, -3.2, 1.35)
+        banner_win.location = (0.0, -3.2, 0.80)
         banner_win.rotation_euler = (math.radians(65.0), 0.0, 0.0)
         banner_win.keyframe_insert(data_path="scale", frame=win_start + 13)
         banner_win.keyframe_insert(data_path="location", frame=win_start + 13)
@@ -1989,7 +2243,7 @@ def bake_shuffle_to_scene(props):
         
         # Hold
         banner_win.scale = (1.05, 1.05, 1.05)
-        banner_win.location = (0.0, -3.2, 1.40)
+        banner_win.location = (0.0, -3.2, 0.85)
         banner_win.keyframe_insert(data_path="scale", frame=plan.total_frames)
         banner_win.keyframe_insert(data_path="location", frame=plan.total_frames)
         
@@ -3417,6 +3671,134 @@ class WOLFPACK_OT_one_click_gameday_setup(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class WOLFPACK_OT_bake_animation_only(bpy.types.Operator):
+    """Bake shuffle keyframes into the current scene without spawning venue turf, goalposts, or lights"""
+    bl_idname = "wolfpack.bake_animation_only"
+    bl_label = "Bake Animation Only (Active .blend)"
+    bl_description = "Bakes the 3D shuffle keyframes and multi-stage broadcast camera dolly into the current scene without touching or recreating environment geometry"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        props = context.scene.wolfpack_shuffle
+        objects, fb_ctrl = get_shuffle_objects(props)
+        if not any(objects):
+            for i in range(3):
+                h_name = f"Helmet_{i+1}"
+                if not bpy.data.objects.get(h_name):
+                    empty = bpy.data.objects.new(h_name, None)
+                    empty.empty_display_type = 'ARROWS'
+                    empty.empty_display_size = 0.6
+                    empty.location = ((i - 1) * props.slot_spacing, 0.0, 0.0)
+                    context.scene.collection.objects.link(empty)
+            if not bpy.data.objects.get("Football_CTRL"):
+                fb = bpy.data.objects.new("Football_CTRL", None)
+                fb.empty_display_type = 'SPHERE'
+                fb.empty_display_size = 0.3
+                context.scene.collection.objects.link(fb)
+            props.custom_helmet_1 = bpy.data.objects.get("Helmet_1")
+            props.custom_helmet_2 = bpy.data.objects.get("Helmet_2")
+            props.custom_helmet_3 = bpy.data.objects.get("Helmet_3")
+            props.custom_football = bpy.data.objects.get("Football_CTRL")
+            
+        cam_obj = bpy.data.objects.get("Shuffle_Camera")
+        if not cam_obj:
+            cam_data = bpy.data.cameras.new("Shuffle_Camera")
+            cam_obj = bpy.data.objects.new("Shuffle_Camera", cam_data)
+            cam_obj.location = (0.0, -33.0665, 15.6887)
+            cam_obj.rotation_euler = (math.radians(65.0), 0.0, 0.0)
+            cam_data.lens = 50.0
+            context.scene.collection.objects.link(cam_obj)
+        context.scene.camera = cam_obj
+        
+        try:
+            winner, frames = bake_shuffle_to_scene(props)
+            self.report({'INFO'}, f"⚡ Animation Only Baked! Winner: Slot {winner} ({frames} frames)")
+            return {'FINISHED'}
+        except Exception as e:
+            self.report({'ERROR'}, f"Bake failed: {str(e)}")
+            return {'CANCELLED'}
+
+
+class WOLFPACK_OT_link_environment(bpy.types.Operator):
+    """Link stadium environment collection from master library .blend file"""
+    bl_idname = "wolfpack.link_environment"
+    bl_label = "Link Stadium Environment (.blend)"
+    bl_description = "Links Stadium_Environment or Stadium_Turf collection from external master library blend file"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    filepath: bpy.props.StringProperty(
+        name="Library File Path",
+        default=r"D:\Blender_Ecosystem\Laurier_Stadium\laurier_university_stadium_master.blend",
+        subtype='FILE_PATH'
+    )
+
+    def execute(self, context):
+        fp = self.filepath
+        if not os.path.exists(fp):
+            alt = r"D:\Blender_Ecosystem\Laurier_Stadium\helmetshuffleDESIRED.blend"
+            if os.path.exists(alt):
+                fp = alt
+            else:
+                self.report({'ERROR'}, f"Master library file not found: {self.filepath}")
+                return {'CANCELLED'}
+        try:
+            with bpy.data.libraries.load(fp, link=True) as (data_from, data_to):
+                colls = [c for c in data_from.collections if "stadium" in c.lower() or "venue" in c.lower() or "wolfpack" in c.lower() or "goldenhawk" in c.lower()]
+                if colls:
+                    data_to.collections = colls
+                else:
+                    data_to.collections = data_from.collections[:2]
+            for coll in data_to.collections:
+                if coll and coll.name not in context.scene.collection.children:
+                    context.scene.collection.children.link(coll)
+            self.report({'INFO'}, f"Linked environment collections from {os.path.basename(fp)}!")
+            return {'FINISHED'}
+        except Exception as e:
+            self.report({'ERROR'}, f"Linking failed: {str(e)}")
+            return {'CANCELLED'}
+
+
+class WOLFPACK_OT_bake_variant_a(bpy.types.Operator):
+    """1-Click Bake Variant A: Left Helmet Wins (Slot 1) with Outside Switchback"""
+    bl_idname = "wolfpack.bake_variant_a"
+    bl_label = "🅰️ Variant A (Left Wins)"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        props = context.scene.wolfpack_shuffle
+        props.target_outcome = 'SLOT_1'
+        bpy.ops.wolfpack.generate_shuffle()
+        self.report({'INFO'}, "Variant A (Slot 1 / Left Wins) Baked!")
+        return {'FINISHED'}
+
+
+class WOLFPACK_OT_bake_variant_b(bpy.types.Operator):
+    """1-Click Bake Variant B: Center Helmet Wins (Slot 2) with Intertwining Figure-8"""
+    bl_idname = "wolfpack.bake_variant_b"
+    bl_label = "🅱️ Variant B (Center Wins)"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        props = context.scene.wolfpack_shuffle
+        props.target_outcome = 'SLOT_2'
+        bpy.ops.wolfpack.generate_shuffle()
+        self.report({'INFO'}, "Variant B (Slot 2 / Center Wins) Baked!")
+        return {'FINISHED'}
+
+
+class WOLFPACK_OT_bake_variant_c(bpy.types.Operator):
+    """1-Click Bake Variant C: Right Helmet Wins (Slot 3) with Pinwheel Carousel"""
+    bl_idname = "wolfpack.bake_variant_c"
+    bl_label = "🅲 Variant C (Right Wins)"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        props = context.scene.wolfpack_shuffle
+        props.target_outcome = 'SLOT_3'
+        bpy.ops.wolfpack.generate_shuffle()
+        self.report({'INFO'}, "Variant C (Slot 3 / Right Wins) Baked!")
+        return {'FINISHED'}
+
 class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
     """Optimaxxed UI Panel in 3D Viewport Sidebar"""
     bl_label = "Golden Hawks Helmet Shuffle ⚡ Game-Day Suite"
@@ -3456,6 +3838,12 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         col_hero.scale_y = 1.45
         col_hero.operator("wolfpack.one_click_gameday_setup", text="⚡ 1-Click Full Game-Day Show", icon='AUTO')
         col_hero.operator("wolfpack.generate_shuffle", text="Bake Golden Hawks Shuffle Animation", icon='PLAY')
+        
+        # 3 Direct Bespoke Variant Buttons
+        row_var = layout.row(align=True)
+        row_var.operator("wolfpack.bake_variant_a", text="🅰️ Variant A (Left)", icon='TRIA_LEFT')
+        row_var.operator("wolfpack.bake_variant_b", text="🅱️ Variant B (Center)", icon='RADIOBUT_ON')
+        row_var.operator("wolfpack.bake_variant_c", text="🅲 Variant C (Right)", icon='TRIA_RIGHT')
 
         # ====================================================================
         # WORKFLOW STAGES NAVIGATION TABS
@@ -3584,6 +3972,13 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
             box_cog.prop(props, "clean_screen_during_shuffle", text="Clean Screen (Zero Text During Swaps)")
             box_cog.prop(props, "show_slot_hud_numbers", text="Slot HUD Badges [ 1 ] [ 2 ] [ 3 ]")
 
+            # Modular Multi-Blend Linking Pipeline
+            box_pipe = box_stage3.box()
+            box_pipe.label(text="Modular Pipeline (Multi-Blend Linking)", icon='LINKED')
+            row_pipe = box_pipe.row(align=True)
+            row_pipe.operator("wolfpack.bake_animation_only", text="Bake Animation Only (Active .blend)", icon='ACTION')
+            row_pipe.operator("wolfpack.link_environment", text="Link Stadium Environment", icon='FILE_BLEND')
+
             # Shuffle Dynamics (Compact Two-Column Grid)
             box_dyn = box_stage3.box()
             box_dyn.label(text="Swap Timing & Centripetal Physics", icon='TIME')
@@ -3683,6 +4078,11 @@ classes = (
     WOLFPACK_OT_toggle_motion_trajectories,
     WOLFPACK_OT_export_game_engine_anim,
     WOLFPACK_OT_export_telemetry,
+    WOLFPACK_OT_bake_animation_only,
+    WOLFPACK_OT_link_environment,
+    WOLFPACK_OT_bake_variant_a,
+    WOLFPACK_OT_bake_variant_b,
+    WOLFPACK_OT_bake_variant_c,
     WOLFPACK_PT_sidebar_panel,
 )
 

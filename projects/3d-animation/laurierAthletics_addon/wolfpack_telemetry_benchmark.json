@@ -1,11 +1,11 @@
 {
   "studio": "Wolfpack Glory / Rockstar Spec Studio Tools",
   "version": "3.5.0",
-  "timestamp": "2026-09-09T02:31:28Z",
+  "timestamp": "2026-09-09T15:03:54Z",
   "system_metrics": {
-    "bake_duration_ms": 120.33,
+    "bake_duration_ms": 92.23,
     "total_keyframes": 3105,
-    "keyframe_throughput_keys_per_sec": 25804.7,
+    "keyframe_throughput_keys_per_sec": 33667.6,
     "peak_memory_delta_mb": 0.163,
     "scene_objects_count": 34,
     "active_fps": 30,

@@ -56,6 +56,30 @@
 * **Camera-Normal Pitch**: `61.74°` alignment guaranteeing $0.26+$ screen-height air gaps with zero perspective overlap.
 * **Centered Exits**: `BURST_FORWARD`, `CENTER_IMPLODE`, `DROP_DOWN`, `LIFT_UP` strictly locked to $X = 0.0$ and $\text{rot}_z = 0.0^\circ$.
 
+### 🎥 6. Reverse-Engineered Multi-Stage Camera Dolly (`helmetshuffleDESIRED.blend`)
+* **Operator**: Integrated natively into `wolfpack.bake_shuffle` and `wolfpack.bake_animation_only`.
+* **7-Point Bezier Optical Curve** (Fixed $65^\circ$ Broadcast Pitch, $\Delta Z / |\Delta Y| \approx 0.47$–$0.51$):
+  * **Frame 1**: Wide establishing shot `(0.0, -33.07m, 15.69m)`
+  * **Frames 20–58**: Mid boom push-in `(0.0, -21.38m, 10.24m)` held during explosive title rush
+  * **Frame 90**: Ball reveal push-in `(0.0, -13.93m, 6.77m)`
+  * **Frames 115–255**: Intimate game-view close tracking `(0.0, -9.61m, 4.94m)` held during swap sequences
+  * **Frame 360**: Pull-back `(0.0, -13.04m, 6.35m)` for slot badges and climax winner lift
+
+### 🎲 7. Three Bespoke Handcrafted Shuffle Variants (Slots 1, 2, 3)
+* **Variant A (`wolfpack.bake_variant_a`)**:
+  * *Choreography*: 6 swaps, rapid whip easing, outside switchback arcs.
+  * *Deterministic Winner*: **Slot 1 (Left, $X = -2.4\text{m}$)**.
+* **Variant B (`wolfpack.bake_variant_b`)**:
+  * *Choreography*: 7 swaps, smooth sinusoidal easing, intertwining figure-8 arcs.
+  * *Deterministic Winner*: **Slot 2 (Center, $X = 0.0\text{m}$)**.
+* **Variant C (`wolfpack.bake_variant_c`)**:
+  * *Choreography*: 8 swaps, bouncy easing ($0.32\text{m}$ vertical hop), pinwheel carousel arcs.
+  * *Deterministic Winner*: **Slot 3 (Right, $X = +2.4\text{m}$)**.
+
+### 🧩 8. Modular Multi-File Production Pipeline
+* **Lightweight Animation Core**: Operator `wolfpack.bake_animation_only` keyframes shufflers, ball, and camera dolly in an empty scene or existing animation file without re-spawning turf, floodlights, or stadium assets.
+* **External Environment Linking**: Operator `wolfpack.link_environment` links external master venue collections (`Stadium_Turf_Pitch`, lighting towers) from `laurier_university_stadium_master.blend` on demand, keeping viewport playback pinned at a fluid 60 FPS.
+
 ---
 
 ## ⏱️ Video Assistant Employment & Timesheet Summary

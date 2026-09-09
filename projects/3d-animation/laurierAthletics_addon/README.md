@@ -52,6 +52,26 @@ A production-grade 3D broadcast motion graphics suite and Blender 5.2+ addon eng
 * **Kicker (+Y=+0.58m)**, **Hero (Y=0.00m)**, **Sponsor (-Y=-0.58m)** pitched along camera-normal vector (`61.74°`) ensuring $0.26+$ screen-height air gaps with zero perspective overlap.
 * 4 Symmetrical centered exits (`BURST_FORWARD`, `CENTER_IMPLODE`, `DROP_DOWN`, `LIFT_UP`) locking $X = 0.0$ and $\text{rot}_z = 0.0^\circ$.
 
+### 🎥 6. Reverse-Engineered Multi-Stage Camera Dolly (`helmetshuffleDESIRED.blend`)
+* **Dynamic 7-Point Bezier Optical Curve**: Replaces rigid single-stage camera moves with dynamic broadcast dolly tracking:
+  * **Frame 1**: Wide establishing shot `(0.0, -33.07m, 15.69m)`.
+  * **Frames 20–58**: Mid boom push-in `(0.0, -21.38m, 10.24m)` held steady during bumper title fly-past.
+  * **Frame 90**: Ball reveal push-in `(0.0, -13.93m, 6.77m)`.
+  * **Frames 115–255**: Intimate game-view close tracking `(0.0, -9.61m, 4.94m)` held throughout swap sequences.
+  * **Frame 360**: Broadcast pull-back `(0.0, -13.04m, 6.35m)` framing slot badge indicators and winning helmet climax lift.
+* Maintains strict $65^\circ$ broadcast viewing pitch along the optical ray.
+
+### 🎲 7. Three Bespoke Handcrafted Shuffle Variants (A, B, C)
+* Direct 1-click execution for three completely distinct game-day choreography outcomes:
+  * **Variant A (`wolfpack.bake_variant_a`)**: 6 swaps, rapid whip easing, outside switchback trajectories, deterministically ending on **Slot 1 (Left, $X = -2.4\text{m}$)**.
+  * **Variant B (`wolfpack.bake_variant_b`)**: 7 swaps, smooth sinusoidal easing, intertwining figure-8 trajectories, deterministically ending on **Slot 2 (Center, $X = 0.0\text{m}$)**.
+  * **Variant C (`wolfpack.bake_variant_c`)**: 8 swaps, bouncy easing ($0.32\text{m}$ hop), pinwheel carousel trajectories, deterministically ending on **Slot 3 (Right, $X = +2.4\text{m}$)**.
+
+### 🧩 8. Modular Multi-File Production Pipeline
+* **Decoupled Animation Workflow**: Keep viewport playback pinned at 60 FPS by separating animation keyframes from dense stadium geometry and lighting meshes:
+  * **Bake Animation Only (`wolfpack.bake_animation_only`)**: Bakes the entire shuffle choreography and camera dolly in `animation_core.blend` without spawning stadium turf, sky domes, or lighting rigs.
+  * **Link Environment (`wolfpack.link_environment`)**: One-click external collection linking from `laurier_university_stadium_master.blend` into `master_composite.blend` at render time.
+
 ---
 
 ## 🎛️ Modular 5-Stage UI Architecture (Blender N-Panel)
