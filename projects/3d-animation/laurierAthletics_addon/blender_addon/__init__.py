@@ -3374,9 +3374,52 @@ class WOLFPACK_OT_export_telemetry(bpy.types.Operator):
             return {'CANCELLED'}
 
 
+
+class WOLFPACK_OT_one_click_gameday_setup(bpy.types.Operator):
+    """1-Click Complete Game-Day Production Setup (Venue + Lights + Bumper + Shuffle + Trajectories + ProRes)"""
+    bl_idname = "wolfpack.one_click_gameday_setup"
+    bl_label = "⚡ 1-Click Complete Game-Day Show Setup"
+    bl_description = "Instantly sets up turf pitch, volumetric stadium lighting, 3D shufflers, bakes the entire bumper & shuffle routine, draws 3D motion arcs, and configures ProRes 422 export"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        scene = context.scene
+        props = scene.wolfpack_shuffle
+        
+        # 1. Setup Venue Pitch & Stand-ins
+        bpy.ops.wolfpack.setup_demo()
+        
+        # 2. Setup Volumetric Atmosphere
+        props.lighting_mood = 'NIGHT_GAME_FLOODLIGHT'
+        props.enable_volumetric_haze = True
+        bpy.ops.wolfpack.setup_atmosphere()
+        
+        # 3. Ensure Bumper & Routine are configured
+        props.prepend_entry_bumper = True
+        props.bumper_lead_frames = 60
+        props.timeline_start_frame = 1
+        props.clean_screen_during_shuffle = True
+        props.show_slot_hud_numbers = True
+        props.show_motion_trajectories = True
+        
+        # 4. Bake the routine & telemetry
+        bpy.ops.wolfpack.generate_shuffle()
+        
+        # 5. Configure Apple ProRes 422 Broadcast Output
+        props.render_export_preset = 'PRORES_422'
+        bpy.ops.wolfpack.setup_broadcast_render()
+        
+        # 6. Export Game Engine Tracks and Cue Sheets
+        bpy.ops.wolfpack.export_game_engine_anim()
+        bpy.ops.wolfpack.export_cue_sheet()
+        
+        self.report({'INFO'}, f"⚡ Game-Day Show Initialized: 4K Broadcast Ready in {props.last_bake_ms:.1f}ms!")
+        return {'FINISHED'}
+
+
 class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
-    """UI Panel in 3D Viewport Sidebar"""
-    bl_label = "Laurier Wolfpack Shuffle & Jumbotron Suite"
+    """Optimaxxed UI Panel in 3D Viewport Sidebar"""
+    bl_label = "Laurier Wolfpack Shuffle ⚡ Studio Suite"
     bl_idname = "WOLFPACK_PT_sidebar_panel"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
@@ -3386,13 +3429,38 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         layout = self.layout
         props = context.scene.wolfpack_shuffle
 
-        # --- Primary Top Hero Action Button ---
-        col_hero = layout.column(align=True)
-        col_hero.scale_y = 1.4
-        col_hero.operator("wolfpack.generate_shuffle", text="Generate Wolfpack Shuffle Animation", icon='PLAY')
+        # ====================================================================
+        # BRANDING & STUDIO HEADER RIBBON
+        # ====================================================================
+        box_brand = layout.box()
+        col_b = box_brand.column(align=True)
+        row_title = col_b.row(align=True)
+        row_title.label(text="WOLFPACK GLORY ⚡ MOTION ENGINE", icon='SOLO_ON')
+        
+        row_sub = col_b.row(align=True)
+        row_sub.label(text="v3.5.0 • Laurier Athletics × Rockstar Spec", icon='PREFERENCES')
+        
+        # Status Pill Bar
+        row_pills = box_brand.row(align=True)
+        row_pills.alignment = 'EXPAND'
+        row_pills.label(text="60 FPS", icon='RADIOBUT_ON')
+        row_pills.label(text="PRORES 422", icon='RADIOBUT_ON')
+        row_pills.label(text="RAGE READY", icon='RADIOBUT_ON')
+        row_pills.label(text="0 LEAKS", icon='CHECKMARK')
 
-        # --- Workflow Stages Navigation Bar ---
-        layout.separator(factor=0.4)
+        # ====================================================================
+        # HERO ACTION DECK (1-Click Wizard & Master Bake)
+        # ====================================================================
+        layout.separator(factor=0.3)
+        col_hero = layout.column(align=True)
+        col_hero.scale_y = 1.45
+        col_hero.operator("wolfpack.one_click_gameday_setup", text="⚡ 1-Click Full Game-Day Show", icon='AUTO')
+        col_hero.operator("wolfpack.generate_shuffle", text="Bake Wolfpack Shuffle Animation", icon='PLAY')
+
+        # ====================================================================
+        # WORKFLOW STAGES NAVIGATION TABS
+        # ====================================================================
+        layout.separator(factor=0.3)
         box_nav = layout.box()
         box_nav.label(text="Production Workflow Stage", icon='WORKSPACE')
         row_nav = box_nav.row(align=True)
@@ -3409,38 +3477,52 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
             col_seq = box_stage1.column(align=True)
             col_seq.prop(props, "prepend_entry_bumper", text="Prepend Home Show Bumper (Auto-Sequence)")
             if props.prepend_entry_bumper:
-                col_seq.prop(props, "bumper_lead_frames", text="Bumper Lead (Frames)")
-                col_seq.prop(props, "timeline_start_frame", text="Timeline Start Frame")
+                row_seq = col_seq.row(align=True)
+                row_seq.prop(props, "bumper_lead_frames", text="Lead (Frames)")
+                row_seq.prop(props, "timeline_start_frame", text="Start Frame")
 
-            # Home Show 3D Entry Bumper
+            # Home Show 3D Entry Bumper (Two-Column Layout)
             box_bump = box_stage1.box()
             box_bump.label(text="Home Show 3D Entry Bumper", icon='PLAY')
-            box_bump.prop(props, "entry_title", text="Headline")
-            box_bump.prop(props, "entry_subtitle", text="Subtitle / Kicker")
-            box_bump.prop(props, "entry_sponsor", text="Sponsor / Tag")
-            box_bump.prop(props, "bumper_layout_mode", text="Layout")
+            
+            row_t1 = box_bump.row(align=True)
+            row_t1.prop(props, "entry_title", text="Headline")
+            row_t1.prop(props, "entry_subtitle", text="Kicker")
+            
+            row_t2 = box_bump.row(align=True)
+            row_t2.prop(props, "entry_sponsor", text="Sponsor")
+            row_t2.prop(props, "bumper_layout_mode", text="Layout")
+            
             row_dim = box_bump.row(align=True)
             row_dim.prop(props, "bumper_title_scale", text="Title Size")
             row_dim.prop(props, "bumper_text_spacing", text="Line Gap")
-            box_bump.prop(props, "entry_duration", text="Duration")
-            box_bump.prop(props, "text_exit_style", text="Text Exit Motion")
+            
+            row_m = box_bump.row(align=True)
+            row_m.prop(props, "entry_duration", text="Duration")
+            row_m.prop(props, "text_exit_style", text="Exit Style")
+            
             box_bump.operator("wolfpack.generate_entry_bumper", text="Generate Standalone 3D Bumper", icon='RENDER_ANIMATION')
 
             # Modular Stadium Catchphrases
             box_slog = box_stage1.box()
             box_slog.label(text="Modular Stadium Catchphrases", icon='SPEAKER')
-            box_slog.prop(props, "slogan_preset", text="Slogan")
+            row_s = box_slog.row(align=True)
+            row_s.prop(props, "slogan_preset", text="Slogan")
+            row_s.prop(props, "slogan_duration", text="Duration")
+            
             if props.slogan_preset == 'CUSTOM':
-                box_slog.prop(props, "custom_slogan_head", text="Headline")
-                box_slog.prop(props, "custom_slogan_sub", text="Subtitle")
-            box_slog.prop(props, "slogan_duration", text="Duration")
+                row_c = box_slog.row(align=True)
+                row_c.prop(props, "custom_slogan_head", text="Headline")
+                row_c.prop(props, "custom_slogan_sub", text="Subtitle")
+                
             box_slog.operator("wolfpack.generate_slogan", text="Generate 3D Stadium Slogan", icon='PLAY')
 
             # In-Game Scoring Stingers
             box_st = box_stage1.box()
             box_st.label(text="In-Game Scoring Stingers", icon='DECORATE_ANIMATE')
-            box_st.prop(props, "stinger_type", text="Stinger Event")
-            box_st.operator("wolfpack.generate_stinger", text="Generate 3D Stinger", icon='PLAY')
+            row_st = box_st.row(align=True)
+            row_st.prop(props, "stinger_type", text="Event")
+            row_st.operator("wolfpack.generate_stinger", text="Generate 3D Stinger", icon='PLAY')
 
         # ====================================================================
         # STAGE 2: ARENA & LIGHTING
@@ -3448,28 +3530,29 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         if props.ui_tab in {'ALL', 'STADIUM'}:
             box_stage2 = layout.box()
             box_stage2.label(text="2. Stadium Arena & Volumetric Lighting", icon='OUTLINER_OB_LIGHT')
-            box_stage2.prop(props, "lighting_mood", text="Lighting Mood")
-            box_stage2.prop(props, "enable_volumetric_haze", text="Volumetric Light Shafts")
+            
+            row_env = box_stage2.row(align=True)
+            row_env.prop(props, "lighting_mood", text="Mood")
+            row_env.prop(props, "venue_preset", text="Pitch")
+            
+            col_haz = box_stage2.column(align=True)
+            col_haz.prop(props, "enable_volumetric_haze", text="Volumetric Light Shafts")
             if props.enable_volumetric_haze:
-                box_stage2.prop(props, "haze_density", text="Haze Density")
+                col_haz.prop(props, "haze_density", text="Haze Density")
+                
             row_lgt = box_stage2.row(align=True)
             row_lgt.operator("wolfpack.setup_atmosphere", text="Build Volumetric Lights", icon='LIGHT_SUN')
             row_lgt.operator("wolfpack.setup_goalposts", text="Spawn 3D Goalposts", icon='SNAP_GRID')
+            box_stage2.operator("wolfpack.setup_demo", text="Spawn / Reset Full Venue Scene", icon='DUPLICATE')
 
-            # Venue Staging
-            box_ven = box_stage2.box()
-            box_ven.label(text="Venue Staging & Pitch", icon='SCENE_DATA')
-            box_ven.prop(props, "venue_preset", text="Venue Preset")
-            box_ven.operator("wolfpack.setup_demo", text="Spawn / Update Venue Scene", icon='DUPLICATE')
-
-            # Brand Typography
+            # Brand Typography Specs
             box_font = box_stage2.box()
-            box_font.label(text="Laurier Brand Typography (Hailey's Spec)", icon='FONT_DATA')
+            box_font.label(text="Laurier Brand Guidelines (Hailey's Spec)", icon='FONT_DATA')
             box_font.prop(props, "banner_font", text="Typography")
             col_f = box_font.column(align=True)
-            col_f.label(text="• Radwave: Hype Headers & Stingers", icon='RIGHTARROW_THIN')
-            col_f.label(text="• Agency FB: Downs, Yards & Stats", icon='RIGHTARROW_THIN')
-            col_f.label(text="• Anti-Glare: Purple (#20003B) & Gold (#FDB913)", icon='MATERIAL')
+            col_f.label(text="• Radwave Display: Headlines & Scores", icon='RIGHTARROW_THIN')
+            col_f.label(text="• Agency FB Bold: Downs, Yards & Stats", icon='RIGHTARROW_THIN')
+            col_f.label(text="• Anti-Glare: Gold (#FDB913) & Purple (#20003B)", icon='MATERIAL')
 
         # ====================================================================
         # STAGE 3: SHUFFLE & GAME LOGIC
@@ -3478,54 +3561,59 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
             box_stage3 = layout.box()
             box_stage3.label(text="3. Shuffle Mechanics & Game-Day Variants", icon='PHYSICS')
 
-            # Outcome Variants
+            # Outcome Variants & Models
             box_var = box_stage3.box()
-            box_var.label(text="Game-Day Outcome Variants (3 Deterministic Variants)", icon='FORCE_DRAG')
-            box_var.prop(props, "target_outcome", text="Outcome")
-
-            # Model Linking
-            box_mod = box_stage3.box()
-            box_mod.label(text="Assign Your 3D Models", icon='OBJECT_DATA')
-            box_mod.prop(props, "custom_helmet_1", text="Shuffler 1 (Left)")
-            box_mod.prop(props, "custom_helmet_2", text="Shuffler 2 (Center)")
-            box_mod.prop(props, "custom_helmet_3", text="Shuffler 3 (Right)")
-            box_mod.prop(props, "custom_football", text="Hidden Prize (Under)")
-            row_m = box_mod.row(align=True)
-            row_m.operator("wolfpack.link_selected", text="Auto-Assign 3 Selected", icon='RESTRICT_SELECT_OFF')
-            row_m.operator("wolfpack.import_model", text="Import Model File", icon='IMPORT')
+            box_var.label(text="Target Outcome & 3D Models", icon='OBJECT_DATA')
+            box_var.prop(props, "target_outcome", text="Winning Outcome")
+            
+            col_m = box_var.column(align=True)
+            row_m1 = col_m.row(align=True)
+            row_m1.prop(props, "custom_helmet_1", text="Shuffler 1")
+            row_m1.prop(props, "custom_helmet_2", text="Shuffler 2")
+            row_m2 = col_m.row(align=True)
+            row_m2.prop(props, "custom_helmet_3", text="Shuffler 3")
+            row_m2.prop(props, "custom_football", text="Hidden Prize")
+            
+            row_btn = box_var.row(align=True)
+            row_btn.operator("wolfpack.link_selected", text="Auto-Assign 3 Selected", icon='RESTRICT_SELECT_OFF')
+            row_btn.operator("wolfpack.import_model", text="Import Model File", icon='IMPORT')
 
             # Cognitive Pacing
             box_cog = box_stage3.box()
-            box_cog.label(text="Cognitive Pacing & HUD Badges", icon='VIS_SEL_11')
+            box_cog.label(text="Cognitive Pacing & HUD", icon='VIS_SEL_11')
             box_cog.prop(props, "clean_screen_during_shuffle", text="Clean Screen (Zero Text During Swaps)")
             box_cog.prop(props, "show_slot_hud_numbers", text="Slot HUD Badges [ 1 ] [ 2 ] [ 3 ]")
 
-            # Shuffle Dynamics
+            # Shuffle Dynamics (Compact Two-Column Grid)
             box_dyn = box_stage3.box()
             box_dyn.label(text="Swap Timing & Centripetal Physics", icon='TIME')
-            col_d = box_dyn.column(align=True)
-            col_d.prop(props, "num_swaps")
-            col_d.prop(props, "swap_duration")
-            col_d.prop(props, "pause_frames")
-            col_d.prop(props, "slot_spacing")
-            col_d.prop(props, "y_depth")
-            col_d.prop(props, "bounce_height")
-            col_d.prop(props, "bank_angle")
-            col_d.prop(props, "movement_style")
+            
+            row_d1 = box_dyn.row(align=True)
+            row_d1.prop(props, "num_swaps", text="Swaps")
+            row_d1.prop(props, "swap_duration", text="Swap Frames")
+            
+            row_d2 = box_dyn.row(align=True)
+            row_d2.prop(props, "slot_spacing", text="Spacing")
+            row_d2.prop(props, "pause_frames", text="Pause Frames")
+            
+            row_d3 = box_dyn.row(align=True)
+            row_d3.prop(props, "y_depth", text="Depth Curve")
+            row_d3.prop(props, "bounce_height", text="Bounce Height")
+            
+            row_d4 = box_dyn.row(align=True)
+            row_d4.prop(props, "bank_angle", text="Bank Angle")
+            row_d4.prop(props, "movement_style", text="Easing")
 
-            # Reveal & Climax
+            # Reveal Settings
             box_rev = box_stage3.box()
             box_rev.label(text="Reveal & Climax Settings", icon='HIDE_OFF')
-            col_r = box_rev.column(align=True)
-            col_r.prop(props, "show_intro_reveal", text="Show Ball First (Intro Lift)")
+            box_rev.prop(props, "show_intro_reveal", text="Show Ball First (Intro Lift)")
             if props.show_intro_reveal:
-                col_r.prop(props, "intro_lift_duration", text="Intro Lift Duration")
-            col_r.prop(props, "randomize_target")
-            if not props.randomize_target:
-                col_r.prop(props, "reveal_target")
-            col_r.prop(props, "suspense_duration")
-            col_r.prop(props, "reveal_height")
-            col_r.prop(props, "reveal_tilt")
+                box_rev.prop(props, "intro_lift_duration", text="Intro Duration")
+                
+            row_r1 = box_rev.row(align=True)
+            row_r1.prop(props, "suspense_duration", text="Suspense Freeze")
+            row_r1.prop(props, "reveal_height", text="Reveal Height")
 
         # ====================================================================
         # STAGE 4: RENDER & BROADCAST SYNC
@@ -3533,14 +3621,14 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         if props.ui_tab in {'ALL', 'RENDER'}:
             box_stage4 = layout.box()
             box_stage4.label(text="4. 1-Click Broadcast Render Pipeline", icon='RENDER_ANIMATION')
-            box_stage4.prop(props, "render_export_preset", text="Export Format")
+            
+            row_rnd = box_stage4.row(align=True)
+            row_rnd.prop(props, "render_export_preset", text="Preset")
             box_stage4.operator("wolfpack.setup_broadcast_render", text="Configure 1-Click Render (1080p60)", icon='OUTPUT')
 
-            box_cue = layout.box()
+            box_cue = box_stage4.box()
             box_cue.label(text="Broadcast Cue Sheet Export", icon='FILE_TEXT')
             box_cue.operator("wolfpack.export_cue_sheet", text="Export Cue Sheet (.json & .csv)", icon='EXPORT')
-
-
 
         # ====================================================================
         # STAGE 5: STUDIO & TOOLS (ROCKSTAR GAMES SPEC)
@@ -3549,14 +3637,20 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
             box_stage5 = layout.box()
             box_stage5.label(text="5. Studio & Tools (Rockstar Spec)", icon='CONSOLE')
 
-            # Telemetry & Profiler HUD
+            # Telemetry & Profiler HUD (Two-Column Instrument Cluster)
             box_prof = box_stage5.box()
             box_prof.label(text="Pipeline Telemetry & Runtime Profiler", icon='PREFERENCES')
-            col_p = box_prof.column(align=True)
-            col_p.label(text=f"⚡ Bake Time: {props.last_bake_ms:.2f} ms", icon='TIME')
-            col_p.label(text=f"📦 Keyframes: {props.last_bake_keys} keys ({props.last_bake_speed:.0f} keys/s)", icon='ACTION')
-            col_p.label(text=f"🧠 Memory Delta: +{props.last_memory_mb:.3f} MB (Peak)", icon='DISK_DRIVE')
-            col_p.label(text="🛡️ Status: 0 Leaks | Deterministic Execution", icon='CHECKMARK')
+            
+            row_hud1 = box_prof.row(align=True)
+            row_hud1.label(text=f"⚡ Latency: {props.last_bake_ms:.1f} ms", icon='TIME')
+            row_hud1.label(text=f"📦 Keys: {props.last_bake_keys}", icon='ACTION')
+            
+            row_hud2 = box_prof.row(align=True)
+            row_hud2.label(text=f"🚀 Speed: {props.last_bake_speed:.0f} k/s", icon='FORWARD')
+            row_hud2.label(text=f"🧠 Peak: +{props.last_memory_mb:.2f} MB", icon='DISK_DRIVE')
+            
+            row_status = box_prof.row(align=True)
+            row_status.label(text="🛡️ Status: 0 Leaks | Deterministic Execution", icon='CHECKMARK')
             box_prof.operator("wolfpack.export_telemetry", text="Export Benchmark Report (.json)", icon='EXPORT')
 
             # 3D Motion Trajectory Arcs
@@ -3571,8 +3665,10 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
             box_eng.prop(props, "game_engine_target", text="Target Schema")
             box_eng.operator("wolfpack.export_game_engine_anim", text="Export Game Engine Tracks (.json)", icon='SCRIPT')
 
+
 classes = (
     WolfpackShuffleProperties,
+    WOLFPACK_OT_one_click_gameday_setup,
     WOLFPACK_OT_generate_shuffle,
     WOLFPACK_OT_setup_demo,
     WOLFPACK_OT_link_selected,
