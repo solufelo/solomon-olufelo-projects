@@ -2842,7 +2842,7 @@ class GOLDEN_HAWKS_OT_setup_atmosphere(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "wolfpack_shuffle", None))
         mood = getattr(props, "lighting_mood", 'NIGHT_GAME_FLOODLIGHT')
         vols = getattr(props, "enable_volumetric_haze", True)
         dens = getattr(props, "haze_density", 0.005)
@@ -2872,7 +2872,7 @@ class GOLDEN_HAWKS_OT_generate_stinger(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "wolfpack_shuffle", None))
         st_type = props.stinger_type
         
         # Clean conflicting text from other modes (Bumper/Shuffle)
@@ -3085,7 +3085,7 @@ class GOLDEN_HAWKS_OT_generate_shuffle(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "wolfpack_shuffle", None))
         try:
             winner, frames = bake_shuffle_to_scene(props)
             self.report({'INFO'}, f"Golden Hawks Shuffle Generated! Ball under Helmet {winner} ({frames} frames)")
@@ -3102,7 +3102,7 @@ class GOLDEN_HAWKS_OT_setup_demo(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "wolfpack_shuffle", None))
         setup_demo_scene_if_needed(props.slot_spacing, props.venue_preset)
         # Link to properties
         props.custom_helmet_1 = bpy.data.objects.get("Helmet_1")
@@ -3121,7 +3121,7 @@ class GOLDEN_HAWKS_OT_link_selected(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "wolfpack_shuffle", None))
         selected = list(context.selected_objects)
         if len(selected) < 3:
             self.report({'WARNING'}, "Please select at least 3 objects in the 3D viewport!")
@@ -3180,7 +3180,7 @@ class GOLDEN_HAWKS_OT_generate_entry_bumper(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "wolfpack_shuffle", None))
         coll = bpy.data.collections.get("Golden_Hawks_Shuffle") or context.scene.collection
         
         cleanup_conflicting_text_graphics('BUMPER')
@@ -3205,7 +3205,7 @@ class GOLDEN_HAWKS_OT_generate_slogan(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "wolfpack_shuffle", None))
         coll = bpy.data.collections.get("Golden_Hawks_Shuffle") or context.scene.collection
         
         cleanup_conflicting_text_graphics('SLOGAN')
@@ -3230,7 +3230,7 @@ class GOLDEN_HAWKS_OT_setup_broadcast_render(bpy.types.Operator):
 
     def execute(self, context):
         scene = context.scene
-        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "golden_hawks_shuffle", None))
+        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "wolfpack_shuffle", None))
         
         # 1. Resolution & Framerate
         scene.render.resolution_x = 1920
@@ -3310,7 +3310,7 @@ class GOLDEN_HAWKS_OT_export_cue_sheet(bpy.types.Operator):
     def execute(self, context):
         global _LAST_SHUFFLE_PLAN
         scene = context.scene
-        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "golden_hawks_shuffle", None))
+        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "wolfpack_shuffle", None))
         plan = _LAST_SHUFFLE_PLAN
         winning_id = getattr(plan, "reveal_item_id", 0) if plan else 0
         total_f = getattr(plan, "total_frames", scene.frame_end) if plan else scene.frame_end
@@ -3553,7 +3553,7 @@ class GOLDEN_HAWKS_OT_toggle_motion_trajectories(bpy.types.Operator):
 
     def execute(self, context):
         scene = context.scene
-        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "golden_hawks_shuffle", None))
+        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "wolfpack_shuffle", None))
         objects, fb_ctrl = get_shuffle_objects(props)
         valid_objects = [obj for obj in objects if obj is not None]
         
@@ -3579,7 +3579,7 @@ class GOLDEN_HAWKS_OT_export_game_engine_anim(bpy.types.Operator):
 
     def execute(self, context):
         scene = context.scene
-        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "golden_hawks_shuffle", None))
+        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "wolfpack_shuffle", None))
         try:
             target_path, data = export_game_engine_animation_tracks(scene, props)
             actor_count = len(data.get("actors", {}))
@@ -3599,7 +3599,7 @@ class GOLDEN_HAWKS_OT_export_telemetry(bpy.types.Operator):
 
     def execute(self, context):
         scene = context.scene
-        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "golden_hawks_shuffle", None))
+        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "wolfpack_shuffle", None))
         
         benchmark_data = {
             "studio": "Golden Hawks Athletics / Rockstar Spec Studio Tools",
@@ -3638,7 +3638,7 @@ class GOLDEN_HAWKS_OT_one_click_gameday_setup(bpy.types.Operator):
 
     def execute(self, context):
         scene = context.scene
-        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "golden_hawks_shuffle", None))
+        props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "wolfpack_shuffle", None))
         
         # 1. Setup Venue Pitch & Stand-ins
         bpy.ops.golden_hawks.setup_demo()
@@ -3679,7 +3679,7 @@ class GOLDEN_HAWKS_OT_bake_animation_only(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "wolfpack_shuffle", None))
         objects, fb_ctrl = get_shuffle_objects(props)
         if not any(objects):
             for i in range(3):
@@ -3765,7 +3765,7 @@ class GOLDEN_HAWKS_OT_bake_variant_a(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "wolfpack_shuffle", None))
         props.target_outcome = 'SLOT_1'
         bpy.ops.golden_hawks.generate_shuffle()
         self.report({'INFO'}, "Variant A (Slot 1 / Left Wins) Baked!")
@@ -3779,7 +3779,7 @@ class GOLDEN_HAWKS_OT_bake_variant_b(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "wolfpack_shuffle", None))
         props.target_outcome = 'SLOT_2'
         bpy.ops.golden_hawks.generate_shuffle()
         self.report({'INFO'}, "Variant B (Slot 2 / Center Wins) Baked!")
@@ -3793,7 +3793,7 @@ class GOLDEN_HAWKS_OT_bake_variant_c(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "wolfpack_shuffle", None))
         props.target_outcome = 'SLOT_3'
         bpy.ops.golden_hawks.generate_shuffle()
         self.report({'INFO'}, "Variant C (Slot 3 / Right Wins) Baked!")
@@ -3809,7 +3809,7 @@ class GOLDEN_HAWKS_PT_sidebar_panel(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
-        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "golden_hawks_shuffle", None))
+        props = (getattr(context.scene, "golden_hawks_shuffle", None) or getattr(context.scene, "wolfpack_shuffle", None))
 
         # ====================================================================
         # BRANDING & STUDIO HEADER RIBBON
@@ -4061,60 +4061,156 @@ class GOLDEN_HAWKS_PT_sidebar_panel(bpy.types.Panel):
             box_eng.operator("golden_hawks.export_game_engine_anim", text="Export Game Engine Tracks (.json)", icon='SCRIPT')
 
 
-# Backward compatibility aliases for legacy operator calls
-_LEGACY_OPERATOR_CLASSES = []
+# ============================================================================
+# SAFE LEGACY OPERATOR ALIASES (Non-Recursive)
+# ============================================================================
 
-def _create_legacy_operator(target_id, legacy_id):
-    parts = target_id.split(".")
-    grp, act = parts[0], parts[1]
-    legacy_parts = legacy_id.split(".")
-    
-    class LegacyOp(bpy.types.Operator):
-        bl_idname = legacy_id
-        bl_label = f"Legacy {legacy_id}"
-        bl_options = {'INTERNAL'}
-        def execute(self, context):
-            target_fn = getattr(getattr(bpy.ops, grp), act)
-            return target_fn()
-            
-    LegacyOp.__name__ = f"LEGACY_OT_{legacy_parts[0]}_{legacy_parts[1]}"
-    return LegacyOp
+class GOLDEN_HAWKS_OT_bake_shuffle_alias(bpy.types.Operator):
+    bl_idname = "golden_hawks.bake_shuffle"
+    bl_label = "Bake Golden Hawks Shuffle"
+    bl_description = "Alias for generate_shuffle"
+    bl_options = {'REGISTER', 'UNDO'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.generate_shuffle()
 
-_LEGACY_MAP = [
-    ("golden_hawks.setup_atmosphere", "golden_hawks.setup_atmosphere"),
-    ("golden_hawks.setup_goalposts", "golden_hawks.setup_goalposts"),
-    ("golden_hawks.generate_stinger", "golden_hawks.generate_stinger"),
-    ("golden_hawks.generate_shuffle", "golden_hawks.generate_shuffle"),
-    ("golden_hawks.generate_shuffle", "golden_hawks.bake_shuffle"),
-    ("golden_hawks.generate_shuffle", "golden_hawks.bake_shuffle"),
-    ("golden_hawks.setup_demo", "golden_hawks.setup_demo"),
-    ("golden_hawks.link_selected", "wolfpack.link_selected"),
-    ("golden_hawks.import_model", "wolfpack.import_model"),
-    ("golden_hawks.generate_entry_bumper", "golden_hawks.generate_entry_bumper"),
-    ("golden_hawks.generate_slogan", "golden_hawks.generate_slogan"),
-    ("golden_hawks.setup_broadcast_render", "golden_hawks.setup_broadcast_render"),
-    ("golden_hawks.export_cue_sheet", "golden_hawks.export_cue_sheet"),
-    ("golden_hawks.toggle_motion_trajectories", "golden_hawks.toggle_motion_trajectories"),
-    ("golden_hawks.export_game_engine_anim", "golden_hawks.export_game_engine_anim"),
-    ("golden_hawks.export_telemetry", "golden_hawks.export_telemetry"),
-    ("golden_hawks.one_click_gameday_setup", "golden_hawks.one_click_gameday_setup"),
-    ("golden_hawks.bake_animation_only", "golden_hawks.bake_animation_only"),
-    ("golden_hawks.link_environment", "golden_hawks.link_environment"),
-    ("golden_hawks.bake_variant_a", "golden_hawks.bake_variant_a"),
-    ("golden_hawks.bake_variant_b", "golden_hawks.bake_variant_b"),
-    ("golden_hawks.bake_variant_c", "golden_hawks.bake_variant_c"),
-]
+class WOLFPACK_OT_legacy_one_click(bpy.types.Operator):
+    bl_idname = "wolfpack.one_click_gameday_setup"
+    bl_label = "Legacy 1-Click Setup"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.one_click_gameday_setup()
 
-for tgt, leg in _LEGACY_MAP:
-    try:
-        _LEGACY_OPERATOR_CLASSES.append(_create_legacy_operator(tgt, leg))
-    except Exception:
-        pass
+class WOLFPACK_OT_legacy_generate_shuffle(bpy.types.Operator):
+    bl_idname = "wolfpack.generate_shuffle"
+    bl_label = "Legacy Generate Shuffle"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.generate_shuffle()
+
+class WOLFPACK_OT_legacy_bake_shuffle(bpy.types.Operator):
+    bl_idname = "wolfpack.bake_shuffle"
+    bl_label = "Legacy Bake Shuffle"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.generate_shuffle()
+
+class WOLFPACK_OT_legacy_setup_demo(bpy.types.Operator):
+    bl_idname = "wolfpack.setup_demo"
+    bl_label = "Legacy Setup Demo"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.setup_demo()
+
+class WOLFPACK_OT_legacy_setup_atmosphere(bpy.types.Operator):
+    bl_idname = "wolfpack.setup_atmosphere"
+    bl_label = "Legacy Setup Atmosphere"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.setup_atmosphere()
+
+class WOLFPACK_OT_legacy_setup_goalposts(bpy.types.Operator):
+    bl_idname = "wolfpack.setup_goalposts"
+    bl_label = "Legacy Setup Goalposts"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.setup_goalposts()
+
+class WOLFPACK_OT_legacy_generate_stinger(bpy.types.Operator):
+    bl_idname = "wolfpack.generate_stinger"
+    bl_label = "Legacy Generate Stinger"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.generate_stinger()
+
+class WOLFPACK_OT_legacy_generate_entry_bumper(bpy.types.Operator):
+    bl_idname = "wolfpack.generate_entry_bumper"
+    bl_label = "Legacy Entry Bumper"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.generate_entry_bumper()
+
+class WOLFPACK_OT_legacy_generate_slogan(bpy.types.Operator):
+    bl_idname = "wolfpack.generate_slogan"
+    bl_label = "Legacy Generate Slogan"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.generate_slogan()
+
+class WOLFPACK_OT_legacy_setup_broadcast_render(bpy.types.Operator):
+    bl_idname = "wolfpack.setup_broadcast_render"
+    bl_label = "Legacy Setup Broadcast Render"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.setup_broadcast_render()
+
+class WOLFPACK_OT_legacy_export_cue_sheet(bpy.types.Operator):
+    bl_idname = "wolfpack.export_cue_sheet"
+    bl_label = "Legacy Export Cue Sheet"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.export_cue_sheet()
+
+class WOLFPACK_OT_legacy_toggle_motion_trajectories(bpy.types.Operator):
+    bl_idname = "wolfpack.toggle_motion_trajectories"
+    bl_label = "Legacy Toggle Motion Trajectories"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.toggle_motion_trajectories()
+
+class WOLFPACK_OT_legacy_export_game_engine_anim(bpy.types.Operator):
+    bl_idname = "wolfpack.export_game_engine_anim"
+    bl_label = "Legacy Export Game Engine Anim"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.export_game_engine_anim()
+
+class WOLFPACK_OT_legacy_export_telemetry(bpy.types.Operator):
+    bl_idname = "wolfpack.export_telemetry"
+    bl_label = "Legacy Export Telemetry"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.export_telemetry()
+
+class WOLFPACK_OT_legacy_bake_animation_only(bpy.types.Operator):
+    bl_idname = "wolfpack.bake_animation_only"
+    bl_label = "Legacy Bake Animation Only"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.bake_animation_only()
+
+class WOLFPACK_OT_legacy_link_environment(bpy.types.Operator):
+    bl_idname = "wolfpack.link_environment"
+    bl_label = "Legacy Link Environment"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.link_environment()
+
+class WOLFPACK_OT_legacy_bake_variant_a(bpy.types.Operator):
+    bl_idname = "wolfpack.bake_variant_a"
+    bl_label = "Legacy Bake Variant A"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.bake_variant_a()
+
+class WOLFPACK_OT_legacy_bake_variant_b(bpy.types.Operator):
+    bl_idname = "wolfpack.bake_variant_b"
+    bl_label = "Legacy Bake Variant B"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.bake_variant_b()
+
+class WOLFPACK_OT_legacy_bake_variant_c(bpy.types.Operator):
+    bl_idname = "wolfpack.bake_variant_c"
+    bl_label = "Legacy Bake Variant C"
+    bl_options = {'INTERNAL'}
+    def execute(self, context):
+        return bpy.ops.golden_hawks.bake_variant_c()
 
 classes = (
     GoldenHawksShuffleProperties,
     GOLDEN_HAWKS_OT_one_click_gameday_setup,
     GOLDEN_HAWKS_OT_generate_shuffle,
+    GOLDEN_HAWKS_OT_bake_shuffle_alias,
     GOLDEN_HAWKS_OT_setup_demo,
     GOLDEN_HAWKS_OT_link_selected,
     GOLDEN_HAWKS_OT_import_model,
@@ -4134,7 +4230,26 @@ classes = (
     GOLDEN_HAWKS_OT_bake_variant_b,
     GOLDEN_HAWKS_OT_bake_variant_c,
     GOLDEN_HAWKS_PT_sidebar_panel,
-    *_LEGACY_OPERATOR_CLASSES,
+    # Backward compatibility operator wrappers
+    WOLFPACK_OT_legacy_one_click,
+    WOLFPACK_OT_legacy_generate_shuffle,
+    WOLFPACK_OT_legacy_bake_shuffle,
+    WOLFPACK_OT_legacy_setup_demo,
+    WOLFPACK_OT_legacy_setup_atmosphere,
+    WOLFPACK_OT_legacy_setup_goalposts,
+    WOLFPACK_OT_legacy_generate_stinger,
+    WOLFPACK_OT_legacy_generate_entry_bumper,
+    WOLFPACK_OT_legacy_generate_slogan,
+    WOLFPACK_OT_legacy_setup_broadcast_render,
+    WOLFPACK_OT_legacy_export_cue_sheet,
+    WOLFPACK_OT_legacy_toggle_motion_trajectories,
+    WOLFPACK_OT_legacy_export_game_engine_anim,
+    WOLFPACK_OT_legacy_export_telemetry,
+    WOLFPACK_OT_legacy_bake_animation_only,
+    WOLFPACK_OT_legacy_link_environment,
+    WOLFPACK_OT_legacy_bake_variant_a,
+    WOLFPACK_OT_legacy_bake_variant_b,
+    WOLFPACK_OT_legacy_bake_variant_c,
 )
 
 # Compatibility alias
@@ -4147,7 +4262,7 @@ def register():
         except Exception as e:
             pass
     bpy.types.Scene.golden_hawks_shuffle = bpy.props.PointerProperty(type=GoldenHawksShuffleProperties)
-    bpy.types.Scene.golden_hawks_shuffle = bpy.props.PointerProperty(type=GoldenHawksShuffleProperties)
+    bpy.types.Scene.wolfpack_shuffle = bpy.props.PointerProperty(type=GoldenHawksShuffleProperties)
     bpy.types.Scene.wolfpack_props = bpy.props.PointerProperty(type=GoldenHawksShuffleProperties)
 
 def unregister():
@@ -4156,14 +4271,13 @@ def unregister():
             bpy.utils.unregister_class(cls)
         except Exception:
             pass
-    for prop in ["golden_hawks_shuffle", "golden_hawks_shuffle", "wolfpack_props"]:
+    for prop in ["golden_hawks_shuffle", "wolfpack_shuffle", "wolfpack_props"]:
         if hasattr(bpy.types.Scene, prop):
             try:
                 delattr(bpy.types.Scene, prop)
             except Exception:
                 pass
 
-# Standalone execution support: when run directly in Blender's Scripting Editor
 if __name__ == "__main__":
     try:
         unregister()
