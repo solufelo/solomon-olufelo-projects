@@ -1,6 +1,6 @@
-# 🎨 Wolfpack Glory — Brand Identity & UI/UX Design System
+# 🎨 Golden Hawks Helmet Shuffle — Brand Identity & UI/UX Design System
 
-> **Brand**: Wolfpack Glory ⚡ 3D Motion Engine  
+> **Brand**: Golden Hawks Helmet Shuffle ⚡ Game-Day Interactive Suite  
 > **Client / Partnership**: Wilfrid Laurier Athletics × Rockstar Games Tools Spec  
 > **Version**: 3.5.0  
 > **Master Hub**: [[../../VAULT_INDEX.md|Root Vault Index]] | [[ROCKSTAR_GAMES_PORTFOLIO_BLUEPRINT.md|Rockstar Portfolio Blueprint]]
@@ -9,7 +9,7 @@
 
 ## 🌟 Visual Identity Showcase
 
-![Wolfpack Glory 3D Motion Engine Hero Branding](wolfpack_branding_hero_1788921403525.jpg)
+![Golden Hawks Helmet Shuffle Hero Branding](wolfpack_branding_hero_1788921403525.jpg)
 
 ---
 
@@ -56,7 +56,8 @@ TELEMETRY & TIMECODES   GEIST / JETBRAINS MONO "114.48 ms | 29,168 keys/s | 00:0
 The Blender interface in **v3.5.0** applies core human factors engineering and Fitts's Law principles to make live broadcast operations error-proof:
 
 ### 1. The Branded Header Ribbon
-- **Title Block**: Prominent `WOLFPACK GLORY ⚡ MOTION ENGINE` title with live versioning (`v3.5.0`).
+- **Title Block**: Prominent `GOLDEN HAWKS ⚡ HELMET SHUFFLE` title with live versioning (`v3.5.0`).
+- **Sidebar Tab**: Clean, recognizable `Golden Hawks` category tab in the View3D sidebar.
 - **Status Pill Bar**: Four green-lit indicator pills:
   `[● 60 FPS]` `[● PRORES 422]` `[● RAGE READY]` `[● 0 LEAKS]`
   Provides immediate visual confirmation of operational health before any operator is clicked.
@@ -66,7 +67,7 @@ The Blender interface in **v3.5.0** applies core human factors engineering and F
   - The single most prominent button in the entire interface.
   - Automatically initializes the 3D venue, sets volumetric lighting, positions the 3 shufflers, bakes the entire bumper-to-shuffle sequence, renders 3D motion arcs, and configures ProRes 422 output in **under 200 milliseconds**.
   - Eliminates human error during high-stress game-day operations in the control booth.
-- **Bake Wolfpack Shuffle Animation (`scale_y = 1.45`)**:
+- **Bake Golden Hawks Shuffle Animation (`scale_y = 1.45`)**:
   - Secondary prominent action for rapid routine re-shuffling.
 
 ### 3. Two-Column Information Density Grids
@@ -95,10 +96,10 @@ The Blender interface in **v3.5.0** applies core human factors engineering and F
 * **Format**: `1080 × 1080` (1:1 Square) or `1080 × 1350` (4:5 Vertical Portrait).
 * **Frame Rate**: `60.00 fps` (smooth athletic motion).
 * **Length**: Strictly **20 seconds**.
-* **Thumbnail**: Wolfpack Glory Hero Helmet with glowing 3D trajectory spline curves.
+* **Thumbnail**: Golden Hawks Hero Helmet with glowing 3D trajectory spline curves.
 
 ### 2. Behance Case Study Structure
-* **Header**: Hero Branding Artwork (1920×1080) with title: *"Wolfpack Glory: Procedural 3D Motion Engine for Collegiate Stadiums"*.
+* **Header**: Hero Branding Artwork (1920×1080) with title: *"Golden Hawks Helmet Shuffle: Procedural 3D Motion Engine for Collegiate Stadiums"*.
 * **Section 1**: The Real-World Challenge (APL protection, camera perspective overlap).
 * **Section 2**: Mathematical Innovation (Camera-normal pitch vector `61.74°`, centripetal sine wave banking).
 * **Section 3**: Technical Artist Tooling (Blender N-panel, 3D motion splines, real-time profiler).

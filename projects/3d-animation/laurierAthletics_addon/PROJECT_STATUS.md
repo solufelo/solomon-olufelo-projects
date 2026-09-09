@@ -1,4 +1,4 @@
-# 🏈 Laurier Athletics Videoboard & Wolfpack Shuffle 3D Suite - Tactical Status
+# 🏈 Laurier Athletics Videoboard & Golden Hawks Helmet Shuffle 3D Suite - Tactical Status
 
 > **Master Hub**: [[../../VAULT_INDEX.md|Root Vault Index]] | [[../../THE_SUPER_BOWL_4_PILLAR_SYSTEM.md|The Super Bowl 4-Pillar System]]  
 > **Rockstar Portfolio Blueprint**: [[ROCKSTAR_GAMES_PORTFOLIO_BLUEPRINT.md|Rockstar Blueprint & 20s LinkedIn Plan]]  
@@ -7,13 +7,13 @@
 ---
 
 ## 📌 Module Information
-* **Name**: Laurier Athletics Videoboard & Wolfpack Shuffle 3D Suite (Rockstar Tools Spec)
+* **Name**: Laurier Athletics Videoboard & Golden Hawks Helmet Shuffle 3D Suite (Rockstar Tools Spec)
 * **Current Version**: `v3.5.0` (AAA Studio Production Release)
 * **Date**: September 8, 2026
 * **Blender Target**: Blender 5.2.1 LTS
-* **Addon Module**: `wolfpack_shuffle`
+* **Addon Module**: `golden_hawks_shuffle` (alias: `wolfpack_shuffle`)
 * **Source Path**: `projects/3d-animation/laurierAthletics_addon/blender_addon/__init__.py`
-* **Release Archive**: `projects/3d-animation/laurierAthletics_addon/laurier_wolfpack_shuffle_v3.5.0.zip`
+* **Release Archive**: `projects/3d-animation/laurierAthletics_addon/laurier_golden_hawks_shuffle_v3.5.0.zip`
 
 ---
 

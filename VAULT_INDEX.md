@@ -1,7 +1,7 @@
 ---
 title: Solomon Olufelo - Master Vault AI Knowledge Hub & Index
 last_updated: 2026-09-08T22:30:00-04:00
-current_sprint: Laurier Athletics Videoboard & Wolfpack Shuffle 3D Suite (Rockstar Tools Spec)
+current_sprint: Laurier Athletics Videoboard & Golden Hawks Helmet Shuffle 3D Suite (Rockstar Tools Spec)
 active_version: v3.5.0 (AAA Studio Production Release)
 primary_system: Blender 5.2.1 LTS + Python 3.11 + LORIS + C++ WASM
 employment_status: Wilfrid Laurier University - Video Assistant (ST1086-01 / H00209)
@@ -45,7 +45,7 @@ vault_sync_protocol: v2.2.0
 
 | Domain | Current Active Node | Status / Version | Primary Documentation / Files |
 | :--- | :--- | :--- | :--- |
-| 🎬 **Active Sprint: 3D & Tools** | **Laurier Athletics & Rockstar Spec 3D Suite** | **v3.5.0 Live & Installed** | [[projects/3d-animation/laurierAthletics_addon/README.md\|Addon README]]<br>[[projects/3d-animation/laurierAthletics_addon/CHANGELOG.md\|Changelog]]<br>[[projects/3d-animation/laurierAthletics_addon/ROCKSTAR_GAMES_PORTFOLIO_BLUEPRINT.md\|Rockstar Blueprint]]<br>[[projects/3d-animation/laurierAthletics_addon/pipeline_batch_runner.py\|Headless Batch Runner]] |
+| 🎬 **Active Sprint: 3D & Tools** | **Laurier Athletics: Golden Hawks Helmet Shuffle 3D Suite** | **v3.5.0 Live & Installed** | [[projects/3d-animation/laurierAthletics_addon/README.md\|Addon README]]<br>[[projects/3d-animation/laurierAthletics_addon/CHANGELOG.md\|Changelog]]<br>[[projects/3d-animation/laurierAthletics_addon/ROCKSTAR_GAMES_PORTFOLIO_BLUEPRINT.md\|Rockstar Blueprint]]<br>[[projects/3d-animation/laurierAthletics_addon/pipeline_batch_runner.py\|Headless Batch Runner]] |
 | ⏱️ **Employment & Payroll** | **WLU Athletics Video Assistant** (`ST1086-01` / `H00209`) | **$19.03/hr • 40h/wk Cap** | [[projects/3d-animation/laurierAthletics_addon/LAURIER_TIMESHEET_LOG.md\|Timesheet & LORIS Log]] |
 | 🎓 **Academic & Campus** | **Wilfrid Laurier University - Fall 2026** | **Classes start Sept 10** | [[THE_SUPER_BOWL_4_PILLAR_SYSTEM.md\|4-Pillar Master Blueprint]]<br>[[projects/learning-education/SASP-001/PROJECT_SCHEMA.md\|SASP-001 Schema]] |
 | ⚔️ **Technical Weapon: C++** | **Light Years — C++ to WASM Game Engine** | **Active Fixed-Timestep** | [[projects/web-development/light-years-game/README.md\|Light Years Engine]] |
@@ -55,10 +55,10 @@ vault_sync_protocol: v2.2.0
 
 ## 📍 Where We Are Right Now: Active Production Node
 
-### 🎬 Laurier Athletics Videoboard & Wolfpack Shuffle 3D Suite (v3.5.0 - Rockstar Spec)
+### 🎬 Laurier Athletics Videoboard & Golden Hawks Helmet Shuffle 3D Suite (v3.5.0 - Rockstar Spec)
 * **Location**: `projects/3d-animation/laurierAthletics_addon/`
-* **Target Platform**: Blender 5.2.1 LTS (Windows `AppData\Roaming\Blender Foundation\Blender\5.2\scripts\addons\wolfpack_shuffle`)
-* **Live Installation**: Auto-activated in Blender user preferences (`userpref.blend`); packaged in release zips (`laurier_wolfpack_shuffle_v3.5.0.zip`) on repo, Desktop, and Downloads.
+* **Target Platform**: Blender 5.2.1 LTS (Windows `AppData\Roaming\Blender Foundation\Blender\5.2\scripts\addons\wolfpack_shuffle` & `golden_hawks_shuffle`)
+* **Live Installation**: Auto-activated in Blender user preferences (`userpref.blend`); packaged in release zips (`laurier_golden_hawks_shuffle_v3.5.0.zip`) on repo, Desktop, and Downloads.
 * **AAA Studio Features in v3.5.0**:
   1. **Game Engine Runtime Track Exporter**:
      - Extracts per-frame Unit Quaternions $[w, x, y, z]$, instantaneous velocity vectors $[\dot{x}, \dot{y}, \dot{z}]$, speed ($m/s$), and event markers into structured JSON (`wolfpack_anim_tracks.json`) for Rockstar RAGE and Unreal runtimes.

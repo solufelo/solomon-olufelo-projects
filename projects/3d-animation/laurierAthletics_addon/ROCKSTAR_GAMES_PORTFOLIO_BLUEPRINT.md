@@ -4,7 +4,7 @@
 > **Target Roles**: Tools Programmer, Technical Artist, Animation Pipeline Developer  
 > **Related Master Plan**: [[../../THE_SUPER_BOWL_4_PILLAR_SYSTEM.md|The Super Bowl 4-Pillar System]]  
 > **Master Vault Index**: [[../../VAULT_INDEX.md|Root Vault Index]]  
-> **Active Codebase**: [[blender_addon/__init__.py|Wolfpack Shuffle Addon v3.5.0]] | [[pipeline_batch_runner.py|Headless Batch Runner]]
+> **Active Codebase**: [[blender_addon/__init__.py|Golden Hawks Helmet Shuffle Addon v3.5.0]] | [[pipeline_batch_runner.py|Headless Batch Runner]]
 
 ---
 
@@ -25,7 +25,7 @@ text overlap       motion trajectory    tracks (.json)       for tools work
 | Timecode | Screen Action / Visual | Audio / Sound Design | On-Screen Dynamic Text / Overlay |
 | :--- | :--- | :--- | :--- |
 | **0:00 – 0:03** | **Split Screen / Fast Scrub**: Show the nightmare scenario: 3D text overlapping into a messy ball of gold geometry in perspective camera view, while dragging dozens of manual keyframes across the Dope Sheet. | Heavy distorted static / error hum | *"Why hardcoded DCC animation collapses in production."* |
-| **0:04 – 0:08** | **The Math in Action**: Snap to clean Blender 3D Viewport. Show the N-Panel clicking **"Generate Wolfpack Shuffle"**. The 3D text instantly pitches **61.74°** into the camera-normal plane with zero overlap. Glowing neon **3D Motion Trajectory Arcs** (Gold, Purple, Cyan) bloom across the turf showing clean orbital swap clearances. | Crisp mechanical click + rising sub-bass whoosh | *"Camera-Normal Pitch Alignment (61.74°) + 3D Motion Trajectory Splines."* |
+| **0:04 – 0:08** | **The Math in Action**: Snap to clean Blender 3D Viewport. Show the N-Panel clicking **"Bake Golden Hawks Shuffle"**. The 3D text instantly pitches **61.74°** into the camera-normal plane with zero overlap. Glowing neon **3D Motion Trajectory Arcs** (Gold, Purple, Cyan) bloom across the turf showing clean orbital swap clearances. | Crisp mechanical click + rising sub-bass whoosh | *"Camera-Normal Pitch Alignment (61.74°) + 3D Motion Trajectory Splines."* |
 | **0:09 – 0:14** | **The Studio Pipeline**: Zoom into the N-Panel **Studio & Tools (Rockstar Spec)** tab. The real-time profiler HUD flashes: `⚡ 114.48 ms | 29,168 keys/s | +0.16 MB Peak | 0 Leaks`. Click **"Export Game Engine Tracks"** — show terminal streaming JSON export with unit quaternions $[w, x, y, z]$, velocity vectors, and discrete event markers. | High-tech digital ping / data chime | *"Real-time Profiler + Runtime Quaternion & Velocity Export (RAGE / Game Engine ready)."* |
 | **0:15 – 0:20** | **The Final Payoff**: 4K ProRes 60fps render playing seamlessly across the Knight-Newbrough Stadium LED Videoboard with volumetric floodlights, followed by hero helmet reveal. Quick transition to personal branding. | Stadium crowd roar / bass drop | *"Built in Python for Blender 5.2. Next stop: AAA Tools Engineering at Rockstar."* |
 

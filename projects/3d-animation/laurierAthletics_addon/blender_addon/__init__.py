@@ -1,10 +1,10 @@
 bl_info = {
-    "name": "Wolfpack Glory Helmet Shuffle",
-    "author": "Solomon Olufelo / Wolfpack Glory",
+    "name": "Golden Hawks Helmet Shuffle",
+    "author": "Solomon Olufelo / Laurier Athletics",
     "version": (3, 5, 0),
     "blender": (4, 0, 0),
-    "location": "View3D > Sidebar > Wolfpack Shuffle",
-    "description": "AAA Broadcast & Studio Motion Graphics Suite (Rockstar Tools Spec: Game Engine Animation Tracks, Real-Time Profiler, 3D Motion Trajectories, Broadcast Sandwich, 4 Volumetric Moods, 1-Click ProRes)",
+    "location": "View3D > Sidebar > Golden Hawks",
+    "description": "Laurier Golden Hawks Game-Day Helmet Shuffle & AAA Motion Graphics Suite (Interactive Videoboard Shell Game, Broadcast Sandwich Framing, Volumetric Atmosphere, ProRes 422 HQ)",
     "category": "Animation",
 }
 
@@ -3419,11 +3419,11 @@ class WOLFPACK_OT_one_click_gameday_setup(bpy.types.Operator):
 
 class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
     """Optimaxxed UI Panel in 3D Viewport Sidebar"""
-    bl_label = "Laurier Wolfpack Shuffle ⚡ Studio Suite"
+    bl_label = "Golden Hawks Helmet Shuffle ⚡ Game-Day Suite"
     bl_idname = "WOLFPACK_PT_sidebar_panel"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = "Laurier Wolfpack"
+    bl_category = "Golden Hawks"
 
     def draw(self, context):
         layout = self.layout
@@ -3435,10 +3435,10 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         box_brand = layout.box()
         col_b = box_brand.column(align=True)
         row_title = col_b.row(align=True)
-        row_title.label(text="WOLFPACK GLORY ⚡ MOTION ENGINE", icon='SOLO_ON')
+        row_title.label(text="GOLDEN HAWKS ⚡ HELMET SHUFFLE", icon='SOLO_ON')
         
         row_sub = col_b.row(align=True)
-        row_sub.label(text="v3.5.0 • Laurier Athletics × Rockstar Spec", icon='PREFERENCES')
+        row_sub.label(text="v3.5.0 • Laurier Athletics Game-Day Interactive", icon='PREFERENCES')
         
         # Status Pill Bar
         row_pills = box_brand.row(align=True)
@@ -3455,7 +3455,7 @@ class WOLFPACK_PT_sidebar_panel(bpy.types.Panel):
         col_hero = layout.column(align=True)
         col_hero.scale_y = 1.45
         col_hero.operator("wolfpack.one_click_gameday_setup", text="⚡ 1-Click Full Game-Day Show", icon='AUTO')
-        col_hero.operator("wolfpack.generate_shuffle", text="Bake Wolfpack Shuffle Animation", icon='PLAY')
+        col_hero.operator("wolfpack.generate_shuffle", text="Bake Golden Hawks Shuffle Animation", icon='PLAY')
 
         # ====================================================================
         # WORKFLOW STAGES NAVIGATION TABS
@@ -3690,6 +3690,7 @@ def register():
     for cls in classes:
         bpy.utils.register_class(cls)
     bpy.types.Scene.wolfpack_shuffle = bpy.props.PointerProperty(type=WolfpackShuffleProperties)
+    bpy.types.Scene.golden_hawks_shuffle = bpy.props.PointerProperty(type=WolfpackShuffleProperties)
     bpy.types.Scene.wolfpack_props = bpy.props.PointerProperty(type=WolfpackShuffleProperties)
 
 def unregister():
@@ -3711,4 +3712,4 @@ if __name__ == "__main__":
     except Exception:
         pass
     register()
-    print("[Wolfpack Glory] Plugin loaded and registered in View3D Sidebar > 'Wolfpack Shuffle'!")
+    print("[Golden Hawks] Plugin loaded and registered in View3D Sidebar > 'Golden Hawks'!")
