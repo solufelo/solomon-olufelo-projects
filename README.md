@@ -106,6 +106,7 @@ I specialize in building **production-ready applications** that solve real user 
 - **[3D_Portfolio](#)** - Interactive 3D web showcase.
 
 ### 📚 Learning & Academics
+- **[Fall 2026 Academic Operating System & Proof-of-Life Hub](projects/learning-education/fall-2026-operating-system)** - Academic Fortress, Double-XF firewall, course guides (`SY 281`, `FS 209C`, `KS 205`), and Athletics 40hr/wk payroll tracking engine.
 - **[CP213](projects/learning-education/CP213)** - Java Object-Oriented Programming (Coursework & Exam Prep).
 - **[Learning3JS](projects/learning-education/Learning3JS)** - Three.js graphics experiments.
 
