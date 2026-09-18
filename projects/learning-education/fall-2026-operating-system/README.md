@@ -26,6 +26,7 @@ This directory houses the operational, academic, and employment infrastructure g
 
 | File | Description | Status |
 | :--- | :--- | :--- |
+| **[FALL_2026_WEEKLY_EXAM_SUCCESS_STUDY_ROADMAP.md](FALL_2026_WEEKLY_EXAM_SUCCESS_STUDY_ROADMAP.md)** | **Master week-by-week study list, readings, active recall targets, and exam schedules (Weeks 1–14).** | 🟢 Live & Active |
 | **[PROOF_OF_LIFE_ACCOUNTABILITY_LOG.md](PROOF_OF_LIFE_ACCOUNTABILITY_LOG.md)** | **Executive accountability dashboard, GPA defense register, and submission milestones.** | 🟢 Live & Active |
 | **[EXAM_PROOF_ACTIVE_RECALL_ENGINE.md](EXAM_PROOF_ACTIVE_RECALL_ENGINE.md)** | **Exam-proof active recall engine, mnemonics (A-A-A-W), model short answers, and flashcards.** | 🟢 Live & Active |
 | **[EXERCISE_1_EPISTEMICIDE_GUIDE.md](EXERCISE_1_EPISTEMICIDE_GUIDE.md)** | Full text, rubric breakdown, and exact page constraint analysis for Exercise #1. | 🟢 Live & Active |
