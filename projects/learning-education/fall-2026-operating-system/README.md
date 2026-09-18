@@ -27,6 +27,9 @@ This directory houses the operational, academic, and employment infrastructure g
 | File | Description | Status |
 | :--- | :--- | :--- |
 | **[PROOF_OF_LIFE_ACCOUNTABILITY_LOG.md](PROOF_OF_LIFE_ACCOUNTABILITY_LOG.md)** | **Executive accountability dashboard, GPA defense register, and submission milestones.** | 🟢 Live & Active |
+| **[EXAM_PROOF_ACTIVE_RECALL_ENGINE.md](EXAM_PROOF_ACTIVE_RECALL_ENGINE.md)** | **Exam-proof active recall engine, mnemonics (A-A-A-W), model short answers, and flashcards.** | 🟢 Live & Active |
+| **[EXERCISE_1_EPISTEMICIDE_GUIDE.md](EXERCISE_1_EPISTEMICIDE_GUIDE.md)** | Full text, rubric breakdown, and exact page constraint analysis for Exercise #1. | 🟢 Live & Active |
+| **[Exercise_1_Epistemicide_Solomon_Olufelo.docx](Exercise_1_Epistemicide_Solomon_Olufelo.docx)** | Submission-ready Word Doc (1 single-spaced page + References on Page 2). | 🟢 Ready to Submit |
 | **[SEMESTER_STUDY_OPERATING_SYSTEM_FALL_2026.md](SEMESTER_STUDY_OPERATING_SYSTEM_FALL_2026.md)** | Master study OS, course weighting, MVE strategy, and low-friction timetable. | 🟢 Live & Active |
 | **[SY281A_QUALITATIVE_METHODS_MASTER_STUDY_GUIDE.md](SY281A_QUALITATIVE_METHODS_MASTER_STUDY_GUIDE.md)** | Comprehensive theory, decolonizing research, and exam preparation guide. | 🟢 Live & Active |
 | **[LAURIER_ATHLETICS_YEAR_ROUND_40HR_MASTERPLAN.md](LAURIER_ATHLETICS_YEAR_ROUND_40HR_MASTERPLAN.md)** | Complete 16-pay-period athletics production roadmap ($24,358.40 CAD gross potential). | 🟢 Live & Active |
