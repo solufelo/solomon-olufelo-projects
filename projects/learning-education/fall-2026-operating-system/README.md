@@ -25,7 +25,8 @@ This directory houses the operational, academic, and employment infrastructure g
 ## 📂 System Directory Structure
 
 | File | Description | Status |
-| :--- | :--- | :--- |
+| **[FALL_2026_MASTER_EXAM_STUDY_AID.docx](FALL_2026_MASTER_EXAM_STUDY_AID.docx)** | **Executive formatted Word Document study aid with styled tables, callouts, and practice exams.** | 🟢 Master Companion |
+| **[FALL_2026_MASTER_EXAM_STUDY_AID.md](FALL_2026_MASTER_EXAM_STUDY_AID.md)** | **Complete Master Study Aid (SY 281, FS 209C, KS 205): 12-question practice exam, film analysis, McCloud theory.** | 🟢 Live & Active |
 | **[FALL_2026_WEEKLY_EXAM_SUCCESS_STUDY_ROADMAP.md](FALL_2026_WEEKLY_EXAM_SUCCESS_STUDY_ROADMAP.md)** | **Master week-by-week study list, readings, active recall targets, and exam schedules (Weeks 1–14).** | 🟢 Live & Active |
 | **[PROOF_OF_LIFE_ACCOUNTABILITY_LOG.md](PROOF_OF_LIFE_ACCOUNTABILITY_LOG.md)** | **Executive accountability dashboard, GPA defense register, and submission milestones.** | 🟢 Live & Active |
 | **[EXAM_PROOF_ACTIVE_RECALL_ENGINE.md](EXAM_PROOF_ACTIVE_RECALL_ENGINE.md)** | **Exam-proof active recall engine, mnemonics (A-A-A-W), model short answers, and flashcards.** | 🟢 Live & Active |
