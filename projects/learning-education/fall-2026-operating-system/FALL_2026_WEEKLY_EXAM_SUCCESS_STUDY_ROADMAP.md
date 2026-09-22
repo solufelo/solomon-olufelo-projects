@@ -5,7 +5,7 @@
 **Registered Courses (1.5 Credits / 100% Senior 200-Level Arts)**:
 1. **SY 281 A** — Qualitative Research Methods (Dr. Stephen Svenson) | 30% In-Person Final Exam
 2. **FS 209C A** — Food and Identity in Film (Dr. Jing Jing Chang) | Traditional Stream (Tests: 25% + 20%)
-3. **KS 205 VA** — Cartoons and Comics (Guy Lefebvre) | 100% Virtual Asynchronous
+3. **KS 205 VA** — Cartoons and Comics (Dr. Dru Jeffries) | 100% Virtual Asynchronous (In-person exams in LH3094)
 **Super Bowl Framework**: Pillar 2 (Academic Fortress — strictly 12 hours/week allocated; zero interference with 40 hr/wk Athletics payroll).
 
 ---
@@ -20,7 +20,7 @@ To prevent burnout, protect your 4.17 GPA, and guarantee that you enter every ex
 ├─────────────────────────┼──────────────┼────────────────────────────────────────────────────────┤
 │ **SY 281 A**            │ 4.5 Hours    │ 1.5h Thursday Lab + 1.5h VDH/Reading + 1.5h Exercises. │
 │ **FS 209C A**           │ 4.5 Hours    │ 3h Friday Media/Lecture block + 1.5h Film review notes.│
-│ **KS 205 VA**           │ 3.0 Hours    │ 100% Asynchronous: 2h Module readings + 1h discussion. │
+│ **KS 205 VA**           │ 3.0 Hours    │ Asynchronous modules + Wednesday 5pm activities.       │
 ├─────────────────────────┼──────────────┼────────────────────────────────────────────────────────┤
 │ **TOTAL ACADEMIC TIME** │ **12.0 Hours**│ Leaves 40.0 Hours/Week for Athletics & $1,522.40 Pay!   │
 └─────────────────────────┴──────────────┴────────────────────────────────────────────────────────┘
@@ -44,16 +44,13 @@ To prevent burnout, protect your 4.17 GPA, and guarantee that you enter every ex
 
 ---
 
-### 🟢 Week 2: Epistemicide & Film Semiotics (Sept 14 – Sept 19) — **CURRENT WEEK**
-* **Active Deliverables**:
+### 🟢 Week 2: Epistemicide & Film Semiotics (Sept 14 – Sept 19)
+* **Status**: Completed ✅
+* **Deliverables Completed**:
   - [x] **SY 281 Quiz #1**: Submitted Sept 14 (Awaiting manual grading).
-  - [x] **SY 281 Exercise #1 (10%)**: *What is Epistemicide?* (Due Thursday, Sept 17 @ 11:59 PM).
-  - [ ] **FS 209C Friday Class**: Sept 18 (11:30 AM – 2:20 PM, Peters P120) — Topic 2: *Food, Genre, and Semiotics* (*Tampopo* screening).
-  - [ ] **KS 205 Modules 1 & 2**: Complete introductory comic grammar and weekly discussion prompt.
-* **Weekly Reading List**:
-  - **SY 281**: Van den Hoonaard (VDH) Ch. 1 (*Introduction: Situating Qualitative Research*); Ramón Grosfoguel (*The Structure of Knowledge in Westernized Universities*).
-  - **FS 209C**: Topic 2 readings on culinary semiotics, film genre conventions, and food as cinematic language.
-  - **KS 205**: Scott McCloud, *Understanding Comics* (Ch. 1–2: Panels, gutters, closure).
+  - [x] **SY 281 Exercise #1 (10%)**: *What is Epistemicide?* (Submitted Sept 17).
+  - [x] **FS 209C Friday Class**: Sept 18 (Peters P120) — Topic 2: *Food, Genre, and Semiotics* (*Tampopo* screening).
+  - [x] **KS 205 Lesson 1 Modules Downloaded & Integrated**.
 * **Exam-Proof Active Recall Targets**:
   - **Mnemonic "A-A-A-W"**: The 4 Epistemicides (Al-Andalus, Americas/Abya Yala, African Slave Trade, European Witch Hunts).
   - ***Ego Conquiro $\rightarrow$ Ego Cogito***: The imperial conqueror's sword created the illusion of Descartes' neutral "rational mind."
@@ -62,36 +59,41 @@ To prevent burnout, protect your 4.17 GPA, and guarantee that you enter every ex
 
 ---
 
-### 🟡 Week 3: Paradigms of Knowing & Diaspora (Sept 21 – Sept 26)
-* **Weekly Deliverables**:
-  - [ ] **FS 209C Traditional Stream Formalization**: Confirm Traditional Stream (Opt out of CSL in Navigator / MyLS).
-  - [ ] **SY 281 Exercise #2 (10%)**: *Paradigms of Knowing* (Assigned in class Thursday, Sept 24).
-  - [ ] **KS 205 Module 3 Discussion**: Submit weekly post by Sunday, Sept 27.
+### 🟢 Week 3: Paradigms of Knowing, Minari, & Comic Grammar (Sept 21 – Sept 26) — **CURRENT ACTIVE WEEK**
+* **Active Deliverables**:
+  - [ ] **KS 205 Instructor Outreach**: Email Dr. Dru Jeffries (`djeffries@wlu.ca`) for late-enrollment waiver on Lesson 1 WAs.
+  - [ ] **KS 205 Lesson 2 Activity (WA 5)**: Complete and submit on MyLS by **Wednesday, Sept 23 @ 5:00 PM**!
+  - [ ] **SY 281 In-Class Lab Exercise #2 (10%)**: *Paradigms of Knowing* (Thursday, Sept 24, 8:30–9:50 AM in DAWB 5-127).
+  - [ ] **FS 209C Friday Class**: Friday, Sept 25 (11:30 AM – 2:20 PM in Peters P120) — Topic 3: *Diasporic Foodways* (*Minari* 2020 screening & discussion).
+  - [ ] **KS 205 Exam Prep**: Read Scott McCloud (pp. 94–161) and Mark Newgarden & Paul Karasik's *How to Read Nancy* to prepare for next Saturday's in-person analysis!
 * **Weekly Reading List**:
-  - **SY 281**: Merrigan, Huston, & Johnston, *Three Paradigms of Knowing* (Positivist vs. Interpretive vs. Critical).
-  - **FS 209C**: Topic 3: *Diaspora and Foodways* (Screening: *Eat Drink Man Woman* / culinary migration narratives).
-  - **KS 205**: Visual shorthand, caricature, and cultural iconography in comics.
+  - **SY 281**: Merrigan, Huston, & Johnston, *Three Paradigms of Knowing* (Discovery vs. Interpretive vs. Critical); Peter Berger's 4 Motifs of Sociological Consciousness; Peirce's Ways of Knowing.
+  - **FS 209C**: Topic 3: *Diasporic Foodways*; Alfred Crosby (1972) *The Columbian Exchange*; Sidney Cheung on *Authenticity and Hybridity*; Film: *Minari* (Lee Isaac Chung, 2020).
+  - **KS 205**: Scott McCloud, *Understanding Comics* (Ch. 4–5, pp. 94–161: Time frames, lines, word-image combinations); Pascal Lefèvre, "Newspaper Strips"; Newgarden & Karasik, "How to Read Nancy".
 * **Exam-Proof Active Recall Targets**:
-  - **The 3 Paradigms Table**:
-    1. *Positivist*: Objective reality; goal is prediction/laws; detached researcher.
-    2. *Interpretive*: Socially constructed reality; goal is subjective understanding (*Verstehen*); reflexive researcher.
-    3. *Critical*: Reality shaped by power and oppression; goal is emancipation/critique; value-laden activist stance.
-  - **Diaspora Foodways**: How culinary rituals preserve cultural identity and resist assimilation across generational displacement.
+  - **Merrigan's 3 Paradigms**: Discovery (objective, causal laws, mechanistic) vs. Interpretive (socially constructed, *Verstehen*, emergent meaning) vs. Critical (hegemony, power structures, emancipatory transformation).
+  - **Berger's 4 Motifs**: Debunking (unmasking facades), Unrespectability (looking from marginalized view), Relativization (historical/cultural contingency), Cosmopolitanism (openness to diverse lifeworlds).
+  - **Peirce's Ways of Knowing**: Tenacity (stubborn tradition), Authority (hierarchical decree), A Priori (intuitive reason), Method of Science (self-correcting empiricism).
+  - **Columbian Exchange & Diasporic Foodways**: Post-1492 transatlantic dispersal of flora/fauna; *authenticity* as a contested social claim; *hybridity* as generative new culture.
+  - ***Minari* Metaphor**: Korean water parsley that roots by dirty creek waters, flourishing where capital crops fail—symbol of diasporic resilience, familial grounding, and grandmotherly love.
 
 ---
 
-### 🟡 Week 4: Qualitative Questions & Soul Food (Sept 28 – Oct 3)
-* **Weekly Deliverables**:
+### 🔴 Week 4: HIGH STAKES — NEWSPAPER STRIP ANALYSIS & ETHICS (Sept 28 – Oct 3)
+* **MAJOR IN-PERSON EXAM & DELIVERABLES**:
+  - [ ] **KS 205 Lesson 3 Activities (WAs 6–7)**: Due **Wednesday, Sept 30 @ 5:00 PM** on MyLS.
+  - [ ] **KS 205 NEWSPAPER STRIP ANALYSIS (25% OF FINAL GRADE)**: **Saturday, October 3, 2026 (8:30 AM – 11:00 AM) in LH3094**!
   - [ ] **SY 281 Research Scaffolding**: Formulate a qualitative research topic and draft questions.
-  - [ ] **KS 205 Module 4 Discussion**: Submit weekly post by Sunday, Oct 4.
-  - [ ] **Athletics Pay #20 Closes**: Log 80 hours before Sunday, Oct 4 for Pay #21.
+  - [ ] **Athletics Pay #21**: Ensure timesheets logged for Pay #21 cycle.
 * **Weekly Reading List**:
+  - **KS 205**: Deep synthesis of McCloud's *Understanding Comics* (closure, panel transitions, icons, word-image relationships) applied to a newspaper strip.
   - **SY 281**: VDH Ch. 2 (*Asking Questions and Identifying Goals*) & Ch. 3 (*Strategies for Designing Research*).
   - **FS 209C**: Topic 4: *Soul in Soul Food* (Food, race, survival, and African American culinary resistance).
-  - **KS 205**: Sequential art, panel transitions (moment-to-moment, action-to-action, scene-to-scene).
 * **Exam-Proof Active Recall Targets**:
+  - **Newspaper Strip Analysis Structure**: Formulaic breakdown modeled on Newgarden & Karasik's *How to Read Nancy*—evaluating framing, line weight, closure, character iconography, panel transitions, and humor payoff.
   - **Emergent Design**: Qualitative research plans are iterative and adapt as fieldwork progresses; questions evolve based on participant insights.
-  - **Soul Food Historiography**: Food as a record of resilience, utilizing discarded cuts (chitterlings, greens) to forge communal survival under slavery and Jim Crow.
+  - **Soul Food Historiography**: Food as a record of resilience, utilizing discarded cuts to forge communal survival under slavery and Jim Crow.
+
 
 ---
 
@@ -135,17 +137,20 @@ To prevent burnout, protect your 4.17 GPA, and guarantee that you enter every ex
 
 ---
 
-### 🟡 Week 8: Field Observation & Restaurant Labor (Oct 26 – Oct 31)
-* **Weekly Deliverables**:
+### 🔴 Week 8: Field Observation & KS 205 MIDTERM (Oct 26 – Oct 31)
+* **HIGH STAKES IN-PERSON MIDTERM & DELIVERABLES**:
+  - [ ] **KS 205 MIDTERM EXAM (30% OF FINAL GRADE)**: **Friday, October 30, 2026 (7:00 PM – 9:30 PM) in LH3094**! (Cumulative across Weeks 1–6).
   - [ ] **SY 281 Exercise #5 (10%)**: *Making Observations* (Due Thursday, Oct 29).
-  - [ ] **FS 209C Class**: Topic 6: *Taste, Labor, and Restaurant Culture* (Oct 30).
-  - [ ] **KS 205 Module 7**: Underground comix, counterculture, and adult animation.
+  - [ ] **FS 209C Class**: Topic 6: *Taste, Labor, and Restaurant Culture* (Oct 30, 11:30 AM – 2:20 PM in P120).
 * **Weekly Reading List**:
+  - **KS 205**: Intensive review of Weeks 1–6 (McCloud, early comic books, Post-war horror/Crime comics, Comics Code, Underground Comix, Graphic Memoirs).
   - **SY 281**: VDH Ch. 5 (*Observing Social Life Through Field Research*); Dr. Stephen Svenson, *The Social Imaginary of Okanagan Redneck Whiteness*; Documentary: *Disaster Tours: New Orleans after Hurricane Katrina*.
   - **FS 209C**: Back-of-house kitchen dynamics, immigrant labor exploitation, culinary hierarchy (haute cuisine vs. street food).
 * **Exam-Proof Active Recall Targets**:
+  - **KS 205 Midterm Anchors**: McCloud's 6 transitions; Lessing's *Laocoön*; The Comics Code Authority (1954); Robert Crumb & Underground Comix; Graphic Memoir authenticity (*Binky Brown*, *American Splendor*).
   - **Complete Participant vs. Participant-as-Observer vs. Complete Observer**: The gold-standard qualitative spectrum of researcher immersion.
   - **Thick Description (Clifford Geertz)**: Recording not just the physical action (a wink), but the cultural meaning, intentionality, and social context behind it.
+
 
 ---
 

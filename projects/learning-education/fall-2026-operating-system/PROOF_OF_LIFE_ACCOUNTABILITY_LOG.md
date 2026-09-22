@@ -85,9 +85,24 @@
 ---
 
 ### Course 3: KS 205 VA — Cartoons and Comics
-* **Instructor**: Guy Lefebvre | **Format**: 100% Virtual Asynchronous (CRN 4580)
-* **Schedule**: Flexible Online Modules (Zero campus commute)
-* **Strategy**: Weekly module completion on Sundays/Mondays. Bank consistent 80%+ on weekly discussion forums and assignments.
+* **Instructor**: Dr. Dru Jeffries (`djeffries@wlu.ca` | DAWB 3-129) | **Format**: 100% Virtual Asynchronous (CRN 4580)
+* **Schedule**: Weekly online lesson modules; Weekly Activities due **Wednesdays by 5:00 PM**
+* **In-Person Assessments**: Written on paper in person at the Waterloo Campus in **LH3094**
+* **Grading Scheme**:
+  * Weekly Activities (15%): Due each Wednesday by 5:00 PM (-0.5% deduction per late activity)
+  * Newspaper Strip Breakdown (25%): Saturday, October 3, 2026 (8:30 AM – 11:00 AM) in **LH3094**
+  * Midterm Exam (30%): Friday, October 30, 2026 (7:00 PM – 9:30 PM) in **LH3094**
+  * Final Exam (30%): December Exam Period (TBA between Dec 12 and Dec 23)
+
+| Milestone / Deliverable | Due Date / Time | Weight | Location / Status |
+| :--- | :--- | :---: | :--- |
+| **Lesson 1 Activities (WA 1–4)** | Retroactive Extension Request | Part of 15% | Added course Sept 14; emailed Dr. Jeffries |
+| **Lesson 2 Activity (WA 5)** | Wed Sep 23, 5:00 PM | Part of 15% | Due Week 3 |
+| **Lesson 3 Activities (WA 6–7)** | Wed Sep 30, 5:00 PM | Part of 15% | Due Week 4 |
+| **Newspaper Strip Analysis** | **Sat Oct 03, 8:30–11:00 AM** | **25%** | **In-Person in LH3094** (McCloud & Nancy analysis) |
+| **Midterm Exam** | **Fri Oct 30, 7:00–9:30 PM** | **30%** | **In-Person in LH3094** (Weeks 1–6 cumulative) |
+| **Final Exam** | Dec 12–23 (TBA) | **30%** | **In-Person** (Registrar scheduled) |
+
 
 ---
 

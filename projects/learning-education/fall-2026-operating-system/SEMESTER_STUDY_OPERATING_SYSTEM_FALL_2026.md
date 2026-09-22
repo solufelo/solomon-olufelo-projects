@@ -41,11 +41,11 @@
 │              │ *DAWB 5-127*                             │ and in-class quizzes. **Done at 9:50!**│
 │ **Friday**   │ **FS 209C A (11:30 AM – 2:20 PM)**       │ **ON CAMPUS**. Peters Building P120.   │
 │              │ *Traditional Stream*                     │ Screen films, engage in discussion.    │
-│ **Saturday** │ Athletics Game-Day Broadcast (.03/hr) │ Knight-Newbrough Field / Pressbox.     │
+│ **Saturday** │ Athletics Game-Day Broadcast ($19.03/hr) │ Knight-Newbrough Field / Pressbox.     │
 │ **Sunday**   │ Rest & Asynchronous KS 205 Modules       │ Home / Studio.                         │
-│ **FLEX/ASYNC**│ **KS 205 VA (Cartoons & Comics)**       │ **100% Virtual Asynchronous**.         │
+│ **FLEX/ASYNC**│ **KS 205 VA (Cartoons & Comics)**       │ **100% Virtual Asynchronous (CRN 4580)**│
 └──────────────┴──────────────────────────────────────────┴────────────────────────────────────────┘
-`
+```
 
 ---
 
@@ -54,9 +54,10 @@
 ### 1. SY 281 A – Qualitative Research Methods (Dr. Stephen Svenson)
 * **Weighting**: Quizzes 20% (Best 2 of 3 x 10%), Exercises 50% (Best 5 of 7 x 10%), Final Exam 30%.
 * **Strategy**:
-  * Submit Quiz #1 tonight (Sep 14) for easy 10% in the bank.
+  * Submit Quiz #1 (completed Sep 14, awaiting manual grade).
+  * Exercise #1 submitted (Epistemicide, Sep 17).
   * Attend Thursday labs (8:30–9:50 AM) to complete Exercises 1–5 early.
-  * Drop Exercises 6 and 7 in November when your Athletics production peaks.
+  * Drop Exercises 6 and 7 in November when Athletics production peaks.
   * Complete TCPS 2 CORE Certificate by Oct 6/8.
 
 ### 2. FS 209C A – Food and Identity in Film (Dr. Jing Jing Chang)
@@ -66,8 +67,16 @@
   * Creative Project (35% total: Proposal 5% on Nov 13, Poster 10% on Dec 4, Creative Project 20% on Dec 11).
   * Use your Premiere Pro / After Effects video skills to create a 5-minute culinary short or restaurant review to guarantee an A+.
 
-### 3. KS 205 VA – Cartoons and Comics (Guy Lefebvre)
+### 3. KS 205 VA – Cartoons and Comics (Dr. Dru Jeffries | djeffries@wlu.ca | DAWB 3-129)
 * **CRN**: 4580 | **Format**: 100% Virtual Asynchronous.
+* **Weighting**:
+  * **Weekly Activities (15%)**: Due **every Wednesday at 5:00 PM** (-0.5% deduction per late activity). Lesson 2 (WA 5) due Wednesday, Sept 23 @ 5:00 PM!
+  * **Newspaper Strip Analysis (25%)**: **Saturday, October 3, 2026 (8:30 AM – 11:00 AM) in LH3094**.
+  * **Midterm Exam (30%)**: **Friday, October 30, 2026 (7:00 PM – 9:30 PM) in LH3094**.
+  * **Final Exam (30%)**: TBA during December Exam Period (Dec 12–23).
+* **AI Policy**: **STRICT ZERO GENERATIVE AI POLICY**. All assessments completed in person on paper.
 * **Strategy**:
-  * Complete weekly reading/screening discussion prompts on MyLS at your own convenience.
-  * Zero travel, zero set lecture times, zero conflict with your Athletics shifts.
+  * Email Dr. Jeffries immediately for retroactive waiver/extension on Lesson 1 WAs due to late enrollment on Sept 14.
+  * Submit Weekly Activities every Wednesday before 5:00 PM without fail.
+  * Master Scott McCloud's *Understanding Comics* (pp. 1–161) and Newgarden & Karasik's *How to Read Nancy* for the Saturday, Oct 3 Newspaper Strip Analysis in LH3094.
+

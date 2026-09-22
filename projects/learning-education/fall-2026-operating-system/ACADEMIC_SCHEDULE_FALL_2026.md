@@ -23,7 +23,7 @@
 | **Thursday** | **8:30 AM – 9:50 AM** | SY 281, A | Qualitative Research Methods | Lecture / Lab | DAWB 5-127. **Primary on-campus day** (Exercises & Quizzes). |
 | **Tuesday** | **8:30 AM – 9:50 AM** | SY 281, A | Qualitative Research Methods | Lecture | DAWB 5-127. Lecture concept theory (can self-study slides). |
 | **Friday** | **11:30 AM – 2:20 PM** | FS 209C, A | Food and Identity in Film | Media / Lecture | Peters Building P120. 3-hour media block (Traditional Stream). |
-| **ASYNC** | **Flexible** | KS 205, VA | Cartoons and Comics | Online Asynchronous | **100% Virtual Asynchronous (CRN 4580)**. Zero commute. |
+| **ASYNC** | **Flexible** | KS 205, VA | Cartoons and Comics | Online Asynchronous | **Dr. Dru Jeffries (CRN 4580)**. Weekly Activities due Wednesdays @ 5pm.<br>• **Newspaper Strip Analysis: Sat Oct 3 (8:30–11am) in LH3094** (25%)<br>• **Midterm Exam: Fri Oct 30 (7–9:30pm) in LH3094** (30%) |
 
 ---
 
@@ -31,7 +31,11 @@
 
 * **Mondays**: **100% REMOTE / HOME STUDIO**. No classes.
 * **Tuesdays**: Morning lecture optional/self-study. **NIGHT TUTORIAL PERMANENTLY ELIMINATED**.
-* **Wednesdays**: **100% REMOTE / HOME STUDIO**. No classes.
+* **Wednesdays**: **100% REMOTE / HOME STUDIO**. Weekly Activity due @ 5:00 PM.
 * **Thursdays**: In-person lab at 8:30 AM. **Done at 9:50 AM!** Head straight home before 10:30 AM.
 * **Fridays**: 11:30 AM – 2:20 PM media screening block in P120.
-* **Saturdays**: Paid Laurier Athletics broadcast production (.03/hr).
+* **Saturdays**: Paid Laurier Athletics broadcast production ($19.03/hr).
+* **SPECIAL IN-PERSON EXAM ROOM (LH3094)**:
+  * **Saturday, October 3, 2026 (8:30 AM – 11:00 AM)**: KS 205 Newspaper Strip Analysis (25%).
+  * **Friday, October 30, 2026 (7:00 PM – 9:30 PM)**: KS 205 Midterm Exam (30%).
+
