@@ -1,20 +1,22 @@
-# Laurier Golden Hawks 2026 ó Master Production Task Tracker
+Ôªø# Laurier Golden Hawks 2026 - Master Production Task Tracker
 
 > [!IMPORTANT]
 > **Aesthetic Mandate**: STYLIZED MAXXED ALWAYS. High-contrast athletic energy, cinematic lighting, rich physical textures, and zero generic corporate aesthetics.
 > **Brand Font Stack**: **Radwave** (Headlines & Title Hype), **Agency FB** (Numbers, Stats, HUD Coordinates), **Railroad** / **Agency FB Bold** (Subheads).
+> **Quality Control & Collision Protocol**: NON-NEGOTIABLE ZERO CLIPPING. Every prop must be mathematically grounded (`z_min >= target_z` with +0.0008m micro-clearance) and visually audited with `view_file` before sign-off.
 
 ---
 
-## ?? Active Sprint: The Battle of Waterloo (Week of Sept 28 ñ Oct 3)
+## üèÜ Active Sprint: The Battle of Waterloo (Week of Sept 28 - Oct 3)
 
 | Status | Task | Deliverable / Output File | Target Date |
 | :---: | :--- | :--- | :--- |
-| **DONE** | **Hawks Win! York Recap Social** | `Exports_For_Supervisors/14_` (1:1) & `15_` (9:16) | Sept 28 |
-| **DONE** | **Battle of Waterloo Clash Suite** | 4K 16:9, 9:16 Story, 1:1 Feed, Transparent Keyer | Sept 28 |
-| **DONE** | **3D Touchdown Pyro Playout Video** | `04_TOUCHDOWN_GOLDEN_HAWKS_PYRO_STINGER.mp4` (1080p, 30fps) | Sept 28 |
-| **DONE** | **Money Heist 3D Macro Staging** | `Exports_For_Supervisors/16_Money_Heist_Waterloo_Rivalry_Macro_9x16.png` | Sept 28 |
-| **DONE** | **Money Heist Tactical HUD Graphic** | `Exports_For_Supervisors/17_Money_Heist_Waterloo_Reel_Graphic.png` | Sept 28 |
+| **DONE** | **Hawks Win! York Recap Social** | `Exports_For_Supervisors/14_` (1:1) & `15_` (9:16) | Sept 28 ‚úÖ |
+| **DONE** | **Battle of Waterloo Clash Suite** | 4K 16:9, 9:16 Story, 1:1 Feed, Transparent Keyer | Sept 28 ‚úÖ |
+| **DONE** | **3D Touchdown Pyro Playout Video** | `04_TOUCHDOWN_GOLDEN_HAWKS_PYRO_STINGER.mp4` (1080p, 30fps) | Sept 28 ‚úÖ |
+| **DONE** | **Zero-Clipping Rules Codified** | `GEMINI.md`, `.cursorrules`, `.windsurfrules` across ecosystem | Sept 28 ‚úÖ |
+| **DONE** | **Money Heist 3D Macro Staging V2** | `Exports_For_Supervisors/16_Money_Heist_Waterloo_Rivalry_Macro_9x16.png` (Cycles OptiX, Grounded) | Sept 28 ‚úÖ |
+| **DONE** | **Money Heist Tactical HUD Graphic V2** | `Exports_For_Supervisors/17_Money_Heist_Waterloo_Reel_Graphic.png` (Radwave & Agency FB) | Sept 28 ‚úÖ |
 | `IN PROGRESS` | **Money Heist 15s Animated Reel** | AE animated HUD with rotating crosshair, coordinate typewriter, and sub-drone | Sept 30 |
 | `IN PROGRESS` | **Touchdown Stinger AE Composite Pass** | Heat distortion displacement, optical flares on gold bevels, 808 sub-boom audio | Oct 1 |
 | `PLANNED` | **Battle of Waterloo Gameday Teaser Drop** | Social media rollout across Instagram / TikTok for first-years & alumni | Oct 2 |
@@ -22,7 +24,7 @@
 
 ---
 
-## ??? Track 1: The Complete Urban Field Build ("Urbano Build")
+## üèôÔ∏è Track 1: The Complete Urban Field Build ("Urbano Build")
 *Expanding Knight-Newbrough Stadium into a living, high-fidelity urban campus environment.*
 
 - [ ] **1.1 Roadway & Infrastructure**:
@@ -40,8 +42,8 @@
 
 ---
 
-## ?? Track 2: Unreal Engine 5 & MetaHuman High-Fantasy Cinematic
-*The "Golden Hawk Drop" ó 15-second viral cinematic promo for 2026 Playoff Push.*
+## üöÄ Track 2: Unreal Engine 5 & MetaHuman High-Fantasy Cinematic
+*The "Golden Hawk Drop" - 15-second viral cinematic promo for 2026 Playoff Push.*
 
 - [ ] **2.1 Asset Pipeline (Blender to UE5)**:
   - Export photorealistic SpeedFlex Purple & White helmets to FBX with PBR texture maps (Albedo, Roughness, Metallic, Normal).
@@ -54,14 +56,14 @@
 - [ ] **2.3 The Airship Jump Staging**:
   - Build tactical cargo airship interior with glowing warning lights.
   - Animate hydraulic cargo ramp lowering into storm clouds over Waterloo.
-  - Animate player dive into free-fall $\rightarrow$ superhero landing at midfield on Golden Hawk logo.
+  - Animate player dive into free-fall ‚Üí superhero landing at midfield on Golden Hawk logo.
 - [ ] **2.4 Cinematic Lighting & Sound**:
   - Light with real-time Lumen storm lighting and lightning flashes.
   - Render out 60 FPS ProRes / MP4 sequence using UE5 Movie Render Queue.
 
 ---
 
-## ?? Track 3: The Phone-App Turf Race (Sponsor Fan Engagement)
+## üì± Track 3: The Phone-App Turf Race (Sponsor Fan Engagement)
 *In-game jumbotron interactive race animation across the 50-yard line.*
 
 - [ ] **3.1 Character & Prop Rigging**:
@@ -79,7 +81,7 @@
 
 ---
 
-## ?? Track 4: Broadcast Playout & Live Camera Keyer (Tech Desk)
+## üì∫ Track 4: Broadcast Playout & Live Camera Keyer (Tech Desk)
 
 - [ ] **4.1 Modular Lower Thirds System**:
   - Player Spotlight (Name, #, Position, Season Stats).
@@ -88,15 +90,15 @@
 - [ ] **4.2 Alpha Channel Video Playout**:
   - Export master lower thirds as QuickTime **Apple ProRes 4444** with **RGB + Straight Alpha** for the live video switcher.
 - [ ] **4.3 Helmet Shuffle Master Playout**:
-  - All-in-One video deliveries baked with Hawk Bumper $\rightarrow$ Stinger $\rightarrow$ Shuffle Reveal for all 3 winning slots.
+  - All-in-One video deliveries baked with Hawk Bumper ‚Üí Stinger ‚Üí Shuffle Reveal for all 3 winning slots.
 
 ---
 
-## ?? Track 5: Payroll & Admin Timesheet Log
+## üíº Track 5: Payroll & Admin Timesheet Log
 
-* **Pay Period `08/23 ñ 09/05`**: 40.00 Hours ó **APPROVED & PAID** ?
-* **Pay Period `09/06 ñ 09/19`**: 40.00 Hours ó **APPROVED & PAID** (Approved Sept 24 by Michelle Bean / Hailey Tripodi) ?
-* **Pay Period `09/20 ñ 10/03`**: **IN PROGRESS** (Week 2 active right now)
-  - Week 1 (Sept 21ñ25): 20.0 hrs logged (Helmet smoothing, 11.35 GB EXR render batches, York clash pack).
-  - Week 2 (Sept 28ñOct 2): 20.0 hrs logged (Battle of Waterloo pack, Money Heist reel, Touchdown Pyro AE composite, Urban stadium build R&D).
+* **Pay Period `08/23 - 09/05`**: 40.00 Hours - **APPROVED & PAID** ‚úÖ
+* **Pay Period `09/06 - 09/19`**: 40.00 Hours - **APPROVED & PAID** (Approved Sept 24 by Michelle Bean / Hailey Tripodi) ‚úÖ
+* **Pay Period `09/20 - 10/03`**: **IN PROGRESS** (Week 2 active right now)
+  - Week 1 (Sept 21-25): 20.0 hrs logged (Helmet smoothing, 11.35 GB EXR render batches, York clash pack).
+  - Week 2 (Sept 28-Oct 2): 20.0 hrs logged (Battle of Waterloo pack, Money Heist reel, Touchdown Pyro AE composite, Urban stadium build R&D).
   - **Submission Deadline**: Saturday, Oct 3, 2026.

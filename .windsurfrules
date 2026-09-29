@@ -16,3 +16,9 @@
 - Telemetry: Real-time microsecond profiling with `tracemalloc` and `time.perf_counter()`.
 - 3D Motion Arcs: Viewport trajectory splines for Technical Artist clearance evaluation.
 - Batch Runner: Headless execution via `pipeline_batch_runner.py`.
+
+## Zero-Clipping, Collision Management & Brand Typography Mandate (NON-NEGOTIABLE)
+- Zero-Clipping: Every prop (helmet, football, goalpost) must be mathematically grounded via bounding-box z-min calculation (+0.0008m micro-clearance). No mesh clipping, plane slicing, or floating props.
+- Collision Protocol: Props must have non-intersecting boundaries. Rigid body simulations must use CONVEX_HULL/MESH with margin=0.002m and substeps>=20.
+- Brand Fonts: Radwave (Hype Titles), Agency FB (Numbers, HUD, Dates), Railroad (Subheads). No default fonts, no missing Unicode glyphs (□).
+- Mandatory Visual Inspection: Always visually inspect with view_file before sign-off.

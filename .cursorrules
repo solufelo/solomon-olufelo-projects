@@ -52,3 +52,26 @@
 # 1. Custom Fixed-Timestep Loop: Decouple physics ticks from rendering frame rate.
 # 2. Zero Unnecessary Heap Allocations: Use contiguous object pooling and spatial hashing.
 # 3. Emscripten WASM target: Keep code strictly compliant with C++17/20 standards.
+
+# ==============================================================================
+# 4. ZERO-CLIPPING, COLLISION MANAGEMENT & BRAND TYPOGRAPHY MANDATE (NON-NEGOTIABLE)
+# ==============================================================================
+# Under NO circumstances may any render, graphic, or 3D asset exhibit mesh clipping,
+# geometry interpenetration, or floating props ("glitch under a plane").
+#
+# 1. Mathematical Grounding:
+#    - All props must have their lowest bounding-box vertex aligned to supporting surfaces:
+#      z_min = min(v.z for v in bbox_world)
+#      obj.location.z += (surface_z - z_min) + 0.0008
+# 2. Collision Separation:
+#    - Non-intersecting collision boundaries. Facemasks, chinstraps, and footballs must NEVER slice.
+#    - Rigid body physics must use CONVEX_HULL or MESH with margin = 0.002m and substeps >= 20.
+# 3. Pedestals & Grounding:
+#    - Pedestals must be scaled realistically, beveled, and never slice through or occlude props.
+# 4. Official Brand Fonts:
+#    - Display/Hype: Radwave (RadwaveFont-Demo.otf)
+#    - Numbers/HUD/Stats: Agency FB (AGENCYB.TTF)
+#    - Subheads: Railroad / Agency FB Bold
+#    - NO raw Arial, NO missing Unicode glyphs (□). Use ASCII delimiters (//, •, -).
+# 5. Mandatory Visual Inspection:
+#    - Every deliverable must be visually audited before sign-off.
