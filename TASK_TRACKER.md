@@ -1,4 +1,4 @@
-﻿# Laurier Golden Hawks 2026 - Master Production Task Tracker
+# Laurier Golden Hawks 2026 - Master Production Task Tracker
 
 > [!IMPORTANT]
 > **Aesthetic Mandate**: STYLIZED MAXXED ALWAYS. High-contrast athletic energy, cinematic lighting, rich physical textures, and zero generic corporate aesthetics.
@@ -20,8 +20,10 @@
 | **DONE** | **Complete Urban Field Build ("Urbano Build")** | `laurier_university_stadium_master.blend` & `20_Urbano_Stadium_Hero_3Quarter.png` | Sept 28 ✅ |
 | **DONE** | **Unreal Engine 5 FBX Asset Pipeline** | `Exports_For_Unreal_Engine/` (SpeedFlex, Football, Goalpost FBXs) | Sept 28 ✅ |
 | **DONE** | **Broadcast Lower Thirds Suite (Alpha)** | `21_`, `22_`, `23_` in `06_Final_TechDesk_Deliverables` & `Exports_For_Supervisors` | Sept 28 ✅ |
-| `IN PROGRESS` | **Money Heist 15s Animated Reel** | AE animated HUD with rotating crosshair, coordinate typewriter, and sub-drone | Sept 30 |
-| `IN PROGRESS` | **Touchdown Stinger AE Composite Pass** | Heat distortion displacement, optical flares on gold bevels, 808 sub-boom audio | Oct 1 |
+| **DONE** | **Solar Gold & Electric Purple Heat-Map Reel** | `Exports_For_Supervisors/24_Money_Heist_Solar_Gold_Electric_Purple_Reel.png` (Obsidian Depth & Grain) | Sept 29 ✅ |
+| **DONE** | **Master Gameday Catch-Up Drive Drop (44 Files)** | `LAURIER_GAMEDAY_2026_MASTER_DRIVE_DROP/` (6 Departments + Manifest + Email) | Sept 29 ✅ |
+| `IN PROGRESS` | **Hand-Crafted Varsity Crest Stencils** | 4K Alpha Mask, Varsity Color, Gold Helmet Decals (Photoshop Hand-Inking) | Sept 30 |
+| `IN PROGRESS` | **Money Heist 3D Orbit Camera Reel** | 360° rotating turnaround animation in Cycles OptiX | Sept 30 |
 | `PLANNED` | **Battle of Waterloo Gameday Teaser Drop** | Social media rollout across Instagram / TikTok for first-years & alumni | Oct 2 |
 | `PLANNED` | **Gameday Playout Check (Warrior Field)** | Package files for social team & live broadcast switcher | Oct 3 |
 
