@@ -57,3 +57,11 @@ Always max out visual energy, collegiate athletic impact, and cinematic polish.
 - **Mandatory `view_file` Visual Audit**: Every still, render, or graphic MUST be visually inspected and verified with `view_file` BEFORE presenting to the user.
 - **Contact Shadow Inspection**: Verify that every object makes clean, grounded contact with its shadow caster, with zero gap ("floating") and zero penetration ("sinking").
 - **No Raw Faceted Meshes**: All curved surfaces (pedestals, cylinders, helmet shells) MUST have smooth shading (`use_smooth = True`) and appropriate bevel/subdivision modifiers.
+
+---
+
+## 5. Athletic Mascot & Decal Orientation Mandate (NON-NEGOTIABLE)
+- **Forward-Facing Decal Rule**: In collegiate athletics and football helmet design, the Golden Hawk mascot head must ALWAYS face FORWARD toward the facemask on BOTH sides of the helmet:
+  - **Wearer's Left Side** (looking at left profile): The facemask is to the left; the hawk beak must point **LEFT** toward the facemask (`laurier_hawk_gold_official.png`).
+  - **Wearer's Right Side** (looking at right profile): The facemask is to the right; the hawk beak must point **RIGHT** toward the facemask (`laurier_hawk_gold_official_flip.png`).
+- **NEVER Invert or Flip Horizontally**: Never allow a mascot head to face backward toward the neck. A backward-facing hawk represents retreat and is a severe branding violation.
