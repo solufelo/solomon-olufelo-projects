@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laurier Fall 2026 — Master Study Cockpit</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+    .glow-cyan { box-shadow: 0 0 20px rgba(56, 189, 248, 0.25); }
+    .glow-purple { box-shadow: 0 0 20px rgba(167, 139, 250, 0.25); }
+    .glow-amber { box-shadow: 0 0 20px rgba(251, 191, 36, 0.25); }
+    .glow-emerald { box-shadow: 0 0 20px rgba(52, 211, 153, 0.25); }
+    .flip-card { perspective: 1000px; }
+    .flip-card-inner { transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); transform-style: preserve-3d; }
+    .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+    .flip-card-front, .flip-card-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .flip-card-back { transform: rotateY(180deg); }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased p-4 md:p-6 min-h-screen font-sans selection:bg-cyan-500 selection:text-black">
+
+  <!-- Top Hero Status Bar -->
+  <header class="max-w-6xl mx-auto mb-6 bg-slate-900/80 border border-slate-800 rounded-2xl p-5 backdrop-blur-md glow-cyan relative overflow-hidden">
+    <div class="absolute -right-16 -top-16 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
+            WLU SENIOR ARTS 200-LEVEL
+          </span>
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+            ACTIVE COCKPIT v4.0
+          </span>
+        </div>
+        <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-white flex items-center gap-2">
+          ⚡ ACADEMIC COMMAND CENTER
+        </h1>
+        <p class="text-slate-400 text-sm mt-0.5">
+          Solomon Olufelo (<span class="text-cyan-400 font-mono">210729170</span>) • 10.0 Credits Milestone Term • Maximum Retention Engine
+        </p>
+      </div>
+
+      <!-- Action Timeline Badges -->
+      <div class="grid grid-cols-3 gap-2 text-center text-xs">
+        <div class="bg-slate-800/80 border border-slate-700/60 rounded-xl p-2.5">
+          <div class="text-amber-400 font-bold">THU @ 8:30 AM</div>
+          <div class="text-slate-300 font-medium truncate">SY 281 Lab #3</div>
+          <div class="text-[11px] text-emerald-400 font-semibold mt-0.5">+10% Banked</div>
+        </div>
+        <div class="bg-slate-800/80 border border-slate-700/60 rounded-xl p-2.5">
+          <div class="text-purple-400 font-bold">FRI @ 11:30 AM</div>
+          <div class="text-slate-300 font-medium truncate">FS 209C Movie</div>
+          <div class="text-[11px] text-cyan-400 font-semibold mt-0.5">Moonlight (2016)</div>
+        </div>
+        <div class="bg-slate-800/80 border border-slate-700/60 rounded-xl p-2.5">
+          <div class="text-rose-400 font-bold">SAT @ 8:30 AM</div>
+          <div class="text-slate-300 font-medium truncate">KS 205 Exam</div>
+          <div class="text-[11px] text-amber-400 font-semibold mt-0.5">LH3094 (25%)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="flex items-center gap-2 mt-5 pt-4 border-t border-slate-800/80 overflow-x-auto pb-1" id="tabNav">
+      <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn px-4 py-2 rounded-xl text-xs md:text-sm font-bold transition-all bg-cyan-500 text-black shadow-lg shadow-cyan-500/20">
+        🌐 Complete Overview
+      </button>
+      <button onclick="switchTab('sy281')" id="tab-sy281" class="tab-btn px-4 py-2 rounded-xl text-xs md:text-sm font-semibold transition-all bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700">
+        🔬 SY 281 (Qual Methods)
+      </button>
+      <button onclick="switchTab('fs209')" id="tab-fs209" class="tab-btn px-4 py-2 rounded-xl text-xs md:text-sm font-semibold transition-all bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700">
+        🍜 FS 209C (Food & Film)
+      </button>
+      <button onclick="switchTab('ks205')" id="tab-ks205" class="tab-btn px-4 py-2 rounded-xl text-xs md:text-sm font-semibold transition-all bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700">
+        🎨 KS 205 (Comics & Strip)
+      </button>
+      <button onclick="switchTab('recall')" id="tab-recall" class="tab-btn px-4 py-2 rounded-xl text-xs md:text-sm font-bold transition-all bg-slate-800 text-amber-400 hover:bg-amber-500/20 border border-amber-500/30">
+        ⚡ Active Recall Flashcards
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-6xl mx-auto space-y-6">
+
+    <!-- ==================== TAB 1: OVERVIEW ==================== -->
+    <div id="content-overview" class="tab-content space-y-6">
+      
+      <!-- Visual Strategy Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+        <!-- SY 281 Card -->
+        <div class="bg-slate-900/90 border border-cyan-500/30 rounded-2xl p-5 hover:border-cyan-500/60 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-cyan-500/20 text-cyan-400">DAWB 5-127</span>
+              <span class="text-xs text-slate-400 font-mono">Thu 8:30 AM</span>
+            </div>
+            <h2 class="text-lg font-bold text-white mb-1">SY 281 A: Qualitative Research</h2>
+            <p class="text-xs text-slate-400 mb-4">Dr. Stephen Svenson • Best 5 of 7 Exercises</p>
+
+            <div class="space-y-2 mb-4 text-xs">
+              <div class="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/50">
+                <span class="text-cyan-400 font-bold">Grade Safety Audit:</span> Ex 1 & 2 dropped automatically. You have lost <strong class="text-emerald-400">0.0%</strong> of your final grade capacity!
+              </div>
+              <div class="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/50">
+                <span class="text-amber-400 font-bold">Tomorrow Morning:</span> Walk into DAWB 5-127 at 8:24 AM, write Exercise #3 in class, bank <strong class="text-cyan-400">10% in the bank</strong>!
+              </div>
+            </div>
+          </div>
+          <button onclick="switchTab('sy281')" class="w-full py-2 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 font-bold text-xs rounded-xl border border-cyan-500/30 transition-all">
+            Open SY 281 Theory Deep-Dive →
+          </button>
+        </div>
+
+        <!-- FS 209C Card -->
+        <div class="bg-slate-900/90 border border-purple-500/30 rounded-2xl p-5 hover:border-purple-500/60 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-purple-500/20 text-purple-400">PETERS P120</span>
+              <span class="text-xs text-slate-400 font-mono">Fri 11:30 AM</span>
+            </div>
+            <h2 class="text-lg font-bold text-white mb-1">FS 209C A: Food & Film</h2>
+            <p class="text-xs text-slate-400 mb-4">Dr. Jing Jing Chang • Traditional Stream</p>
+
+            <div class="space-y-2 mb-4 text-xs">
+              <div class="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/50">
+                <span class="text-purple-400 font-bold">Grade Ceiling:</span> Sitting at <strong class="text-emerald-400">96% (A+)</strong>. Zero weekly homework dropboxes.
+              </div>
+              <div class="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/50">
+                <span class="text-rose-400 font-bold">Major Exam:</span> In-Class Test #1 on <strong class="text-amber-400">Friday, Oct 9 (25%)</strong>. This Friday is the final review + <em>Moonlight</em> screening!
+              </div>
+            </div>
+          </div>
+          <button onclick="switchTab('fs209')" class="w-full py-2 bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 font-bold text-xs rounded-xl border border-purple-500/30 transition-all">
+            Open Film & Semiotics Deep-Dive →
+          </button>
+        </div>
+
+        <!-- KS 205 Card -->
+        <div class="bg-slate-900/90 border border-amber-500/30 rounded-2xl p-5 hover:border-amber-500/60 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-amber-500/20 text-amber-400">LH3094 EXAMS</span>
+              <span class="text-xs text-slate-400 font-mono">Sat Oct 3 @ 8:30 AM</span>
+            </div>
+            <h2 class="text-lg font-bold text-white mb-1">KS 205 VA: Cartoons & Comics</h2>
+            <p class="text-xs text-slate-400 mb-4">Dr. Dru Jeffries • Virtual Asynchronous</p>
+
+            <div class="space-y-2 mb-4 text-xs">
+              <div class="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/50">
+                <span class="text-emerald-400 font-bold">Activities Status:</span> WAs 1, 2, 3, 4, 5, 6, 7 <strong class="text-emerald-400">100% SUBMITTED</strong>! Backlog eliminated!
+              </div>
+              <div class="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/50">
+                <span class="text-amber-400 font-bold">Saturday Morning Exam:</span> In-person <strong>Newspaper Strip Analysis (25%)</strong>. Pure McCloud 5-paragraph formula.
+              </div>
+            </div>
+          </div>
+          <button onclick="switchTab('ks205')" class="w-full py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-bold text-xs rounded-xl border border-amber-500/30 transition-all">
+            Open Newspaper Strip Exam Blueprint →
+          </button>
+        </div>
+
+      </div>
+
+      <!-- 72-Hour Execution Roadmap Banner -->
+      <div class="bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 border border-slate-800 rounded-2xl p-6 glow-emerald">
+        <h3 class="text-sm font-bold text-emerald-400 tracking-wider uppercase mb-3 flex items-center gap-2">
+          🎯 The 72-Hour Turning Point Milestone Schedule
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="flex items-start gap-3 bg-slate-800/50 p-3 rounded-xl border border-slate-700/40">
+            <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-sm shrink-0">1</div>
+            <div>
+              <div class="text-xs font-bold text-white">Thursday Morning (Oct 1)</div>
+              <p class="text-[11px] text-slate-400 mt-0.5">8:30–9:50 AM in DAWB 5-127. Complete & submit Exercise #3 on your laptop. Bank 10%.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 bg-slate-800/50 p-3 rounded-xl border border-slate-700/40">
+            <div class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm shrink-0">2</div>
+            <div>
+              <div class="text-xs font-bold text-white">Friday Morning (Oct 2)</div>
+              <p class="text-[11px] text-slate-400 mt-0.5">11:30 AM–2:20 PM in Peters P120. Screen <em>Moonlight</em>, bank 2% attendance, get Test 1 scope.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 bg-slate-800/50 p-3 rounded-xl border border-slate-700/40">
+            <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-sm shrink-0">3</div>
+            <div>
+              <div class="text-xs font-bold text-white">Saturday Morning (Oct 3)</div>
+              <p class="text-[11px] text-slate-400 mt-0.5">8:30–11:00 AM in LH3094. Write 5-paragraph Newspaper Strip Analysis. Bank 25% of grade.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ==================== TAB 2: SY 281 ==================== -->
+    <div id="content-sy281" class="tab-content hidden space-y-6">
+      
+      <!-- Visual Trinity Flowchart -->
+      <div class="bg-slate-900 border border-cyan-500/30 rounded-2xl p-6 glow-cyan">
+        <h3 class="text-xs font-extrabold uppercase tracking-wider text-cyan-400 mb-2">FOUNDATIONAL MENTAL MODEL</h3>
+        <h2 class="text-xl font-bold text-white mb-4">The Research Trinity & Inductive Qualitative Logic</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
+          <div class="bg-slate-800/80 p-4 rounded-xl border border-cyan-500/20">
+            <div class="text-xs font-bold text-cyan-400 uppercase">1. Ontology</div>
+            <div class="text-sm font-semibold text-white mt-1">What is real?</div>
+            <p class="text-xs text-slate-400 mt-2">Does an objective physical reality exist independently (Discovery), or is reality socially constructed and multiple (Interpretation)?</p>
+          </div>
+          <div class="bg-slate-800/80 p-4 rounded-xl border border-purple-500/20">
+            <div class="text-xs font-bold text-purple-400 uppercase">2. Epistemology</div>
+            <div class="text-sm font-semibold text-white mt-1">How do we know it?</div>
+            <p class="text-xs text-slate-400 mt-2">Can a researcher be a detached, objective observer ("God's eye view"), or are the knower and the known completely inseparable?</p>
+          </div>
+          <div class="bg-slate-800/80 p-4 rounded-xl border border-emerald-500/20">
+            <div class="text-xs font-bold text-emerald-400 uppercase">3. Methodology</div>
+            <div class="text-sm font-semibold text-white mt-1">How do we study it?</div>
+            <p class="text-xs text-slate-400 mt-2">Deductive quantitative testing of rigid hypotheses vs. <strong>inductive qualitative immersion</strong> (interviews, ethnography, observation).</p>
+          </div>
+        </div>
+
+        <div class="bg-cyan-950/40 border border-cyan-500/30 p-3.5 rounded-xl text-xs text-cyan-200">
+          <strong>Dr. Svenson's Core Principle:</strong> Qualitative research uses <em>inductive logic</em>—you don't walk into the field with pre-cooked hypotheses; you observe human interactions and let grounded theory emerge!
+        </div>
+      </div>
+
+      <!-- Grosfoguel 4 Epistemicides Breakdown -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-xs font-extrabold uppercase tracking-wider text-rose-400 mb-2">DECOLONIZING METHODOLOGY</h3>
+        <h2 class="text-xl font-bold text-white mb-4">Grosfoguel's 4 Epistemicides & The Cartesian Link</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="space-y-3">
+            <div class="p-3 bg-slate-800/70 rounded-xl border border-slate-700/60">
+              <span class="text-rose-400 font-bold">1. 1492 — Al-Andalus (Spain):</span>
+              <p class="text-slate-300 mt-1">Expulsion of Moors & Jews; burning of massive Arabic/Hebrew scientific, medical, and philosophical libraries to enforce Christian epistemic monopoly.</p>
+            </div>
+            <div class="p-3 bg-slate-800/70 rounded-xl border border-slate-700/60">
+              <span class="text-rose-400 font-bold">2. 1492–1600s — Abya Yala (Americas):</span>
+              <p class="text-slate-300 mt-1">Indigenous genocide paired with systematic burning of sacred Mayan, Aztec, and Andean codices to eradicate non-Western legal and ecological science.</p>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div class="p-3 bg-slate-800/70 rounded-xl border border-slate-700/60">
+              <span class="text-rose-400 font-bold">3. 1500s–1800s — Transatlantic Slave Trade:</span>
+              <p class="text-slate-300 mt-1">Kidnapping millions of Africans, commodifying them into chattel, and violently stripping away ancestral cosmologies, metallurgical arts, and languages.</p>
+            </div>
+            <div class="p-3 bg-slate-800/70 rounded-xl border border-slate-700/60">
+              <span class="text-rose-400 font-bold">4. 1500s–1600s — European Witch Hunts:</span>
+              <p class="text-slate-300 mt-1">Burning hundreds of thousands of female midwives and plant-healers to destroy autonomous feminine ecological wisdom in favor of patriarchal medical science.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 p-3 bg-slate-800 border-l-4 border-rose-500 rounded-r-xl text-xs text-slate-300">
+          <strong class="text-rose-400">The Cartesian Link:</strong> René Descartes' <em>Ego cogito</em> ("I think, therefore I am") claimed universal detached truth. But Grosfoguel reveals it was preceded by 150 years of <em>Ego conquiro</em> ("I conquer, therefore I am")—imperial militarism disguised as neutral rationality.
+        </div>
+      </div>
+
+      <!-- Core Theories: Peirce, Berger & Merrigan -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <h4 class="font-bold text-amber-400 text-sm mb-2">Peirce: 4 Ways of Knowing (T-A-P-S)</h4>
+          <ul class="space-y-1.5 text-slate-300">
+            <li>• <strong>T (Tenacity):</strong> "Always been this way" (stubborn habit).</li>
+            <li>• <strong>A (Authority):</strong> Decreed by experts/church/state.</li>
+            <li>• <strong>P (A Priori):</strong> Sounds logically intuitive/reasonable.</li>
+            <li>• <strong>S (Science/Inquiry):</strong> Systematic empirical testing.</li>
+          </ul>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <h4 class="font-bold text-cyan-400 text-sm mb-2">Berger & Luckmann: DURC Matrix</h4>
+          <ul class="space-y-1.5 text-slate-300">
+            <li>• <strong>D (Definition):</strong> Reality is socially constructed.</li>
+            <li>• <strong>U (Ubiquitous):</strong> Omnipresent in all daily habits.</li>
+            <li>• <strong>R (Real in consequences):</strong> Thomas Theorem!</li>
+            <li>• <strong>C (Co-constructed):</strong> Built through shared symbols.</li>
+          </ul>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <h4 class="font-bold text-purple-400 text-sm mb-2">Merrigan's 3 Paradigms</h4>
+          <ul class="space-y-1.5 text-slate-300">
+            <li>• <strong>Discovery:</strong> Objective singular truth; stats.</li>
+            <li>• <strong>Interpretation:</strong> Multiple subjective realities.</li>
+            <li>• <strong>Criticism:</strong> Power hierarchies & ideology.</li>
+            <li>• <em>Schutz's Lifeworld:</em> Taken-for-granted reality.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ==================== TAB 3: FS 209C ==================== -->
+    <div id="content-fs209" class="tab-content hidden space-y-6">
+      
+      <!-- Film Semiotics Banner -->
+      <div class="bg-slate-900 border border-purple-500/30 rounded-2xl p-6 glow-purple">
+        <h3 class="text-xs font-extrabold uppercase tracking-wider text-purple-400 mb-2">CULINARY SEMIOTICS (BARTHES & SAUSSURE)</h3>
+        <h2 class="text-xl font-bold text-white mb-2">Food is a Visual and Narrative Language</h2>
+        <p class="text-xs text-slate-300 mb-4">
+          In cinema, food is never just physical calories. It operates as a semiotic code of power, memory, and cultural identity:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="bg-slate-800/80 p-4 rounded-xl border border-purple-500/20">
+            <span class="text-purple-400 font-bold uppercase text-[11px]">The Signifier</span>
+            <div class="text-sm font-bold text-white mt-0.5">The Physical Food Object</div>
+            <p class="text-slate-400 mt-1">A steaming bowl of ramen, a raw yellow egg yolk, a plate of fried plantains, or water parsley by a creek.</p>
+          </div>
+          <div class="bg-slate-800/80 p-4 rounded-xl border border-cyan-500/20">
+            <span class="text-cyan-400 font-bold uppercase text-[11px]">The Signified</span>
+            <div class="text-sm font-bold text-white mt-0.5">The Cultural & Emotional Concept</div>
+            <p class="text-slate-400 mt-1">Spiritual devotion, erotic intimacy, class defiance, racial solidarity, or ancestral immigrant resilience.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- The 3 Movies Visual Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
+        
+        <!-- Tampopo -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/20 text-amber-400">Juzo Itami (1985)</span>
+            <span class="text-slate-400 font-mono">Topic 2</span>
+          </div>
+          <h3 class="font-bold text-white text-base mb-2">Tampopo ("Ramen Western")</h3>
+          <p class="text-slate-300 mb-3">A trucker helps a widowed mother master the craft of ramen. Explores <strong>Shokunin</strong> (sacred craft devotion).</p>
+          <div class="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/50 space-y-1 text-slate-300 text-[11px]">
+            <div>• <strong>Gangster yolk:</strong> Food as erotic sensuality.</div>
+            <div>• <strong>Junior French meal:</strong> Class rebellion.</div>
+            <div>• <strong>Spaghetti slurping:</strong> Resisting fake etiquette.</div>
+            <div>• <strong>Dying mother:</strong> Food as visceral love.</div>
+          </div>
+        </div>
+
+        <!-- Minari -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-500/20 text-emerald-400">Lee Isaac Chung (2020)</span>
+            <span class="text-slate-400 font-mono">Topic 3</span>
+          </div>
+          <h3 class="font-bold text-white text-base mb-2">Minari (Korean-American)</h3>
+          <p class="text-slate-300 mb-3">Immigrant family in 1980s Arkansas. Contrasts capitalist farming with ancestral resilience.</p>
+          <div class="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/50 space-y-1 text-slate-300 text-[11px]">
+            <div>• <strong>Denotative:</strong> Wild water parsley plant.</div>
+            <div>• <strong>Connotative:</strong> Korean roots in US soil.</div>
+            <div>• <strong>Mythological:</strong> When commercial farm burns, wild minari survives by the water.</div>
+          </div>
+        </div>
+
+        <!-- Moonlight -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 border-purple-500/40">
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-500/20 text-purple-400">Barry Jenkins (2016)</span>
+            <span class="text-slate-400 font-mono">THIS FRIDAY!</span>
+          </div>
+          <h3 class="font-bold text-white text-base mb-2">Moonlight (Soul Food)</h3>
+          <p class="text-slate-300 mb-3">Screened in class this Friday! Explores Frederick Douglass Opie’s <strong>Chitlin Circuit</strong> and soul food resilience.</p>
+          <div class="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/50 space-y-1 text-slate-300 text-[11px]">
+            <div>• <strong>Cuban Diner Scene:</strong> Kevin cooks pork, rice & plantains for Chiron.</div>
+            <div>• <strong>Semiotics:</strong> Cooking as an intimate act of vulnerability and healing.</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ==================== TAB 4: KS 205 ==================== -->
+    <div id="content-ks205" class="tab-content hidden space-y-6">
+      
+      <!-- Exam Blueprint Card -->
+      <div class="bg-slate-900 border border-amber-500/30 rounded-2xl p-6 glow-amber">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
+          <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-amber-500/20 text-amber-400 border border-amber-500/30">
+            SATURDAY, OCT 3 @ 8:30 AM • LH3094 • 25% OF FINAL GRADE
+          </span>
+          <span class="text-xs text-slate-400 font-mono">Formula: 5-Paragraph Visual Essay</span>
+        </div>
+        <h2 class="text-xl font-bold text-white mb-2">The Newspaper Strip Analysis Exam Blueprint</h2>
+        <p class="text-xs text-slate-300 mb-5">
+          You will receive a single printed comic strip in the exam room. Follow this exact 5-paragraph structure based on McCloud and <em>How to Read Nancy</em>:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-3 text-xs">
+          <div class="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700/60">
+            <span class="text-amber-400 font-bold text-sm">¶ 1: Intro</span>
+            <p class="text-slate-300 mt-1">Title, artist, publication date, strip type (daily horizontal vs. Sunday broadsheet). Thesis on word-image dynamics.</p>
+          </div>
+          <div class="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700/60">
+            <span class="text-cyan-400 font-bold text-sm">¶ 2: Lines</span>
+            <p class="text-slate-300 mt-1">McCloud Ch 5: Line weights, brushwork, expressive textures, and background realism vs. simple cartoon characters.</p>
+          </div>
+          <div class="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700/60">
+            <span class="text-purple-400 font-bold text-sm">¶ 3: Gutters</span>
+            <p class="text-slate-300 mt-1">McCloud Ch 3: The 6 transitions (Action-to-action, subject-to-subject, etc.). How the reader co-creates closure!</p>
+          </div>
+          <div class="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700/60">
+            <span class="text-emerald-400 font-bold text-sm">¶ 4: Time</span>
+            <p class="text-slate-300 mt-1">Lessing & McCloud Ch 4/6: Spatializing time. Interdependent vs. duo-specific words and pictures.</p>
+          </div>
+          <div class="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700/60">
+            <span class="text-rose-400 font-bold text-sm">¶ 5: Synthesis</span>
+            <p class="text-slate-300 mt-1">Why this strip works as modern mass serial art. Final reflection on the elegance of the gag.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- The 6 Transitions Visual Reference -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-xs font-extrabold uppercase tracking-wider text-cyan-400 mb-2">MCCLOUD CHAPTER 3 CHEAT SHEET</h3>
+        <h2 class="text-xl font-bold text-white mb-4">The 6 Panel-to-Panel Transitions</h2>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-xs">
+          <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700/50">
+            <strong class="text-cyan-400">1. Moment-to-Moment:</strong>
+            <p class="text-slate-300 mt-1">Fraction of a second (eyes open $\rightarrow$ blink). Minimal closure.</p>
+          </div>
+          <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700/50">
+            <strong class="text-emerald-400">2. Action-to-Action:</strong>
+            <p class="text-slate-300 mt-1">Single subject in progression (pitcher winds up $\rightarrow$ hits ball). Western standard.</p>
+          </div>
+          <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700/50">
+            <strong class="text-amber-400">3. Subject-to-Subject:</strong>
+            <p class="text-slate-300 mt-1">Same scene, shifts focus (runner crosses line $\rightarrow$ coach's stopwatch).</p>
+          </div>
+          <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700/50">
+            <strong class="text-purple-400">4. Scene-to-Scene:</strong>
+            <p class="text-slate-300 mt-1">Major time/space jump ("10 years later" or NY $\rightarrow$ Paris). Deductive reasoning.</p>
+          </div>
+          <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700/50">
+            <strong class="text-rose-400">5. Aspect-to-Aspect:</strong>
+            <p class="text-slate-300 mt-1">Time stops; camera wanders over mood/place (snow, bell, lantern). Manga style.</p>
+          </div>
+          <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700/50">
+            <strong class="text-slate-400">6. Non-Sequitur:</strong>
+            <p class="text-slate-300 mt-1">Zero logical link (apple $\rightarrow$ car). Pure absurdity/surrealism.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ==================== TAB 5: ACTIVE RECALL FLASHCARDS ==================== -->
+    <div id="content-recall" class="tab-content hidden space-y-6">
+      
+      <div class="bg-slate-900 border border-amber-500/30 rounded-2xl p-6 glow-amber text-center">
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-extrabold bg-amber-500/20 text-amber-400 mb-2">
+          HIGH-INTENSITY EXAM SIMULATOR
+        </span>
+        <h2 class="text-2xl font-extrabold text-white mb-1">⚡ 60-Second Active Recall Drill</h2>
+        <p class="text-slate-400 text-xs max-w-xl mx-auto mb-4">
+          Click any card to flip and verify your retention. Test yourself before checking the answer!
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="flashcardGrid">
+        
+        <!-- Card 1 -->
+        <div class="flip-card h-44 cursor-pointer" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner relative w-full h-full rounded-2xl shadow-md border border-cyan-500/30">
+            <div class="flip-card-front absolute inset-0 bg-slate-900 rounded-2xl p-5 flex flex-col justify-between">
+              <span class="text-[10px] font-bold text-cyan-400 uppercase tracking-wider">SY 281 • Philosophy</span>
+              <p class="text-sm font-bold text-white text-center my-auto">What is Grosfoguel's Cartesian Link?</p>
+              <span class="text-[11px] text-slate-500 text-right">Click to flip ↻</span>
+            </div>
+            <div class="flip-card-back absolute inset-0 bg-cyan-950/90 border border-cyan-400 rounded-2xl p-5 flex flex-col justify-between text-cyan-100">
+              <span class="text-[10px] font-bold text-cyan-300 uppercase">Answer</span>
+              <p class="text-xs leading-relaxed text-center my-auto">
+                Descartes' <em>"Ego cogito"</em> (I think) was preceded by 150 years of imperial <em>"Ego conquiro"</em> (I conquer). Imperial sword enabled claims of detached rationality!
+              </p>
+              <span class="text-[11px] text-cyan-400 text-right">Click to flip ↻</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="flip-card h-44 cursor-pointer" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner relative w-full h-full rounded-2xl shadow-md border border-purple-500/30">
+            <div class="flip-card-front absolute inset-0 bg-slate-900 rounded-2xl p-5 flex flex-col justify-between">
+              <span class="text-[10px] font-bold text-purple-400 uppercase tracking-wider">FS 209C • Semiotics</span>
+              <p class="text-sm font-bold text-white text-center my-auto">What does Minari signify at the mythical level?</p>
+              <span class="text-[11px] text-slate-500 text-right">Click to flip ↻</span>
+            </div>
+            <div class="flip-card-back absolute inset-0 bg-purple-950/90 border border-purple-400 rounded-2xl p-5 flex flex-col justify-between text-purple-100">
+              <span class="text-[10px] font-bold text-purple-300 uppercase">Answer</span>
+              <p class="text-xs leading-relaxed text-center my-auto">
+                Resilience! Unlike Jacob's capitalist farm that burns to ashes, the ancestral water parsley grows wildly by the dirty creek, keeping the family alive.
+              </p>
+              <span class="text-[11px] text-purple-400 text-right">Click to flip ↻</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="flip-card h-44 cursor-pointer" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner relative w-full h-full rounded-2xl shadow-md border border-amber-500/30">
+            <div class="flip-card-front absolute inset-0 bg-slate-900 rounded-2xl p-5 flex flex-col justify-between">
+              <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider">KS 205 • McCloud Ch 3</span>
+              <p class="text-sm font-bold text-white text-center my-auto">What occurs in "the Gutter" between comic panels?</p>
+              <span class="text-[11px] text-slate-500 text-right">Click to flip ↻</span>
+            </div>
+            <div class="flip-card-back absolute inset-0 bg-amber-950/90 border border-amber-400 rounded-2xl p-5 flex flex-col justify-between text-amber-100">
+              <span class="text-[10px] font-bold text-amber-300 uppercase">Answer</span>
+              <p class="text-xs leading-relaxed text-center my-auto">
+                <strong>Closure!</strong> The mental process where the reader's imagination connects separate panels, co-creating the flow of time and narrative action.
+              </p>
+              <span class="text-[11px] text-amber-400 text-right">Click to flip ↻</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="flip-card h-44 cursor-pointer" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner relative w-full h-full rounded-2xl shadow-md border border-emerald-500/30">
+            <div class="flip-card-front absolute inset-0 bg-slate-900 rounded-2xl p-5 flex flex-col justify-between">
+              <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">SY 281 • Inquiry</span>
+              <p class="text-sm font-bold text-white text-center my-auto">What are Peirce's 4 Ways of Knowing (T-A-P-S)?</p>
+              <span class="text-[11px] text-slate-500 text-right">Click to flip ↻</span>
+            </div>
+            <div class="flip-card-back absolute inset-0 bg-emerald-950/90 border border-emerald-400 rounded-2xl p-5 flex flex-col justify-between text-emerald-100">
+              <span class="text-[10px] font-bold text-emerald-300 uppercase">Answer</span>
+              <p class="text-xs leading-relaxed text-center my-auto">
+                <strong>T</strong>enacity (habit/tradition), <strong>A</strong>uthority (expert decree), <strong>P</strong>riori (intuitive logic), and <strong>S</strong>cience (systematic empirical testing).
+              </p>
+              <span class="text-[11px] text-emerald-400 text-right">Click to flip ↻</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="flip-card h-44 cursor-pointer" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner relative w-full h-full rounded-2xl shadow-md border border-rose-500/30">
+            <div class="flip-card-front absolute inset-0 bg-slate-900 rounded-2xl p-5 flex flex-col justify-between">
+              <span class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">FS 209C • Food History</span>
+              <p class="text-sm font-bold text-white text-center my-auto">What is Crosby's Columbian Exchange (1972)?</p>
+              <span class="text-[11px] text-slate-500 text-right">Click to flip ↻</span>
+            </div>
+            <div class="flip-card-back absolute inset-0 bg-rose-950/90 border border-rose-400 rounded-2xl p-5 flex flex-col justify-between text-rose-100">
+              <span class="text-[10px] font-bold text-rose-300 uppercase">Answer</span>
+              <p class="text-xs leading-relaxed text-center my-auto">
+                The massive post-1492 global transfer of plants, animals, culture & disease. Brought tomatoes, chilis, potatoes, and chocolate from Americas to Afro-Eurasia!
+              </p>
+              <span class="text-[11px] text-rose-400 text-right">Click to flip ↻</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="flip-card h-44 cursor-pointer" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner relative w-full h-full rounded-2xl shadow-md border border-cyan-500/30">
+            <div class="flip-card-front absolute inset-0 bg-slate-900 rounded-2xl p-5 flex flex-col justify-between">
+              <span class="text-[10px] font-bold text-cyan-400 uppercase tracking-wider">KS 205 • McCloud Ch 2</span>
+              <p class="text-sm font-bold text-white text-center my-auto">What is "Amplification through Simplification"?</p>
+              <span class="text-[11px] text-slate-500 text-right">Click to flip ↻</span>
+            </div>
+            <div class="flip-card-back absolute inset-0 bg-cyan-950/90 border border-cyan-400 rounded-2xl p-5 flex flex-col justify-between text-cyan-100">
+              <span class="text-[10px] font-bold text-cyan-300 uppercase">Answer</span>
+              <p class="text-xs leading-relaxed text-center my-auto">
+                Stripping away realistic photographic details in a cartoon face allows the reader to project their <em>own</em> universal identity into the character!
+              </p>
+              <span class="text-[11px] text-cyan-400 text-right">Click to flip ↻</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      // Hide all contents
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      // Show selected content
+      const target = document.getElementById('content-' + tabId);
+      if (target) target.classList.remove('hidden');
+
+      // Update button styles
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-cyan-500', 'text-black', 'shadow-lg', 'shadow-cyan-500/20');
+        btn.classList.add('bg-slate-800', 'text-slate-300');
+      });
+
+      const activeBtn = document.getElementById('tab-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-slate-800', 'text-slate-300');
+        activeBtn.classList.add('bg-cyan-500', 'text-black', 'shadow-lg', 'shadow-cyan-500/20');
+      }
+    }
+  </script>
+</body>
+</html>
