@@ -1,0 +1,199 @@
+{
+  "main": {
+    "id": "0d006373234f2578",
+    "type": "split",
+    "children": [
+      {
+        "id": "de6791b464e75595",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "168f0c804661dff2",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "04_Assets/Understanding_Comics_Scott_McCloud.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Understanding_Comics_Scott_McCloud"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "25aa676ffb6c02b8",
+    "type": "split",
+    "children": [
+      {
+        "id": "36ef4435f1858224",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5f4f54607b327aef",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "70b200f27cd27ab7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "94a3e430e1951d3a",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "c4064de2a62a73fb",
+    "type": "split",
+    "children": [
+      {
+        "id": "30b38f14b74c9148",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8d81ee9a40aae17b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "04_Assets/Understanding_Comics_Scott_McCloud.pdf",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "837c3361865f6fa1",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "04_Assets/Understanding_Comics_Scott_McCloud.pdf",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "80b0ded5bf9c5ad6",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "5fe35b38dad847de",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "d1c88d13d148843c",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "04_Assets/Understanding_Comics_Scott_McCloud.pdf",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-excalidraw-plugin:New drawing": false
+    }
+  },
+  "active": "168f0c804661dff2",
+  "lastOpenFiles": [
+    "01_KS205_Cartoons_and_Comics/Scott_McCloud_Understanding_Comics_Complete_Mastery.md",
+    "01_KS205_Cartoons_and_Comics/BirthOfComicBookAndSuperhero.md",
+    "01_KS205_Cartoons_and_Comics/Untitled.canvas",
+    "01_KS205_Cartoons_and_Comics/Lesson_03_Birth_of_the_Superhero.md",
+    "01_KS205_Cartoons_and_Comics/Drawing 2026-09-30 12.59.05.excalidraw.md",
+    "01_KS205_Cartoons_and_Comics/Oct_03_LH3094_Newspaper_Strip_Analysis_Blueprint.md"
+  ]
+}
