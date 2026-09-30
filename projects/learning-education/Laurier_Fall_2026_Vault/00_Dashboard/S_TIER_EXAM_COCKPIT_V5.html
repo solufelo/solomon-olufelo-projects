@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laurier Fall 2026 — S-Tier Deep Work Command Cockpit</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.02); }
+    }
+    .glow-cyan { box-shadow: 0 0 25px rgba(6, 182, 212, 0.25); }
+    .glow-emerald { box-shadow: 0 0 25px rgba(16, 185, 129, 0.25); }
+    .glow-amber { box-shadow: 0 0 25px rgba(245, 158, 11, 0.25); }
+    .glow-rose { box-shadow: 0 0 25px rgba(244, 63, 94, 0.25); }
+    .flip-card { perspective: 1200px; }
+    .flip-card-inner { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); transform-style: preserve-3d; }
+    .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+    .flip-card-front, .flip-card-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .flip-card-back { transform: rotateY(180deg); }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #090d16; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased p-3 sm:p-5 min-h-screen font-sans selection:bg-cyan-500 selection:text-black">
+
+  <div class="max-w-7xl mx-auto space-y-6">
+
+    <!-- 1. TOP COMMAND HERO & SYSTEM STATUS -->
+    <header class="bg-slate-900/90 border border-slate-800 rounded-3xl p-5 md:p-6 backdrop-blur-xl relative overflow-hidden glow-cyan">
+      <div class="absolute -right-20 -top-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5 relative z-10">
+        <div>
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-black bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 uppercase tracking-wider">
+              Wilfrid Laurier University
+            </span>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase tracking-wider">
+              10.0 Credits Milestone Term
+            </span>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-black bg-purple-500/20 text-purple-300 border border-purple-500/30 uppercase tracking-wider">
+              Athletics Video Ops ($19.03/hr)
+            </span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white flex items-center gap-3">
+            <span>⚡ S-TIER DEEP WORK COCKPIT</span>
+            <span class="text-xs sm:text-sm font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">v5.2 ACTIVE</span>
+          </h1>
+          <p class="text-slate-400 text-xs sm:text-sm mt-1">
+            Student: <span class="text-cyan-400 font-semibold">Solomon Olufelo</span> (<span class="font-mono text-cyan-300">210729170</span>) • General BA Arts • Zero-Shortcut Deliberate Practice Engine
+          </p>
+        </div>
+
+        <!-- System Clock & Live Status -->
+        <div class="flex flex-wrap sm:flex-nowrap items-center gap-3 bg-slate-950/80 border border-slate-800/80 rounded-2xl p-3 px-4">
+          <div class="text-right">
+            <div class="text-[11px] text-slate-400 uppercase tracking-wider font-bold">Anchor Time</div>
+            <div id="liveClock" class="font-mono font-bold text-lg text-emerald-400">7:35:00 PM EDT</div>
+            <div class="text-[11px] text-slate-500">Wednesday, Sept 30, 2026</div>
+          </div>
+          <div class="h-8 w-px bg-slate-800 hidden sm:block"></div>
+          <div class="text-right sm:text-left">
+            <div class="text-[11px] text-slate-400 uppercase tracking-wider font-bold">Deep Work Streak</div>
+            <div class="font-mono font-bold text-lg text-cyan-400 flex items-center gap-1">
+              <span>🔥 5 Sprints</span>
+            </div>
+            <div class="text-[11px] text-emerald-400 font-medium">100% On Schedule</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Live Countdown Milestone Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6 pt-5 border-t border-slate-800/80">
+        <!-- Milestone 1: SY 281 Lab -->
+        <div class="bg-slate-950/60 border border-emerald-500/30 rounded-2xl p-3.5 hover:border-emerald-500 transition-all glow-emerald group">
+          <div class="flex items-center justify-between text-xs mb-1">
+            <span class="font-bold text-emerald-400">SY 281 A (Lab #3)</span>
+            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[10px] font-bold">10% WEIGHT</span>
+          </div>
+          <div class="text-white font-extrabold text-sm truncate">Qualitative Methods Lab</div>
+          <div class="text-slate-400 text-xs mt-0.5">Thu, Oct 1 @ 8:30 AM (DAWB 5-127)</div>
+          <div class="mt-2 text-xs font-mono font-bold text-emerald-300 flex items-center justify-between bg-emerald-950/40 px-2 py-1 rounded-lg border border-emerald-800/40">
+            <span>⏱️ Starts in:</span>
+            <span id="countdownSY281">12h 55m</span>
+          </div>
+        </div>
+
+        <!-- Milestone 2: FS 209C Movie -->
+        <div class="bg-slate-950/60 border border-purple-500/30 rounded-2xl p-3.5 hover:border-purple-500 transition-all group">
+          <div class="flex items-center justify-between text-xs mb-1">
+            <span class="font-bold text-purple-400">FS 209C A (Topic 4)</span>
+            <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono text-[10px] font-bold">SOUL FOOD</span>
+          </div>
+          <div class="text-white font-extrabold text-sm truncate">Screening: Moonlight (2016)</div>
+          <div class="text-slate-400 text-xs mt-0.5">Fri, Oct 2 @ 11:30 AM (Peters P120)</div>
+          <div class="mt-2 text-xs font-mono font-bold text-purple-300 flex items-center justify-between bg-purple-950/40 px-2 py-1 rounded-lg border border-purple-800/40">
+            <span>⏱️ Starts in:</span>
+            <span id="countdownFS209">1d 15h 55m</span>
+          </div>
+        </div>
+
+        <!-- Milestone 3: KS 205 Saturday Exam -->
+        <div class="bg-slate-950/60 border border-rose-500/40 rounded-2xl p-3.5 hover:border-rose-500 transition-all glow-rose group">
+          <div class="flex items-center justify-between text-xs mb-1">
+            <span class="font-bold text-rose-400">KS 205 VA (In-Person Exam)</span>
+            <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-mono text-[10px] font-bold">25% OF GRADE</span>
+          </div>
+          <div class="text-white font-extrabold text-sm truncate">Newspaper Strip Analysis</div>
+          <div class="text-slate-400 text-xs mt-0.5">Sat, Oct 3 @ 8:30 AM (LH3094)</div>
+          <div class="mt-2 text-xs font-mono font-bold text-rose-300 flex items-center justify-between bg-rose-950/40 px-2 py-1 rounded-lg border border-rose-800/40">
+            <span>⏱️ Starts in:</span>
+            <span id="countdownKS205">2d 12h 55m</span>
+          </div>
+        </div>
+
+        <!-- Milestone 4: FS 209C Midterm -->
+        <div class="bg-slate-950/60 border border-amber-500/30 rounded-2xl p-3.5 hover:border-amber-500 transition-all glow-amber group">
+          <div class="flex items-center justify-between text-xs mb-1">
+            <span class="font-bold text-amber-400">FS 209C A (Test #1)</span>
+            <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-[10px] font-bold">25% (150 MIN)</span>
+          </div>
+          <div class="text-white font-extrabold text-sm truncate">In-Class Film Midterm</div>
+          <div class="text-slate-400 text-xs mt-0.5">Fri, Oct 9 @ 11:30 AM (Peters P120)</div>
+          <div class="mt-2 text-xs font-mono font-bold text-amber-300 flex items-center justify-between bg-amber-950/40 px-2 py-1 rounded-lg border border-amber-800/40">
+            <span>⏱️ Starts in:</span>
+            <span id="countdownMidterm">8d 15h 55m</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. MAIN INTERACTIVE GRID: SPRINT TIMER + SEMESTER WEIGHT SIMULATOR -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- LEFT: S-TIER DEEP WORK POMODORO SPRINT ENGINE (7 COLS) -->
+      <section class="lg:col-span-7 bg-slate-900/80 border border-slate-800 rounded-3xl p-6 backdrop-blur-md flex flex-col justify-between relative overflow-hidden">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <div class="w-3 h-3 rounded-full bg-cyan-400 animate-ping"></div>
+            <h2 class="text-lg font-bold text-white tracking-wide uppercase">Deep Work Sprint Console</h2>
+          </div>
+          <span id="timerPhaseBadge" class="px-2.5 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 text-xs font-bold border border-cyan-500/30 uppercase tracking-wider">
+            Phase: Priming & Deep Focus
+          </span>
+        </div>
+
+        <!-- Mode Selectors -->
+        <div class="grid grid-cols-3 gap-2 mb-6">
+          <button onclick="setTimerMode('sy281')" id="btnSY" class="p-2.5 rounded-xl border border-emerald-500/50 bg-emerald-950/40 text-emerald-300 text-xs font-bold transition-all text-center hover:bg-emerald-900/40">
+            🔬 SY 281 Blitz<br><span class="text-[10px] text-slate-400 font-normal">25m Sprint (Lab #3)</span>
+          </button>
+          <button onclick="setTimerMode('ks205')" id="btnKS" class="p-2.5 rounded-xl border border-slate-800 bg-slate-950/60 text-slate-400 text-xs font-bold transition-all text-center hover:bg-slate-800">
+            🎨 KS 205 Nancy Drill<br><span class="text-[10px] text-slate-400 font-normal">30m Timed 5-Para</span>
+          </button>
+          <button onclick="setTimerMode('fs209')" id="btnFS" class="p-2.5 rounded-xl border border-slate-800 bg-slate-950/60 text-slate-400 text-xs font-bold transition-all text-center hover:bg-slate-800">
+            🍜 FS 209C Semiotics<br><span class="text-[10px] text-slate-400 font-normal">30m Film Immersion</span>
+          </button>
+        </div>
+
+        <!-- Circular Visual Timer & Controls -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-8 py-2">
+          <!-- SVG Progress Ring -->
+          <div class="relative w-48 h-48 flex items-center justify-center">
+            <svg class="w-full h-full transform -rotate-90">
+              <circle cx="96" cy="96" r="84" stroke="currentColor" stroke-width="10" class="text-slate-800" fill="transparent"/>
+              <circle id="timerCircle" cx="96" cy="96" r="84" stroke="currentColor" stroke-width="10" class="text-cyan-400" stroke-linecap="round" fill="transparent" stroke-dasharray="527" stroke-dashoffset="0" style="transition: stroke-dashoffset 1s linear;"/>
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+              <span id="timerDisplay" class="font-mono text-4xl font-black tracking-tight text-white">25:00</span>
+              <span id="timerStatusLabel" class="text-[11px] text-slate-400 font-bold uppercase tracking-wider mt-1">Ready to Sprint</span>
+            </div>
+          </div>
+
+          <!-- Controls & Audio Toggle -->
+          <div class="space-y-3 w-full sm:w-auto">
+            <div class="flex items-center gap-2">
+              <button onclick="toggleTimer()" id="btnStartPause" class="w-full sm:w-36 py-3 px-5 rounded-2xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-sm tracking-wide shadow-lg shadow-cyan-500/20 transition-all flex items-center justify-center gap-2">
+                <span id="btnIcon">▶</span> <span id="btnText">START SPRINT</span>
+              </button>
+              <button onclick="resetTimer()" class="p-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-bold transition-all">
+                🔄
+              </button>
+            </div>
+            <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-400 space-y-1">
+              <div class="flex items-center justify-between">
+                <span>Synthesized Chimes:</span>
+                <button onclick="toggleSound()" id="soundToggle" class="text-emerald-400 font-bold">ON 🔊</button>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>Active Target:</span>
+                <span id="activeSprintTarget" class="text-slate-200 font-semibold">Grosfoguel Epistemicide</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Sprint Tasks Checklist -->
+        <div class="mt-6 pt-4 border-t border-slate-800/80">
+          <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center justify-between">
+            <span>Sprint Deliverables (Click to check off)</span>
+            <span id="checklistProgress" class="text-cyan-400 font-mono">0 / 4 Complete</span>
+          </div>
+          <div id="tasksContainer" class="space-y-2 text-xs">
+            <!-- Populated via JavaScript depending on mode -->
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: MATHEMATICAL SEMESTER WEIGHT SIMULATOR (5 COLS) -->
+      <section class="lg:col-span-5 bg-slate-900/80 border border-slate-800 rounded-3xl p-6 backdrop-blur-md flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-lg font-bold text-white tracking-wide uppercase flex items-center gap-2">
+              <span>📊 Grade Weighting Matrix</span>
+            </h2>
+            <span class="px-2.5 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-300 font-mono text-xs font-bold border border-emerald-500/30">
+              GPA Projected: 3.9 / 4.0
+            </span>
+          </div>
+
+          <p class="text-slate-400 text-xs mb-4">
+            Adjust your target performance across the upcoming high-leverage deliverables to see real-time final grade calculations.
+          </p>
+
+          <!-- Interactive Sliders -->
+          <div class="space-y-4">
+            <!-- SY 281 Labs Slider -->
+            <div class="bg-slate-950/60 border border-slate-800/80 rounded-2xl p-3">
+              <div class="flex justify-between text-xs mb-1">
+                <span class="font-bold text-emerald-400">SY 281: 5 Lab Exercises (50% Course)</span>
+                <span id="labelSYScore" class="font-mono text-emerald-300 font-bold">90%</span>
+              </div>
+              <input type="range" min="60" max="100" value="90" id="sliderSY" oninput="updateGradeSim()" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+              <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                <span>Ex 1 & 2 Dropped (0% lost)</span>
+                <span>Ex 3–7: 10% each</span>
+              </div>
+            </div>
+
+            <!-- KS 205 Saturday Exam Slider -->
+            <div class="bg-slate-950/60 border border-slate-800/80 rounded-2xl p-3">
+              <div class="flex justify-between text-xs mb-1">
+                <span class="font-bold text-rose-400">KS 205: LH3094 Exam (25% Final)</span>
+                <span id="labelKSScore" class="font-mono text-rose-300 font-bold">92%</span>
+              </div>
+              <input type="range" min="60" max="100" value="92" id="sliderKS" oninput="updateGradeSim()" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-rose-500">
+              <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                <span>Newspaper Strip Analysis</span>
+                <span>Target: 23+/25 Marks</span>
+              </div>
+            </div>
+
+            <!-- FS 209C Test 1 Slider -->
+            <div class="bg-slate-950/60 border border-slate-800/80 rounded-2xl p-3">
+              <div class="flex justify-between text-xs mb-1">
+                <span class="font-bold text-amber-400">FS 209C: In-Class Test #1 (25% Final)</span>
+                <span id="labelFSScore" class="font-mono text-amber-300 font-bold">88%</span>
+              </div>
+              <input type="range" min="60" max="100" value="88" id="sliderFS" oninput="updateGradeSim()" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+              <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                <span>Topics 1–4 + 5 Films</span>
+                <span>150 min in Peters P120</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grade Summary Cards -->
+        <div class="mt-5 pt-4 border-t border-slate-800/80 grid grid-cols-2 gap-3 text-center">
+          <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-3">
+            <div class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Projected Term Avg</div>
+            <div id="termAvgDisplay" class="font-mono text-2xl font-black text-cyan-400 mt-0.5">89.8%</div>
+            <div class="text-[10px] text-emerald-400 font-bold">Dean's Honour Roll Pace</div>
+          </div>
+          <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-3">
+            <div class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Degree Standing</div>
+            <div class="font-mono text-2xl font-black text-emerald-400 mt-0.5">10.0 / 15.0</div>
+            <div class="text-[10px] text-slate-400 font-medium">Senior Graduation Bound</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 3. INTERACTIVE ACTIVE RECALL FLASHCARD ENGINE (LEITNER SPACED RETRIEVAL) -->
+    <section class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 backdrop-blur-md">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+        <div>
+          <h2 class="text-xl font-black text-white tracking-wide uppercase flex items-center gap-2">
+            <span>🧠 Active Recall Flashcard Engine</span>
+          </h2>
+          <p class="text-slate-400 text-xs mt-0.5">
+            Test yourself with high-yield theoretical prompts. Click card to flip and verify your answer.
+          </p>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="flex flex-wrap items-center gap-1.5 text-xs">
+          <button onclick="filterFlashcards('all')" id="fcFilterAll" class="px-3 py-1 rounded-xl bg-cyan-500 text-slate-950 font-bold transition-all">All (20)</button>
+          <button onclick="filterFlashcards('sy281')" id="fcFilterSY" class="px-3 py-1 rounded-xl bg-slate-800 text-slate-300 font-bold hover:bg-slate-700 transition-all">SY 281 (8)</button>
+          <button onclick="filterFlashcards('ks205')" id="fcFilterKS" class="px-3 py-1 rounded-xl bg-slate-800 text-slate-300 font-bold hover:bg-slate-700 transition-all">KS 205 (6)</button>
+          <button onclick="filterFlashcards('fs209')" id="fcFilterFS" class="px-3 py-1 rounded-xl bg-slate-800 text-slate-300 font-bold hover:bg-slate-700 transition-all">FS 209C (6)</button>
+        </div>
+      </div>
+
+      <!-- Main Flashcard Presentation Area -->
+      <div class="max-w-2xl mx-auto">
+        <div id="flashcardElement" class="flip-card w-full h-64 sm:h-72 cursor-pointer" onclick="toggleCardFlip()">
+          <div class="flip-card-inner relative w-full h-full rounded-2xl shadow-xl">
+            
+            <!-- FRONT OF CARD (QUESTION) -->
+            <div class="flip-card-front absolute inset-0 bg-slate-900 border-2 border-slate-700/80 rounded-2xl p-6 sm:p-8 flex flex-col justify-between text-left">
+              <div>
+                <div class="flex items-center justify-between text-xs mb-3">
+                  <span id="fcBadge" class="px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">SY 281A • Epistemology</span>
+                  <span id="fcIndex" class="font-mono text-slate-400 text-xs">Card 1 / 20</span>
+                </div>
+                <h3 id="fcQuestion" class="text-base sm:text-lg font-extrabold text-white mt-2 leading-relaxed">
+                  How does Ramón Grosfoguel link Descartes' *Ego Cogito* ("I think, therefore I am") to European imperialism?
+                </h3>
+              </div>
+              <div class="flex items-center justify-between text-xs text-slate-400 pt-3 border-t border-slate-800">
+                <span class="flex items-center gap-1.5 text-cyan-400 font-semibold">
+                  <span>💡 Click card to reveal answer</span>
+                </span>
+                <span class="text-[11px] font-mono text-slate-500">Spacebar to flip</span>
+              </div>
+            </div>
+
+            <!-- BACK OF CARD (ANSWER) -->
+            <div class="flip-card-back absolute inset-0 bg-slate-950 border-2 border-cyan-500/60 rounded-2xl p-6 sm:p-8 flex flex-col justify-between text-left glow-cyan">
+              <div class="overflow-y-auto pr-1">
+                <div class="flex items-center justify-between text-xs mb-2">
+                  <span class="px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider text-[10px] bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Verified Academic Solution</span>
+                  <span class="text-xs font-mono text-cyan-400">Mastery Answer</span>
+                </div>
+                <div id="fcAnswer" class="text-xs sm:text-sm text-slate-200 mt-2 space-y-2 leading-relaxed">
+                  Descartes' 1637 <em>Ego Cogito</em> was preceded by 150 years of <strong>Ego Conquiro</strong> ("I conquer") and <strong>Ego Extermino</strong> ("I exterminate"). The physical conquest of Al-Andalus and the Americas established the Western male as an imperial sovereign who usurped the Christian God's "point-zero" perspective, claiming to produce universal truth from a detached view from nowhere.
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-3 border-t border-slate-800/80">
+                <span class="text-[11px] text-slate-400">Self-Rate to Advance:</span>
+                <div class="flex items-center gap-1.5" onclick="event.stopPropagation()">
+                  <button onclick="rateCard('again')" class="px-2.5 py-1 rounded-lg bg-rose-500/20 text-rose-300 text-xs font-bold hover:bg-rose-500/30 transition-all">Again (1m)</button>
+                  <button onclick="rateCard('good')" class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 text-xs font-bold hover:bg-emerald-500/30 transition-all">Good (1d)</button>
+                  <button onclick="nextCard()" class="px-3 py-1 rounded-lg bg-slate-800 text-white text-xs font-bold hover:bg-slate-700 transition-all">Next ➔</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex items-center justify-between mt-4 px-2">
+          <button onclick="prevCard()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold transition-all">
+            ⬅ Previous
+          </button>
+          <span id="fcCardCount" class="text-xs font-mono text-slate-400 font-bold">1 of 20 Cards</span>
+          <button onclick="nextCard()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-black transition-all">
+            Next ➡
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. TABBED PRIMARY-SOURCE KNOWLEDGE VAULT BROWSER -->
+    <section class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 backdrop-blur-md">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+        <div>
+          <h2 class="text-lg font-bold text-white tracking-wide uppercase flex items-center gap-2">
+            <span>📚 Primary Source Full Knowledge Vault</span>
+          </h2>
+          <p class="text-slate-400 text-xs mt-0.5">
+            Exhaustive, academic-grade extractions from syllabus readings, slides, and primary documents.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="openTab('sy')" id="tabBtnSY" class="px-3 py-1.5 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs transition-all">SY 281 (4 Guides)</button>
+          <button onclick="openTab('ks')" id="tabBtnKS" class="px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-bold text-xs hover:bg-slate-700 transition-all">KS 205 (3 Guides)</button>
+          <button onclick="openTab('fs')" id="tabBtnFS" class="px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-bold text-xs hover:bg-slate-700 transition-all">FS 209C (4 Guides)</button>
+        </div>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div id="tabContent" class="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-5 text-slate-300 text-xs sm:text-sm leading-relaxed max-h-96 overflow-y-auto">
+        <!-- Populated via JavaScript -->
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="text-center text-xs text-slate-500 py-4">
+      Wilfrid Laurier University • Fall 2026 Academic Operating System • Solomon Olufelo (`210729170`) • Built with Deepwork Architecture
+    </footer>
+
+  </div>
+
+  <!-- JAVASCRIPT LOGIC ENGINE -->
+  <script>
+    // --- 1. LIVE ANCHOR CLOCK ---
+    function updateClock() {
+      const now = new Date();
+      // Format as 2026 EDT
+      document.getElementById('liveClock').textContent = now.toLocaleTimeString();
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // --- 2. COUNTDOWN TIMERS ---
+    const deadlines = {
+      sy281: new Date("2026-10-01T08:30:00"),
+      fs209: new Date("2026-10-02T11:30:00"),
+      ks205: new Date("2026-10-03T08:30:00"),
+      midterm: new Date("2026-10-09T11:30:00")
+    };
+
+    function updateCountdowns() {
+      // In our current simulation anchor: Wednesday Sept 30, 2026 ~ 7:35 PM
+      const anchor = new Date("2026-09-30T19:35:00");
+      
+      function formatDiff(target) {
+        const diffMs = target - anchor;
+        if (diffMs <= 0) return "NOW ACTIVE";
+        const totalHours = Math.floor(diffMs / (1000 * 60 * 60));
+        const days = Math.floor(totalHours / 24);
+        const hours = totalHours % 24;
+        const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+        return days > 0 ? `${days}d ${hours}h ${minutes}m` : `${hours}h ${minutes}m`;
+      }
+
+      document.getElementById('countdownSY281').textContent = formatDiff(deadlines.sy281);
+      document.getElementById('countdownFS209').textContent = formatDiff(deadlines.fs209);
+      document.getElementById('countdownKS205').textContent = formatDiff(deadlines.ks205);
+      document.getElementById('countdownMidterm').textContent = formatDiff(deadlines.midterm);
+    }
+    updateCountdowns();
+
+    // --- 3. SPRINT TIMER & TASKS DATA ---
+    const sprintModes = {
+      sy281: {
+        title: "🔬 SY 281 Pre-Lab Blitz",
+        duration: 25 * 60,
+        badgeColor: "emerald",
+        target: "Grosfoguel Epistemicide & 1910 Memorial",
+        tasks: [
+          "Dissect Cartesian Link: Conquiro ➔ Extermino ➔ Cogito",
+          "Memorize the 4 Epistemicides (Al-Andalus, Americas, Slavery, Witches)",
+          "Review 1910 Memorial Host-Guest covenant & Section 141 Indian Act",
+          "Master Merrigan's 3 Paradigms & Bonner's Radical Hermeneutics"
+        ]
+      },
+      ks205: {
+        title: "🎨 KS 205 Nancy 5-Paragraph Drill",
+        duration: 30 * 60,
+        badgeColor: "rose",
+        target: "How to Read Nancy & McCloud Grammar",
+        tasks: [
+          "Review Bushmiller's 8 Architectural elements (vectors, black spotting)",
+          "Memorize McCloud's 6 Closure transitions in the gutter",
+          "Internalize the 7 Word-Image combinations (Interdependent punchline)",
+          "Draft 5-paragraph analysis outline on unseen practice strip"
+        ]
+      },
+      fs209: {
+        title: "🍜 FS 209C Semiotics & Topic 4 Immersion",
+        duration: 30 * 60,
+        badgeColor: "purple",
+        target: "Tampopo, Minari, & Opie's Soul Food",
+        tasks: [
+          "Review Saussure's signifier/signified and Barthes' 3 Levels of Meaning",
+          "Deconstruct Tampopo's 4 core scenes (Ramen Master, French Rest, Gangster, Dying Mother)",
+          "Analyze Minari's second-season watercress metaphor vs commercial barn",
+          "Master Opie's Chitlin Circuit history for Moonlight Act III diner scene"
+        ]
+      }
+    };
+
+    let currentMode = 'sy281';
+    let timeLeft = sprintModes.sy281.duration;
+    let timerTotal = sprintModes.sy281.duration;
+    let timerRunning = false;
+    let timerInterval = null;
+    let audioEnabled = true;
+
+    // Web Audio Synthesized Chimes
+    function playChime(freq = 587.33, duration = 0.3) {
+      if (!audioEnabled) return;
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch(e) {}
+    }
+
+    function toggleSound() {
+      audioEnabled = !audioEnabled;
+      document.getElementById('soundToggle').textContent = audioEnabled ? "ON 🔊" : "OFF 🔇";
+      document.getElementById('soundToggle').className = audioEnabled ? "text-emerald-400 font-bold" : "text-slate-500 font-bold";
+    }
+
+    function setTimerMode(modeKey) {
+      clearInterval(timerInterval);
+      timerRunning = false;
+      document.getElementById('btnIcon').textContent = '▶';
+      document.getElementById('btnText').textContent = 'START SPRINT';
+      
+      currentMode = modeKey;
+      const mode = sprintModes[modeKey];
+      timeLeft = mode.duration;
+      timerTotal = mode.duration;
+      
+      document.getElementById('activeSprintTarget').textContent = mode.target;
+      document.getElementById('btnSY').className = modeKey === 'sy281' ? 'p-2.5 rounded-xl border border-emerald-500/50 bg-emerald-950/40 text-emerald-300 text-xs font-bold transition-all text-center' : 'p-2.5 rounded-xl border border-slate-800 bg-slate-950/60 text-slate-400 text-xs font-bold transition-all text-center hover:bg-slate-800';
+      document.getElementById('btnKS').className = modeKey === 'ks205' ? 'p-2.5 rounded-xl border border-rose-500/50 bg-rose-950/40 text-rose-300 text-xs font-bold transition-all text-center' : 'p-2.5 rounded-xl border border-slate-800 bg-slate-950/60 text-slate-400 text-xs font-bold transition-all text-center hover:bg-slate-800';
+      document.getElementById('btnFS').className = modeKey === 'fs209' ? 'p-2.5 rounded-xl border border-purple-500/50 bg-purple-950/40 text-purple-300 text-xs font-bold transition-all text-center' : 'p-2.5 rounded-xl border border-slate-800 bg-slate-950/60 text-slate-400 text-xs font-bold transition-all text-center hover:bg-slate-800';
+
+      renderTasks();
+      updateTimerDisplay();
+    }
+
+    function renderTasks() {
+      const mode = sprintModes[currentMode];
+      const container = document.getElementById('tasksContainer');
+      container.innerHTML = '';
+      mode.tasks.forEach((task, idx) => {
+        const div = document.createElement('div');
+        div.className = "flex items-start gap-2.5 p-2 rounded-lg bg-slate-950/70 border border-slate-800/80 cursor-pointer hover:border-slate-700 transition-all";
+        div.onclick = () => {
+          const checkbox = div.querySelector('input');
+          checkbox.checked = !checkbox.checked;
+          div.querySelector('span').classList.toggle('line-through', checkbox.checked);
+          div.querySelector('span').classList.toggle('text-slate-500', checkbox.checked);
+          playChime(checkbox.checked ? 880 : 440, 0.15);
+          updateChecklistCount();
+        };
+        div.innerHTML = `
+          <input type="checkbox" class="mt-0.5 rounded border-slate-700 text-cyan-500 pointer-events-none">
+          <span class="text-slate-300 select-none">${task}</span>
+        `;
+        container.appendChild(div);
+      });
+      updateChecklistCount();
+    }
+
+    function updateChecklistCount() {
+      const total = document.querySelectorAll('#tasksContainer input').length;
+      const checked = document.querySelectorAll('#tasksContainer input:checked').length;
+      document.getElementById('checklistProgress').textContent = `${checked} / ${total} Complete`;
+    }
+
+    function toggleTimer() {
+      if (timerRunning) {
+        clearInterval(timerInterval);
+        timerRunning = false;
+        document.getElementById('btnIcon').textContent = '▶';
+        document.getElementById('btnText').textContent = 'RESUME SPRINT';
+        document.getElementById('timerStatusLabel').textContent = "Paused";
+      } else {
+        timerRunning = true;
+        document.getElementById('btnIcon').textContent = '⏸';
+        document.getElementById('btnText').textContent = 'PAUSE SPRINT';
+        document.getElementById('timerStatusLabel').textContent = "Deep Focus Active";
+        playChime(659.25, 0.2);
+        timerInterval = setInterval(() => {
+          if (timeLeft > 0) {
+            timeLeft--;
+            updateTimerDisplay();
+          } else {
+            clearInterval(timerInterval);
+            timerRunning = false;
+            document.getElementById('btnIcon').textContent = '▶';
+            document.getElementById('btnText').textContent = 'SPRINT COMPLETE';
+            document.getElementById('timerStatusLabel').textContent = "Take 5m Active Break";
+            playChime(880, 0.6);
+            alert("🎯 Sprint completed! Time for a 5-minute active retrieval break.");
+          }
+        }, 1000);
+      }
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      timerRunning = false;
+      document.getElementById('btnIcon').textContent = '▶';
+      document.getElementById('btnText').textContent = 'START SPRINT';
+      timeLeft = timerTotal;
+      document.getElementById('timerStatusLabel').textContent = "Ready to Sprint";
+      updateTimerDisplay();
+    }
+
+    function updateTimerDisplay() {
+      const mins = Math.floor(timeLeft / 60);
+      const secs = timeLeft % 60;
+      document.getElementById('timerDisplay').textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      
+      // Update SVG circular stroke dashoffset (circumference = 2 * pi * 84 ≈ 527)
+      const circle = document.getElementById('timerCircle');
+      const offset = 527 - (timeLeft / timerTotal) * 527;
+      circle.style.strokeDashoffset = offset;
+    }
+
+    // Initialize Timer
+    setTimerMode('sy281');
+
+    // --- 4. GRADE WEIGHTING SIMULATOR ---
+    function updateGradeSim() {
+      const sy = parseInt(document.getElementById('sliderSY').value);
+      const ks = parseInt(document.getElementById('sliderKS').value);
+      const fs = parseInt(document.getElementById('sliderFS').value);
+
+      document.getElementById('labelSYScore').textContent = sy + "%";
+      document.getElementById('labelKSScore').textContent = ks + "%";
+      document.getElementById('labelFSScore').textContent = fs + "%";
+
+      // Equal course weighting for term average
+      const termAvg = ((sy + ks + fs) / 3).toFixed(1);
+      document.getElementById('termAvgDisplay').textContent = termAvg + "%";
+    }
+
+    // --- 5. FLASHCARDS DATABASE & SPACED RETRIEVAL ---
+    const flashcardsData = [
+      {
+        course: "sy281",
+        badge: "SY 281A • Epistemology",
+        q: "How does Ramón Grosfoguel link Descartes' *Ego Cogito* ('I think, therefore I am') to 1492 imperialism?",
+        a: "Grosfoguel demonstrates that the 1637 <em>Ego Cogito</em> was preceded by 150 years of <strong>Ego Conquiro</strong> ('I conquer') and <strong>Ego Extermino</strong> ('I exterminate'). The military genocide of Indigenous and Moorish peoples established the Western male as an imperial sovereign who claimed a godlike, detached 'point-zero' view from nowhere."
+      },
+      {
+        course: "sy281",
+        badge: "SY 281A • Historical Epistemicide",
+        q: "Name the Four World-Historical Genocides / Epistemicides of the Long 16th Century identified by Grosfoguel.",
+        a: "1. <strong>Muslims & Jews</strong> in Al-Andalus (burning of 1M+ scientific codices; <em>limpieza de sangre</em>).<br>2. <strong>Indigenous Peoples</strong> of the Americas (Valladolid Debate; codices burned).<br>3. <strong>Enslaved Africans</strong> (transatlantic slave trade; commodification; denial of humanity).<br>4. <strong>European Women</strong> (witch hunts; extermination of autonomous female herbalists/midwives)."
+      },
+      {
+        course: "sy281",
+        badge: "SY 281A • Oral Jurisprudence",
+        q: "What is the 'Host-Guest' framework articulated by the Chiefs in the 1910 Memorial to Sir Wilfrid Laurier?",
+        a: "The Secwépemc, Nlaka'pamux, and Syilx Chiefs asserted that Indigenous nations are the perpetual, sovereign <strong>hosts</strong> of their lands. Under ancient law (<em>Stspetékwle</em>), outsiders are welcomed as <strong>guests</strong> under mutual reciprocity. The Chiefs praised the early fur traders for respecting this covenant, and condemned post-1858 settlers and the BC government for betraying it by stealing land and water."
+      },
+      {
+        course: "sy281",
+        badge: "SY 281A • Settler Colonialism",
+        q: "How does Patrick Wolfe define Settler Colonialism, and what is its ultimate motive?",
+        a: "Wolfe defines settler colonialism as <strong>'a structure, not an event.'</strong> Its primary motive is <strong>territorial acquisition (land)</strong>, which necessitates a continuous 'logic of elimination' to erase Indigenous claims through physical removal, reserve cuts, and legal bans (e.g., Indian Act Section 141)."
+      },
+      {
+        course: "sy281",
+        badge: "SY 281A • Paradigms of Knowing",
+        q: "Contrast the Discovery Paradigm with the Interpretive Paradigm across Ontology and Epistemology.",
+        a: "<strong>Discovery Paradigm</strong>: Assumes one singular objective reality existing independent of knowers; knower is a detached, value-free observer seeking universal laws.<br><strong>Interpretive Paradigm</strong>: Assumes multiple socially constructed realities created through human meaning-making; knower and known are inseparable."
+      },
+      {
+        course: "sy281",
+        badge: "SY 281A • Radical Hermeneutics",
+        q: "What is Kieran Bonner's radical definition of 'To Know,' and how did Gadamer view pre-judgments (*Vorurteile*)?",
+        a: "Bonner defines <strong>'To Know = To understand the specific perspective that made that knowledge possible in the first place.'</strong> Gadamer proved that pre-judgments are not errors to be purged (as Descartes claimed), but the foundational conditions that make any human understanding possible through a 'fusion of horizons.'"
+      },
+      {
+        course: "sy281",
+        badge: "SY 281A • Generic Social Processes",
+        q: "List four of Robert Prus's Generic Social Processes (GSPs) and explain why they matter for qualitative analysis.",
+        a: "1. Acquiring perspectives<br>2. Achieving identity<br>3. Being involved<br>4. Performing activity<br>GSPs are trans-situational forms of interaction that allow researchers to link specific ethnographic details to universal sociological theory."
+      },
+      {
+        course: "sy281",
+        badge: "SY 281A • Canadian Ethics",
+        q: "What are the three core principles of the TCPS 2 and what does OCAP® govern?",
+        a: "<strong>TCPS 2</strong>: (1) Respect for Persons (autonomy, free/informed/ongoing consent), (2) Concern for Welfare (risk minimization), (3) Justice (equity).<br><strong>OCAP®</strong>: Ownership, Control, Access, and Possession of First Nations data and research."
+      },
+      {
+        course: "ks205",
+        badge: "KS 205 VA • Comic Architecture",
+        q: "What does Ernie Bushmiller's 'Spotting the Blacks' achieve in a newspaper comic strip?",
+        a: "Solid black patches create an optical rhythm across the strip. By placing black shapes in an undulating wave (connect-the-dots), the cartoonist channels the reader's eye swiftly from left to right, using directional vectors (e.g., a hose or arm) to point directly at the punchline."
+      },
+      {
+        course: "ks205",
+        badge: "KS 205 VA • Closure & The Gutter",
+        q: "What is 'Closure' in Scott McCloud's framework and where does it occur?",
+        a: "Closure is the mental phenomenon of <strong>observing parts but perceiving the whole</strong>. In comics, it occurs within <strong>the gutter</strong> (the blank space between panels) where the reader's imagination bridges separate static images to construct narrative time and motion."
+      },
+      {
+        course: "ks205",
+        badge: "KS 205 VA • McCloud Transitions",
+        q: "Name McCloud's 6 Closure transitions. Which type dominates Western action comics vs. Japanese manga?",
+        a: "1. Moment-to-moment<br>2. Action-to-action (Dominates Western comics)<br>3. Subject-to-subject<br>4. Scene-to-scene<br>5. Aspect-to-aspect (Dominates Japanese manga for mood/setting)<br>6. Non-sequitur."
+      },
+      {
+        course: "ks205",
+        badge: "KS 205 VA • Word-Image Synergy",
+        q: "What is an 'Interdependent' word-image combination, and why is it crucial for gag strips?",
+        a: "An interdependent combination occurs when words and pictures combine to communicate an idea that <strong>neither could convey alone</strong>. In comic strips, it represents the gold standard for punchlines: removing the image makes the text nonsensical, and removing the text makes the image comedic vacuum."
+      },
+      {
+        course: "ks205",
+        badge: "KS 205 VA • Superhero Genre",
+        q: "What is Peter Coogan's tripartite definition of the superhero?",
+        a: "1. <strong>Mission</strong>: Selfless, pro-social, ongoing dedication to fight evil.<br>2. <strong>Powers</strong>: Extraordinary abilities, advanced technology, or peak human training.<br>3. <strong>Identity</strong>: Codename and iconic costume externalizing character origin, usually paired with a secret civilian identity."
+      },
+      {
+        course: "ks205",
+        badge: "KS 205 VA • Ideology in Comics",
+        q: "What is Walter Wink's 'Myth of Redemptive Violence' as applied to superhero comics?",
+        a: "The ideological belief that the world is divided into absolute good and unreformable evil, and that moral order and justice can <strong>only</strong> be restored when the righteous hero applies overwhelming, superior physical violence to vanquish the antagonist."
+      },
+      {
+        course: "fs209",
+        badge: "FS 209C A • Culinary Semiotics",
+        q: "What are the three vertices of Warren Belasco's Culinary Triangle?",
+        a: "1. <strong>Identity</strong>: Cultural heritage, memory, family pride, ethnicity.<br>2. <strong>Convenience</strong>: Price, speed, availability, industrial ease.<br>3. <strong>Responsibility</strong>: Health, environmental sustainability, animal welfare, social justice."
+      },
+      {
+        course: "fs209",
+        badge: "FS 209C A • Barthesian Levels",
+        q: "Explain Roland Barthes' Three Levels of Meaning using a bowl of soup.",
+        a: "1. <strong>Denotative</strong>: Broth, noodles, sodium, calories (physiological sustenance).<br>2. <strong>Connotative</strong>: 'Jewish Penicillin', maternal domestic comfort, home recovery.<br>3. <strong>Mythological/Ideological</strong>: The naturalization of female unpaid domestic care as an effortless maternal instinct."
+      },
+      {
+        course: "fs209",
+        badge: "FS 209C A • Tampopo Vignettes",
+        q: "How does the French Restaurant scene in Juzo Itami's *Tampopo* (1985) satirize corporate Japan?",
+        a: "Senior corporate executives, intimidated by the French menu, slavishly parrot the CEO by ordering identical sole meunière. The lowest-ranking junior clerk speaks fluent French and orders sophisticated delicacies (boudin, 1981 Corton-Charlemagne), exposing the vacuity and cultural insecurity of rigid corporate hierarchy."
+      },
+      {
+        course: "fs209",
+        badge: "FS 209C A • Diasporic Foodways",
+        q: "In Lee Isaac Chung's *Minari* (2020), what does the minari plant symbolize compared to Jacob's commercial vegetable barn?",
+        a: "The commercial barn represents the fragile, debt-heavy American Dream that burns to ashes. The <strong>minari</strong> by the creek represents diasporic resilience: it grows wild in marginal mud without expensive fertilizers, purifies water, and flourishes sweetest in its second season—symbolizing the second generation taking root."
+      },
+      {
+        course: "fs209",
+        badge: "FS 209C A • Soul Food History",
+        q: "According to Frederick Douglass Opie, what was the 'Chitlin Circuit'?",
+        a: "A safe network of Black-owned nightclubs, theaters, juke joints, and diners across the Jim Crow South and urban North that sustained African American performers and communities, serving traditional Southern soul food as sanctuary and cultural pride."
+      },
+      {
+        course: "fs209",
+        badge: "FS 209C A • Moonlight Analysis",
+        q: "In Barry Jenkins' *Moonlight* (2016), how does the Act III diner scene operate semiotically?",
+        a: "Kevin cooking the 'Chef's Special' (Cuban bread, picadillo, wine) for Chiron is an act of non-verbal queer care and domestic nurturing. Sizzling food and Barbara Lewis's 'Hello Stranger' disarm Chiron's hyper-masculine trauma armor, transforming the drug dealer back into the vulnerable, loved boy Little."
+      }
+    ];
+
+    let currentFCList = [...flashcardsData];
+    let currentFCIndex = 0;
+
+    function renderFlashcard() {
+      const card = currentFCList[currentFCIndex];
+      const fcEl = document.getElementById('flashcardElement');
+      fcEl.classList.remove('flipped');
+
+      setTimeout(() => {
+        document.getElementById('fcBadge').textContent = card.badge;
+        document.getElementById('fcIndex').textContent = `Card ${currentFCIndex + 1} / ${currentFCList.length}`;
+        document.getElementById('fcQuestion').innerHTML = card.q;
+        document.getElementById('fcAnswer').innerHTML = card.a;
+        document.getElementById('fcCardCount').textContent = `${currentFCIndex + 1} of ${currentFCList.length} Cards`;
+      }, 150);
+    }
+
+    function toggleCardFlip() {
+      document.getElementById('flashcardElement').classList.toggle('flipped');
+      playChime(523.25, 0.1);
+    }
+
+    function nextCard() {
+      currentFCIndex = (currentFCIndex + 1) % currentFCList.length;
+      renderFlashcard();
+    }
+
+    function prevCard() {
+      currentFCIndex = (currentFCIndex - 1 + currentFCList.length) % currentFCList.length;
+      renderFlashcard();
+    }
+
+    function rateCard(rating) {
+      playChime(rating === 'good' ? 880 : 330, 0.2);
+      nextCard();
+    }
+
+    function filterFlashcards(course) {
+      if (course === 'all') {
+        currentFCList = [...flashcardsData];
+      } else {
+        currentFCList = flashcardsData.filter(c => c.course === course);
+      }
+      currentFCIndex = 0;
+      
+      // Update filter button styling
+      ['All', 'SY', 'KS', 'FS'].forEach(k => {
+        document.getElementById(`fcFilter${k}`).className = 'px-3 py-1 rounded-xl bg-slate-800 text-slate-300 font-bold hover:bg-slate-700 transition-all';
+      });
+      const activeBtn = course === 'all' ? 'fcFilterAll' : course === 'sy281' ? 'fcFilterSY' : course === 'ks205' ? 'fcFilterKS' : 'fcFilterFS';
+      document.getElementById(activeBtn).className = 'px-3 py-1 rounded-xl bg-cyan-500 text-slate-950 font-bold transition-all';
+
+      renderFlashcard();
+    }
+
+    // Keyboard support for flashcards
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        toggleCardFlip();
+      } else if (e.code === 'ArrowRight') {
+        nextCard();
+      } else if (e.code === 'ArrowLeft') {
+        prevCard();
+      }
+    });
+
+    renderFlashcard();
+
+    // --- 6. TABBED KNOWLEDGE VAULT BROWSER ---
+    const vaultTabs = {
+      sy: `
+        <div class="space-y-4">
+          <div class="border-b border-slate-800 pb-3">
+            <h4 class="font-extrabold text-emerald-400 text-base">🔬 SY 281 A: Qualitative Research Methods (Dr. Stephen Svenson)</h4>
+            <p class="text-xs text-slate-400 mt-1">Status: Lab #3 starts tomorrow @ 8:30 AM in DAWB 5-127. Best 5 of 7 exercises bank 50% of course.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+              <div class="font-bold text-slate-200">1. Ramón Grosfoguel: Epistemicide & Cartesian Link</div>
+              <p class="text-xs text-slate-400 mt-1">Conquiro ➔ Extermino ➔ Cogito triad; the 4 genocides of the long 16th century; provincializing the canon of 5 Western nations.</p>
+            </div>
+            <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+              <div class="font-bold text-slate-200">2. 1910 Kamloops Memorial: Oral Jurisprudence</div>
+              <p class="text-xs text-slate-400 mt-1">Chief Petit Louis, Tetlenitsa, Chilahitsa, James Teit; host-guest reciprocity; Trutch's reserve cuts; Indian Act Section 141 (1927).</p>
+            </div>
+            <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+              <div class="font-bold text-slate-200">3. Merrigan's 3 Paradigms & Radical Hermeneutics</div>
+              <p class="text-xs text-slate-400 mt-1">Discovery vs Interpretive vs Critical matrix; Peter Berger's 4 motifs; Kieran Bonner & Gadamer's fusion of horizons; Poor Tetsuo case study.</p>
+            </div>
+            <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+              <div class="font-bold text-slate-200">4. Van den Hoonaard: Qualitative Primer</div>
+              <p class="text-xs text-slate-400 mt-1">Inductive design; sensitizing concepts; Robert Prus's 5 Generic Social Processes (GSPs); Canadian TCPS 2 ethics and OCAP® principles.</p>
+            </div>
+          </div>
+        </div>
+      `,
+      ks: `
+        <div class="space-y-4">
+          <div class="border-b border-slate-800 pb-3">
+            <h4 class="font-extrabold text-rose-400 text-base">🎨 KS 205 VA: Cartoons and Comics (Dr. Dru Jeffries)</h4>
+            <p class="text-xs text-slate-400 mt-1">Status: In-Person Exam this Saturday, Oct 3 @ 8:30 AM in LH3094 (25% OF FINAL GRADE in a single sitting!).</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+              <div class="font-bold text-slate-200">1. Newgarden & Karasik: How to Read Nancy</div>
+              <p class="text-xs text-slate-400 mt-1">The 8 architectural mechanics of the gag strip; eye tracking, spotting the blacks, directional vectors, groundline swell, and 5-paragraph exam blueprint.</p>
+            </div>
+            <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+              <div class="font-bold text-slate-200">2. Scott McCloud: Understanding Comics Chapters 1–6</div>
+              <p class="text-xs text-slate-400 mt-1">Will Eisner's sequential art; The Big Triangle; Amplification through simplification; The Masking effect; 6 Gutter transitions; 7 Word-Image combos.</p>
+            </div>
+            <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+              <div class="font-bold text-slate-200">3. Matthew J. Smith: Superhero Comics & Golden Age</div>
+              <p class="text-xs text-slate-400 mt-1">Peter Coogan's Mission/Powers/Identity triad; Walter Wink's Myth of Redemptive Violence; Superman (1938), Batman (1939), Wonder Woman (1941).</p>
+            </div>
+          </div>
+        </div>
+      `,
+      fs: `
+        <div class="space-y-4">
+          <div class="border-b border-slate-800 pb-3">
+            <h4 class="font-extrabold text-amber-400 text-base">🍜 FS 209C A: Food and Identity in Film (Dr. Jing Jing Chang)</h4>
+            <p class="text-xs text-slate-400 mt-1">Status: Friday class @ 11:30 AM (Moonlight screening); In-Class Test #1 on Friday, Oct 9 (150 mins, 25% of grade).</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+              <div class="font-bold text-slate-200">1. Semiotics Toolkit: Saussure, Barthes, Belasco</div>
+              <p class="text-xs text-slate-400 mt-1">Belasco's Culinary Triangle (Identity/Convenience/Responsibility); Signifier/Signified; Barthes' 3 Levels of Meaning; Pierogi Pincé & Bao.</p>
+            </div>
+            <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+              <div class="font-bold text-slate-200">2. Juzo Itami's Tampopo (1985): The Ramen Western</div>
+              <p class="text-xs text-slate-400 mt-1">Shokunin craftsmanship; close readings of the 4 scenes: Ramen Master, French Restaurant corporate subversion, Gangster erotica, Dying Mother.</p>
+            </div>
+            <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+              <div class="font-bold text-slate-200">3. Columbian Exchange & Minari (2020)</div>
+              <p class="text-xs text-slate-400 mt-1">Crosby's biological transfer (chili peppers); Sidney Cheung's Spice Politics; Grandma's gochugaru, Mountain Dew urine prank, Minari watercress metaphor.</p>
+            </div>
+            <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+              <div class="font-bold text-slate-200">4. Frederick Opie's Soul Food & Moonlight (2016)</div>
+              <p class="text-xs text-slate-400 mt-1">West African roots; chattel slavery offal alchemy; Chitlin Circuit; Kevin cooking Chef's Special for Chiron; Barbara Lewis's Hello Stranger.</p>
+            </div>
+          </div>
+        </div>
+      `
+    };
+
+    function openTab(tabKey) {
+      document.getElementById('tabContent').innerHTML = vaultTabs[tabKey];
+      ['sy', 'ks', 'fs'].forEach(k => {
+        document.getElementById(`tabBtn${k.toUpperCase()}`).className = 'px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-bold text-xs hover:bg-slate-700 transition-all';
+      });
+      document.getElementById(`tabBtn${tabKey.toUpperCase()}`).className = tabKey === 'sy' ? 'px-3 py-1.5 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs transition-all' : tabKey === 'ks' ? 'px-3 py-1.5 rounded-xl bg-rose-500 text-white font-bold text-xs transition-all' : 'px-3 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-xs transition-all';
+    }
+
+    openTab('sy');
+  </script>
+</body>
+</html>
