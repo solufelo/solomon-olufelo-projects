@@ -11,12 +11,14 @@
             "id": "168f0c804661dff2",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "04_Assets/Understanding_Comics_Scott_McCloud.pdf"
+                "file": "02_SY281A_Qualitative_Methods/READINGS_FULL_DEEP_DIVE/Kamloops_Memorial_1910_Oral_Jurisprudence_Primary_Source_Analysis.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-file-text",
-              "title": "Understanding_Comics_Scott_McCloud"
+              "icon": "lucide-file",
+              "title": "Kamloops_Memorial_1910_Oral_Jurisprudence_Primary_Source_Analysis"
             }
           }
         ]
@@ -189,6 +191,9 @@
   },
   "active": "168f0c804661dff2",
   "lastOpenFiles": [
+    "02_SY281A_Qualitative_Methods/READINGS_FULL_DEEP_DIVE/Grosfoguel_Epistemicide_and_Cartesian_Link_Full_Text_Analysis.md",
+    "02_SY281A_Qualitative_Methods/Whiteboard_Full_Theory_Weeks_1_to_3.md",
+    "04_Assets/Understanding_Comics_Scott_McCloud.pdf",
     "01_KS205_Cartoons_and_Comics/Scott_McCloud_Understanding_Comics_Complete_Mastery.md",
     "01_KS205_Cartoons_and_Comics/BirthOfComicBookAndSuperhero.md",
     "01_KS205_Cartoons_and_Comics/Untitled.canvas",
