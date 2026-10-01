@@ -7,7 +7,7 @@
 ## 🚀 PRIMARY SOURCE DEEP-DIVE KNOWLEDGE VAULT (ZERO SHORTCUTS)
 
 ### 🔬 SY 281 A: Qualitative Research Methods (Dr. Stephen Svenson)
-* **Tomorrow's Stakes:** **Lab Exercise #3 — Thursday, Oct 1 @ 8:30 AM – 9:50 AM in DAWB 5-127** (10% of grade; starts 5-exercise bank; Exercises 1 & 2 dropped).
+* **Tomorrow's Stakes:** **Lab Exercise #3 — Thursday, Oct 1 @ 8:30 AM – 9:50 AM in Bricker Academic BA211** (10% of grade; starts 5-exercise bank; Exercises 1 & 2 dropped).
 * [[02_SY281A_Qualitative_Methods/READINGS_FULL_DEEP_DIVE/Grosfoguel_Epistemicide_and_Cartesian_Link_Full_Text_Analysis|📖 Ramón Grosfoguel: Epistemicide, Cartesian Hubris, and the 4 Genocides]]
 * [[02_SY281A_Qualitative_Methods/READINGS_FULL_DEEP_DIVE/Kamloops_Memorial_1910_Oral_Jurisprudence_Primary_Source_Analysis|📜 1910 Memorial to Sir Wilfrid Laurier: Oral Jurisprudence & Settler Colonial Elimination]]
 * [[02_SY281A_Qualitative_Methods/READINGS_FULL_DEEP_DIVE/Merrigan_Inquiry_Paradigms_and_Radical_Hermeneutics_Deep_Dive|🧠 Merrigan et al.: 3 Paradigms of Knowing & Bonner's Radical Hermeneutics]]
@@ -39,7 +39,7 @@
 
 ## 🗓️ Weekly Battle Rhythm & Execution Schedule
 * **Thursday, Oct 1 (TOMORROW):**
-  * **8:30 AM – 9:50 AM:** SY 281 Lab Exercise #3 (DAWB 5-127). Focus on Paradigms, Bonner's Radical Hermeneutics, and TCPS 2 Ethics.
+  * **8:30 AM – 9:50 AM:** SY 281 Lab Exercise #3 (Bricker Academic BA211). Focus on Paradigms, Bonner's Radical Hermeneutics, and TCPS 2 Ethics.
   * **Afternoon:** Prep for Friday FS 209C class (Review Opie & *Moonlight* notes).
 * **Friday, Oct 2:**
   * **11:30 AM – 2:20 PM:** FS 209C Class (Peters P120). Topic 4 (Soul in Soul Food) + screening of *Moonlight*.
