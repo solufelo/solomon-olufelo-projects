@@ -17,12 +17,7 @@
       --accent-purple: #a855f7;
       --accent-rose: #f43f5e;
     }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     body {
       background-color: var(--bg);
       color: var(--text-main);
@@ -30,17 +25,13 @@
       line-height: 1.5;
       padding-bottom: 90px;
     }
-    .safe-top {
-      padding-top: env(safe-area-inset-top, 16px);
-    }
-    .safe-bottom {
-      padding-bottom: env(safe-area-inset-bottom, 20px);
-    }
+    .safe-top { padding-top: env(safe-area-inset-top, 16px); }
+    .safe-bottom { padding-bottom: env(safe-area-inset-bottom, 20px); }
     header {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(3, 7, 18, 0.92);
+      background: rgba(3, 7, 18, 0.94);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--card-border);
@@ -83,26 +74,11 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    .pill-btn.active {
-      background: var(--accent-cyan);
-      color: #030712;
-      border-color: var(--accent-cyan);
-    }
-    .pill-btn.urgent {
-      border-color: rgba(16, 185, 129, 0.5);
-      color: #34d399;
-    }
-    .pill-btn.urgent.active {
-      background: var(--accent-emerald);
-      color: #030712;
-      border-color: var(--accent-emerald);
-    }
+    .pill-btn.active { background: var(--accent-cyan); color: #030712; border-color: var(--accent-cyan); }
+    .pill-btn.urgent { border-color: rgba(16, 185, 129, 0.5); color: #34d399; }
+    .pill-btn.urgent.active { background: var(--accent-emerald); color: #030712; border-color: var(--accent-emerald); }
 
-    .container {
-      padding: 16px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
+    .container { padding: 16px; max-width: 600px; margin: 0 auto; }
     .card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -132,33 +108,14 @@
       justify-content: space-between;
       align-items: center;
     }
-    .content-box {
-      font-size: 13px;
-      color: #cbd5e1;
-      line-height: 1.6;
-    }
-    .content-box p {
-      margin-bottom: 10px;
-    }
-    .content-box ul {
-      margin-left: 18px;
-      margin-bottom: 10px;
-    }
-    .content-box li {
-      margin-bottom: 6px;
-    }
-    .highlight {
-      color: #38bdf8;
-      font-weight: 700;
-    }
-    .highlight-em {
-      color: #34d399;
-      font-weight: 700;
-    }
-    .highlight-rose {
-      color: #fb7185;
-      font-weight: 700;
-    }
+    .content-box { font-size: 13px; color: #cbd5e1; line-height: 1.6; }
+    .content-box p { margin-bottom: 10px; }
+    .content-box ul { margin-left: 18px; margin-bottom: 10px; }
+    .content-box li { margin-bottom: 6px; }
+    .highlight { color: #38bdf8; font-weight: 700; }
+    .highlight-em { color: #34d399; font-weight: 700; }
+    .highlight-rose { color: #fb7185; font-weight: 700; }
+    .highlight-amber { color: #fbbf24; font-weight: 700; }
     .formula-box {
       background: rgba(0, 0, 0, 0.5);
       border: 1px solid #334155;
@@ -178,9 +135,7 @@
       margin-bottom: 10px;
       overflow: hidden;
     }
-    details[open] {
-      border-color: rgba(6, 182, 212, 0.4);
-    }
+    details[open] { border-color: rgba(6, 182, 212, 0.4); }
     summary {
       padding: 12px 14px;
       font-size: 13px;
@@ -194,14 +149,8 @@
       user-select: none;
     }
     summary::-webkit-details-marker { display: none; }
-    summary::after {
-      content: "➕";
-      font-size: 11px;
-      transition: transform 0.2s;
-    }
-    details[open] summary::after {
-      content: "➖";
-    }
+    summary::after { content: "➕"; font-size: 11px; }
+    details[open] summary::after { content: "➖"; }
     .details-body {
       padding: 12px 14px;
       border-top: 1px solid var(--card-border);
@@ -248,37 +197,12 @@
       transition: all 0.3s;
       position: relative;
     }
-    .mobile-flashcard.revealed {
-      border-color: var(--accent-cyan);
-      background: #0f172a;
-    }
-    .fc-q {
-      font-size: 14px;
-      font-weight: 700;
-      color: #fff;
-    }
-    .fc-a {
-      font-size: 13px;
-      color: #94a3b8;
-      margin-top: 10px;
-      display: none;
-      line-height: 1.5;
-    }
-    .mobile-flashcard.revealed .fc-a {
-      display: block;
-      color: #38bdf8;
-    }
-    .mobile-flashcard.revealed .fc-hint {
-      display: none;
-    }
-    .fc-hint {
-      font-size: 11px;
-      color: #64748b;
-      margin-top: 12px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
+    .mobile-flashcard.revealed { border-color: var(--accent-cyan); background: #0f172a; }
+    .fc-q { font-size: 14px; font-weight: 700; color: #fff; }
+    .fc-a { font-size: 13px; color: #94a3b8; margin-top: 10px; display: none; line-height: 1.5; }
+    .mobile-flashcard.revealed .fc-a { display: block; color: #38bdf8; }
+    .mobile-flashcard.revealed .fc-hint { display: none; }
+    .fc-hint { font-size: 11px; color: #64748b; margin-top: 12px; display: flex; align-items: center; gap: 4px; }
 
     nav.bottom-dock {
       position: fixed;
@@ -309,15 +233,9 @@
       border-radius: 8px;
       transition: all 0.2s;
     }
-    .dock-item.active {
-      color: var(--accent-cyan);
-    }
-    .dock-item.urgent {
-      color: var(--accent-emerald);
-    }
-    .dock-icon {
-      font-size: 18px;
-    }
+    .dock-item.active { color: var(--accent-cyan); }
+    .dock-item.urgent { color: var(--accent-emerald); }
+    .dock-icon { font-size: 18px; }
   </style>
 </head>
 <body>
@@ -328,14 +246,14 @@
       <div>
         <div style="display: flex; align-items: center; gap: 6px;">
           <span class="badge badge-emerald">DAWB 5-127 @ 8:30 AM</span>
-          <span style="font-size: 10px; color: var(--text-muted); font-weight: 700;">10% GRADE</span>
+          <span style="font-size: 10px; color: #34d399; font-weight: 800;">WEEK 4 ACTIVE</span>
         </div>
         <h1 style="font-size: 16px; font-weight: 900; color: #fff; margin-top: 2px;">
-          📱 BED-SIDE MASTER SYLLABUS
+          📱 BED-SIDE MASTER SYLLABUS v5.3
         </h1>
       </div>
       <div style="text-align: right;">
-        <span class="badge badge-cyan" id="clock">10:45 PM</span>
+        <span class="badge badge-cyan" id="clock">11:00 PM</span>
         <div style="font-size: 10px; color: #64748b; margin-top: 2px;">Solomon Olufelo</div>
       </div>
     </div>
@@ -343,21 +261,20 @@
 
   <!-- Horizontal Scrollable Tabs -->
   <div class="pill-nav">
-    <button class="pill-btn urgent active" onclick="switchTab('lab3')" id="tab-lab3">🚨 LAB #3 LOCK (5 MIN)</button>
-    <button class="pill-btn" onclick="switchTab('sy281')" id="tab-sy281">🔬 SY 281 (W1–W3)</button>
+    <button class="pill-btn urgent active" onclick="switchTab('lab3')" id="tab-lab3">🚨 LAB #3 (WEEK 4 LOCK)</button>
+    <button class="pill-btn" onclick="switchTab('sy281')" id="tab-sy281">🔬 SY 281 (W1–W4)</button>
     <button class="pill-btn" onclick="switchTab('ks205')" id="tab-ks205">🎨 KS 205 (SAT EXAM)</button>
     <button class="pill-btn" onclick="switchTab('fs209')" id="tab-fs209">🍜 FS 209C (FILMS)</button>
     <button class="pill-btn" onclick="switchTab('cards')" id="tab-cards">🧠 RECALL SWIPER</button>
   </div>
 
-  <!-- Main Scrollable Container -->
   <main class="container">
 
     <!-- Audio Player Bar (Web Speech API) -->
     <div class="audio-bar">
       <div>
-        <div style="font-size: 12px; font-weight: 800; color: #fff;">🎧 Bedtime Audio Reader</div>
-        <div style="font-size: 10px; color: var(--text-muted);">Listen with eyes closed in bed</div>
+        <div style="font-size: 12px; font-weight: 800; color: #fff;">🎧 Bedtime Audio Reader (Week 4 Sync)</div>
+        <div style="font-size: 10px; color: var(--text-muted);">Listen with eyes closed in bed (5 mins)</div>
       </div>
       <button class="btn-audio" onclick="toggleAudioReader()" id="btnAudio">
         <span>▶</span> <span id="audioStatus">PLAY</span>
@@ -372,17 +289,90 @@
       <!-- Urgent Alert Card -->
       <div class="card card-urgent">
         <div class="card-title">
-          <span>🎯 Tomorrow's Critical Objective</span>
+          <span>🎯 Tomorrow: Lab #3 Starts Your Grade Bank!</span>
         </div>
         <div class="card-meta">
           <span>DAWB 5-127 • 8:30 AM – 9:50 AM</span>
-          <span class="badge badge-emerald">EXERCISE #3 (10%)</span>
+          <span class="badge badge-emerald">WEEK 4 (10% GRADE)</span>
         </div>
         <div class="content-box">
           <p>
-            Exercises #1 and #2 were dropped under the "Best 5 of 7" rule (<strong>0% final grade lost</strong>). 
-            Tomorrow's Lab Exercise #3 starts your 5-exercise bank. Walk in with these exact concepts ready to write:
+            Exercises #1 and #2 were dropped under the "Best 5 of 7" rule (<strong>0% final mark lost</strong>). 
+            Tomorrow morning in DAWB 5-127 is <strong>Lab Exercise #3</strong>. Here are the exact Week 4 concepts you must write:
           </p>
+        </div>
+      </div>
+
+      <!-- NEW: Week 4 Indigenous Treaties Card -->
+      <div class="card" style="border-color: rgba(16, 185, 129, 0.5);">
+        <div class="card-title">
+          <span>🌿 Week 4 Treaties: One Spoon & Two Row Wampum</span>
+        </div>
+        <div class="content-box">
+          <p>
+            Dr. Svenson contrasts colonial extractivism with two historic Indigenous diplomatic frameworks:
+          </p>
+          <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 10px; margin-bottom: 10px; border-left: 3px solid var(--accent-emerald);">
+            <strong style="color: #34d399;">1. A Dish with One Spoon</strong> (Anishinaabe & Haudenosaunee covenant):
+            <ul style="margin-top: 4px; margin-bottom: 0;">
+              <li><strong>The Dish</strong>: Shared territory and hunting grounds stewarded for all inhabitants.</li>
+              <li><strong>The Spoon</strong>: Eating together peacefully. <em>No sharp knives allowed</em> (no warfare); take only what you need; leave food for others; keep the dish clean.</li>
+              <li><em>Research Parallel</em>: Researchers must take only necessary data, protect the field, and leave benefits for the community.</li>
+            </ul>
+          </div>
+          <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 10px; border-left: 3px solid var(--accent-cyan);">
+            <strong style="color: #38bdf8;">2. The Two Row Wampum (*Kaswentha*, 1613)</strong> (Haudenosaunee & Dutch):
+            <ul style="margin-top: 4px; margin-bottom: 0;">
+              <li><strong>3 White Rows</strong>: Peace, Friendship, and Mutual Respect.</li>
+              <li><strong>2 Purple Rows</strong>: The Haudenosaunee canoe and European ship sailing in parallel down the river of life.</li>
+              <li><strong>Core Law</strong>: <em>Neither vessel steers the other!</em> Mutual non-interference and distinct, equal sovereignty.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW: Week 4 Howard Becker & Research Design -->
+      <div class="card">
+        <div class="card-title">
+          <span>🏛️ Howard Becker: "Hierarchy of Credibility"</span>
+        </div>
+        <div class="content-box">
+          <p>
+            <strong>Howard Becker (1967)</strong>: The bias that high-status individuals (police chiefs, administrators) possess the truth, while marginalized groups are untrustworthy.
+          </p>
+          <p>
+            <span class="highlight-em">Qualitative Sociology Mission</span>: Systematically <strong>undermine the hierarchy of credibility</strong> by centering the voices of those at the bottom of the pyramid.
+          </p>
+          <p>
+            <strong>Danger of "Parachute / Helicopter Research"</strong>: Outside researchers extracting interview data from Indigenous or racialized groups and leaving without reciprocity.
+          </p>
+          <p>
+            <strong>Participatory Action Research (PAR)</strong>: Full collaboration in all stages; co-construction of knowledge; aimed at policy change and community empowerment.
+          </p>
+        </div>
+      </div>
+
+      <!-- NEW: Week 4 Homework / Lab Deconstruction: Bundy (2019) -->
+      <div class="card" style="border-color: rgba(245, 158, 11, 0.5);">
+        <div class="card-title">
+          <span>📋 Lab Case Study: Bundy (2019) Deconstruction</span>
+        </div>
+        <div class="card-meta">
+          <span>Dr. Svenson Slide 20 Homework Assignment</span>
+          <span class="badge badge-amber">EXAM GOLD</span>
+        </div>
+        <div class="content-box">
+          <p>
+            <em>"We'll Deal with it Later: African Nova Scotian Women's Perceptions and Experiences of the Police"</em>
+          </p>
+          <div style="background: rgba(0,0,0,0.4); padding: 8px 10px; border-radius: 8px; font-size: 12px; line-height: 1.6;">
+            <strong>1. Guiding Paradigm</strong>: <span class="highlight-rose">CRITICAL PARADIGM</span> (Intersectional Black Feminist lens).<br>
+            <strong>2. Two Clues / Reasons</strong>:<br>
+            • Focuses on institutional power imbalances, police hegemony, and systemic anti-Black racism (carding/street checks).<br>
+            • Emancipatory praxis goal: aims to dismantle racialized police violence and reform social policy.<br>
+            <strong>3. Research Question</strong>: How do African Nova Scotian women experience police interactions, and how do systemic racism and gendered vulnerability influence their willingness to call for help?<br>
+            <strong>4. Research Methods</strong>: In-depth semi-structured qualitative interviews; qualitative thematic coding; purposive community sampling.
+          </div>
         </div>
       </div>
 
@@ -392,24 +382,12 @@
           <span>1. The Cartesian Link (Grosfoguel 2013)</span>
         </div>
         <div class="content-box">
-          <p>
-            Descartes' 1637 formula <span class="highlight">Ego Cogito, Ergo Sum</span> ("I think, therefore I am") did not come from nowhere. It was preceded by 150 years of imperialism:
-          </p>
           <div class="formula-box">
             Ego Conquiro ("I conquer") ➔ Ego Extermino ("I exterminate") ➔ Ego Cogito ("I think")
           </div>
           <p>
-            <strong>The God-Eye / Point-Zero View</strong>: The Western male claims to produce detached, universal truth from nowhere. Decolonial research rejects this illusion, insisting on <em>situated, embodied, reflexive knowledge</em>.
+            <strong>The 4 Epistemicides</strong>: (1) Al-Andalus / Muslims & Jews (1492, 1M+ books burned); (2) Americas / Indigenous genocide (Valladolid debate); (3) Transatlantic slavery (Africans commodified as soulless chattel); (4) Witch hunts (female herbalists/midwives burned).
           </p>
-          <div style="background: rgba(0,0,0,0.3); padding: 8px 10px; border-radius: 8px; border-left: 3px solid var(--accent-emerald);">
-            <strong>The 4 Epistemicides of the 16th Century:</strong>
-            <ul style="margin-top: 4px; margin-bottom: 0;">
-              <li><strong>Al-Andalus (1492)</strong>: Muslims/Jews expelled; 1M+ scientific books burned; <em>limpieza de sangre</em>.</li>
-              <li><strong>Americas (1492+)</strong>: Indigenous genocide; Valladolid debate (Sepúlveda vs. Las Casas).</li>
-              <li><strong>Transatlantic Slavery</strong>: Africans classified as soulless chattel; epistemic erasure.</li>
-              <li><strong>Witch Hunts</strong>: Female herbalists/midwives burned; medicine monopolized by patriarchal universities.</li>
-            </ul>
-          </div>
         </div>
       </div>
 
@@ -420,12 +398,12 @@
         </div>
         <div class="content-box">
           <p>
-            Presented at Kamloops on Aug 25, 1910 by <span class="highlight">Chief Petit Louis</span> (Secwépemc), <span class="highlight">Chief John Tetlenitsa</span> (Nlaka'pamux), and <span class="highlight">Chief John Chilahitsa</span> (Syilx), assisted by secretary James Teit.
+            Presented by <strong>Chief Petit Louis</strong> (Secwépemc), <strong>Chief John Tetlenitsa</strong> (Nlaka'pamux), <strong>Chief John Chilahitsa</strong> (Syilx), and James Teit on Aug 25, 1910.
           </p>
           <ul>
-            <li><strong>Host-Guest Covenant</strong>: Indigenous nations are perpetual hosts. Under ancient law (<em>yirí7 re stsq'ey's-kucw</em> / <em>Stspetékwle</em>), outsiders are welcomed as guests. Fur traders respected this; post-1858 ranchers and Joseph Trutch violated it by stealing land and water.</li>
-            <li><strong>Patrick Wolfe's Logic of Elimination</strong>: Settler colonialism is a <em>structure, not an event</em>; it seeks to eliminate Indigenous presence to claim land.</li>
-            <li><strong>Section 141 (Indian Act, 1927)</strong>: Outlawed hiring lawyers or raising money for Indigenous land claims.</li>
+            <li><strong>Host-Guest Covenant</strong>: Indigenous nations are sovereign hosts. Fur traders respected this; post-1858 settlers broke it by stealing land and water.</li>
+            <li><strong>Patrick Wolfe</strong>: <em>"Settler colonialism is a structure, not an event"</em> (Logic of Elimination).</li>
+            <li><strong>Section 141 (Indian Act, 1927)</strong>: Criminalized hiring lawyers or raising funds for Indigenous land claims.</li>
           </ul>
         </div>
       </div>
@@ -439,88 +417,52 @@
           <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; text-align: center; margin-bottom: 10px;">
             <div style="background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 8px; padding: 6px 4px;">
               <strong style="color: #38bdf8; font-size: 11px;">DISCOVERY</strong>
-              <div style="font-size: 10px; color: #94a3b8; margin-top: 2px;">One Reality • Laws • Detached</div>
+              <div style="font-size: 10px; color: #94a3b8; margin-top: 2px;">One Reality • Laws</div>
             </div>
             <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 6px 4px;">
               <strong style="color: #34d399; font-size: 11px;">INTERPRETIVE</strong>
-              <div style="font-size: 10px; color: #94a3b8; margin-top: 2px;">Multiple • Meaning • Inseparable</div>
+              <div style="font-size: 10px; color: #94a3b8; margin-top: 2px;">Multiple • Meaning</div>
             </div>
             <div style="background: rgba(244, 63, 94, 0.1); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 8px; padding: 6px 4px;">
               <strong style="color: #fb7185; font-size: 11px;">CRITICAL</strong>
-              <div style="font-size: 10px; color: #94a3b8; margin-top: 2px;">Power • Hegemony • Change</div>
+              <div style="font-size: 10px; color: #94a3b8; margin-top: 2px;">Power • Change</div>
             </div>
           </div>
           <p>
-            <strong>Peter Berger’s 4 Motifs</strong>: Debunking (unmasking official facades), Unrespectability (looking through marginalized eyes), Relativization (norms are contingent), Cosmopolitanism (openness to diverse cultures).
+            <strong>Kieran Bonner & Gadamer</strong>: <em>"To Know = To understand the perspective that made the knowledge possible."</em> Pre-judgments (<em>Vorurteile</em>) are the condition of understanding; inquiry is a fusion of horizons.
           </p>
-          <p>
-            <strong>Kieran Bonner & Gadamer (Radical Hermeneutics)</strong>: <em>"To Know = To understand the perspective that made the knowledge possible."</em> Pre-judgments (<em>Vorurteile</em>) are the very condition of understanding; inquiry is a "fusion of horizons."
-          </p>
-        </div>
-      </div>
-
-      <!-- Core 4: Van den Hoonaard Primer & Ethics -->
-      <div class="card">
-        <div class="card-title">
-          <span>4. Qualitative Primer & TCPS 2 Ethics</span>
-        </div>
-        <div class="content-box">
-          <ul>
-            <li><strong>Robert Prus’s Generic Social Processes (GSPs)</strong>: Acquiring perspectives, Achieving identity, Being involved, Performing activity, Experiencing relationships.</li>
-            <li><strong>TCPS 2 Core Principles</strong>: Respect for Persons (autonomy/consent), Concern for Welfare (risk minimization), Justice (fairness).</li>
-            <li><strong>OCAP® Principles (Chapter 9)</strong>: Ownership, Control, Access, Possession of First Nations data.</li>
-          </ul>
         </div>
       </div>
 
     </div>
 
     <!-- ========================================== -->
-    <!-- VIEW 2: 🔬 SY 281 A (WEEKS 1, 2, 3 DEEP DIVE) -->
+    <!-- VIEW 2: 🔬 SY 281 A (WEEKS 1, 2, 3, 4 FULL)-->
     <!-- ========================================== -->
     <div id="view-sy281" class="view-section" style="display: none;">
       
-      <div class="card">
+      <div class="card" style="border-color: rgba(16, 185, 129, 0.5);">
         <div class="card-title">
-          <span>Week 1: Foundations of Qualitative Inquiry</span>
+          <span>Week 4: Designing Research & Becker's Hierarchy</span>
         </div>
         <div class="content-box">
-          <p>
-            Qualitative research uses <span class="highlight-em">inductive logic</span> (bottom-up generation of meaning from empirical observation) rather than deductive hypothesis testing.
-          </p>
-          <details>
-            <summary>Sensitizing Concepts (Herbert Blumer)</summary>
+          <details open>
+            <summary>C. Wright Mills: Sociological Imagination</summary>
             <div class="details-body">
-              Unlike quantitative definitive concepts (rigid metrics like "income &lt; $25,000"), sensitizing concepts provide a general sense of reference and orientation (e.g., "stigma", "identity management", "liminality").
+              The ability to connect personal biography with historical social structures. Distinguishes between <em>Private Troubles</em> (individual character struggles) and <em>Public Issues</em> (systemic crises rooted in institutions).
+            </div>
+          </details>
+          <details open>
+            <summary>Max Weber's Verstehen & Definition of Situation</summary>
+            <div class="details-body">
+              <strong>Verstehen</strong>: Sympathetic understanding; seeing the world through participants' eyes.<br>
+              <strong>Definition of the Situation (W.I. Thomas)</strong>: If people define situations as real, they are real in their consequences.
             </div>
           </details>
           <details>
-            <summary>Characteristics of Qualitative Methods</summary>
+            <summary>Breaching Experiments (Garfinkel & Landry)</summary>
             <div class="details-body">
-              Rigorous, processual, theoretically based, contextual, recognizes complexity, and experiential. Emergent design means the study evolves dynamically as the researcher learns in the field.
-            </div>
-          </details>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">
-          <span>Week 2: Epistemicide & Western Universities</span>
-        </div>
-        <div class="content-box">
-          <p>
-            How the Western university canon was formed through imperial violence rather than neutral intellectual superiority.
-          </p>
-          <details>
-            <summary>The Canon of 5 Nations</summary>
-            <div class="details-body">
-              Grosfoguel highlights that 95%+ of university social theory is written by men from only five countries: France, Germany, Great Britain, Italy, and the USA. Their local observations are universalized, while Global South knowledge is segregated into "Area Studies."
-            </div>
-          </details>
-          <details>
-            <summary>Transmodernity (Enrique Dussel)</summary>
-            <div class="details-body">
-              Rather than European universalism (one worldview for all) or postmodern relativism (nihilism), Dussel proposes <em>Pluriversality</em>: a world where many worlds fit through horizontal dialogue among diverse epistemic traditions.
+              Deliberately disrupting implicit everyday social norms to reveal the hidden social consensus that maintains social order (e.g. Deborah Landry's University of Ottawa flash mob experiment).
             </div>
           </details>
         </div>
@@ -531,18 +473,25 @@
           <span>Week 3: Paradigms & Radical Hermeneutics</span>
         </div>
         <div class="content-box">
-          <details>
-            <summary>Case Study: "Poor Tetsuo" Lifeworld Clash</summary>
-            <div class="details-body">
-              Tetsuo, a Japanese exchange student, gets caught between rural townspeople (folk lifeworld where evil/demonic forces are real) and urban visitors (modern secular lifeworld of irony/tourism). Quantitative surveys cannot explain this; only Interpretive inquiry into stocks of knowledge (Alfred Schutz) makes sense of it.
-            </div>
-          </details>
-          <details>
-            <summary>Thomas Kuhn: Paradigms & Revolutions</summary>
-            <div class="details-body">
-              A paradigm is a shared framework of theories, standards, and methods. Normal science operates within it until anomalies trigger a crisis, leading to a revolutionary paradigm shift.
-            </div>
-          </details>
+          <p>Peter Berger's 4 Motifs: Debunking, Unrespectability, Relativization, Cosmopolitanism. Case Study: "Poor Tetsuo" (folk vs modern lifeworlds).</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>Week 2: Epistemicide & 1910 Memorial</span>
+        </div>
+        <div class="content-box">
+          <p>Grosfoguel's Cartesian link; 4 Genocides of the Long 16th Century; Chief Petit Louis and the 1910 Kamloops Memorial; Indian Act Section 141 (1927).</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>Week 1: Qualitative Logic & Sensitizing Concepts</span>
+        </div>
+        <div class="content-box">
+          <p>Inductive vs Deductive logic; Herbert Blumer's sensitizing concepts; Robert Prus's 5 Generic Social Processes (GSPs); Canadian TCPS 2 ethics and OCAP®.</p>
         </div>
       </div>
 
@@ -562,9 +511,6 @@
           <span class="badge badge-rose">25% OF FINAL GRADE</span>
         </div>
         <div class="content-box">
-          <p>
-            You will be handed an unseen comic strip. Write this <strong>exact 5-paragraph architectural breakdown</strong>:
-          </p>
           <div style="background: rgba(0,0,0,0.4); padding: 8px 10px; border-radius: 8px; font-size: 12px; line-height: 1.6;">
             <strong>Para 1</strong>: Identify strip, cartoonist, panel count, premise & gag type.<br>
             <strong>Para 2</strong>: Eye tracking (left-to-right), black spotting wave, vectors, groundline swell.<br>
@@ -580,14 +526,7 @@
           <span>Ernie Bushmiller’s *Nancy* (Newgarden & Karasik)</span>
         </div>
         <div class="content-box">
-          <p>
-            <em>"Ernie Bushmiller had the hand of an architect, the mind of a silent film comedian, and the soul of an accountant."</em>
-          </p>
-          <ul>
-            <li><strong>Spotting the Blacks</strong>: Connect-the-dots chiaroscuro pulls the eye across panels like an undulating wave.</li>
-            <li><strong>Groundline Swell</strong>: The upward slope of the ground in the punchline panel elevates Nancy, stops Sluggo’s momentum, and frames the seltzer bottle.</li>
-            <li><strong>Dialogue Counterpoint</strong>: Repeating Sluggo's line three times minimizes reading load, focusing attention on his shifting physical posture.</li>
-          </ul>
+          <p>Spotting the blacks (connect-the-dots wave); groundline swell elevating Nancy; dialogue repetition (Rule of 3).</p>
         </div>
       </div>
 
@@ -596,12 +535,7 @@
           <span>Scott McCloud: *Understanding Comics* (Ch 1–6)</span>
         </div>
         <div class="content-box">
-          <ul>
-            <li><strong>Definition</strong>: <em>"Juxtaposed pictorial and other images in deliberate sequence, intended to convey information and/or to produce an aesthetic response."</em></li>
-            <li><strong>Masking Effect</strong>: Simple cartoon icon for protagonist (universal identification) + realistic background (grounded world).</li>
-            <li><strong>6 Closure Transitions</strong>: (1) Moment-to-moment, (2) Action-to-action, (3) Subject-to-subject, (4) Scene-to-scene, (5) Aspect-to-aspect, (6) Non-sequitur.</li>
-            <li><strong>Interdependent Combination</strong>: Words and pictures working together to communicate an idea that neither could convey alone.</li>
-          </ul>
+          <p>Sequential art; Masking effect; 6 Closure transitions in the gutter; 7 Word-image combos (Interdependent standard).</p>
         </div>
       </div>
 
@@ -610,11 +544,7 @@
           <span>Matthew J. Smith: Superhero Comics</span>
         </div>
         <div class="content-box">
-          <ul>
-            <li><strong>Peter Coogan's Triad</strong>: <span class="highlight-rose">Mission</span> (pro-social, ongoing), <span class="highlight-rose">Powers</span> (extraordinary abilities/training), <span class="highlight-rose">Identity</span> (costume, codename, dual identity).</li>
-            <li><strong>Walter Wink's Myth of Redemptive Violence</strong>: The belief that peace and moral order can only be restored through the hero applying superior physical violence to obliterate evil.</li>
-            <li><strong>Golden Age Trinity</strong>: Superman (Depression New Deal crusader, 1938), Batman (pulp noir trauma vigilante, 1939), Wonder Woman (Marston's feminist propaganda of love/truth, 1941).</li>
-          </ul>
+          <p>Peter Coogan's Mission/Powers/Identity triad; Walter Wink's Myth of Redemptive Violence; Superman (1938), Batman (1939), Wonder Woman (1941).</p>
         </div>
       </div>
 
@@ -630,13 +560,7 @@
           <span>Topic 1: Culinary Triangle & Short Films</span>
         </div>
         <div class="content-box">
-          <p>
-            <strong>Warren Belasco’s Culinary Triangle</strong>: Food choices negotiate the tension between <span class="highlight">Identity</span> (culture, memory), <span class="highlight">Convenience</span> (price, speed), and <span class="highlight">Responsibility</span> (health, ethics, environment).
-          </p>
-          <ul>
-            <li><strong>Albina’s *Pierogi Pincé* (2010)</strong>: Pinching pierogis as an embodied tactile transmission of Polish diasporic survival; identity prioritized over convenience.</li>
-            <li><strong>Domee Shi’s *Bao* (2018)</strong>: The steamed baozi as an avatar for the son (*bǎo* = treasure); maternal fear of assimilation leading to consumption as ultimate control.</li>
-          </ul>
+          <p>Belasco's Culinary Triangle: Identity vs Convenience vs Responsibility. *Pierogi Pincé* & Domee Shi's *Bao*.</p>
         </div>
       </div>
 
@@ -645,18 +569,7 @@
           <span>Topic 2: Semiotics & *Tampopo* (1985)</span>
         </div>
         <div class="content-box">
-          <p>
-            <strong>Roland Barthes' 3 Levels of Meaning</strong>: Denotative (literal calories), Connotative (social class/prestige), and Mythological (naturalized ideology).
-          </p>
-          <div style="background: rgba(0,0,0,0.3); padding: 8px 10px; border-radius: 8px;">
-            <strong>Juzo Itami's 4 Core Scenes in *Tampopo*:</strong>
-            <ul style="margin-top: 4px; margin-bottom: 0;">
-              <li><strong>Ramen Master</strong>: Sacred dining ritual and apologetic anthropomorphism.</li>
-              <li><strong>French Restaurant</strong>: Junior clerk speaks French and orders delicacies, humiliating conforming bosses.</li>
-              <li><strong>Gangster in White</strong>: Eroticization of raw oysters and egg yolk oral transfer.</li>
-              <li><strong>Dying Mother</strong>: Maternal self-sacrifice; expending final metabolic energy to cook fried rice.</li>
-            </ul>
-          </div>
+          <p>Barthes' 3 Levels (Denotative, Connotative, Mythological). *Tampopo* 4 scenes: Ramen Master, French Restaurant corporate satire, Gangster erotica, Dying Mother.</p>
         </div>
       </div>
 
@@ -665,15 +578,7 @@
           <span>Topic 3: Columbian Exchange & *Minari* (2020)</span>
         </div>
         <div class="content-box">
-          <ul>
-            <li><strong>Alfred Crosby (1972)</strong>: Biological transfer post-1492. Chili peppers (*Capsicum*) are New World, introduced to Asian cuisines by European traders.</li>
-            <li><strong>Sidney Cheung</strong>: Authenticity is a contested social claim; "Spice Politics" and the taste of home as emotional refuge for immigrants.</li>
-            <li><strong>*Minari* Semiotics</strong>:
-              - Grandma's *gochugaru* & anchovies: Emotional umbilical cord to homeland.
-              - Mountain Dew vs. Herbal Tonic: Assimilation clash (David's urine prank).
-              - Minari by the creek: Grows wild in mud, purifies water, tastes sweetest in its second season (immigrant second generation taking root).
-            </li>
-          </ul>
+          <p>Crosby's biological transfer (chili peppers). Sidney Cheung's Spice Politics. *Minari* watercress metaphor: second-generation flourishing.</p>
         </div>
       </div>
 
@@ -682,10 +587,7 @@
           <span>Topic 4 (Friday): Soul Food & *Moonlight* (2016)</span>
         </div>
         <div class="content-box">
-          <ul>
-            <li><strong>Frederick Douglass Opie</strong>: West African heritage, plantation offal alchemy (chitlins, greens), the Great Migration, and the Chitlin Circuit during Jim Crow.</li>
-            <li><strong>*Moonlight* Act III Diner Analysis</strong>: Kevin cooking the "Chef's Special" (Cuban sandwich, wine) for Chiron; Barbara Lewis's "Hello Stranger" on the jukebox; culinary domestic care disarming hyper-masculine trauma armor into tender queer love.</li>
-          </ul>
+          <p>Frederick Douglass Opie's Chitlin Circuit & slavery offal alchemy. *Moonlight* Act III diner scene: Kevin cooking Chef's Special for Chiron (queer care disarming trauma armor).</p>
         </div>
       </div>
 
@@ -697,19 +599,18 @@
     <div id="view-cards" class="view-section" style="display: none;">
       
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-        <span class="badge badge-cyan" id="fc-counter">Card 1 / 10</span>
+        <span class="badge badge-cyan" id="fc-counter">Card 1 / 14</span>
         <span style="font-size: 11px; color: var(--text-muted);">Tap card to reveal</span>
       </div>
 
-      <!-- Flashcard Interactive Element -->
       <div class="mobile-flashcard" id="mobileCard" onclick="revealCard()">
         <div>
-          <div class="badge badge-emerald" id="fc-course-badge" style="margin-bottom: 8px;">SY 281A</div>
+          <div class="badge badge-emerald" id="fc-course-badge" style="margin-bottom: 8px;">SY 281A • Week 4</div>
           <div class="fc-q" id="fc-question-text">
-            How does Ramón Grosfoguel link Descartes' Ego Cogito to European imperialism?
+            What is "A Dish with One Spoon" in Indigenous diplomacy and research ethics?
           </div>
           <div class="fc-a" id="fc-answer-text">
-            Descartes' 1637 <em>Ego Cogito</em> was preceded by 150 years of <strong>Ego Conquiro</strong> ("I conquer") and <strong>Ego Extermino</strong> ("I exterminate"). The conquest of Al-Andalus and the Americas established the Western male as an imperial sovereign claiming a God-Eye "point-zero" view from nowhere.
+            An Anishinaabe & Haudenosaunee treaty covenant where the <strong>Dish</strong> represents shared land and resources, and the <strong>One Spoon</strong> represents eating together peacefully with no knives (no violence), taking only what is needed, leaving enough for others, and keeping the dish clean.
           </div>
         </div>
         <div class="fc-hint">
@@ -717,7 +618,6 @@
         </div>
       </div>
 
-      <!-- Swipe / Navigation Controls -->
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px;">
         <button onclick="prevMobileCard()" style="padding: 12px; border-radius: 12px; background: #1e293b; color: #fff; border: none; font-weight: 700; font-size: 13px;">
           ⬅ Prev Card
@@ -731,7 +631,6 @@
 
   </main>
 
-  <!-- Fixed Bottom Navigation Bar -->
   <nav class="bottom-dock">
     <button class="dock-item urgent active" onclick="switchTab('lab3')" id="dock-lab3">
       <span class="dock-icon">🚨</span>
@@ -760,10 +659,8 @@
     function switchTab(tabId) {
       tabs.forEach(t => {
         document.getElementById(`view-${t}`).style.display = (t === tabId) ? 'block' : 'none';
-        
         const pill = document.getElementById(`tab-${t}`);
         if (pill) pill.classList.toggle('active', t === tabId);
-        
         const dock = document.getElementById(`dock-${t}`);
         if (dock) dock.classList.toggle('active', t === tabId);
       });
@@ -779,25 +676,49 @@
 
     const flashcards = [
       {
-        course: "SY 281A",
+        course: "SY 281A • Week 4",
+        badgeClass: "badge-emerald",
+        q: "What is 'A Dish with One Spoon' in Indigenous diplomacy and research ethics?",
+        a: "An Anishinaabe & Haudenosaunee treaty covenant where the <strong>Dish</strong> represents shared land and hunting territory, and the <strong>One Spoon</strong> represents eating together peacefully with no sharp knives (no violence), taking only what is needed, leaving enough for others, and keeping the dish clean."
+      },
+      {
+        course: "SY 281A • Week 4",
+        badgeClass: "badge-emerald",
+        q: "What is the Two Row Wampum (*Kaswentha*) and its core law?",
+        a: "A 1613 treaty between Haudenosaunee and Dutch settlers. Three white rows symbolize peace, friendship, and respect. Two parallel purple rows represent the canoe and the ship sailing down the river of life—<strong>neither vessel steers the other</strong> (mutual non-interference and distinct sovereignty)."
+      },
+      {
+        course: "SY 281A • Week 4",
+        badgeClass: "badge-emerald",
+        q: "What is Howard Becker's 'Hierarchy of Credibility' (1967)?",
+        a: "The institutional presumption that high-status people (police chiefs, administrators) possess the truth, while marginalized groups are untrustworthy. Qualitative research systematically undermines this by elevating the voices of those at the bottom."
+      },
+      {
+        course: "SY 281A • Week 4",
+        badgeClass: "badge-emerald",
+        q: "What paradigm guides Bundy's (2019) study on African Nova Scotian women and police?",
+        a: "The <strong>Critical Paradigm</strong> (Intersectional Black Feminist lens), because it exposes institutional power imbalances and systemic racism, aiming for emancipatory social change and police accountability."
+      },
+      {
+        course: "SY 281A • Week 2",
         badgeClass: "badge-emerald",
         q: "What is the formulaic triad Grosfoguel uses to explain Cartesian hubris?",
         a: "<strong>Ego Conquiro</strong> ('I conquer') ➔ <strong>Ego Extermino</strong> ('I exterminate') ➔ <strong>Ego Cogito</strong> ('I think'). 150 years of conquest produced the illusion of the detached God-Eye perspective."
       },
       {
-        course: "SY 281A",
+        course: "SY 281A • Week 2",
         badgeClass: "badge-emerald",
         q: "Name the 4 Genocides/Epistemicides of the Long 16th Century.",
         a: "1. Muslims & Jews in Al-Andalus (1492).<br>2. Indigenous Peoples of the Americas (1492+).<br>3. Enslaved Africans (Middle Passage).<br>4. European Women (Witch hunts / female healers)."
       },
       {
-        course: "SY 281A",
+        course: "SY 281A • Week 2",
         badgeClass: "badge-emerald",
         q: "What was Section 141 of the Indian Act (1927)?",
         a: "A federal law that made it a crime to hire lawyers or raise funds for Indigenous land claims, shutting down legal mobilization after the 1910 Memorial."
       },
       {
-        course: "SY 281A",
+        course: "SY 281A • Week 3",
         badgeClass: "badge-emerald",
         q: "What is Kieran Bonner's radical hermeneutic definition of 'To Know'?",
         a: "<em>'To Know = To understand the perspective which made the knowledge possible in the first place.'</em> Objectivity has limited use; reality and knower are interdependent."
@@ -883,15 +804,16 @@
         document.getElementById('btnAudio').style.background = "var(--accent-cyan)";
       } else {
         const textToRead = `
-          Welcome to your bedtime academic briefing, Solomon.
+          Welcome to your Week 4 bedtime briefing, Solomon.
           Tomorrow morning at 8:30 AM in DAWB 5-127 is your Qualitative Methods Lab Exercise 3, worth 10% of your grade.
-          Here is your 5-minute pre-lab lock:
-          Point 1: The Cartesian Link. René Descartes' formula "I think, therefore I am" was preceded by 150 years of "I conquer" and "I exterminate". The conquest of the Americas and Al-Andalus established the Western male as an imperial sovereign claiming a godlike point-zero perspective from nowhere.
-          Point 2: The Four Epistemicides. First, Muslims and Jews in Al-Andalus with book burning and blood purity laws. Second, Indigenous peoples in the Americas and the Valladolid debate. Third, the Transatlantic slave trade commodifying African bodies. Fourth, the European witch hunts destroying female herbalists and healers.
-          Point 3: The 1910 Kamloops Memorial. Chief Petit Louis, John Tetlenitsa, and John Chilahitsa presented the host-guest covenant to Prime Minister Wilfrid Laurier. They explained that Indigenous nations are perpetual hosts who welcomed early fur traders, but were betrayed by settlers who stole land and water. This led to Section 141 of the Indian Act in 1927, which banned hiring lawyers for land claims.
-          Point 4: Merrigan's Three Paradigms. Discovery seeks universal laws with an objective observer. Interpretive seeks socially constructed meaning and lifeworlds. Critical seeks to expose power structures and create emancipatory social change.
-          Point 5: Kieran Bonner and Hans-Georg Gadamer. To know means to understand the perspective that made the knowledge possible. Pre-judgments are the essential condition of understanding, and inquiry is a fusion of horizons.
-          Rest well, Solomon. You are completely prepared for tomorrow morning.
+          Here is your fast 5-minute pre-lab lock:
+          Point 1: Indigenous Treaties. First, A Dish with One Spoon: an ancient covenant where the dish is the shared land, and the one spoon means eating together with no sharp knives or violence, taking only what you need, leaving enough for others, and keeping the dish clean. Second, the Two Row Wampum, Kaswentha: the canoe and the ship travel side-by-side down the river of life; neither vessel steers the other, representing mutual non-interference.
+          Point 2: Howard Becker's Hierarchy of Credibility. Society presumes high-status officials hold the truth. Qualitative research undermines this hierarchy by centering the voices of marginalized people at the bottom.
+          Point 3: The Bundy 2019 study. The article on African Nova Scotian women and police is guided by the Critical Paradigm, because it critiques institutional power and systemic racism with an emancipatory goal of social justice.
+          Point 4: The Cartesian Imperial Link. Descartes' "I think, therefore I am" was preceded by 150 years of "I conquer" and "I exterminate" across the four epistemicides: Al-Andalus, the Americas, the Slave Trade, and the Witch Hunts.
+          Point 5: The 1910 Kamloops Memorial. Chief Petit Louis and the Chiefs presented the host-guest covenant, which settlers betrayed by stealing land and water, leading to Section 141 of the Indian Act in 1927 banning lawyers.
+          Point 6: Merrigan's Three Paradigms: Discovery seeks laws; Interpretive seeks meaning; Critical seeks emancipation from power.
+          You are completely prepared, Solomon. Rest well tonight.
         `;
         const utterance = new SpeechSynthesisUtterance(textToRead);
         utterance.rate = 0.95;
