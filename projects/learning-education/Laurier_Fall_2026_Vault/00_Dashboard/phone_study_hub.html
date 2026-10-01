@@ -270,6 +270,19 @@
 
   <main class="container">
 
+    <!-- Offline Download & Status Bar -->
+    <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 14px; padding: 10px 14px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+      <div>
+        <div style="font-size: 12px; font-weight: 800; color: #34d399; display: flex; align-items: center; gap: 5px;">
+          <span>⚡</span> 100% OFFLINE CAPABLE
+        </div>
+        <div style="font-size: 10px; color: #94a3b8;">Zero internet or PC needed once saved</div>
+      </div>
+      <button onclick="downloadOfflineCopy()" style="background: #10b981; color: #030712; border: none; font-size: 11px; font-weight: 800; padding: 7px 13px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 5px; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);">
+        <span>📥</span> Save to Phone
+      </button>
+    </div>
+
     <!-- Audio Player Bar (Web Speech API) -->
     <div class="audio-bar">
       <div>
@@ -833,6 +846,19 @@
     }
 
     renderCard();
+
+    
+    function downloadOfflineCopy() {
+      const htmlContent = document.documentElement.outerHTML;
+      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'Laurier_Study_Hub_Offline.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      alert('Downloaded! You can now open Laurier_Study_Hub_Offline.html from your phone Files or Downloads folder even if your PC is turned off.');
+    }
 
     let isSpeaking = false;
     function toggleAudioReader() {
